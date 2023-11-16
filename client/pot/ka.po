@@ -83,12 +83,6 @@ msgstr "დეტალები"
 msgid "Platform wizard"
 msgstr "პლატფორმის ოსტატი"
 
-msgid "CREDIT CARD"
-msgstr "საკრედიტო ბარათი"
-
-msgid "YOUR NAME"
-msgstr "თქვენი სახელი"
-
 msgid "Label the report"
 msgstr "ანგარიშის დასათაურება"
 
@@ -483,28 +477,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "პირადი მონაცემების დაცვის დებულება"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "პირადი მონაცემების დაცვის დებულება"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -516,7 +498,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -991,9 +973,6 @@ msgstr "ადმინისტრატორებისთვის მო�
 msgid "Administrators authorized to change user passwords:"
 msgstr "ადმინისტრატორებს უფლება აქვთ შეცვალონ მომხმარებლის პაროლები:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1002,9 +981,6 @@ msgstr "გამარტივებული შესვლის ჩარ�
 
 msgid "Enable search engines indexing"
 msgstr "საძიებო სისტემებში ინდექსირების ჩართვა"
-
-msgid "Default questionnaire"
-msgstr "ნაგულისხმევი კითხვარი"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1096,11 +1072,11 @@ msgstr "რეჟიმი:"
 msgid "Creation date:"
 msgstr "შექმნის თარიღი:"
 
-msgid "Root domain used for secondary sites"
-msgstr "მეორადი საიტებისთვის გამოყენებული ძირითადი დომენი"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "პირველი საიტი გამოიყენეთ მხოლოდ ადმინისტრაციული მიზნებისთვის"
+
+msgid "Root domain used for secondary sites"
+msgstr "მეორადი საიტებისთვის გამოყენებული ძირითადი დომენი"
 
 msgid "Allow users to sign up"
 msgstr "მომხმარებლებისთვის რეგისტრაციის ნების დართვა"
@@ -1415,9 +1391,6 @@ msgstr "თუ ქსურთ შეიტანოთ წვლილი პ�
 msgid "Join our chat:"
 msgstr "შემოუერთდით ჩვენს სასაუბროს:"
 
-msgid "Follow the project on:"
-msgstr "თვალყური ადევნეთ პროექტს:"
-
 msgid "An update is available:"
 msgstr "განახლება ხელმისაწვდომია:"
 
@@ -1487,17 +1460,11 @@ msgstr "თუ პლატფორმა არ გააქტიურდე
 msgid "Sign up"
 msgstr "შექმნა"
 
-msgid "Site"
-msgstr "საიტი"
-
-msgid "Confirmation"
-msgstr "დადასტურება"
+msgid "Invalid phone number"
+msgstr "არასწორი ტელეფონის ნომერი"
 
 msgid "Invalid confirmation"
 msgstr "არასწორი დადასტურება"
-
-msgid "Invalid phone number"
-msgstr "არასწორი ტელეფონის ნომერი"
 
 msgid "Address"
 msgstr "მისამართი"
@@ -1507,6 +1474,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr "საიტი"
+
+msgid "Confirmation"
+msgstr "დადასტურება"
 
 msgid "The answer is too short"
 msgstr "პასუხი ძალიან მოკლეა"
@@ -1661,8 +1634,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "გსურთ მიეთითოს თქვენი საიდენტიფიკაციო ინფორმაცია?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "სახელი"
@@ -1678,6 +1651,9 @@ msgstr "მე მირჩევნია დამიკავშირდნ�
 
 msgid "Other"
 msgstr "სხვა"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "ძვირფასო {RecipientName}"

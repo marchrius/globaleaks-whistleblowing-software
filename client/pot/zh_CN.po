@@ -104,12 +104,6 @@ msgstr "详细信息"
 msgid "Platform wizard"
 msgstr "平台向导"
 
-msgid "CREDIT CARD"
-msgstr "信用卡"
-
-msgid "YOUR NAME"
-msgstr "你的名字"
-
 msgid "Label the report"
 msgstr "标记该报告"
 
@@ -504,28 +498,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "公共"
-
-msgid "Internal"
-msgstr "内部"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "隐私政策"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "隐私政策"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -537,7 +519,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1012,9 +994,6 @@ msgstr "启用管理者更改用户密码权限"
 msgid "Administrators authorized to change user passwords:"
 msgstr "管理员已授权更改用户密码："
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1023,9 +1002,6 @@ msgstr "启用简易登录"
 
 msgid "Enable search engines indexing"
 msgstr "启用搜索引擎索引"
-
-msgid "Default questionnaire"
-msgstr "默认问卷"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1117,11 +1093,11 @@ msgstr "模式："
 msgid "Creation date:"
 msgstr "创建日期："
 
-msgid "Root domain used for secondary sites"
-msgstr "辅助站点使用的根域"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "第一个站点仅用作管理目的"
+
+msgid "Root domain used for secondary sites"
+msgstr "辅助站点使用的根域"
 
 msgid "Allow users to sign up"
 msgstr "允许用户注册"
@@ -1436,9 +1412,6 @@ msgstr "如果想要参与软件开发或提交程序漏洞，请在我们的票
 msgid "Join our chat:"
 msgstr "加入聊天讨论："
 
-msgid "Follow the project on:"
-msgstr "关注该项目："
-
 msgid "An update is available:"
 msgstr "可用更新："
 
@@ -1508,17 +1481,11 @@ msgstr "如果未在 24 小时内完成激活，平台将自动删除。"
 msgid "Sign up"
 msgstr "注册"
 
-msgid "Site"
-msgstr "站点"
-
-msgid "Confirmation"
-msgstr "确认"
+msgid "Invalid phone number"
+msgstr "无效的电话号码"
 
 msgid "Invalid confirmation"
 msgstr "无效确认"
-
-msgid "Invalid phone number"
-msgstr "无效的电话号码"
 
 msgid "Address"
 msgstr "地址"
@@ -1528,6 +1495,12 @@ msgstr "税控码"
 
 msgid "Tax code"
 msgstr "税码"
+
+msgid "Site"
+msgstr "站点"
+
+msgid "Confirmation"
+msgstr "确认"
 
 msgid "The answer is too short"
 msgstr "答案过短"
@@ -1682,8 +1655,8 @@ msgstr "这些机构是否已对您的声明进行调查？如果是，结果如
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "您想要看到或得到什么样的结果？"
 
-msgid "Do you want to provide your identification information?"
-msgstr "是否想要提供您的身份信息？"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "名"
@@ -1699,6 +1672,9 @@ msgstr ""
 
 msgid "Other"
 msgstr "其它"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "尊敬的 {RecipientName}："

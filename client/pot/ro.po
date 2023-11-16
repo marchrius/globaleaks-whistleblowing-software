@@ -99,12 +99,6 @@ msgstr "Detalii"
 msgid "Platform wizard"
 msgstr "Configurator platformă"
 
-msgid "CREDIT CARD"
-msgstr "CARD DE CREDIT"
-
-msgid "YOUR NAME"
-msgstr "NUMELE TĂU"
-
 msgid "Label the report"
 msgstr "Etichetează sesizarea"
 
@@ -499,28 +493,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Public"
-
-msgid "Internal"
-msgstr "Intern"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Politica de confidențialitate"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Politica de confidențialitate"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -532,7 +514,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1007,9 +989,6 @@ msgstr "Permite administratorilor să schimbe parolele utilizatorilor"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratori autorizați să schimbe parolele utilizatorului:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1018,9 +997,6 @@ msgstr "Activează autentificarea simplificată"
 
 msgid "Enable search engines indexing"
 msgstr "Activează indexarea pentru motoarele de căutare"
-
-msgid "Default questionnaire"
-msgstr "Chestionar standard"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1112,11 +1088,11 @@ msgstr "Mod:"
 msgid "Creation date:"
 msgstr "Data creării:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Domeniu principal utilizat pentru website-urile secundare"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Folosește primul website doar pentru scopuri administrative"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domeniu principal utilizat pentru website-urile secundare"
 
 msgid "Allow users to sign up"
 msgstr "Permite utilizatorilor să se înscrie"
@@ -1431,9 +1407,6 @@ msgstr "Dacă vrei să contribui la dezvoltarea software-ului sau dorești să r
 msgid "Join our chat:"
 msgstr "Participă la discuția noastră:"
 
-msgid "Follow the project on:"
-msgstr "Urmărește proiectul pe: "
-
 msgid "An update is available:"
 msgstr "O nouă versiune este disponibilă"
 
@@ -1503,17 +1476,11 @@ msgstr "Dacă nu este activată în 24 de ore, platforma va fi ștearsă în mod
 msgid "Sign up"
 msgstr "Cont nou"
 
-msgid "Site"
-msgstr "Sait"
-
-msgid "Confirmation"
-msgstr "Confirmare"
+msgid "Invalid phone number"
+msgstr "Număr de telefon invalid"
 
 msgid "Invalid confirmation"
 msgstr "Confirmare invalidă"
-
-msgid "Invalid phone number"
-msgstr "Număr de telefon invalid"
 
 msgid "Address"
 msgstr "Adresă"
@@ -1523,6 +1490,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Cod fiscal"
+
+msgid "Site"
+msgstr "Sait"
+
+msgid "Confirmation"
+msgstr "Confirmare"
 
 msgid "The answer is too short"
 msgstr "Răspunsul este prea scurt"
@@ -1677,8 +1650,8 @@ msgstr "Aceste organizații au investigat afirmațiile dvs.? Dacă da, care a fo
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Care este rezultatul pe care doriți să-l obțineți cu sprijinul nostru?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Vrei să oferi informații care să permită identificarea ta?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Prenume"
@@ -1694,6 +1667,9 @@ msgstr "Prefer să fiu contactat doar prin intermediul acestei platforme"
 
 msgid "Other"
 msgstr "Alta"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Bună ziua, {RecipientName},"

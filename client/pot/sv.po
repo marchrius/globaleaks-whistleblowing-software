@@ -106,12 +106,6 @@ msgstr "Detaljer"
 msgid "Platform wizard"
 msgstr "Plattformsguide"
 
-msgid "CREDIT CARD"
-msgstr "KREDITKORT"
-
-msgid "YOUR NAME"
-msgstr "DITT NAMN"
-
 msgid "Label the report"
 msgstr "Ge rapporten en etikett"
 
@@ -489,7 +483,7 @@ msgid "Hide"
 msgstr "Göm"
 
 msgid "Unhide"
-msgstr ""
+msgstr "Göm ej längre"
 
 msgid "Redact"
 msgstr "Radera"
@@ -506,41 +500,29 @@ msgstr "Ge denna användare förmågan att maskera information"
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Ge denna användare förmågan att permanent radera maskerad information"
 
-msgid "Public"
-msgstr "Allmän"
-
-msgid "Internal"
-msgstr "Intern"
-
-msgid "Personal"
-msgstr "Personlig"
-
-msgid "Privacy Policy"
-msgstr "Integritetspolicy"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "Jag har läst och accepterar integritetspolicyn"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Ladda ner en kopia av integritetspolicyn"
 
+msgid "Privacy Policy"
+msgstr "Integritetspolicy"
+
 msgid "Whistleblowing Policy"
 msgstr "Visselblåsarpolicy"
-
-msgid "Accessibility Declaration"
-msgstr ""
 
 msgid "Voice"
 msgstr "Voice"
 
 msgid "Everyone"
-msgstr ""
+msgstr "Alla"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "Endast mottagare"
 
-msgid "Only me"
-msgstr ""
+msgid "Me only"
+msgstr "Bara jag"
 
 msgid "File a report"
 msgstr "Lämna en rapport"
@@ -1014,9 +996,6 @@ msgstr "Tillåt att administratörer får ändra användarlösenord."
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratörer som tillåts ändra användarlösenord:"
 
-msgid "Enable file viewer"
-msgstr "Aktivera filvisare"
-
 msgid "Enable PGP"
 msgstr "Aktivera PGP"
 
@@ -1026,11 +1005,8 @@ msgstr "Aktivera förenklad inloggning"
 msgid "Enable search engines indexing"
 msgstr "Aktivera sökmotorindexering"
 
-msgid "Default questionnaire"
-msgstr "Standardfrågeformulär"
-
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "Visa kanaler i alfabetisk ordning"
 
 msgid "Size limit for file attachments"
 msgstr "Storleksgräns för bifogade filer"
@@ -1119,11 +1095,11 @@ msgstr "Läge:"
 msgid "Creation date:"
 msgstr "Datum för skapande:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Rotzon som används för sekundära webbplatser"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Använd den primära webbplatsen enbart för administrativa ändamål"
+
+msgid "Root domain used for secondary sites"
+msgstr "Rotzon som används för sekundära webbplatser"
 
 msgid "Allow users to sign up"
 msgstr "Tillåt användarna att registrera sig"
@@ -1381,7 +1357,7 @@ msgid "Size:"
 msgstr "Storlek:"
 
 msgid "Access date"
-msgstr ""
+msgstr "Åtkomstdatum"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottagarna har bett dig fylla i ytterligare ett frågeformulär."
@@ -1437,9 +1413,6 @@ msgstr "Om du vill bidra till programvaruutvecklingen eller rapportera om ett fe
 
 msgid "Join our chat:"
 msgstr "Delta i vår chatt:"
-
-msgid "Follow the project on:"
-msgstr "Följ projektet på adressen:"
 
 msgid "An update is available:"
 msgstr "En uppdatering är tillgänglig:"
@@ -1510,17 +1483,11 @@ msgstr "Om du inte aktiverar plattformen inom 24 timmar, kommer den att raderas
 msgid "Sign up"
 msgstr "Registrering"
 
-msgid "Site"
-msgstr "Webbplats"
-
-msgid "Confirmation"
-msgstr "Bekräftelse"
+msgid "Invalid phone number"
+msgstr "Ogiltigt telefonnummer"
 
 msgid "Invalid confirmation"
 msgstr "Ogiltig bekräftelse"
-
-msgid "Invalid phone number"
-msgstr "Ogiltigt telefonnummer"
 
 msgid "Address"
 msgstr "Adress"
@@ -1530,6 +1497,12 @@ msgstr "Skattenummer"
 
 msgid "Tax code"
 msgstr "Skatteregistreringsnummer"
+
+msgid "Site"
+msgstr "Webbplats"
+
+msgid "Confirmation"
+msgstr "Bekräftelse"
 
 msgid "The answer is too short"
 msgstr "Svaret är alltför kort"
@@ -1684,8 +1657,8 @@ msgstr "Har dessa organisationer undersökt dina påståenden? Om så, vad var r
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Vad är resultatet du vill uppnå med din rapport?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Vill du ge oss dina identifieringsuppgifter?"
+msgid "Would you like to tell us who you are?"
+msgstr "Vill du berätta för oss vem du är?"
 
 msgid "First name"
 msgstr "Förnamn"
@@ -1701,6 +1674,9 @@ msgstr "Jag föredrar att bli kontaktad endast via denna plattform"
 
 msgid "Other"
 msgstr "Annat"
+
+msgid "Specify"
+msgstr "Specificera"
 
 msgid "Dear {RecipientName},"
 msgstr "Hej {RecipientName},"

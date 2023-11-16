@@ -84,12 +84,6 @@ msgstr "Üksikasjad"
 msgid "Platform wizard"
 msgstr "Platvormi viisard"
 
-msgid "CREDIT CARD"
-msgstr "KREDIITKAART"
-
-msgid "YOUR NAME"
-msgstr "TEIE NIMI"
-
 msgid "Label the report"
 msgstr "Teate silt"
 
@@ -484,28 +478,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Privaatsus"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Privaatsus"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -517,7 +499,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -992,9 +974,6 @@ msgstr "Luba administraatoritel kasutajate paroole muuta."
 msgid "Administrators authorized to change user passwords:"
 msgstr "Kasutajate paroolide muutmise õigust omavad administraatorid:"
 
-msgid "Enable file viewer"
-msgstr "Luba failivaatur"
-
 msgid "Enable PGP"
 msgstr "Luba PGP"
 
@@ -1003,9 +982,6 @@ msgstr "Luba lihtsustatud sisselogimine"
 
 msgid "Enable search engines indexing"
 msgstr "Luba indekseerimine otsimootorite jaoks"
-
-msgid "Default questionnaire"
-msgstr "Standardankeet"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1097,11 +1073,11 @@ msgstr "Režiim:"
 msgid "Creation date:"
 msgstr "Loomise kuupäev:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Varusaitide puhul kasutatav juurdomeen"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Kasuta esimest saiti ainult administreerimiseks"
+
+msgid "Root domain used for secondary sites"
+msgstr "Varusaitide puhul kasutatav juurdomeen"
 
 msgid "Allow users to sign up"
 msgstr "Luba kasutajate registreerumine"
@@ -1416,9 +1392,6 @@ msgstr "Kui soovite kaasa aidata tarkvara arendamisele või teatada programmivea
 msgid "Join our chat:"
 msgstr "Liituge meie vestlusega:"
 
-msgid "Follow the project on:"
-msgstr "Jälgige projekti:"
-
 msgid "An update is available:"
 msgstr "Värskendus on saadaval:"
 
@@ -1488,17 +1461,11 @@ msgstr "Kui platvormi 24 tunni jooksul ei aktiveerita, kustutatakse see automaat
 msgid "Sign up"
 msgstr "Registreeru"
 
-msgid "Site"
-msgstr "Sait"
-
-msgid "Confirmation"
-msgstr "Kinnitus"
+msgid "Invalid phone number"
+msgstr "Vigane telefoninumber"
 
 msgid "Invalid confirmation"
 msgstr "Kehtetu kinnitus"
-
-msgid "Invalid phone number"
-msgstr "Vigane telefoninumber"
 
 msgid "Address"
 msgstr "Aadress"
@@ -1508,6 +1475,12 @@ msgstr "Itaalia maksukood"
 
 msgid "Tax code"
 msgstr "Maksukood"
+
+msgid "Site"
+msgstr "Sait"
+
+msgid "Confirmation"
+msgstr "Kinnitus"
 
 msgid "The answer is too short"
 msgstr "Vastus on liiga lühike"
@@ -1662,8 +1635,8 @@ msgstr "Kas need organisatsioonid on teie väiteid uurinud? Kui jah, siis millin
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Millist tulemust soovite meie toetusega saavutada?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Kas soovite esitada oma isikuandmeid?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Eesnimi"
@@ -1679,6 +1652,9 @@ msgstr "Eelistan, et minuga võetakse ühendust ainult selle platvormi kaudu"
 
 msgid "Other"
 msgstr "Muu"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Austatud {RecipientName}!"

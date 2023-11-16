@@ -1,3 +1,39 @@
+Changes in version 4.13.18
+    Fix download of recipient files by whistleblowers
+    Deprecate Accessibility Declaration feature;
+      it seems to confuse most of the users and
+      who need it could use the standard footer
+      customization feature.
+    Bump client dependencies to latest versions
+    Update translations source
+
+Changes in version 4.13.17
+    Enable secure file viewer by design and by default
+    Implement sandboxed listening of audio recordings
+    Make it possible for whistleblowers to listen to their own audio recordings (#3736)
+    Make it possible for whistleblowers to download their own file uploads
+    Always ask organization data when on signup form
+    Fix issue #3740
+    Bump client dependencies to latest versions
+    Update translations
+
+Changes in version 4.13.16
+    Fix issue #3727
+    Rename report Export functionality in Download
+    Replace icon used for file downloads
+    Bump npm dependencies to latest versions
+
+Changes in version 4.13.15
+    Improve responsivity of audio player interface (#3712)
+    Silence exceptions related to remote connections
+    Correct initialization order in Tor service
+    Update whistleblowing identity question
+    Reorganize Sites' options
+    Show postpone button also when the channel data retention policy is disabled
+    Revise content security policy
+    Bump npm dependencies to latest versions
+    Update translations
+
 Changes in version 4.13.14
     Revise vocoder implementation
     Apply minor bugfixing

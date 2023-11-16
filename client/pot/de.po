@@ -129,12 +129,6 @@ msgstr "Details"
 msgid "Platform wizard"
 msgstr "Plattformassistent"
 
-msgid "CREDIT CARD"
-msgstr "KREDITKARTE"
-
-msgid "YOUR NAME"
-msgstr "IHR NAME"
-
 msgid "Label the report"
 msgstr "Den Bericht bezeichnen"
 
@@ -529,28 +523,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Öffentlich"
-
-msgid "Internal"
-msgstr "Intern"
-
-msgid "Personal"
-msgstr "Persönlich"
-
-msgid "Privacy Policy"
-msgstr "Datenschutzerklärung"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Datenschutzerklärung"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -562,7 +544,7 @@ msgstr "Jeder"
 msgid "Recipients only"
 msgstr "Nur Empfänger"
 
-msgid "Only me"
+msgid "Me only"
 msgstr "Nur ich"
 
 msgid "File a report"
@@ -1037,9 +1019,6 @@ msgstr "Administratoren das Ändern von Benutzerpasswörtern erlauben"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratoren, die berechtigt sind, Benutzerpasswörter zu ändern:"
 
-msgid "Enable file viewer"
-msgstr "Dateibetrachter aktivieren"
-
 msgid "Enable PGP"
 msgstr "PGP aktivieren"
 
@@ -1048,9 +1027,6 @@ msgstr "Vereinfachte Anmeldung aktivieren"
 
 msgid "Enable search engines indexing"
 msgstr "Suchmaschinenindizierung aktivieren"
-
-msgid "Default questionnaire"
-msgstr "Standardfragebogen"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1142,11 +1118,11 @@ msgstr "Modus:"
 msgid "Creation date:"
 msgstr "Erstellungsdatum:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Wurzeldomain für weitere Seiten genutzt"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Die erste Seite nur für administrative Zwecke nutzen"
+
+msgid "Root domain used for secondary sites"
+msgstr "Wurzeldomain für weitere Seiten genutzt"
 
 msgid "Allow users to sign up"
 msgstr "Benutzerregistrierung erlauben"
@@ -1461,9 +1437,6 @@ msgstr "Wenn Sie an der Softwareentwicklung mitarbeiten oder einen Fehler melden
 msgid "Join our chat:"
 msgstr "Unseren Chat besuchen:"
 
-msgid "Follow the project on:"
-msgstr "Folgen Sie dem Projekt auf:"
-
 msgid "An update is available:"
 msgstr "Eine Aktualisierung ist verfügbar:"
 
@@ -1533,17 +1506,11 @@ msgstr "Falls nicht innerhalb von 24 Stunden aktiviert, wird die Plattform autom
 msgid "Sign up"
 msgstr "Registrieren"
 
-msgid "Site"
-msgstr "Webseite"
-
-msgid "Confirmation"
-msgstr "Bestätigung"
+msgid "Invalid phone number"
+msgstr "Ungültige Telefonnummer"
 
 msgid "Invalid confirmation"
 msgstr "Ungültige Bestätigung"
-
-msgid "Invalid phone number"
-msgstr "Ungültige Telefonnummer"
 
 msgid "Address"
 msgstr "Adresse"
@@ -1553,6 +1520,12 @@ msgstr "Steuernummer"
 
 msgid "Tax code"
 msgstr "Steuerkennziffer"
+
+msgid "Site"
+msgstr "Webseite"
+
+msgid "Confirmation"
+msgstr "Bestätigung"
 
 msgid "The answer is too short"
 msgstr "Die Antwort ist zu kurz"
@@ -1707,8 +1680,8 @@ msgstr "Haben diese Organisationen Ihre Behauptungen untersucht? Wenn ja, was wa
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Welches Ergebnis möchten Sie mit unserer Unterstützung erreichen?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Möchten Sie Ihre Identifikationsdaten angeben?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Vorname"
@@ -1724,6 +1697,9 @@ msgstr "Ich ziehe es vor, nur über diese Plattform kontaktiert zu werden"
 
 msgid "Other"
 msgstr "Sonstige"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Sehr geehrte(r) {RecipientName},"

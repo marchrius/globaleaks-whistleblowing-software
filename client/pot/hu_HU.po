@@ -101,12 +101,6 @@ msgstr "Részletek"
 msgid "Platform wizard"
 msgstr "Platform varázsló"
 
-msgid "CREDIT CARD"
-msgstr "HITELKÁRTYA"
-
-msgid "YOUR NAME"
-msgstr "AZ ÖN NEVE"
-
 msgid "Label the report"
 msgstr "Címkézze a beküldést"
 
@@ -501,28 +495,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Adatvédelmi irányelvek"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Adatvédelmi irányelvek"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -534,7 +516,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -797,7 +779,7 @@ msgstr "Eddig:"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr "Default mail configuration in use. Please consider using a private mail server."
+msgstr ""
 
 msgid "SMTP email address"
 msgstr "SMTP email cím"
@@ -887,10 +869,10 @@ msgid "Template override"
 msgstr "Template felülírása"
 
 msgid "Min"
-msgstr "Min"
+msgstr ""
 
 msgid "Max"
-msgstr "Max"
+msgstr ""
 
 msgid "Phone number"
 msgstr "Telefonszám"
@@ -1009,9 +991,6 @@ msgstr "Engedélyezze, hogy az adminisztrátorok megváltoztathassák a felhaszn
 msgid "Administrators authorized to change user passwords:"
 msgstr "Az adminisztrátoroknak engedélyezett a felhasználói jelszavak megváltoztatása:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1020,9 +999,6 @@ msgstr "Egyszerűsített login engedélyezése"
 
 msgid "Enable search engines indexing"
 msgstr "Keresőmotorok indexelésének engedélyezése"
-
-msgid "Default questionnaire"
-msgstr "Alap kérdőív"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1114,11 +1090,11 @@ msgstr "Mód:"
 msgid "Creation date:"
 msgstr "Létrehozás dátuma:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Gyökér domain használt a másodlagos oldalakhoz"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Az első oldalt kizárólag adminisztratív célokra használja."
+
+msgid "Root domain used for secondary sites"
+msgstr "Gyökér domain használt a másodlagos oldalakhoz"
 
 msgid "Allow users to sign up"
 msgstr "Felhasználók feliratkozásának engedélyezése"
@@ -1433,9 +1409,6 @@ msgstr "Ha szeretne hozzájárulni a fejlesztéshez vagy jelenteni egy hibát, k
 msgid "Join our chat:"
 msgstr "Csatlakozzon a csevegésünkhöz: "
 
-msgid "Follow the project on:"
-msgstr "Kövesse a projektet itt:"
-
 msgid "An update is available:"
 msgstr "Frissítés elérhető:"
 
@@ -1505,26 +1478,26 @@ msgstr "Ha 24 órán belül nem aktiválja a platformot, az automatikusan törl�
 msgid "Sign up"
 msgstr "Feliratkozás"
 
-msgid "Site"
-msgstr "Oldal"
-
-msgid "Confirmation"
-msgstr "Megerősítés"
+msgid "Invalid phone number"
+msgstr "Érvénytelen telefonszám"
 
 msgid "Invalid confirmation"
 msgstr "Érvénytelen megerősítés"
-
-msgid "Invalid phone number"
-msgstr "Érvénytelen telefonszám"
 
 msgid "Address"
 msgstr "Cím"
 
 msgid "Fiscal code"
-msgstr "Fiscal code"
+msgstr ""
 
 msgid "Tax code"
 msgstr "Adókód"
+
+msgid "Site"
+msgstr "Oldal"
+
+msgid "Confirmation"
+msgstr "Megerősítés"
 
 msgid "The answer is too short"
 msgstr "A válasz túl rövid."
@@ -1625,10 +1598,10 @@ msgid "Describe your report in detail."
 msgstr "Írja le a jelentését részletesen."
 
 msgid "Where did the facts happen?"
-msgstr "Where did the facts happen?"
+msgstr ""
 
 msgid "When did the facts happen?"
-msgstr "When did the facts happen?"
+msgstr ""
 
 msgid "I'm a victim"
 msgstr "I'm a victim"
@@ -1637,50 +1610,50 @@ msgid "I'm involved in the facts"
 msgstr "I'm involved in the facts"
 
 msgid "I witnessed the facts in person"
-msgstr "I witnessed the facts in person"
+msgstr ""
 
 msgid "I was personally told by a direct witness"
-msgstr "I was personally told by a direct witness"
+msgstr ""
 
 msgid "It is a rumor I heard"
-msgstr "It is a rumor I heard"
+msgstr ""
 
 msgid "How are you involved in the reported facts?"
-msgstr "How are you involved in the reported facts?"
+msgstr ""
 
 msgid "Do you have evidence to support your report?"
-msgstr "Do you have evidence to support your report?"
+msgstr ""
 
 msgid "Please attach the evidence to support your report."
-msgstr "Please attach the evidence to support your report."
+msgstr ""
 
 msgid "Please describe the evidence in detail."
-msgstr "Please describe the evidence in detail."
+msgstr ""
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr "A thorough description of the submitted evidence enhances our ability to evaluate claims and investigate. Please take care to reference significant portions of any videos, images or documents submitted."
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Have you reported the facts to other organizations and/or individuals?"
+msgstr ""
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr "Please list the organizations and/or individuals you have informed about these facts."
+msgstr ""
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr "Have these organizations investigated your claims? If so, what was the outcome?"
+msgstr ""
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr "What is the outcome you want to achieve with our support?"
+msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Meg szeretné adni az azonosítási információit?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Keresztnév"
@@ -1696,6 +1669,9 @@ msgstr "Kizárólag ezen a platformon keresztüli kapcsolatfelvételt preferálo
 
 msgid "Other"
 msgstr "Egyéb"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kedves {RecipientName},"

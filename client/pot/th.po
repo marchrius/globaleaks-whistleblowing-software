@@ -93,12 +93,6 @@ msgstr "รายละเอียด"
 msgid "Platform wizard"
 msgstr "ตัวช่วยตั้งค่าแพลตฟอร์ม"
 
-msgid "CREDIT CARD"
-msgstr "บัตรเครดิต"
-
-msgid "YOUR NAME"
-msgstr "ชื่อของคุณ"
-
 msgid "Label the report"
 msgstr "ติดป้ายกำกับรายงาน"
 
@@ -476,58 +470,46 @@ msgid "Hide"
 msgstr "ซ่อน"
 
 msgid "Unhide"
-msgstr ""
+msgstr "เลิกซ่อน"
 
 msgid "Redact"
-msgstr ""
+msgstr "ถมดำ"
 
 msgid "Select an option"
-msgstr ""
+msgstr "เลือกตัวเลือก"
 
 msgid "Select your language"
-msgstr ""
+msgstr "เลือกภาษาของคุณ"
 
 msgid "Give this user ability to mask information"
-msgstr ""
+msgstr "ให้ผู้ใช้คนนี้สามารถบังซ่อนข้อมูลได้"
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr ""
+msgstr "ให้ผู้ใช้คนนี้สามารถถมดำถาวรข้อมูลที่ถูกบังซ่อนอยู่ได้"
 
-msgid "Public"
-msgstr "สาธารณะ"
+msgid "I've read and accept the Privacy Policy"
+msgstr "ฉันได้อ่านและยอมรับนโยบายความเป็นส่วนตัว"
 
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
+msgid "Download copy of the Privacy Policy"
+msgstr "ดาวน์โหลดสำเนานโยบายความเป็นส่วนตัว"
 
 msgid "Privacy Policy"
 msgstr "นโยบายความเป็นส่วนตัว"
 
-msgid "I've read and accept the Privacy Policy"
-msgstr ""
-
-msgid "Download copy of the Privacy Policy"
-msgstr ""
-
 msgid "Whistleblowing Policy"
-msgstr ""
-
-msgid "Accessibility Declaration"
-msgstr ""
+msgstr "นโยบายการแจ้งเบาะแส"
 
 msgid "Voice"
-msgstr ""
+msgstr "เสียง"
 
 msgid "Everyone"
-msgstr ""
+msgstr "ทุกคน"
 
 msgid "Recipients only"
-msgstr ""
+msgstr "เฉพาะผู้รับ"
 
-msgid "Only me"
-msgstr ""
+msgid "Me only"
+msgstr "เฉพาะฉัน"
 
 msgid "File a report"
 msgstr "ยื่นรายงาน"
@@ -614,7 +596,7 @@ msgid "Recipients"
 msgstr "ผู้รับ"
 
 msgid "Reminder date"
-msgstr ""
+msgstr "วันที่ให้เตือน"
 
 msgid "days"
 msgstr "วัน"
@@ -867,7 +849,7 @@ msgid "Hint"
 msgstr "คำแนะนำ"
 
 msgid "Mandatory"
-msgstr "จำเป็นต้องใช้"
+msgstr "จำเป็นต้องมี"
 
 msgid "Accept multiple file uploads"
 msgstr "ยอมรับการอัปโหลดหลายแฟ้ม"
@@ -879,10 +861,10 @@ msgid "Template override"
 msgstr "แทนที่แม่แบบ"
 
 msgid "Min"
-msgstr ""
+msgstr "ต่ำสุด"
 
 msgid "Max"
-msgstr ""
+msgstr "สูงสุด"
 
 msgid "Phone number"
 msgstr "หมายเลขโทรศัพท์"
@@ -1001,11 +983,8 @@ msgstr "เปิดให้ผู้ดูแลระบบเปลี่ย
 msgid "Administrators authorized to change user passwords:"
 msgstr "ผู้ดูแลได้รับอนุญาตให้เปลี่ยนรหัสผ่านของผู้ใช้:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
-msgstr ""
+msgstr "เปิดใช้ PGP"
 
 msgid "Enable simplified login"
 msgstr "เปิดใช้งานการลงชื่อเข้าใช้แบบเรียบง่าย"
@@ -1013,11 +992,8 @@ msgstr "เปิดใช้งานการลงชื่อเข้าใ
 msgid "Enable search engines indexing"
 msgstr "เปิดใช้การสร้างดัชนีเครื่องมือค้นหา"
 
-msgid "Default questionnaire"
-msgstr "แบบสอบถามมาตรฐาน"
-
 msgid "Show channels in alphabetical order"
-msgstr ""
+msgstr "แสดงช่องตามลำดับตัวอักษร"
 
 msgid "Size limit for file attachments"
 msgstr "ขีดจำกัดขนาดเอกสารแนบ"
@@ -1092,7 +1068,7 @@ msgid "Sites"
 msgstr "ไซต์"
 
 msgid "Profile"
-msgstr ""
+msgstr "โพรไฟล์"
 
 msgid "Configure"
 msgstr "ปรับค่า"
@@ -1106,11 +1082,11 @@ msgstr "โหมด:"
 msgid "Creation date:"
 msgstr "วันที่สร้าง:"
 
-msgid "Root domain used for secondary sites"
-msgstr "โดเมนรากถูกใช้สำหรับไซต์ชั้นสอง"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "ใช้งานเว็บไซต์แรกเพื่อจุดประสงค์ในการจัดการดูแลเท่านั้น"
+
+msgid "Root domain used for secondary sites"
+msgstr "โดเมนรากถูกใช้สำหรับไซต์ชั้นสอง"
 
 msgid "Allow users to sign up"
 msgstr "อนุญาตให้ผู้ใช้ลงชื่อสมัคร"
@@ -1173,10 +1149,10 @@ msgid "Allow the recipient to postpone the report expiration date"
 msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr ""
+msgstr "ให้ผู้ใช้คนนี้สามารถมอบสิทธิ์เข้าถึงให้กับผู้ใช้คนอื่นได้"
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr ""
+msgstr "ให้ผู้ใช้คนนี้สามารถโอนรายงานไปยังผู้ใช้คนอื่นได้"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "ให้ผู้ใช้มีสิทธิ์ผู้ดูแลในการเข้าถึงความสามารถเหล่านี้:"
@@ -1282,10 +1258,10 @@ msgid "By confirming, you will postpone the expiration date to:"
 msgstr "เมื่อยืนยัน คุณจะเลื่อนวันหมดอายุไปที่:"
 
 msgid "By confirming, you will set a reminder on date:"
-msgstr ""
+msgstr "เมื่อยืนยัน คุณจะตั้งให้แจ้งเตือนในวันที่:"
 
 msgid "Transfer access"
-msgstr ""
+msgstr "โอนการเข้าถึง"
 
 msgid "This is a demo platform, please do not use it for real submissions."
 msgstr "นี่เป็นแพลตฟอร์มทดลอง กรุณาอย่าใช้เพื่อส่งรายงานจริง"
@@ -1368,7 +1344,7 @@ msgid "Size:"
 msgstr "ขนาด:"
 
 msgid "Access date"
-msgstr ""
+msgstr "วันที่เข้าถึง"
 
 msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "ผู้รับได้ร้องขอให้คุณกรอกแบบสอบถามเพิ่มเติม"
@@ -1425,9 +1401,6 @@ msgstr "ถ้าคุณต้องการช่วยในการพั
 msgid "Join our chat:"
 msgstr "เข้าร่วมการแชตกับเรา:"
 
-msgid "Follow the project on:"
-msgstr "ติดตามโครงการได้ที่:"
-
 msgid "An update is available:"
 msgstr "รายการอัปเดตพร้อมแล้ว:"
 
@@ -1473,7 +1446,7 @@ msgid "Show"
 msgstr "แสดง"
 
 msgid "Subscription date"
-msgstr ""
+msgstr "วันที่สมัคร"
 
 msgid "Congratulations!"
 msgstr "ยินดีด้วย!"
@@ -1497,17 +1470,11 @@ msgstr "ถ้าคุณไม่ได้ยืนยันการเปิ
 msgid "Sign up"
 msgstr "ลงชื่อสมัคร"
 
-msgid "Site"
-msgstr "เว็บไซต์"
-
-msgid "Confirmation"
-msgstr "การยืนยัน"
+msgid "Invalid phone number"
+msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
 
 msgid "Invalid confirmation"
 msgstr "การยืนยันไม่ถูกต้อง"
-
-msgid "Invalid phone number"
-msgstr "หมายเลขโทรศัพท์ไม่ถูกต้อง"
 
 msgid "Address"
 msgstr "ที่อยู่"
@@ -1517,6 +1484,12 @@ msgstr "รหัสการเงิน"
 
 msgid "Tax code"
 msgstr "เลขประจำตัวผู้เสียภาษี"
+
+msgid "Site"
+msgstr "เว็บไซต์"
+
+msgid "Confirmation"
+msgstr "การยืนยัน"
 
 msgid "The answer is too short"
 msgstr "คำตอบสั้นเกินไป"
@@ -1556,7 +1529,7 @@ msgid "View your report"
 msgstr "ดูรายงานของคุณ"
 
 msgid "Select the recipients of your report"
-msgstr ""
+msgstr "เลือกผู้ที่จะรับรายงานของคุณ"
 
 msgid "Recipients selected:"
 msgstr "ผู้รับที่ถูกเลือก:"
@@ -1671,8 +1644,8 @@ msgstr "องค์กรเหล่านี้ตรวจสอบข้อ
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "คุณอยากให้/เห็นผลลัพธ์ออกมาเป็นอย่างไร?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "คุณต้องการให้ข้อมูลที่ระบุตัวตนของคุณหรือไม่"
+msgid "Would you like to tell us who you are?"
+msgstr "คุณอยากบอกเราไหมว่าคุณเป็นใคร?"
 
 msgid "First name"
 msgstr "ชื่อ"
@@ -1688,6 +1661,9 @@ msgstr "ฉันอยากให้ติดต่อผ่านแพลต
 
 msgid "Other"
 msgstr "อื่นๆ"
+
+msgid "Specify"
+msgstr "ระบุ"
 
 msgid "Dear {RecipientName},"
 msgstr "เรียน {RecipientName}"
@@ -1751,7 +1727,7 @@ msgid "The activities with unusual stats are:"
 msgstr "กิจกรรมที่มีสถิติผิดปกติคือ:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr ""
+msgstr "พื้นที่ดิสก์ที่ใช้ได้: {FreeMemory}/{TotalMemory}"
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1982,7 +1958,7 @@ msgid "New report"
 msgstr "รายงานใหม่"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr ""
+msgstr "มีรายงานหนึ่งฉบับหรือมากกว่าที่กำลังจะหมดอายุและจะถูกลบเร็ว ๆ นี้"
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "วันหมดอายุที่ใกล้ที่สุดคือ {EarliestExpirationDate}"
@@ -1994,12 +1970,12 @@ msgid "Some reports will expire soon"
 msgstr "รายงานบางฉบับกำลังจะหมดอายุเร็วๆ นี้"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr ""
+msgstr "นี่เป็นอีเมลเพื่อแจ้งคุณว่า รายงานฉบับใหม่ส่งถึงแล้ว"
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr ""
+msgstr "นี่เป็นอีเมลเพื่อแจ้งคุณว่า ถึงวันแจ้งเตือนของรายงานหนึ่งฉบับหรือมากกว่าแล้ว"
 
 msgid "Reminder"
 msgstr "เตือนความจำ"

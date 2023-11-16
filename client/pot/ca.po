@@ -102,12 +102,6 @@ msgstr "Detalls"
 msgid "Platform wizard"
 msgstr "Persona assistent de la plataforma informàtica"
 
-msgid "CREDIT CARD"
-msgstr "TARGETA DE CRÈDIT"
-
-msgid "YOUR NAME"
-msgstr "EL TEU NOM"
-
 msgid "Label the report"
 msgstr "Etiqueta l’informe"
 
@@ -502,29 +496,17 @@ msgstr "Donar a aquest usuari la capacitat d'ocultar part del text d'una denúnc
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Donar a aquest usuari la capacitat d'eliminar definitivament part del text d'una denúncia"
 
-msgid "Public"
-msgstr "Pública"
-
-msgid "Internal"
-msgstr "Intern"
-
-msgid "Personal"
-msgstr "Personal"
-
-msgid "Privacy Policy"
-msgstr "Política de privadesa"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "He llegit i accepte la Política de privacitat"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Descarregar la Política de privacitat"
 
+msgid "Privacy Policy"
+msgstr "Política de privadesa"
+
 msgid "Whistleblowing Policy"
 msgstr "Política de denúncies"
-
-msgid "Accessibility Declaration"
-msgstr "Declaració d'accessibilitat"
 
 msgid "Voice"
 msgstr "Veu"
@@ -535,8 +517,8 @@ msgstr "Tots"
 msgid "Recipients only"
 msgstr "Solament receptors"
 
-msgid "Only me"
-msgstr "Solament jo"
+msgid "Me only"
+msgstr "Únicament jo"
 
 msgid "File a report"
 msgstr "Presentar un informe"
@@ -1010,9 +992,6 @@ msgstr "Habiliteu als administradors per canviar les contrasenyes d’usuari"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Persones administradores autoritzats a canviar les contrasenyes de les persones usuàries:"
 
-msgid "Enable file viewer"
-msgstr "Activar visor de fitxers"
-
 msgid "Enable PGP"
 msgstr "Activar PGP"
 
@@ -1021,9 +1000,6 @@ msgstr "Permet l'inici de sessió simplificat"
 
 msgid "Enable search engines indexing"
 msgstr "Habilita els motors de cerca d'indexació"
-
-msgid "Default questionnaire"
-msgstr "Qüestionari per defecte"
 
 msgid "Show channels in alphabetical order"
 msgstr "Mostrar els canals en ordre alfabètic"
@@ -1115,11 +1091,11 @@ msgstr "Mode:"
 msgid "Creation date:"
 msgstr "Data de creació:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Domini arrel utilitzat per a llocs secundaris"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Utilitzeu el primer web només per a fins administratius"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domini arrel utilitzat per a llocs secundaris"
 
 msgid "Allow users to sign up"
 msgstr "Permetre als usuaris registrar-se"
@@ -1434,9 +1410,6 @@ msgstr "Si voleu contribuir al desenvolupament de programari o informar d'un err
 msgid "Join our chat:"
 msgstr "Uneix-te al nostre xat:"
 
-msgid "Follow the project on:"
-msgstr "Seguiu el projecte a:"
-
 msgid "An update is available:"
 msgstr "Hi ha una actualització disponible:"
 
@@ -1506,17 +1479,11 @@ msgstr "Si no s’activa en 24 hores, la plataforma s'eliminarà automàticament
 msgid "Sign up"
 msgstr "Registrar‐se"
 
-msgid "Site"
-msgstr "Lloc"
-
-msgid "Confirmation"
-msgstr "Confirmació"
+msgid "Invalid phone number"
+msgstr "Número de telèfon no vàlid"
 
 msgid "Invalid confirmation"
 msgstr "Confirmació no vàlida"
-
-msgid "Invalid phone number"
-msgstr "Número de telèfon no vàlid"
 
 msgid "Address"
 msgstr "Adreça"
@@ -1526,6 +1493,12 @@ msgstr "Codi postal"
 
 msgid "Tax code"
 msgstr "codi tributari"
+
+msgid "Site"
+msgstr "Lloc"
+
+msgid "Confirmation"
+msgstr "Confirmació"
 
 msgid "The answer is too short"
 msgstr "La resposta és massa curta"
@@ -1680,8 +1653,8 @@ msgstr "Aquestes organitzacions han investigat les vostres afirmacions? Si és a
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Quin és el resultat que voleu aconseguir amb el nostre suport?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Vols introduir la teva informació d'identificació?"
+msgid "Would you like to tell us who you are?"
+msgstr "¿Le gustaría identificarse?"
 
 msgid "First name"
 msgstr "Nom"
@@ -1697,6 +1670,9 @@ msgstr "Prefereixo que em contactin només mitjançant aquesta plataforma"
 
 msgid "Other"
 msgstr "Altres"
+
+msgid "Specify"
+msgstr "Especifique"
 
 msgid "Dear {RecipientName},"
 msgstr "Benvolgut/uda {RecipientName},"

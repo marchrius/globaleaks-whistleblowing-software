@@ -100,12 +100,6 @@ msgstr "פרטים"
 msgid "Platform wizard"
 msgstr "אשף פלטפורמה"
 
-msgid "CREDIT CARD"
-msgstr "כרטיס אשראי"
-
-msgid "YOUR NAME"
-msgstr "שמך"
-
 msgid "Label the report"
 msgstr "סווג את הדוח"
 
@@ -500,28 +494,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "ציבורי"
-
-msgid "Internal"
-msgstr "פנימי"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "מדיניות פרטיות"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "מדיניות פרטיות"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -533,7 +515,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1008,9 +990,6 @@ msgstr ""
 msgid "Administrators authorized to change user passwords:"
 msgstr ""
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1019,9 +998,6 @@ msgstr ""
 
 msgid "Enable search engines indexing"
 msgstr "אפשר אינדקס מנועי חיפוש"
-
-msgid "Default questionnaire"
-msgstr ""
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1113,10 +1089,10 @@ msgstr "מצב:"
 msgid "Creation date:"
 msgstr "תאריך יצירה:"
 
-msgid "Root domain used for secondary sites"
+msgid "Use the first site for administrative purposes only"
 msgstr ""
 
-msgid "Use the first site for administrative purposes only"
+msgid "Root domain used for secondary sites"
 msgstr ""
 
 msgid "Allow users to sign up"
@@ -1432,9 +1408,6 @@ msgstr ""
 msgid "Join our chat:"
 msgstr "הצטרף אל ההתכתבות שלנו:"
 
-msgid "Follow the project on:"
-msgstr "עקוב אחר המיזם ב:"
-
 msgid "An update is available:"
 msgstr "עדכון זמין:"
 
@@ -1504,17 +1477,11 @@ msgstr ""
 msgid "Sign up"
 msgstr "הירשם"
 
-msgid "Site"
-msgstr "אתר"
-
-msgid "Confirmation"
-msgstr "אישור"
+msgid "Invalid phone number"
+msgstr "מספר טלפון בלתי תקף"
 
 msgid "Invalid confirmation"
 msgstr "אישור בלתי תקף"
-
-msgid "Invalid phone number"
-msgstr "מספר טלפון בלתי תקף"
 
 msgid "Address"
 msgstr "כתובת"
@@ -1524,6 +1491,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr "אתר"
+
+msgid "Confirmation"
+msgstr "אישור"
 
 msgid "The answer is too short"
 msgstr ""
@@ -1678,8 +1651,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "האם אתה רוצה לספק מידע זיהוי שלך?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "שם פרטי"
@@ -1695,6 +1668,9 @@ msgstr ""
 
 msgid "Other"
 msgstr "אחר"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} היקר,"

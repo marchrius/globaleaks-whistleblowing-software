@@ -85,12 +85,6 @@ msgstr "Tafsilotlar"
 msgid "Platform wizard"
 msgstr "Platformani sozlash"
 
-msgid "CREDIT CARD"
-msgstr "KREDIT KARTA"
-
-msgid "YOUR NAME"
-msgstr "ISMINGIZ"
-
 msgid "Label the report"
 msgstr "Xabarga yorliq biriktiring"
 
@@ -485,28 +479,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr "Ichki"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Maxfiylik siyosati"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Maxfiylik siyosati"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -518,7 +500,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -993,9 +975,6 @@ msgstr "Administratorlarga foydalanuvchilar parollarini oʻzgartirish vakolatini
 msgid "Administrators authorized to change user passwords:"
 msgstr "Quyidagi administratorlar foydalanuvchilar parolini oʻzgartira oladi:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1004,9 +983,6 @@ msgstr "Soddalashtirilgan kirishni yoqish"
 
 msgid "Enable search engines indexing"
 msgstr "Qidiruv tizimlari indeksatsiyasiga ruxsat berish"
-
-msgid "Default questionnaire"
-msgstr "Birlamchi savolnoma"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1098,11 +1074,11 @@ msgstr "Rejim:"
 msgid "Creation date:"
 msgstr "Yaratilgan sanasi:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Ikkilamchi saytlarda ishlatiladigan asosiy domen"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Bosh saytni faqat boshqaruv maqsadlarida ishlating"
+
+msgid "Root domain used for secondary sites"
+msgstr "Ikkilamchi saytlarda ishlatiladigan asosiy domen"
 
 msgid "Allow users to sign up"
 msgstr "Foydalanuvchilarga roʻyxatdan oʻtish imkonini berish"
@@ -1417,9 +1393,6 @@ msgstr "Dasturiy taʼminot rivojiga hissa qoʻshish yoki xatoliklar haqida xabar
 msgid "Join our chat:"
 msgstr "Chatimizga qoʻshiling:"
 
-msgid "Follow the project on:"
-msgstr "Loyihani kuzating:"
-
 msgid "An update is available:"
 msgstr "Yangilanish bor:"
 
@@ -1489,17 +1462,11 @@ msgstr "Agar platforma 24 soat ichida aktivatsiya qilinmasa, u avtomatik oʻchir
 msgid "Sign up"
 msgstr "Roʻyxatdan oʻtish"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Tasdiqlash"
+msgid "Invalid phone number"
+msgstr "Telefon raqami yaroqsiz"
 
 msgid "Invalid confirmation"
 msgstr "Yaroqsiz tasdiqlash"
-
-msgid "Invalid phone number"
-msgstr "Telefon raqami yaroqsiz"
 
 msgid "Address"
 msgstr "Manzili"
@@ -1509,6 +1476,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Tasdiqlash"
 
 msgid "The answer is too short"
 msgstr "Javob juda qisqa"
@@ -1663,8 +1636,8 @@ msgstr "Ушбу ташкилотлар сизнинг даъволаринги�
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Бизнинг ёрдамимиз билан қандай натижага эришмоқчисиз?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Shaxsiy axoborotingiz taqdim qilinsinmi?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Ismi"
@@ -1680,6 +1653,9 @@ msgstr "Men bilan faqat shu platformada bogʻlanilsin"
 
 msgid "Other"
 msgstr "Boshqa"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Hurmatli {RecipientName},"

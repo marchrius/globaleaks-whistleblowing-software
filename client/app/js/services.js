@@ -399,9 +399,14 @@ factory("WBTipResource", ["GLResource", function(GLResource) {
 factory("WBTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/whistleblower/wbtip/comments");
 }]).
-factory("WBTipDownloadFile", ["Utils", function(Utils) {
+factory("WBTipDownloadRFile", ["Utils", function(Utils) {
   return function(file) {
     Utils.download("api/whistleblower/wbtip/rfiles/" + file.id);
+  };
+}]).
+factory("WBTipDownloadWBFile", ["Utils", function(Utils) {
+  return function(file) {
+    Utils.download("api/whistleblower/wbtip/wbfiles/" + file.id);
   };
 }]).
 factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
@@ -447,6 +452,7 @@ factory("WBTip", ["$rootScope", "WBTipResource", "WBTipCommentResource",
     });
   };
 }]).
+
 factory("ReceiverTips", ["GLResource", function(GLResource) {
   return new GLResource("api/recipient/rtips");
 }]).
@@ -1474,7 +1480,7 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
 
       calculateScore: function(scope, field, entry) {
         var self = this;
-        var score, i;
+        var context, score, i;
 
         if (["selectbox", "multichoice"].indexOf(field.type) > -1) {
           for(i=0; i<field.options.length; i++) {
@@ -1506,11 +1512,13 @@ factory("fieldUtilities", ["$filter", "$http", "CONSTANTS", function($filter, $h
           return;
         }
 
+	context = scope.context || scope.tip.context;
+
         score = scope.points_to_sum * scope.points_to_mul;
 
-        if (score < scope.context.score_threshold_medium) {
+        if (score < context.score_threshold_medium) {
           scope.score = 1;
-        } else if (score < scope.context.score_threshold_high) {
+        } else if (score < context.score_threshold_high) {
           scope.score = 2;
         } else {
           scope.score = 3;

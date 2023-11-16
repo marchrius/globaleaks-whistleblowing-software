@@ -83,12 +83,6 @@ msgstr "Butiran"
 msgid "Platform wizard"
 msgstr "Wizard platform"
 
-msgid "CREDIT CARD"
-msgstr "KAD KREDIT"
-
-msgid "YOUR NAME"
-msgstr "NAMA ANDA"
-
 msgid "Label the report"
 msgstr "Label laporan"
 
@@ -483,28 +477,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Dasar Kerahsiaan"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Dasar Kerahsiaan"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -516,7 +498,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -991,9 +973,6 @@ msgstr "Dayakan pentadbir untuk mengubah kata laluan pengguna"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Pentadbir memberi kebenaran untuk mengubah kata laluan:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1002,9 +981,6 @@ msgstr "Dayakan log masuk diringkaskan"
 
 msgid "Enable search engines indexing"
 msgstr "Dayakan pengindeksan enjin carian"
-
-msgid "Default questionnaire"
-msgstr "Soal selidik lalai"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1096,11 +1072,11 @@ msgstr "Mod:"
 msgid "Creation date:"
 msgstr "Tarikh penciptaan:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Domain akar digunakan untuk laman sekunder"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Gunakan laman pertama untuk tujuan pentadbiran sahaja"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domain akar digunakan untuk laman sekunder"
 
 msgid "Allow users to sign up"
 msgstr "Benarkan pengguna untuk mendaftar"
@@ -1415,9 +1391,6 @@ msgstr "Jika anda mahu menyumbang kepada pembangunan perisian atau melaporkan pe
 msgid "Join our chat:"
 msgstr "Sertai sembang kami:"
 
-msgid "Follow the project on:"
-msgstr "Ikuti projek di:"
-
 msgid "An update is available:"
 msgstr "Kemas kini tersedia:"
 
@@ -1487,17 +1460,11 @@ msgstr "Jika tidak diaktifkan dalam masa 24 jam, platform akan dipadam secara au
 msgid "Sign up"
 msgstr "Daftar"
 
-msgid "Site"
-msgstr "Laman"
-
-msgid "Confirmation"
-msgstr "Pengesahan"
+msgid "Invalid phone number"
+msgstr "Nombor telefon tidak sah"
 
 msgid "Invalid confirmation"
 msgstr "Pengesahan tidak sah"
-
-msgid "Invalid phone number"
-msgstr "Nombor telefon tidak sah"
 
 msgid "Address"
 msgstr "Alamat"
@@ -1507,6 +1474,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Kod cukai"
+
+msgid "Site"
+msgstr "Laman"
+
+msgid "Confirmation"
+msgstr "Pengesahan"
 
 msgid "The answer is too short"
 msgstr "Jawapan terlalu pendek"
@@ -1661,8 +1634,8 @@ msgstr "Adakah mana-mana organisasi ini menyiasat aduan anda? Jika ya, apakah ha
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Apakah keputusan yang anda mahu dapati/peroleh?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Adakah anda mahu menyediakan maklumat pengenalan anda?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Nama pertama"
@@ -1678,6 +1651,9 @@ msgstr ""
 
 msgid "Other"
 msgstr "Lain-lain"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "{RecipientName} yang dihormati,"

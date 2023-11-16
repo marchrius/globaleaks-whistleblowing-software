@@ -127,7 +127,7 @@ fi
 apt-get install -y tzdata
 dpkg-reconfigure -f noninteractive tzdata
 
-DO "apt-get -y install curl gnupg net-tools software-properties-common"
+DO "apt-get -y install gnupg net-tools software-properties-common wget"
 
 function is_tcp_sock_free_check {
   ! netstat -tlpn 2>/dev/null | grep -F $1 -q
@@ -146,27 +146,19 @@ echo " + required TCP sockets open"
 #
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
-# or Buster as fallback.
+# or bookworm as fallback.
 if echo "$DISTRO_CODENAME" | grep -vqE "^(bionic|bookworm|bullseye|buster|focal|jammy)$"; then
-  # In case of unsupported platforms we fallback on Bullseye
-  echo "No packages available for the current distribution; the install script will use the Buster repository."
+  # In case of unsupported platforms we fallback on bookworm
+  echo "No packages available for the current distribution; the install script will use the bookworm repository."
   DISTRO="Debian"
   DISTRO_CODENAME="bookworm"
 fi
 
 echo "Adding GlobaLeaks PGP key to trusted APT keys"
-curl -L https://deb.globaleaks.org/globaleaks.asc | apt-key add
-
-# try adding universe repo only on Ubuntu
-if echo "$DISTRO" | grep -qE "^(Ubuntu)$"; then
-  if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
-    echo "Adding Ubuntu Universe repository"
-    DO "add-apt-repository -y 'deb http://archive.ubuntu.com/ubuntu $DISTRO_CODENAME universe'"
-  fi
-fi
+wget -qO- https://deb.globaleaks.org/globaleaks.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/globaleaks.gpg
 
 echo "Updating GlobaLeaks apt source.list in /etc/apt/sources.list.d/globaleaks.list ..."
-echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+echo "deb [signed-by=/etc/apt/trusted.gpg.d/globaleaks.gpg] http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
 
 if [ $DISABLEAUTOSTART -eq 1 ]; then
   systemctl mask globaleaks

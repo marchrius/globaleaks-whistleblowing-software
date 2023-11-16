@@ -85,12 +85,6 @@ msgstr "Детали"
 msgid "Platform wizard"
 msgstr "Платформен волшебник"
 
-msgid "CREDIT CARD"
-msgstr "КРЕДИТНА КАРТИЧКА"
-
-msgid "YOUR NAME"
-msgstr "ВАШЕТО ИМЕ"
-
 msgid "Label the report"
 msgstr "Означи го извештајот"
 
@@ -485,28 +479,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Полиса на Приватност"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Полиса на Приватност"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -518,7 +500,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -993,9 +975,6 @@ msgstr "Овозможи им на администраторите да ги п
 msgid "Administrators authorized to change user passwords:"
 msgstr "Одобрени Администратори да ги менуваат лозинките на корисниците:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1004,9 +983,6 @@ msgstr "Овозможи упростено најавување"
 
 msgid "Enable search engines indexing"
 msgstr "Овозможи индексирање на пребарувачите"
-
-msgid "Default questionnaire"
-msgstr "Стандарден прашалник"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1098,11 +1074,11 @@ msgstr "Мод:"
 msgid "Creation date:"
 msgstr "Датум на создавање:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Коренски домен користен за секундарни веб страни"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Користи ја првата веб страна само за административни цели"
+
+msgid "Root domain used for secondary sites"
+msgstr "Коренски домен користен за секундарни веб страни"
 
 msgid "Allow users to sign up"
 msgstr "Дозволи им на корисниците да се регистрираат"
@@ -1417,9 +1393,6 @@ msgstr "Ако сакате да допринесете кон развојот 
 msgid "Join our chat:"
 msgstr "Придружи се на нашиот разговор:"
 
-msgid "Follow the project on:"
-msgstr "Следете го проектот на:"
-
 msgid "An update is available:"
 msgstr "Достапно е ажурирање:"
 
@@ -1489,17 +1462,11 @@ msgstr "Ако платформата не биде активирана за 24
 msgid "Sign up"
 msgstr "Регистрирај се"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Потврда"
+msgid "Invalid phone number"
+msgstr "Невалиден телефонски број"
 
 msgid "Invalid confirmation"
 msgstr "Невалидна потврда"
-
-msgid "Invalid phone number"
-msgstr "Невалиден телефонски број"
 
 msgid "Address"
 msgstr "Адреса"
@@ -1509,6 +1476,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Даночен код"
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Потврда"
 
 msgid "The answer is too short"
 msgstr "Одговорот е премногу краток"
@@ -1663,8 +1636,8 @@ msgstr ""
 msgid "What is the outcome you want to achieve with our support?"
 msgstr ""
 
-msgid "Do you want to provide your identification information?"
-msgstr "Дали сакате да ги обезбедите вашите информации за идентификација? "
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Име"
@@ -1680,6 +1653,9 @@ msgstr "Преферирам да бидам контактиран само п�
 
 msgid "Other"
 msgstr "Друго"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Драг {RecipientName}, "

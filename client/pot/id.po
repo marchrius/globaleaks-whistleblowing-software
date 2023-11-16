@@ -108,12 +108,6 @@ msgstr "Rincian"
 msgid "Platform wizard"
 msgstr "Wisaya platform"
 
-msgid "CREDIT CARD"
-msgstr "KARTU KREDIT"
-
-msgid "YOUR NAME"
-msgstr "NAMA ANDA"
-
 msgid "Label the report"
 msgstr "Tandai laporan"
 
@@ -508,28 +502,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Publik"
-
-msgid "Internal"
-msgstr "Internal"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Kebjiakan Privasi"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Kebjiakan Privasi"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -541,7 +523,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -1016,9 +998,6 @@ msgstr "Aktifkan administrator untuk mengubah kata sandi pengguna"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administrator mengizinkan untuk mengganti kata sandi pengguna:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1027,9 +1006,6 @@ msgstr "Aktifkan metode masuk yang mudah"
 
 msgid "Enable search engines indexing"
 msgstr "Aktifkan pengindeksan mesin pencari"
-
-msgid "Default questionnaire"
-msgstr "Kuesioner bawaan "
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1121,11 +1097,11 @@ msgstr "Mode:"
 msgid "Creation date:"
 msgstr "Tanggal dibuat:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Domain awal yang digunakan untuk situs kedua"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Gunakan situs pertama hanya untuk tujuan administratif"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domain awal yang digunakan untuk situs kedua"
 
 msgid "Allow users to sign up"
 msgstr "Izinkan pengguna untuk mendaftar"
@@ -1440,9 +1416,6 @@ msgstr "Jika Anda ingin memberikan kontribusi untuk pengembangan perangkat lunak
 msgid "Join our chat:"
 msgstr "Bergabung ke percakapan kami di:"
 
-msgid "Follow the project on:"
-msgstr "Ikuti proyek di:"
-
 msgid "An update is available:"
 msgstr "Pembaruan tersedia:"
 
@@ -1512,17 +1485,11 @@ msgstr "Jika tidak diaktifkan dalam 24 jam platform ini akan dihapus secara otom
 msgid "Sign up"
 msgstr "Daftar"
 
-msgid "Site"
-msgstr "Situs"
-
-msgid "Confirmation"
-msgstr "Konfirmasi"
+msgid "Invalid phone number"
+msgstr "Nomor telepon tidak valid"
 
 msgid "Invalid confirmation"
 msgstr "Konfirmasi tidak valid"
-
-msgid "Invalid phone number"
-msgstr "Nomor telepon tidak valid"
 
 msgid "Address"
 msgstr "Alamat"
@@ -1532,6 +1499,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Kode pajak"
+
+msgid "Site"
+msgstr "Situs"
+
+msgid "Confirmation"
+msgstr "Konfirmasi"
 
 msgid "The answer is too short"
 msgstr "Jawaban terlalu singkat"
@@ -1686,8 +1659,8 @@ msgstr "Apakah organisasi tersebut menyelidiki klaim Anda? Jika demikian, apa ha
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Di mana insiden itu terjadi?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Apakah Anda ingin memberikan informasi identifikasi Anda?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Nama Depan"
@@ -1703,6 +1676,9 @@ msgstr "Saya memilih untuk dihubungi hanya melalui platform ini"
 
 msgid "Other"
 msgstr "Lainnya"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Yang terhormat {RecipientName},"

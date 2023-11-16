@@ -85,12 +85,6 @@ msgstr "Деталш"
 msgid "Platform wizard"
 msgstr "Платформин пхьар"
 
-msgid "CREDIT CARD"
-msgstr "КРЕДИТАН КАРТА"
-
-msgid "YOUR NAME"
-msgstr "ХЬАН ЦlЕ"
-
 msgid "Label the report"
 msgstr "Орзана тIе билгало хIоттае"
 
@@ -485,28 +479,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr ""
-
-msgid "Internal"
-msgstr ""
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr ""
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
+msgid "Privacy Policy"
 msgstr ""
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -518,7 +500,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -993,9 +975,6 @@ msgstr "Администраторшна пайдаэцархочун парол
 msgid "Administrators authorized to change user passwords:"
 msgstr "Администраторийн бакъо ю пайдаэцархочун парол хийца:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1004,9 +983,6 @@ msgstr "Системина чолхаза чувалар магаде"
 
 msgid "Enable search engines indexing"
 msgstr "Лохуршна индексаци ян магаде"
-
-msgid "Default questionnaire"
-msgstr "Юьхьанцарчу рожехь хеттар"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1098,11 +1074,11 @@ msgstr "Раж:"
 msgid "Creation date:"
 msgstr "Кхолларан дата:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Шолгlачу сайташна лелош йолу ораман домен"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Хьалхарчу сайтах урхалла даран lалашонца бен пайда ма эца"
+
+msgid "Root domain used for secondary sites"
+msgstr "Шолгlачу сайташна лелош йолу ораман домен"
 
 msgid "Allow users to sign up"
 msgstr "Пайдаэцархошна чуязбала магаде"
@@ -1417,9 +1393,6 @@ msgstr "Софтан кхолларехь дакъа лаца я гlалатах
 msgid "Join our chat:"
 msgstr "Тхан чат юккъе дуьйла:"
 
-msgid "Follow the project on:"
-msgstr "Проект тӀехь тидам беш хила кхузахь:"
-
 msgid "An update is available:"
 msgstr "ЦIиндар долуш ду:"
 
@@ -1489,17 +1462,11 @@ msgstr "Платформина 24 сахьт далале активаци ца 
 msgid "Sign up"
 msgstr "Язлуо"
 
-msgid "Site"
-msgstr ""
-
-msgid "Confirmation"
-msgstr "Тlечlагlдар"
+msgid "Invalid phone number"
+msgstr "Телпонан лоьмар бакъ яц"
 
 msgid "Invalid confirmation"
 msgstr "Тlечlагlдар бакъ дац"
-
-msgid "Invalid phone number"
-msgstr "Телпонан лоьмар бакъ яц"
 
 msgid "Address"
 msgstr ""
@@ -1509,6 +1476,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr ""
+
+msgid "Site"
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Тlечlагlдар"
 
 msgid "The answer is too short"
 msgstr "Жоп дукха доца ду"
@@ -1663,8 +1636,8 @@ msgstr "Оцу цхьаьнакхетараллаша теллиний ахь ч
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Тхан гIорторца хIун Iалашоне кхача лууш ву/ю хьо?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Хьайн цIарх лаьцна информаци яла лаьий хьуна?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Цlе"
@@ -1680,6 +1653,9 @@ msgstr "Кху платформехула бен ца лаьа суна сайц
 
 msgid "Other"
 msgstr "Кхиниг"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Хьомсара {RecipientName},"

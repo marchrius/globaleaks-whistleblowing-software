@@ -128,7 +128,7 @@
         </div>
       </div>
       <div data-ng-switch-when="voice">
-        <div id="{{fieldEntry}}" data-ng-include="'views/partials/voice_recorder.html'"></div>
+        <div data-ng-include="'views/partials/voice_recorder.html'"></div>
       </div>
       <div data-ng-switch-when="fileupload">
         <div id="{{fieldEntry}}" data-ng-include="'views/partials/wbfile_upload_button.html'"></div>
@@ -163,10 +163,10 @@
                type="text" />
       </div>
     </div>
+    <div class="clearfix">
+      <div data-ng-if="entry['value'].length && field.attrs.max_len.value > 0 && (field.attrs.max_len.value - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{field.attrs.max_len.value}}</div>
+    </div>
     <div data-ng-if="displayErrors()">
-      <div class="clearfix">
-        <div data-ng-if="entry['value'].length && field.attrs.max_len.value > 0 && (field.attrs.max_len.value - entry['value'].length) <= 50" class="float-right">{{entry['value'].length}}/{{field.attrs.max_len.value}}</div>
-      </div>
       <div class="text-danger">
         <span data-ng-if="f[fieldEntry].$error.required || entry.required_status" class="text-danger" data-translate>This field is mandatory</span>
         <span data-ng-if="f[fieldEntry].$error.minlength" class="text-danger" data-translate>The answer is too short</span>
@@ -182,10 +182,10 @@
       </div>
     </div>
     <div data-ng-if="field.type === 'selectbox'" data-ng-repeat="option in field.options">
-      <div data-ng-show="option.set && option.hint1"><i class="fa-solid fa-info-circle"></i> {{option.hint1}}</div>
+      <div data-ng-show="option.set && option.hint1"><i class="fa-solid fa-info-circle"></i> <span data-markdown-to-html="option.hint1 | stripHtml"></span></div>
     </div>
     <div data-ng-repeat="option in field.options">
-      <div data-ng-show="option.set && option.hint2" data-ng-class="{'text-danger': option.block_submission}"><i class="fa-solid fa-info-circle"></i> {{option.hint2}}</div>
+      <div data-ng-show="option.set && option.hint2" data-ng-class="{'text-danger': option.block_submission}"><i class="fa-solid fa-info-circle"></i> <span data-markdown-to-html="option.hint2 | stripHtml"></span></div>
     </div>
   </div>
 </div>

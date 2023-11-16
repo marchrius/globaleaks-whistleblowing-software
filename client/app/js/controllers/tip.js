@@ -1,6 +1,6 @@
 GL.controller("TipCtrl",
-  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadWBFile", "WBTipDownloadFile", "fieldUtilities","RTipViewWBFile",
-  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadWBFile, WBTipDownloadFile, fieldUtilities, RTipViewWBFile) {
+  ["$scope", "$location", "$filter", "$http", "$interval", "$routeParams", "$uibModal", "Authentication", "RTip", "WBTip", "RTipExport", "RTipDownloadWBFile", "WBTipDownloadWBFile", "WBTipDownloadRFile", "RTipViewWBFile", "fieldUtilities",
+  function($scope, $location, $filter, $http, $interval, $routeParams, $uibModal, Authentication, RTip, WBTip, RTipExport, RTipDownloadWBFile, WBTipDownloadWBFile, WBTipDownloadRFile, RTipViewWBFile, fieldUtilities) {
     $scope.fieldUtilities = fieldUtilities;
     $scope.tip_id = $routeParams.tip_id;
 
@@ -19,14 +19,36 @@ GL.controller("TipCtrl",
         if ($scope.tip.wbfiles[i].reference_id === reference_id) {
           var id = $scope.tip.wbfiles[i].id;
           var xhr = new XMLHttpRequest();
-          xhr.open("GET", "api/recipient/wbfiles/" + id, true);
+
+          if ($scope.Authentication.session.role === "whistleblower") {
+            xhr.open("GET", "api/whistleblower/wbfiles/" + id, true);
+          } else {
+            xhr.open("GET", "api/recipient/wbfiles/" + id, true);
+          }
+
           xhr.setRequestHeader("x-session", $scope.Authentication.session.id);
           xhr.overrideMimeType("audio/webm");
           xhr.responseType = "blob";
 
           xhr.onload = function() {
             if (this.status === 200) {
-              $scope.audioFiles[reference_id] = URL.createObjectURL(this.response);
+              $scope.audioFiles[reference_id] = this.response;
+
+              window.addEventListener("message", function(message) {
+                const iframe = document.getElementById("audio-file-" + reference_id);
+
+                if (message.source !== iframe.contentWindow) {
+                  return;
+                }
+
+                var data = {
+                  tag: "audio",
+                  blob: $scope.audioFiles[reference_id]
+                };
+
+                iframe.contentWindow.postMessage(data, "*");
+              }, {once: true});
+
               $scope.$apply();
             }
           };
@@ -48,7 +70,7 @@ GL.controller("TipCtrl",
         key: "internal"
       },
       {
-        title: "Only me",
+        title: "Me only",
         key: "personal"
       }
     ];
@@ -261,10 +283,16 @@ GL.controller("TipCtrl",
         $scope.ctx = "wbtip";
         $scope.preprocessTipAnswers(tip);
 
+        $scope.downloadWBFile = WBTipDownloadWBFile;
+
         $scope.tip.submissionStatusStr = $scope.Utils.getSubmissionStatusText($scope.tip.status, $scope.tip.substatus, $scope.submission_statuses);
 
         $scope.downloadRFile = function(file) {
-          WBTipDownloadFile(file);
+          WBTipDownloadRFile(file);
+        };
+
+        $scope.downloadWBFile = function(file) {
+          WBTipDownloadWBFile(file);
         };
 
         // FIXME: remove this variable that is now needed only to map wb_identity_field
@@ -515,25 +543,12 @@ controller("TipOperationsCtrl",
 controller("RTipRFileUploadCtrl", ["$scope", "Authentication", "RTipDownloadRFile", "RTipRFileResource", function($scope, Authentication, RTipDownloadRFile, RTipRFileResource) {
   var reloadUI = function (){ $scope.reload(); };
 
-  $scope.downloadRFile = function(f) {
-    RTipDownloadRFile(f);
+  $scope.downloadRFile = function(file) {
+    RTipDownloadRFile(file);
   };
 
   $scope.deleteRFile = function(f) {
     RTipRFileResource.remove({"id":f.id}).$promise.finally(reloadUI);
-  };
-}]).
-controller("WBTipFileDownloadCtrl", ["$scope", "$uibModalInstance", "WBTipDownloadFile", "file", "tip", function($scope, $uibModalInstance, WBTipDownloadFile, file, tip) {
-  $scope.ctx = "download";
-  $scope.file = file;
-  $scope.tip = tip;
-  $scope.confirm = function() {
-    $uibModalInstance.close();
-    WBTipDownloadFile(file);
-  };
-
-  $scope.cancel = function () {
-    $uibModalInstance.close();
   };
 }]).
 controller("IdentityAccessRequestCtrl",

@@ -88,12 +88,6 @@ msgstr "Detalji"
 msgid "Platform wizard"
 msgstr "Čarobnjak za platformu"
 
-msgid "CREDIT CARD"
-msgstr "Kreditna kartica"
-
-msgid "YOUR NAME"
-msgstr "Vaše ime"
-
 msgid "Label the report"
 msgstr "Postavi oznaku na prijavu"
 
@@ -488,28 +482,16 @@ msgstr ""
 msgid "Give this user ability to permanently redact masked information"
 msgstr ""
 
-msgid "Public"
-msgstr "Javni"
-
-msgid "Internal"
-msgstr "Interno"
-
-msgid "Personal"
-msgstr ""
-
-msgid "Privacy Policy"
-msgstr "Izjava o privatnosti"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr ""
 
 msgid "Download copy of the Privacy Policy"
 msgstr ""
 
-msgid "Whistleblowing Policy"
-msgstr ""
+msgid "Privacy Policy"
+msgstr "Izjava o privatnosti"
 
-msgid "Accessibility Declaration"
+msgid "Whistleblowing Policy"
 msgstr ""
 
 msgid "Voice"
@@ -521,7 +503,7 @@ msgstr ""
 msgid "Recipients only"
 msgstr ""
 
-msgid "Only me"
+msgid "Me only"
 msgstr ""
 
 msgid "File a report"
@@ -996,9 +978,6 @@ msgstr "Omogući administratorima da promjene korisničke lozinke"
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administratori autorizirani za promjenu korisničkih lozinki:"
 
-msgid "Enable file viewer"
-msgstr ""
-
 msgid "Enable PGP"
 msgstr ""
 
@@ -1007,9 +986,6 @@ msgstr "Omogući pojednostavljenu prijavu"
 
 msgid "Enable search engines indexing"
 msgstr "Omogući indeksiranje tražilica"
-
-msgid "Default questionnaire"
-msgstr "Zadani upitnik"
 
 msgid "Show channels in alphabetical order"
 msgstr ""
@@ -1101,11 +1077,11 @@ msgstr "Način rada:"
 msgid "Creation date:"
 msgstr "Datum stvaranja:"
 
-msgid "Root domain used for secondary sites"
-msgstr "Korijenska domena korištena za sekundarne stranice"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "Koristi prvu stranicu samo za administrativne svrhe"
+
+msgid "Root domain used for secondary sites"
+msgstr "Korijenska domena korištena za sekundarne stranice"
 
 msgid "Allow users to sign up"
 msgstr "Dopusti korisnicima da se prijave"
@@ -1420,9 +1396,6 @@ msgstr "Ako želite pridonjeti razvoju softwarea ili prijaviti pogrešku, molimo
 msgid "Join our chat:"
 msgstr "Pridružite se našem razgovoru:"
 
-msgid "Follow the project on:"
-msgstr "Pratite projekt na:"
-
 msgid "An update is available:"
 msgstr "Ažuriranje je dostupno:"
 
@@ -1492,17 +1465,11 @@ msgstr "Ukoliko platformu ne aktivirate unutar 24 sata, bit će automatski obris
 msgid "Sign up"
 msgstr "Prijavite se"
 
-msgid "Site"
-msgstr "Stranica"
-
-msgid "Confirmation"
-msgstr "Potvrda"
+msgid "Invalid phone number"
+msgstr "Neispravan telefonski broj"
 
 msgid "Invalid confirmation"
 msgstr "Neispravna potvrda"
-
-msgid "Invalid phone number"
-msgstr "Neispravan telefonski broj"
 
 msgid "Address"
 msgstr "Adresa"
@@ -1512,6 +1479,12 @@ msgstr ""
 
 msgid "Tax code"
 msgstr "Porezni kod"
+
+msgid "Site"
+msgstr "Stranica"
+
+msgid "Confirmation"
+msgstr "Potvrda"
 
 msgid "The answer is too short"
 msgstr "Odgovor je prekratak"
@@ -1666,8 +1639,8 @@ msgstr "Jesu li ove organizacije istražile vaše tvrdnje? Ako jesu, koji je bio
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Koji ishod želite postići uz našu podršku?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Želite li pružiti informacije o Vašoj identifikaciji?"
+msgid "Would you like to tell us who you are?"
+msgstr ""
 
 msgid "First name"
 msgstr "Ime"
@@ -1683,6 +1656,9 @@ msgstr "Preferiram kontakt samo preko ove platforme"
 
 msgid "Other"
 msgstr "Ostalo"
+
+msgid "Specify"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Dragi/a {RecipientName},"

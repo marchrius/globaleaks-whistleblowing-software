@@ -110,12 +110,6 @@ msgstr "Ayrıntılar"
 msgid "Platform wizard"
 msgstr "Platform yardımcısı"
 
-msgid "CREDIT CARD"
-msgstr "KREDİ KARTI"
-
-msgid "YOUR NAME"
-msgstr "ADINIZ"
-
 msgid "Label the report"
 msgstr "İhbarı etiketle"
 
@@ -510,29 +504,17 @@ msgstr "Bu kullanıcıya bilgileri gizleme izni ver"
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Bu kullanıcıya gizlenmiş bilgileri kalıcı olarak düzeltme izni ver"
 
-msgid "Public"
-msgstr "Herkese açık"
-
-msgid "Internal"
-msgstr "İç"
-
-msgid "Personal"
-msgstr "Kişisel"
-
-msgid "Privacy Policy"
-msgstr "Gizlilik ilkesi"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "Gizlilik ilkesini okudum ve kabul ediyorum"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Gizlilik ilkesinin kopyasını indir"
 
+msgid "Privacy Policy"
+msgstr "Gizlilik ilkesi"
+
 msgid "Whistleblowing Policy"
 msgstr "Muhbirlik ilkesi"
-
-msgid "Accessibility Declaration"
-msgstr "Erişilebilirlik bildirimi"
 
 msgid "Voice"
 msgstr "Ses"
@@ -543,7 +525,7 @@ msgstr "Herkes"
 msgid "Recipients only"
 msgstr "Yalnızca alıcılar"
 
-msgid "Only me"
+msgid "Me only"
 msgstr "Yalnızca ben"
 
 msgid "File a report"
@@ -1018,9 +1000,6 @@ msgstr "Yöneticiler kullanıcı parolalarını değiştirebilsin."
 msgid "Administrators authorized to change user passwords:"
 msgstr "Kullanıcıların parolasını değiştirme izni olan yöneticiler:"
 
-msgid "Enable file viewer"
-msgstr "Dosya görüntüleyici kullanılsın"
-
 msgid "Enable PGP"
 msgstr "PGP kullanılsın"
 
@@ -1029,9 +1008,6 @@ msgstr "Basit oturum açma kullanılsın"
 
 msgid "Enable search engines indexing"
 msgstr "Arama motoru dizini oluşturulsun"
-
-msgid "Default questionnaire"
-msgstr "Varsayılan anket"
 
 msgid "Show channels in alphabetical order"
 msgstr "Kanallar alfabetik sırada görüntülensin"
@@ -1123,11 +1099,11 @@ msgstr "Kip:"
 msgid "Creation date:"
 msgstr "Oluşturulma tarihi:"
 
-msgid "Root domain used for secondary sites"
-msgstr "İkincil siteler tarafından kullanılan kök etki alanı"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "İlk site yalnızca yönetim amaçları için kullanılsın"
+
+msgid "Root domain used for secondary sites"
+msgstr "İkincil siteler tarafından kullanılan kök etki alanı"
 
 msgid "Allow users to sign up"
 msgstr "Kullanıcılar hesap açabilsin"
@@ -1442,9 +1418,6 @@ msgstr "Yazılımın geliştirilmesine katkı sağlamak veya sorun bildirmek ist
 msgid "Join our chat:"
 msgstr "Sohbetimize katılın:"
 
-msgid "Follow the project on:"
-msgstr "Şuradan projeyi izleyin:"
-
 msgid "An update is available:"
 msgstr "Güncelleme yayınlanmış:"
 
@@ -1514,17 +1487,11 @@ msgstr "Platform 24 saat içinde etkinleştirilmezse otomatik olarak silinir."
 msgid "Sign up"
 msgstr "Hesap aç"
 
-msgid "Site"
-msgstr "Site"
-
-msgid "Confirmation"
-msgstr "Doğrulama"
+msgid "Invalid phone number"
+msgstr "Telefon numarası geçersiz"
 
 msgid "Invalid confirmation"
 msgstr "Doğrulama geçersiz"
-
-msgid "Invalid phone number"
-msgstr "Telefon numarası geçersiz"
 
 msgid "Address"
 msgstr "Adres"
@@ -1534,6 +1501,12 @@ msgstr "Sicil numarası"
 
 msgid "Tax code"
 msgstr "Vergi numarası"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Confirmation"
+msgstr "Doğrulama"
 
 msgid "The answer is too short"
 msgstr "Yanıt çok kısa"
@@ -1688,8 +1661,8 @@ msgstr "Bu kuruluşlar iddialarınızı araştırdı mı? Araştırdıysa sonuç
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Bizden alacağınız destek ile ulaşmak istediğiniz sonuç nedir?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Kimlik bilgilerinizi vermek istiyor musunuz?"
+msgid "Would you like to tell us who you are?"
+msgstr "Bize kim olduğunuzu söylemek ister misiniz?"
 
 msgid "First name"
 msgstr "Ad"
@@ -1705,6 +1678,9 @@ msgstr "Yalnızca bu platform üzerinden iletişim kurulmasını istiyorum"
 
 msgid "Other"
 msgstr "Diğer"
+
+msgid "Specify"
+msgstr "Belirtin"
 
 msgid "Dear {RecipientName},"
 msgstr "Sayın {RecipientName},"

@@ -121,12 +121,6 @@ msgstr "Détails"
 msgid "Platform wizard"
 msgstr "Assistant de la plateforme"
 
-msgid "CREDIT CARD"
-msgstr "CARTE DE CRÉDIT"
-
-msgid "YOUR NAME"
-msgstr "VOTRE NOM"
-
 msgid "Label the report"
 msgstr "Étiqueter le signalement"
 
@@ -521,29 +515,17 @@ msgstr "Donner à cet utilisateur la possibilité de cacher des renseignements"
 msgid "Give this user ability to permanently redact masked information"
 msgstr "Donner à cet utilisateur la possibilité de supprimer définitivement des renseignements cachés"
 
-msgid "Public"
-msgstr "Publique"
-
-msgid "Internal"
-msgstr "Interne"
-
-msgid "Personal"
-msgstr "Personnelle"
-
-msgid "Privacy Policy"
-msgstr "Politique de confidentialité"
-
 msgid "I've read and accept the Privacy Policy"
 msgstr "J’ai lu et accepte la Politique de confidentialité"
 
 msgid "Download copy of the Privacy Policy"
 msgstr "Télécharger la Politique de confidentialité"
 
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
 msgid "Whistleblowing Policy"
 msgstr "Politique de lancement d’alerte"
-
-msgid "Accessibility Declaration"
-msgstr "Déclaration d’accessibilité"
 
 msgid "Voice"
 msgstr "Voix"
@@ -554,7 +536,7 @@ msgstr "Tout le monde"
 msgid "Recipients only"
 msgstr "Destinataires seulement"
 
-msgid "Only me"
+msgid "Me only"
 msgstr "Moi seulement"
 
 msgid "File a report"
@@ -1029,9 +1011,6 @@ msgstr "Permettre aux administrateurs de changer le mot de passe des utilisateur
 msgid "Administrators authorized to change user passwords:"
 msgstr "Administrateurs autorisés à changer les mots de passe des utilisateurs :"
 
-msgid "Enable file viewer"
-msgstr "Activer le visualiseur de fichiers"
-
 msgid "Enable PGP"
 msgstr "Activer PGP"
 
@@ -1040,9 +1019,6 @@ msgstr "Activer la connexion simplifiée"
 
 msgid "Enable search engines indexing"
 msgstr "Activer l’indexation par les moteurs de recherche"
-
-msgid "Default questionnaire"
-msgstr "Questionnaire par défaut"
 
 msgid "Show channels in alphabetical order"
 msgstr "Afficher les canaux par ordre alphabétique"
@@ -1134,11 +1110,11 @@ msgstr "Mode :"
 msgid "Creation date:"
 msgstr "Date de création :"
 
-msgid "Root domain used for secondary sites"
-msgstr "Domaine racine utilisé pour les sites secondaires"
-
 msgid "Use the first site for administrative purposes only"
 msgstr "N’utiliser le premier site qu’à des fins d’administration"
+
+msgid "Root domain used for secondary sites"
+msgstr "Domaine racine utilisé pour les sites secondaires"
 
 msgid "Allow users to sign up"
 msgstr "Permettre aux utilisateurs de s’inscrire"
@@ -1453,9 +1429,6 @@ msgstr "Si vous souhaitez participer au développement du logiciel ou signaler u
 msgid "Join our chat:"
 msgstr "Joignez-vous à notre conversation :"
 
-msgid "Follow the project on:"
-msgstr "Suivez le projet sur :"
-
 msgid "An update is available:"
 msgstr "Une mise à jour est proposée :"
 
@@ -1525,17 +1498,11 @@ msgstr "Si elle n’est pas activée dans les 24 heures, la plateforme sera supp
 msgid "Sign up"
 msgstr "Inscription"
 
-msgid "Site"
-msgstr "Site"
-
-msgid "Confirmation"
-msgstr "confirmation"
+msgid "Invalid phone number"
+msgstr "Le numéro de téléphone est invalide"
 
 msgid "Invalid confirmation"
 msgstr "La confirmation est invalide"
-
-msgid "Invalid phone number"
-msgstr "Le numéro de téléphone est invalide"
 
 msgid "Address"
 msgstr "Adresse"
@@ -1545,6 +1512,12 @@ msgstr "Code fiscal"
 
 msgid "Tax code"
 msgstr "Code des impôts"
+
+msgid "Site"
+msgstr "Site"
+
+msgid "Confirmation"
+msgstr "confirmation"
 
 msgid "The answer is too short"
 msgstr "La réponse est trop courte"
@@ -1699,8 +1672,8 @@ msgstr "Ces organismes ont-ils examiné vos affirmations ? Dans l’affirmativ
 msgid "What is the outcome you want to achieve with our support?"
 msgstr "Quel résultat voulez-vous obtenir grâce à notre soutien ?"
 
-msgid "Do you want to provide your identification information?"
-msgstr "Voulez-vous fournir vos renseignements d’identification ?"
+msgid "Would you like to tell us who you are?"
+msgstr "Pourriez-vous nous indiquer qui vous êtes ?"
 
 msgid "First name"
 msgstr "Prénom"
@@ -1716,6 +1689,9 @@ msgstr "Je préfère n’être contacté que par la plateforme"
 
 msgid "Other"
 msgstr "Autre"
+
+msgid "Specify"
+msgstr "Spécifier"
 
 msgid "Dear {RecipientName},"
 msgstr "Cher, chère {RecipientName},"
