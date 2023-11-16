@@ -15,7 +15,9 @@ build:
   services:
     - docker:20.10.16-dind
   variables:
-    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+    IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   script:
-    - docker build -t $IMAGE_TAG -t $CI_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
+    - docker build -t $IMAGE_TAG_LATEST -t $CI_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
     - docker push $IMAGE_TAG
+    - docker push $CI_REGISTRY_IMAGE:latest
