@@ -1,7 +1,7 @@
 ARG NODE_VERSION=18.18.2
 ARG PYTHON_VERSION=3.9.13
 
-FROM node:${NODE_VERSION}-alpine AS node
+FROM node:${NODE_VERSION}-alpine AS client-build-env
 
 RUN npm install -g grunt-cli
 
@@ -11,11 +11,18 @@ RUN cd /app/client && npm install
 COPY . /app
 
 RUN cd /app/client && \
-    grunt copy:sources
+    grunt copy:sources && \
+    rm -rf node_modules
 
-FROM python:${PYTHON_VERSION}-alpine AS python
+RUN npm uninstall -g grunt-cli
 
-COPY --from=node /app /app
+FROM python:${PYTHON_VERSION}-alpine AS backend
+
+COPY --from=client-build-env /app /app
+
+RUN pip install -r /app/backend/requirements/requirements-bookworm.txt
+
+RUN mkdir -p /var/globaleaks/
 
 WORKDIR /app/backend
 
@@ -24,10 +31,6 @@ ARG HTTPS_PORT=8443
 
 ENV HTTP_PORT=${HTTP_PORT}
 ENV HTTPS_PORT=${HTTPS_PORT}
-
-RUN mkdir -p /var/globaleaks/
-
-RUN pip install -r /app/backend/requirements/requirements-bookworm.txt
 
 EXPOSE ${HTTP_PORT}
 EXPOSE ${HTTPS_PORT}
