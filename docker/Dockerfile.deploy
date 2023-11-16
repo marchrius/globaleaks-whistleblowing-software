@@ -1,0 +1,42 @@
+ARG NODE_VERSION=18.18.2
+ARG PYTHON_VERSION=3.9.13
+
+FROM node:${NODE_VERSION}-alpine AS node
+
+RUN npm install -g grunt-cli
+
+COPY ./client/package.json /app/client/
+RUN cd /app/client && npm install
+
+COPY . /app
+
+RUN cd /app/client && \
+    grunt copy:sources
+
+FROM python:${PYTHON_VERSION}-alpine AS python
+
+COPY --from=node /app /app
+
+WORKDIR /app/backend
+
+ARG HTTP_PORT=8080
+ARG HTTPS_PORT=8443
+ARG GL_DIR=/var/globaleaks/
+
+ARG GL_OPTS=""
+
+ENV GL_DIR=${GL_DIR}
+
+RUN mkdir -p "${GL_DIR}"
+
+RUN pip install -r /app/backend/requirements/requirements-bookworm.txt
+
+ENV HTTP_PORT=${HTTP_PORT}
+ENV HTTPS_PORT=${HTTPS_PORT}
+
+EXPOSE ${HTTP_PORT}
+EXPOSE ${HTTPS_PORT}
+
+VOLUME ${GL_DIR}
+
+ENTRYPOINT ["python", "bin/globaleaks", "-n", "-w", "${GL_DIR}"]
