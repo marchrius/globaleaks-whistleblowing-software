@@ -21,22 +21,17 @@ WORKDIR /app/backend
 
 ARG HTTP_PORT=8080
 ARG HTTPS_PORT=8443
-ARG GL_DIR=/var/globaleaks/
-
-ARG GL_OPTS=""
-
-ENV GL_DIR=${GL_DIR}
-
-RUN mkdir -p "${GL_DIR}"
-
-RUN pip install -r /app/backend/requirements/requirements-bookworm.txt
 
 ENV HTTP_PORT=${HTTP_PORT}
 ENV HTTPS_PORT=${HTTPS_PORT}
 
+RUN mkdir -p /var/globaleaks/
+
+RUN pip install -r /app/backend/requirements/requirements-bookworm.txt
+
 EXPOSE ${HTTP_PORT}
 EXPOSE ${HTTPS_PORT}
 
-VOLUME ${GL_DIR}
+VOLUME /var/globaleaks/
 
-ENTRYPOINT ["python", "bin/globaleaks", "-n", "-w", "${GL_DIR}"]
+ENTRYPOINT ["python", "bin/globaleaks", "-n", "-w", "/var/globaleaks/"]
