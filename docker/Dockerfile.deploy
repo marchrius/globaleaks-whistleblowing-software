@@ -3,22 +3,20 @@ ARG PYTHON_VERSION=3.9.13
 
 FROM node:${NODE_VERSION}-alpine AS client-build-env
 
-RUN npm install -g grunt-cli
-
 COPY ./client/package.json /app/client/
 RUN cd /app/client && npm install
 
-COPY . /app
+COPY ./client /app/client
 
 RUN cd /app/client && \
-    grunt copy:sources && \
+    ./node_modules/grunt/bin/grunt build && \
     rm -rf node_modules
-
-RUN npm uninstall -g grunt-cli
 
 FROM python:${PYTHON_VERSION}-alpine AS backend
 
-COPY --from=client-build-env /app /app
+COPY ./backend /app/backend
+
+COPY --from=client-build-env /app/client/build /app/client/build
 
 RUN pip install -r /app/backend/requirements/requirements-bookworm.txt
 

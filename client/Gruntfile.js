@@ -14,6 +14,7 @@ module.exports = function(grunt) {
       src: [
         "Gruntfile.js",
         "app/js/**/*.js",
+        "custom/app/js/**/*.js",
         "!app/lib/js/*.js",
         "!app/lib/js/locale/*.js",
         "tests/*.js"
@@ -83,7 +84,8 @@ module.exports = function(grunt) {
               "data/**",
               "lib/js/locale/**",
               "modules/**",
-              "viewer/**"
+              "viewer/**",
+              "custom/**"
             ],
             expand: true,
             flatten: false
@@ -1041,6 +1043,25 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.registerTask("updateCustomTranslations", function() {
+    
+    grunt.file.recurse("pot/", function(absdir, rootdir, subdir, filename) {
+      var lang_code = filename.replace(/.po$/, "");
+      var translations = JSON.parse(fs.readFileSync(`app/data/l10n/${lang_code}.json`));
+      try {
+        var custom_translations = JSON.parse(fs.readFileSync(`app/custom/app/data/${lang_code}.json`));
+      } catch (e) {
+        // console.log(e)
+        console.log(`No custom translations for app/  custom/app/data/${lang_code}.json`);
+        return;
+      }
+      var output = {...translations, ...custom_translations};
+      fs.writeFileSync(`app/data/l10n/${lang_code}.json`, JSON.stringify(output, null, 2));
+    });
+
+
+  });
+
   // Run this task to push translations on transifex
   grunt.registerTask("pushTranslationsSource", ["confirm", "☠☠☠pushTranslationsSource☠☠☠"]);
 
@@ -1049,7 +1070,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask("build",
-    ["clean", "copy:sources", "copy:build", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "copy:package", "cssmin", "terser", "clean:tmp"]);
+    ["clean", "copy:sources", "updateCustomTranslations", "copy:build", "ngtemplates", "postcss", "useminPrepare", "concat", "usemin", "string-replace", "copy:package", "cssmin", "terser", "clean:tmp"]);
 
   grunt.registerTask("instrument-client", [
     "clean",
