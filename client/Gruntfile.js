@@ -9,6 +9,20 @@ module.exports = function(grunt) {
   async function loadGettextParser() {
     return await import('gettext-parser');
   }
+//  grunt.initConfig({
+//    eslint: {
+//      options: {
+//        configFile: "../.eslintrc.json"
+//      },
+//      src: [
+//        "Gruntfile.js",
+//        "app/js/**/*.js",
+//        "custom/app/js/**/*.js",
+//        "!app/lib/js/*.js",
+//        "!app/lib/js/locale/*.js",
+//        "tests/*.js"
+//      ]
+//    },
 
   grunt.initConfig({
     clean: {
@@ -39,6 +53,21 @@ module.exports = function(grunt) {
             src: ['@fontsource/**/files/*400*', '@fontsource/**/files/*700*'],
             flatten: true,
             expand: true
+//            dest: "build/",
+//            cwd: "./tmp/",
+//            src: [
+//              "index.html",
+//              "license.txt",
+//              "css/styles.css",
+//              "js/scripts.js",
+//              "data/**",
+//              "lib/js/locale/**",
+//              "modules/**",
+//              "viewer/**",
+//              "custom/**"
+//            ],
+//            expand: true,
+//            flatten: false
           },
           {
             dest: 'build/fonts',
