@@ -776,14 +776,33 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.registerTask("updateCustomTranslations", function() {
+    
+    grunt.file.recurse("pot/", function(absdir, rootdir, subdir, filename) {
+      var lang_code = filename.replace(/.po$/, "");
+      var translations = JSON.parse(fs.readFileSync(`app/data/l10n/${lang_code}.json`));
+      try {
+        var custom_translations = JSON.parse(fs.readFileSync(`app/custom/app/data/${lang_code}.json`));
+      } catch (e) {
+        // console.log(e)
+        console.log(`No custom translations for app/  custom/app/data/${lang_code}.json`);
+        return;
+      }
+      var output = {...translations, ...custom_translations};
+      fs.writeFileSync(`app/data/l10n/${lang_code}.json`, JSON.stringify(output, null, 2));
+    });
+
+
+  });
+
   // Run this task to push translations on transifex
   grunt.registerTask("pushTranslationsSource", ["confirm", "☠☠☠pushTranslationsSource☠☠☠"]);
 
   // Run this task to fetch translations from transifex and create application files
   grunt.registerTask("updateTranslations", ["fetchTranslations", "makeAppData", "verifyAppData"]);
 
-  grunt.registerTask("build", ["clean", "shell:npx_build", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
+  grunt.registerTask("build", ["clean", "updateCustomTranslations", "shell:npx_build", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
  
-  grunt.registerTask("build_and_instrument", ["clean", "shell:npx_build_and_instrument", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
+  grunt.registerTask("build_and_instrument", ["clean", "updateCustomTranslations", "shell:npx_build_and_instrument", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
 };
 
