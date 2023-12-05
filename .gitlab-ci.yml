@@ -3,6 +3,8 @@ variables:
   AWS_REGISTRY_TAG: $AWS_REGISTRY:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+  DOCKER_HOST: tcp://docker:2375
+
 
 default:
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
