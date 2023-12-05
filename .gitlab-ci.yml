@@ -12,7 +12,7 @@ default:
 
     - wget --output-document=awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
     - unzip awscliv2.zip
-    - sudo ./aws/install
+    - ./aws/install
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - echo $AWS_REGISTRY
     - echo $AWS_REGISTRY_TAG
