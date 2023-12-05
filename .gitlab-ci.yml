@@ -15,33 +15,27 @@ default:
 
 stages:
   - build
-  - push
 
-build:
+build-main:
   stage: build
+  only:
+    - main
   services:
     - docker:dind
   script:
     - docker build -t $GITLAB_REGISTRY_IMAGE_TAG -t $GITLAB_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_IMAGE_TAG -t $AWS_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
-
-push-dev:
-  stage: push
-  services:
-    - docker:dind
-  only: 
-    - develop
-  script:
-    - docker push $GITLAB_REGISTRY_IAMGE_TAG
-    - docker push $GITLAB_REGISTRY_IMAGE:latest
-    
-push-main:
-  stage: push
-  services:
-    - docker:dind
-  only:
-    - main
-  script:
     - docker push $GITLAB_REGISTRY_IMAGE_TAG
     - docker push $GITLAB_REGISTRY_IMAGE:latest
     - docker push $AWS_REGISTRY_IMAGE_TAG
     - docker push $AWS_REGISTRY_IMAGE:latest
+
+build-develop:
+  stage: build
+  only:
+    - develop
+  services:
+    - docker:dind
+  script:
+    - docker build -t $GITLAB_REGISTRY_IMAGE_TAG -t $GITLAB_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
+    - docker push $GITLAB_REGISTRY_IAMGE_TAG
+    - docker push $GITLAB_REGISTRY_IMAGE:latest
