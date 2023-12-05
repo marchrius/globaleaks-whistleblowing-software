@@ -1,9 +1,8 @@
 variables:
+  TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   AWS_REGISTRY: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   AWS_REGISTRY_IMAGE: $AWS_REGISTRY/globaleaks
-  AWS_REGISTRY_IMAGE_TAG: $AWS_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   GITLAB_REGISTRY_IMAGE: $CI_REGISTRY_IMAGE
-  GITLAB_REGISTRY_IMAGE_TAG: $GITLAB_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
 
 default:
   image: bentolor/docker-dind-awscli
@@ -23,10 +22,10 @@ build-main:
   services:
     - docker:dind
   script:
-    - docker build -t $GITLAB_REGISTRY_IMAGE_TAG -t $GITLAB_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_IMAGE_TAG -t $AWS_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
-    - docker push $GITLAB_REGISTRY_IMAGE_TAG
+    - docker build -t $GITLAB_REGISTRY_IMAGE:$TAG -t $GITLAB_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_IMAGE:$TAG -t $AWS_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
+    - docker push $GITLAB_REGISTRY_IMAGE:$TAG
     - docker push $GITLAB_REGISTRY_IMAGE:latest
-    - docker push $AWS_REGISTRY_IMAGE_TAG
+    - docker push $AWS_REGISTRY_IMAGE:$TAG
     - docker push $AWS_REGISTRY_IMAGE:latest
 
 build-develop:
@@ -36,6 +35,6 @@ build-develop:
   services:
     - docker:dind
   script:
-    - docker build -t $GITLAB_REGISTRY_IMAGE_TAG -t $GITLAB_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
-    - docker push $GITLAB_REGISTRY_IAMGE_TAG
+    - docker build -t $GITLAB_REGISTRY_IMAGE:$TAG -t $GITLAB_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
+    - docker push $GITLAB_REGISTRY_IMAGE:$TAG
     - docker push $GITLAB_REGISTRY_IMAGE:latest
