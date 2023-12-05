@@ -5,7 +5,6 @@ variables:
   IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   DOCKER_HOST: tcp://docker:2375
 
-
 default:
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   services:
@@ -23,9 +22,8 @@ stages:
 
 build:
   stage: build
-  image: docker:20.10.16
   services:
-    - docker:20.10.16-dind
+    - registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   script:
     - docker build -t $IMAGE_TAG_LATEST -t $CI_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_TAG -t $AWS_REGISTRY:latest . -f docker/Dockerfile.deploy
 
