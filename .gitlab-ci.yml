@@ -21,8 +21,9 @@ stages:
 
 build:
   stage: build
+  image: docker:20.10.16
   services:
-    - registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+    - docker:20.10.16-dind
   script:
     - docker build -t $IMAGE_TAG_LATEST -t $CI_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_TAG -t $AWS_REGISTRY:latest . -f docker/Dockerfile.deploy
 
