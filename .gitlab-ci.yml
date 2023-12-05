@@ -1,8 +1,9 @@
-variables: 
-  AWS_REGISTRY: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/globaleaks
-  AWS_REGISTRY_TAG: $AWS_REGISTRY:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
-  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
-  IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+variables:
+  AWS_REGISTRY: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  AWS_REGISTRY_IMAGE: $AWS_REGISTRY/globaleaks
+  AWS_REGISTRY_IMAGE_TAG: $AWS_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+  GITLAB_REGISTRY_IMAGE: $CI_REGISTRY_IMAGE
+  GITLAB_REGISTRY_IMAGE_TAG: $GITLAB_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
 
 default:
   image: bentolor/docker-dind-awscli
@@ -10,7 +11,7 @@ default:
     - docker:dind
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_REGISTRY
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_REGISTRY_IMAGE
 
 stages:
   - build
@@ -21,23 +22,22 @@ build:
   services:
     - docker:dind
   script:
-    - sudo systemctl start docker
-    - docker build -t $IMAGE_TAG_LATEST -t $CI_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_TAG -t $AWS_REGISTRY:latest . -f docker/Dockerfile.deploy
+    - docker build -t $GITLAB_REGISTRY_IMAGE_TAG -t $GITLAB_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_IMAGE_TAG -t $AWS_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
 
 push-dev:
   stage: push
   only: 
     - develop
   script:
-    - docker push $IMAGE_TAG
-    - docker push $CI_REGISTRY_IMAGE:latest
+    - docker push $GITLAB_REGISTRY_IAMGE_TAG
+    - docker push $GITLAB_REGISTRY_IMAGE:latest
     
 push-main:
   stage: push
   only:
     - main
   script:
-    - docker push $IMAGE_TAG
-    - docker push $CI_REGISTRY_IMAGE:latest
-    - docker push $AWS_REGISTRY
-    - docker push $AWS_REGISTRY:latest
+    - docker push $GITLAB_REGISTRY_IMAGE_TAG
+    - docker push $GITLAB_REGISTRY_IMAGE:latest
+    - docker push $AWS_REGISTRY_IMAGE_TAG
+    - docker push $AWS_REGISTRY_IMAGE:latest
