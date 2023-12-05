@@ -5,12 +5,13 @@ variables:
   IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
 
 default:
-  image: docker:20.10.16
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   services:
-    - docker:20.10.16-dind
+    - registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_REGISTRY
+
 stages:
   - build
   - push
@@ -18,7 +19,7 @@ stages:
 build:
   stage: build
   services:
-    - docker:20.10.16-dind
+    - registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   script:
     - docker build -t $IMAGE_TAG_LATEST -t $CI_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_TAG -t $AWS_REGISTRY:latest . -f docker/Dockerfile.deploy
 
