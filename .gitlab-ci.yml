@@ -3,13 +3,15 @@ variables:
   AWS_REGISTRY_TAG: $AWS_REGISTRY:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
-  DOCKER_HOST: tcp://docker:2375
 
 default:
-  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  image: docker:20.10.16
   services:
-    - registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+    - docker:20.10.16-dind
   before_script:
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip
+    - sudo ./aws/install
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - echo $AWS_REGISTRY
     - echo $AWS_REGISTRY_TAG
@@ -23,8 +25,9 @@ stages:
 build:
   stage: build
   services:
-    - registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+    - docker:20.10.16-dind
   script:
+    - sudo systemctl start docker
     - docker build -t $IMAGE_TAG_LATEST -t $CI_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_TAG -t $AWS_REGISTRY:latest . -f docker/Dockerfile.deploy
 
 push-dev:
