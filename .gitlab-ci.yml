@@ -5,18 +5,11 @@ variables:
   IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
 
 default:
-  image: docker:20.10.16
+  image: bentolor/docker-dind-awscli
   services:
-    - docker:20.10.16-dind
+    - docker:dind
   before_script:
-
-    - wget --output-document=awscliv2.zip https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-    - unzip awscliv2.zip
-    - ./aws/install
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - echo $AWS_REGISTRY
-    - echo $AWS_REGISTRY_TAG
-    - echo $AWS_DEFAULT_REGION
     - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_REGISTRY
 
 stages:
@@ -26,7 +19,7 @@ stages:
 build:
   stage: build
   services:
-    - docker:20.10.16-dind
+    - docker:dind
   script:
     - sudo systemctl start docker
     - docker build -t $IMAGE_TAG_LATEST -t $CI_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_TAG -t $AWS_REGISTRY:latest . -f docker/Dockerfile.deploy
