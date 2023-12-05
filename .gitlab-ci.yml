@@ -1,9 +1,11 @@
+variables: 
+  AWS_REGISTRY: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/globaleaks
+  AWS_REGISTRY_TAG: $AWS_REGISTRY:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+  IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
+
 default:
   image: docker:20.10.16
-  variables: 
-    AWS_REGISTRY: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/globaleaks
-    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
-    IMAGE_TAG_LATEST: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   services:
     - docker:20.10.16-dind
   before_script:
@@ -18,7 +20,7 @@ build:
   services:
     - docker:20.10.16-dind
   script:
-    - docker build -t $IMAGE_TAG_LATEST -t $CI_REGISTRY_IMAGE:latest -t $AWS_REGISTRY -t $AWS_REGISTRY:latest . -f docker/Dockerfile.deploy
+    - docker build -t $IMAGE_TAG_LATEST -t $CI_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_TAG -t $AWS_REGISTRY:latest . -f docker/Dockerfile.deploy
 
 push-dev:
   stage: push
