@@ -1,24 +1,32 @@
-GL.directive(`footer`, ['$filter', '$compile', function($filter, $compile) {
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'custom/app/views/footer.html',
-        link: function(scope, element, attrs) {
-            const translate = $filter('translate');
+// GL.directive(`footer`, ['$filter', '$compile', function($filter, $compile) {
+//     return {
+//         restrict: 'E',
+//         replace: false,
+//         templateUrl: 'views/custom/footer.html',
+//         link: function(scope, element, attrs) {
+//             const translate = $filter('translate');
 
-            scope.translate = translate;
+//             scope.translate = translate;
 
-            console.log('out: scope', scope.managed, scope.powered);
+//             console.log('out: scope', scope.managed, scope.powered);
 
-            scope.$watch('[translate(\'Footer platform managed by\'), translate(\'Footer platform powered by\')]', function([managed, powered], oldVal) {
-                scope.managed = managed;
-                scope.powered = powered;
-                console.log('scope', scope.managed, scope.powered);
-                $compile(element)(scope); // Double compilation
-            });
-        },
-    };
-}]);
+//             const managedWatch = () => translate('Footer platform managed by');
+//             const poweredWatch = () => translate('Footer platform powered by');
+
+//             scope.$watch(() => {
+//                 return [managedWatch(), poweredWatch()];
+//             }, function([managed, powered], oldVal) {
+//                 // setTimeout(function() {
+//                     scope.managed = managed;
+//                     scope.powered = powered;
+//                     console.log('scope', scope.managed, scope.powered);
+//                     console.log({element})
+//                     $compile(element)(scope); // Double compilation
+//                 // }, 1000);
+//             });
+//         },
+//     };
+// }]);
 
 // GL.mockEngine.addMock("*", "#FooterBox", function(elem) {
 //     return '<div data-per-site-footer></div>';
