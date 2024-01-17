@@ -39,6 +39,9 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
     files_by_itip = {}
     receiver_count_by_itip = {}
 
+    offset = int(args.get(b'offset', [b'0'])[0])
+    limit = int(args.get(b'limit', [b'10'])[0])
+
     # Fetch comments count
     for itip_id, count in session.query(models.InternalTip.id,
                                         func.count(distinct(models.Comment.id))) \
