@@ -39,6 +39,9 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
     comments_by_itip = {}
     files_by_itip = {}
 
+    offset = int(args.get(b'offset', [b'0'])[0])
+    limit = int(args.get(b'limit', [b'10'])[0])
+
     # Fetch comments count
     for itip_id, count in session.query(models.InternalTip.id,
                                         func.count(distinct(models.Comment.id))) \
@@ -58,21 +61,26 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                  .group_by(models.InternalTip.id):
         files_by_itip[itip_id] = count
 
+    query = session.query(models.ReceiverTip,
+                           models.InternalTip,
+                           models.InternalTipAnswers,
+                           models.InternalTipData) \
+                    .join(models.InternalTipData,
+                          and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
+                               models.InternalTipData.key == 'whistleblower_identity'),
+                          isouter=True) \
+                    .filter(models.ReceiverTip.receiver_id == receiver_id,
+                            models.InternalTip.update_date >= updated_after,
+                            models.InternalTip.update_date <= updated_before,
+                            models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                            models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
+                    .group_by(models.ReceiverTip.id)
+    
+    count = query.count()
+
     # Fetch rtip, internaltip and associated questionnaire schema
-    for rtip, itip, answers, data in session.query(models.ReceiverTip,
-                                                   models.InternalTip,
-                                                   models.InternalTipAnswers,
-                                                   models.InternalTipData) \
-                                            .join(models.InternalTipData,
-                                                  and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
-                                                       models.InternalTipData.key == 'whistleblower_identity'),
-                                                  isouter=True) \
-                                            .filter(models.ReceiverTip.receiver_id == receiver_id,
-                                                    models.InternalTip.update_date >= updated_after,
-                                                    models.InternalTip.update_date <= updated_before,
-                                                    models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
-                                            .group_by(models.ReceiverTip.id):
+    for rtip, itip, answers, data in query.limit(limit) \
+                                        .offset((offset - 1)* limit):
         answers = answers.answers
         label = itip.label
         if itip.crypto_tip_pub_key:
@@ -110,7 +118,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
             'substatus': itip.substatus,
             'file_count': files_by_itip.get(itip.id, 0),
             'comment_count': comments_by_itip.get(itip.id, 0),
-            'subscription': subscription
+            'subscription': subscription,
+            'total_count': count,
         })
 
     return ret
