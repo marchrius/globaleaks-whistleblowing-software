@@ -7,6 +7,7 @@ COPY ./client/package.json /app/client/
 RUN cd /app/client && npm install
 
 COPY ./client /app/client
+COPY ./LICENSE /app/LICENSE
 
 RUN cd /app/client && \
     ./node_modules/grunt/bin/grunt build && \
