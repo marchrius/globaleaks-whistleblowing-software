@@ -113,7 +113,7 @@ msgstr "دستیار پلتفرم"
 msgid "Label the report"
 msgstr "برچسب زدن گزارش"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "تعویق زمان انقضا"
 
 msgid "Select all"
@@ -229,9 +229,6 @@ msgstr "درخواست دسترسی ارسال شد"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "درخواست دسترسی به هویت افشاگر"
-
-msgid "Please write a motivation"
-msgstr "لطفاً انگیزهٔ خود را بنویسید"
 
 msgid "Reply to the request"
 msgstr "پاسخ به درخواست"
@@ -528,6 +525,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "ناشناس"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr "دستگاه‌ها"
+
+msgid "Computer"
+msgstr "Computer"
+
+msgid "Mobile"
+msgstr "تفلن همراه"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "تشکیل یک گزارش"
 
@@ -597,8 +627,11 @@ msgstr "ذخیره"
 msgid "Cancel"
 msgstr "لغو"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "روز"
+
+msgid "Disabled"
+msgstr "غیرفعال"
 
 msgid "Report statuses"
 msgstr "وضعیت‌های گزارش"
@@ -621,9 +654,6 @@ msgstr "گیرندگان"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "روز"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "برای غیرفعال کردن این قابلیت مقدار را روی 0 تنظیم کنید."
 
@@ -641,18 +671,6 @@ msgstr "حداکثر تعداد گیرندگان قابل انتخاب:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "نمایش گیرندگان به ترتیب الفبا"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "نمایش جزئیات گیرنده روی صفحهٔ وضعیت گزارش"
-
-msgid "Enable comments"
-msgstr "فعال کردن نظرات"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "به افشاگر اجازهٔ نوشتن نظرات داده شود"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "به افشاگر اجازهٔ افزودن پیوست‌ها به گزارش داده شود"
 
 msgid "Additional questionnaire"
 msgstr "پرسش‌نامهٔ اضافی"
@@ -686,6 +704,9 @@ msgstr "نشانی‌های IP مجاز"
 
 msgid "Admin"
 msgstr "مدیر"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "گیرنده"
@@ -766,9 +787,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "دستیار پیکربندی دستی شما را در نصب HTTPS از یک مرجع صدور گواهی جایگزین راهنمایی خواهد کرد."
-
-msgid "Disabled"
-msgstr "غیرفعال"
 
 msgid "Auto-renewal"
 msgstr "تمدید-خودکار"
@@ -1049,9 +1067,6 @@ msgstr "فعال کردن پنل حریم خصوصی سفارشی"
 msgid "Custom privacy panel"
 msgstr "پنل حریم خصوصی سفارشی"
 
-msgid "Enable custodian user role"
-msgstr "فعال کردن نقش کاربر سرپرست"
-
 msgid "Enable scoring system"
 msgstr "فعال کردن سامانهٔ امتیازدهی"
 
@@ -1120,9 +1135,6 @@ msgstr "فعال کردن شرایط خدمات"
 msgid "Title"
 msgstr "عنوان"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "نام عمومی"
 
@@ -1171,7 +1183,7 @@ msgstr "انتخاب شده به صورت اجباری"
 msgid "Allow the recipient to delete reports"
 msgstr "به گیرندگان اجازه دهید که گزارش‌ها را حذف کنند"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "به گیرنده اجازه دهید تا تاریخ انقضای گزارش را به تعویق بیاندازد"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1240,12 +1252,6 @@ msgstr ""
 msgid "Status:"
 msgstr "وضعیت:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "آیا مطمئن هستید؟"
 
@@ -1272,12 +1278,20 @@ msgstr "یک کپی تهیه کرده و آن را در مکانی ایمن نگ
 msgid "Attention"
 msgstr "توجه"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "وارد کردن یک نام برای نسخهٔ کپی"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "درخواست پشتیبانی"
@@ -1298,9 +1312,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "پلتفرم هنوز برای اتصال‌های HTTPS پیکربندی نشده است و بنابراین بهتر است فقط برای اهداف آزمایشی از آن استفاده شود."
-
-msgid "Please write a motivation for the reply"
-msgstr "لطفا انگیزهٔ خود را برای پاسخ بنویسید"
 
 msgid "Send"
 msgstr "ارسال"
@@ -1346,6 +1357,9 @@ msgstr "منبع فقط از طریق شبکهٔ Tor قابل دسترس است"
 
 msgid "The upload request exceeds the size limit"
 msgstr "درخواست بارگذاری از محدودهٔ حجم مجاز بیشتر است"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

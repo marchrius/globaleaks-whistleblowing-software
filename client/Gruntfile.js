@@ -33,6 +33,7 @@ module.exports = function(grunt) {
           { dest: "app/lib/css/", cwd: "./node_modules/", src: ["angular/angular-csp.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: "./node_modules/", src: ["ui-bootstrap4/dist/ui-bootstrap-csp.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: "./node_modules/", src: ["bootstrap/dist/css/bootstrap.css"], expand: true, flatten: true },
+          { dest: "app/lib/css/", cwd: "./node_modules/", src: ["chart.js/dist/Chart.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: "./node_modules/", src: ["@fortawesome/fontawesome-free/css/fontawesome.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: "./node_modules/", src: ["@fortawesome/fontawesome-free/css/regular.css"], expand: true, flatten: true },
           { dest: "app/lib/css/", cwd: "./node_modules/", src: ["@fortawesome/fontawesome-free/css/solid.css"], expand: true, flatten: true },
@@ -40,6 +41,7 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["@flowjs/flow.js/dist/flow.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["@flowjs/ng-flow/dist/ng-flow.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular/angular.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-chart.js/dist/angular-chart.min.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-aria/angular-aria.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-dynamic-locale/dist/tmhDynamicLocale.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-filter/dist/angular-filter.js"], expand: true, flatten: true },
@@ -49,6 +51,7 @@ module.exports = function(grunt) {
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-sanitize/angular-sanitize.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-translate/dist/angular-translate.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["angular-translate-loader-static-files/angular-translate-loader-static-files.js"], expand: true, flatten: true },
+          { dest: "app/lib/js/", cwd: "./node_modules/", src: ["chart.js/dist/Chart.js"], expand: true, flatten: true },
           { dest: "app/lib/js/", cwd: "./node_modules/", src: ["ng-csv/build/ng-csv.js"], expand: true, flatten: true },
           { dest: "app/viewer/", cwd: "./node_modules/", src: ["pdfjs-dist/build/pdf.min.js"], expand: true, flatten: true },
           { dest: "app/viewer/", cwd: "./node_modules/", src: ["pdfjs-dist/build/pdf.worker.min.js"], expand: true, flatten: true },
@@ -110,18 +113,6 @@ module.exports = function(grunt) {
           }
 
         ]
-      },
-      coverage: {
-        files: [{
-          dest: "build/",
-          cwd: "app/",
-          src: [
-            "**",
-            "lib/js/*.js", // and copy scripts that should not be instrumented.
-            "lib/js/locale/*.js"
-          ],
-          expand: true
-        }]
       }
     },
 
@@ -426,9 +417,10 @@ module.exports = function(grunt) {
         }
       }
     },
+
     shell: {
       babel: {
-        command: "npx babel build/js --out-dir build/js"
+        command: "npx babel app/js --out-dir app/js"
       }
     }
   });
@@ -1075,7 +1067,6 @@ module.exports = function(grunt) {
   grunt.registerTask("instrument-client", [
     "clean",
     "copy:sources",
-    "copy:coverage",
     "shell:babel"
   ]);
 };

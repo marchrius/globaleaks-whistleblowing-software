@@ -96,7 +96,7 @@ msgstr "Sprievodca platformou"
 msgid "Label the report"
 msgstr "Označte oznámenie štítkom"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Odložiť vypršanie platnosti"
 
 msgid "Select all"
@@ -212,9 +212,6 @@ msgstr "Vyžiadaný prístup"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Vyžiadaný prístup k identite oznamovateľa"
-
-msgid "Please write a motivation"
-msgstr "Prosím vyplňte motiváciu"
 
 msgid "Reply to the request"
 msgstr "Odpovedať na požiadavku"
@@ -511,6 +508,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonymný"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Počítač"
+
+msgid "Mobile"
+msgstr "Mobilný"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "podať oznámenie"
 
@@ -580,8 +610,11 @@ msgstr "Uložiť"
 msgid "Cancel"
 msgstr "Zrušiť"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dní"
+
+msgid "Disabled"
+msgstr "Vypnuté"
 
 msgid "Report statuses"
 msgstr "Stav podania"
@@ -604,9 +637,6 @@ msgstr "Príjemcovia"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "dní"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Nastavte hodnotu na 0, ak chcete túto funkciu zakázať."
 
@@ -624,18 +654,6 @@ msgstr "Maximálny počet voliteľných príjemcov"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Zobraziť príjemcov v abecednom poradí"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Zobraziť detaily o príjemcoch na stránke o stave podania"
-
-msgid "Enable comments"
-msgstr "Povoliť komentáre"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Povoliť oznamovateľovi písať komentáre"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Povoliť oznamovateľovi pripojiť prílohy k podaniu"
 
 msgid "Additional questionnaire"
 msgstr "Dodatočný dotazník"
@@ -669,6 +687,9 @@ msgstr "Povolené IP adresy."
 
 msgid "Admin"
 msgstr "Administrátor"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Príjemca"
@@ -749,9 +770,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Sprievodca manuálnou konfiguráciou vás prevedie nastavením protokolu HTTPS od alternatívnej certifikačnej autority."
-
-msgid "Disabled"
-msgstr "Vypnuté"
 
 msgid "Auto-renewal"
 msgstr "Automatické obnovenie"
@@ -1032,9 +1050,6 @@ msgstr "Povoliť používateľský panel"
 msgid "Custom privacy panel"
 msgstr "Vlastný používateľský panel "
 
-msgid "Enable custodian user role"
-msgstr " Povoliť úlohu depozitára"
-
 msgid "Enable scoring system"
 msgstr "Aktivovať systém hodnotenia"
 
@@ -1103,9 +1118,6 @@ msgstr "Povoliť zmluvné podmienky"
 msgid "Title"
 msgstr "Názov"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Verejné meno"
 
@@ -1154,7 +1166,7 @@ msgstr "Nastavené administrátorom"
 msgid "Allow the recipient to delete reports"
 msgstr "Povoliť príjemcom zmazať podania"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Umožniť príjemcovi odložiť dátum exspirácie podania"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1223,12 +1235,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Stav"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Ste si istý?"
 
@@ -1255,12 +1261,20 @@ msgstr "Vytvorte kópiu a uložte ju na bezpečnom mieste. Ak stratíte heslo, b
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Zadajte názov kópie"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1281,9 +1295,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma stále nie je nakonfigurovaná pre pripojenia HTTPS, a preto by sa mala používať iba na účely testovania."
-
-msgid "Please write a motivation for the reply"
-msgstr "Prosím, napíšte zdôvodnenie odpovede."
 
 msgid "Send"
 msgstr "Odoslať"
@@ -1329,6 +1340,9 @@ msgstr "Zdroj je prístupný iba v rámci siete Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Žiadosť na upload prekročila veľkostné limity"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

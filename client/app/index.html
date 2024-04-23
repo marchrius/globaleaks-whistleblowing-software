@@ -72,6 +72,7 @@
     <link rel="stylesheet" href="lib/webfonts/@fortawesome/fontawesome-free/css/fontawesome.css" />
     <link rel="stylesheet" href="lib/webfonts/@fortawesome/fontawesome-free/css/regular.css" />
     <link rel="stylesheet" href="lib/webfonts/@fortawesome/fontawesome-free/css/solid.css" />
+    <link rel="stylesheet" href="lib/css/Chart.css" />
     <link rel="stylesheet" href="lib/css/bootstrap.css" />
     <link rel="stylesheet" href="lib/css/ui-bootstrap-csp.css" />
     <link rel="stylesheet" href="lib/css/select.css" />
@@ -83,13 +84,14 @@
     <!-- endbuild -->
   </head>
 
-  <body class="container-fluid d-flex flex-column" data-ng-class="{{Utils.getCSSFlags()}}" data-flow-prevent-drop>
+  <body class="container-fluid d-flex flex-column" data-ng-class="{'public': Utils.isWhistleblowerPage(), 'block-user-input': showLoadingPanel}" data-flow-prevent-drop>
     <div id="Skip"><a href="#Content" tabindex="1" data-translate>Skip to content</a></div>
     <div id="PageOverlay" class="ng-cloak" data-ng-hide="!showLoadingPanel">
       <div id="Loader"></div>
     </div>
 
     <div id="PageContent" class="ng-cloak" data-ng-if="started" data-ng-cloak>
+      <div data-ng-if="Authentication.session.properties.operator_session" data-ng-include="'views/partials/operator.html'"></div>
       <div data-ng-if="!public.node.root_tenant && public.node.mode === 'demo'" data-ng-include="'views/partials/demo.html'"></div>
       <div data-ng-if="Utils.isWhistleblowerPage() && !public.node.disable_privacy_badge" data-ng-include="'views/partials/privacybadge.html'"></div>
       <div data-ng-include="'views/partials/header.html'"></div>
@@ -136,10 +138,12 @@
     </div>
 
     <!-- build:js js/scripts.js -->
+    <script src="lib/js/Chart.js"></script>
     <script src="lib/js/qrcode.js"></script>
     <script src="lib/js/showdown.js"></script>
     <script src="lib/js/angular.js"></script>
     <script src="lib/js/angular-aria.js"></script>
+    <script src="lib/js/angular-chart.min.js"></script>
     <script src="lib/js/angular-filter.js"></script>
     <script src="lib/js/angular-idle.min.js"></script>
     <script src="lib/js/angular-qrcode.js"></script>
@@ -188,6 +192,7 @@
     <script src="js/controllers/admin/network.js"></script>
     <script src="js/controllers/admin/tenant.js"></script>
     <script src="js/controllers/admin/casemanagement.js"></script>
+    <script src="js/controllers/analyst.js"></script>
     <script src="js/controllers/submission.js"></script>
     <script src="js/controllers/receipt.js"></script>
     <script src="js/controllers/login.js"></script>

@@ -80,7 +80,10 @@ def user_serialize_user(session, user, language):
         'can_postpone_expiration': user.can_postpone_expiration,
         'can_delete_submission': user.can_delete_submission,
         'can_grant_access_to_reports': user.can_grant_access_to_reports,
+        'can_redact_information': user.can_redact_information,
+        'can_mask_information': user.can_mask_information,
         'can_transfer_access_to_reports': user.can_transfer_access_to_reports,
+        'can_reopen_reports': user.can_reopen_reports,
         'can_edit_general_settings': user.can_edit_general_settings,
         'clicked_recovery_key': user.clicked_recovery_key,
         'accepted_privacy_policy': user.accepted_privacy_policy,
@@ -130,7 +133,7 @@ def db_user_update_user(session, tid, user_session, request):
 
     user.language = request.get('language', State.tenants[tid].cache.default_language)
     user.name = request['name']
-    user.public_name = request['public_name'] if request['public_name'] else request['name']
+    user.public_name = request['public_name'] or request['name']
     user.notification = request['notification']
 
     # If the email address changed, send a validation email

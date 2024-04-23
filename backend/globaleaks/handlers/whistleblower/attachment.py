@@ -26,7 +26,6 @@ def register_ifile_on_db(session, tid, internaltip_id, uploaded_file):
 
     itip = session.query(models.InternalTip) \
                   .filter(models.InternalTip.id == internaltip_id,
-                          models.InternalTip.enable_attachments.is_(True),
                           models.InternalTip.status != 'closed',
                           models.InternalTip.tid == tid).one()
 
@@ -61,7 +60,6 @@ class SubmissionAttachment(BaseHandler):
 
     def post(self):
         self.uploaded_file['submission'] = True
-
         self.session.files.append(self.uploaded_file)
 
 

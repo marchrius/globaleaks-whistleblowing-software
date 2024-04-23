@@ -1,16 +1,13 @@
 # -*- coding: UTF-8
-from itertools import groupby
-
 from globaleaks import models
 from globaleaks.db.appdata import load_appdata, db_load_defaults
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.wizard import db_wizard
-from globaleaks.models import serializers
+from globaleaks.models import config, serializers
 from globaleaks.models.config import db_get_configs, \
     db_get_config_variable, db_set_config_variable
-from globaleaks.models.config_desc import ConfigFilters
 from globaleaks.orm import db_del, db_get, transact, tw
-from globaleaks.rest import requests
+from globaleaks.rest import errors, requests
 from globaleaks.utils.tls import gen_selfsigned_certificate
 
 
@@ -114,9 +111,14 @@ def get(session, tid):
 
 @transact
 def update(session, tid, request):
+    root_tenant_config = config.ConfigFactory(session, 1)
+
     t = db_get(session, models.Tenant, models.Tenant.id == tid)
 
     t.active = request['active']
+
+    if request['subdomain'] + "." + root_tenant_config.get_val('rootdomain') == root_tenant_config.get_val('hostname'):
+        raise errors.ForbiddenOperation
 
     for var in ['mode', 'name', 'subdomain']:
         db_set_config_variable(session, tid, var, request[var])

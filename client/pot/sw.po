@@ -86,7 +86,7 @@ msgstr "Kivinjari cha jukwaa"
 msgid "Label the report"
 msgstr "Lebo ripoti"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Ahirisha tarehe ya kumalizika muda"
 
 msgid "Select all"
@@ -202,9 +202,6 @@ msgstr "Ufikiaji umeombwa"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Omba ufikiaji wa kitambulisho cha mtoa taarifa ya siri"
-
-msgid "Please write a motivation"
-msgstr "Tafadhali andika motisha"
 
 msgid "Reply to the request"
 msgstr "Jibu ombi"
@@ -501,6 +498,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -570,8 +600,11 @@ msgstr "Hifadhi"
 msgid "Cancel"
 msgstr "futa"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "siku"
+
+msgid "Disabled"
+msgstr "Haijawezeshwa"
 
 msgid "Report statuses"
 msgstr "Hali ya ripoti"
@@ -594,9 +627,6 @@ msgstr "Wapokeaji"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "siku"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Weka 0 ili kutowezesha huduma hii."
 
@@ -614,18 +644,6 @@ msgstr "Idadi ya juu ya wapokeaji wanaochaguliwa:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Onyesha wapokeaji kwa mpangilio wa alfabeti"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Onyesha maelezo ya mpokeaji kwenye ukurasa wa hali ya ripoti"
-
-msgid "Enable comments"
-msgstr "Wezesha maoni "
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Ruhusu mtoa taarifa ya siri kuandika maoni."
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Ruhusu mtoa taarifa ya siri kuongeza viambatanisho kwenye ripoti"
 
 msgid "Additional questionnaire"
 msgstr "Dodoso la nyongeza"
@@ -659,6 +677,9 @@ msgstr "Anuani za IP zilizoruhusiwa"
 
 msgid "Admin"
 msgstr "Msimamizi"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Mpokeaji"
@@ -739,9 +760,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Programu saidizi ya usanidi wa mwongozo itakuongoza kupitia usanidi wa HTTPS\n\nkutoka kwa Mamlaka mbadala ya Cheti."
-
-msgid "Disabled"
-msgstr "Haijawezeshwa"
 
 msgid "Auto-renewal"
 msgstr "Uhuishaji kiotomatiki"
@@ -1022,9 +1040,6 @@ msgstr "Wezesha paneli ya faragha maalum "
 msgid "Custom privacy panel"
 msgstr "paneli ya faragha"
 
-msgid "Enable custodian user role"
-msgstr "Wezesha sehemu ya jukumu la Mwangalizi"
-
 msgid "Enable scoring system"
 msgstr "Wezesha mfumo wa upataji wa alama"
 
@@ -1093,9 +1108,6 @@ msgstr "Wezesha masharti ya huduma"
 msgid "Title"
 msgstr "Kichwa"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Jina la umma"
 
@@ -1144,7 +1156,7 @@ msgstr "Imechaguliwa kwa nguvu"
 msgid "Allow the recipient to delete reports"
 msgstr "Ruhusu mpokeaji kufuta ripoti"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Ruhusu wapokeaji kuahirisha tarehe ya kumalizika muda wa ripoti."
 
 msgid "Give this user ability to grant user access to reports"
@@ -1213,12 +1225,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Hali:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Una uhakika?"
 
@@ -1245,12 +1251,20 @@ msgstr "Tengeneza nakala na uihifadhi mahali salama. Itakuwa muhimu ikiwa utapot
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Ingiza jina la nakala"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1271,9 +1285,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Jukwaa bado halijasanidiwa kwa unganisho la HTTPS na linapaswa\n\nkutumika tu kwa ajili ya majaribio."
-
-msgid "Please write a motivation for the reply"
-msgstr "Tafadhali andika motisha kwa kujibu"
 
 msgid "Send"
 msgstr "Tuma"
@@ -1319,6 +1330,9 @@ msgstr "Rasilimali zinaweza kupatikana tu kupitia mtandao wa Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Ombi la kupakia linazidi kikomo cha ukubwa"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

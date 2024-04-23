@@ -1,8 +1,5 @@
 # -*- coding: utf-8
-import getpass
-import grp
 import os
-import pwd
 import sys
 
 from globaleaks.orm import make_db_uri, set_db_uri, enable_orm_debug
@@ -49,8 +46,6 @@ class SettingsClass(object, metaclass=Singleton):
         # and resetted by session_management sched
         self.failed_login_attempts = {}
 
-        self.local_hosts = ['127.0.0.1', 'localhost']
-
         self.onionservice = None
 
         # SOCKS default
@@ -89,12 +84,13 @@ class SettingsClass(object, metaclass=Singleton):
         self.enable_api_cache = True
 
     def eval_paths(self):
-        self.pidfile_path = os.path.join(self.working_path, 'globaleaks.pid')
+        self.pidfile_path = os.path.join(self.ramdisk_path, 'globaleaks.pid')
 
         self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.attachments_path = os.path.abspath(os.path.join(self.working_path, 'attachments'))
+        self.tor_path = os.path.abspath(os.path.join(self.working_path, 'tor'))
+        self.tor_control = os.path.abspath(os.path.join(self.tor_path, 'tor_control'))
         self.tmp_path = os.path.abspath(os.path.join(self.working_path, 'tmp'))
-        self.tor_control = os.path.abspath(os.path.join(self.tmp_path, 'tor_control'))
 
         self.db_file_path = os.path.abspath(os.path.join(self.working_path, 'globaleaks.db'))
 

@@ -1,3 +1,96 @@
+Changes in version 4.15.3
+    Do not consider opening a report for the first time as a report update
+
+Changes in version 4.15.2
+    Correct definition of symbol OP_CLEANSE_PLAINTEXT causing malfunction
+    on 4.15.1 in systems running with OpenSSL <= 3.0.0
+
+Changes in version 4.15.1
+    Apply revision and optimization to TLS configurations
+    Fix bug on admin operation handlers preventing to reset 2fa of users
+    Bump npm dependencies to latest versions
+    Update translations
+
+Changes in version 4.15.0
+    Fix issues #4019, #4020
+    Do not loose channel selection when changing platform language
+    Make it possible to use channel id parameter on homepage link
+    Fix memory leak on speaker anonymization algorithm
+    Implement deletion of audit logs after 5 years or report deletion
+    Do not require mandatory motivation on report close
+    Extend gl-admin command adding possibility to change encrypted passwords
+    Deprecate old migrations for globaleaks versions < 4.0.0
+    Optimize Tor loading enabling permanent data dir
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Add reference to new security audit report by ISGroup
+
+Changes in version 4.14.8
+    Fix failure on configuration of network filter introduced in 4.14.0 (#3971)
+    Fix failure on the upload of PGP keys (#3970)
+    Update translations
+
+Changes in version 4.14.7
+    Update pid file in globaleaks.service
+
+Changes in version 4.14.6
+    Revise mail notifications in case of multiple report access grants (#3928)
+    Create pid file on /dev/shm/globaleaks/globaleaks.pid
+    Revase packaging reducing dependencies
+
+Changes in version 4.14.5
+    Downgrade version of PDFjs breaking pdf viewer (#3960)
+
+Changes in version 4.14.4
+    Correct assignment of classes on <body> tag
+    Ensure one could change the report status without specifying a motivation (#3935)
+    Fix visualization of user preferences for analyst user role (#3940)
+    Implement autofocus on first input of login pages (#3744)
+    Improve accessibility by setting initial focus on the reporting questionnaire
+    Revise implementation of report status change incorrectly setting the report
+      to never expire; defect introduced in 4.14.0
+    Bump npm dependencies to latest versions
+    Update translations
+
+Changes in version 4.14.3
+    Apply minor bugfixing on release 4.14.0; see git log for details
+
+Changes in version 4.14.2
+    Apply minor bugfixing on release 4.14.0; see git log for details
+
+Changes in version 4.14.1
+    Apply minor bugfixing on release 4.14.0; see git log for details
+
+Changes in version 4.14.0
+    Implement masking and redaction features (#3420, #3429)
+    Register report update when the report is opened (#3918)
+    Implement functionality enabling a recipient to operate on behalf of a whistleblower
+    Add analyst user role and initial implementation of statistics panel
+    Extend recipient list UI adding number of recipients for each report
+    Added possibility to export the report list in form of CSV
+    Redirect to hostname only when the HTTPS certificate is configured and enabled
+    Make it possible to localize privacy and whistleblowing policies urls
+    Enable showdown simplifiedAutoLink option
+    Simplify interface for enabling and disabling email notifications
+    Enable recipients connected to contexts to list every report
+    Implement data retention policies on closed statuses
+    Introduces a proviledge to restrict who can re-open management of reports
+    Remove custodian user role enabler
+    Count whistleblowers accesses
+    Correct CSR download function
+    Bump npm dependencies to latest versions
+    Update translations
+    [doc] Update documentation images
+
+Changes in version 4.13.22
+    Deprecate file upload preview based on data uri
+      The feature will be reimplemented soon based on the
+      secure file viewer extended to more file types that not just images.
+    Revert "Modify report print to unroll tabs and export completed data"
+      Reason: functionality with graphical imperfections on some browsers
+      The feature will be reimplemented creating exports of type pdf
+    Revise firewall rules in relation to issue #3856
+
 Changes in version 4.13.21
     Fix issue #3855 introduced in 4.13.19
 

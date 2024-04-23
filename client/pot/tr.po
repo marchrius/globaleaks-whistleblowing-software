@@ -11,11 +11,11 @@
 # Erdoğan Şahin, 2016
 # Erdoğan Şahin, 2016-2017
 # Erdoğan Şahin, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
 # uskumru, 2013
-# Kaya Zeren <kayazeren@gmail.com>, 2020-2023
+# Kaya Zeren <kayazeren@gmail.com>, 2020-2024
 # msare <mervesareakin@gmail.com>, 2014
 # On the Line Turkiye <onthelineturkiye@gmail.com>, 2016
 # Ozgur Yasin <yasinaydin@korsanparti.org>, 2014
@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2020-2023\n"
+"Last-Translator: Kaya Zeren <kayazeren@gmail.com>, 2020-2024\n"
 "Language-Team: Turkish (http://app.transifex.com/otf/globaleaks/language/tr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -113,8 +113,8 @@ msgstr "Platform yardımcısı"
 msgid "Label the report"
 msgstr "İhbarı etiketle"
 
-msgid "Postpone the expiration date"
-msgstr "Geçerlilik sonu tarihini uzat"
+msgid "Edit the expiration date"
+msgstr "Geçerlilik sonu tarihini düzenle"
 
 msgid "Select all"
 msgstr "Tümünü seç"
@@ -229,9 +229,6 @@ msgstr "Erişme isteğinde bulunuldu"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Muhbirin kimliğine erişme isteğinde bulun"
-
-msgid "Please write a motivation"
-msgstr "Lütfen bir neden yazın"
 
 msgid "Reply to the request"
 msgstr "İstek yanıtı"
@@ -528,6 +525,39 @@ msgstr "Yalnızca alıcılar"
 msgid "Me only"
 msgstr "Yalnızca ben"
 
+msgid "Returning whistleblowers"
+msgstr "Geri dönen muhbirler"
+
+msgid "Anonymity"
+msgstr "Anonimlik"
+
+msgid "Anonymous"
+msgstr "Anonim"
+
+msgid "Subscribed"
+msgstr "Abone olundu"
+
+msgid "Initially anonymous"
+msgstr "Başlangıçta anonim"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr "Aygıtlar"
+
+msgid "Computer"
+msgstr "Bilgisayar"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Act on behalf of a whistleblower"
+msgstr "Bir muhbir adına işlem yap"
+
+msgid "The link will expire in 7 days."
+msgstr "Bağlantı 7 sonra geçersiz olacak."
+
 msgid "File a report"
 msgstr "İhbar edin"
 
@@ -597,8 +627,11 @@ msgstr "Kaydet"
 msgid "Cancel"
 msgstr "İptal"
 
-msgid "Scadenza (giorni)"
-msgstr "Geçerlilik sonu (gün)"
+msgid "days"
+msgstr "gün"
+
+msgid "Disabled"
+msgstr "Kapalı"
 
 msgid "Report statuses"
 msgstr "İhbar durumları"
@@ -621,9 +654,6 @@ msgstr "Alıcılar"
 msgid "Reminder date"
 msgstr "Anımsatıcı tarihi"
 
-msgid "days"
-msgstr "gün"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Bu özelliği kapatmak için 0 olarak ayarlayın."
 
@@ -641,18 +671,6 @@ msgstr "Seçilebilecek en fazla alıcı sayısı:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Alıcılar alfabetik sırada görüntülensin"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "İhbar durumu sayfasında alıcı ayrıntıları görüntülensin"
-
-msgid "Enable comments"
-msgstr "Yorum yapılabilsin"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Muhbir yorum yazabilsin"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Muhbir dosya ekleyebilsin"
 
 msgid "Additional questionnaire"
 msgstr "Ek anket"
@@ -686,6 +704,9 @@ msgstr "İzin verilen IP adresleri"
 
 msgid "Admin"
 msgstr "Yönetici"
+
+msgid "Analyst"
+msgstr "İnceleyen"
 
 msgid "Recipient"
 msgstr "Alıcı"
@@ -766,9 +787,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "El ile yapılandırma yardımcısı, HTTPS özeliğinin başka bir sertifika yetkilisi ile kurulmasında size rehberlik eder."
-
-msgid "Disabled"
-msgstr "Kapalı"
 
 msgid "Auto-renewal"
 msgstr "Otomatik yenileme"
@@ -1049,9 +1067,6 @@ msgstr "Özel gizlilik panosunu aç"
 msgid "Custom privacy panel"
 msgstr "Özel gizlilik panosu"
 
-msgid "Enable custodian user role"
-msgstr "Koruyucu kullanıcı rolü kullanılsın"
-
 msgid "Enable scoring system"
 msgstr "Değerlendirme yapılabilsin"
 
@@ -1120,9 +1135,6 @@ msgstr "Hizmet koşulları kullanılsın"
 msgid "Title"
 msgstr "Başlık"
 
-msgid "Analyst"
-msgstr "İnceleyen"
-
 msgid "Public name"
 msgstr "Herkese açık ad"
 
@@ -1171,8 +1183,8 @@ msgstr "Zorunlu olarak seçilmiş"
 msgid "Allow the recipient to delete reports"
 msgstr "Alıcı ihbarları silebilsin"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Alıcı ihbarın geçerlilik sonu tarihini uzatabilsin"
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Alıcı ihbarın geçerlilik sonu tarihini düzenleyebilsin"
 
 msgid "Give this user ability to grant user access to reports"
 msgstr "Bu kullanıcı başka kullanıcılara ihbarlara erişme izni verebilsin"
@@ -1240,12 +1252,6 @@ msgstr "Durumu değiştir"
 msgid "Status:"
 msgstr "Durum"
 
-msgid "Substatus:"
-msgstr "Alt durum:"
-
-msgid "Motivation:"
-msgstr "Amaç:"
-
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
 
@@ -1272,12 +1278,20 @@ msgstr "Bir kopyasını alın ve güvenli bir yerde saklayın. Parolanızı unut
 msgid "Attention"
 msgstr "Dikkat"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr "Güvenlik nedeniyle ihbarınızın güvenlik kodunun değiştirilmesi gerekiyor."
+msgid "For security reasons the code needs to be changed."
+msgstr "Güvenlik nedeniyle kodun değiştirilmesi gerekiyor."
 
 msgid "Enter a name for the copy"
 msgstr "Kopya için bir ad yazın"
+
+msgid "Mask"
+msgstr "Maskele"
+
+msgid "Unselect"
+msgstr "Bırak"
+
+msgid "Reopen"
+msgstr "Yeniden aç"
 
 msgid "Request support"
 msgstr "Destek isteyin"
@@ -1298,9 +1312,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platform henüz HTTPS kullanacak şekilde yapılandırılmamış. Bu nedenle yalnızca deneme amacıyla kullanılmalıdır."
-
-msgid "Please write a motivation for the reply"
-msgstr "Lütfen yanıt verilmesi için bir neden belirtin"
 
 msgid "Send"
 msgstr "Gönder"
@@ -1346,6 +1357,9 @@ msgstr "Kaynağa yalnızca Tor ağı üzerinden erişilebilir"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yükleme isteğinin boyutu sınırı aşıyor"
+
+msgid "A user with this username already exists"
+msgstr "Aynı kullanıcı adlı bir kullanıcı zaten var"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Bir muhbir adına işlem yapıyorsunuz."

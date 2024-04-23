@@ -4,8 +4,8 @@
 # Andreas Jantz, 2023
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Charles Peltier <charles@cl-info.fr>, 2015
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2023
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2024
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # Jack Pudding, 2015
@@ -54,7 +54,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Andreas Jantz, 2023\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2014-2024\n"
 "Language-Team: German (http://app.transifex.com/otf/globaleaks/language/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -134,8 +134,8 @@ msgstr "Plattformassistent"
 msgid "Label the report"
 msgstr "Den Bericht bezeichnen"
 
-msgid "Postpone the expiration date"
-msgstr "Ablaufdatum hinausschieben"
+msgid "Edit the expiration date"
+msgstr "Ablaufdatum bearbeiten"
 
 msgid "Select all"
 msgstr "Alle auswählen"
@@ -250,9 +250,6 @@ msgstr "Zugriff angefordert"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Zugriff auf die Identität des Hinweisgebers anfordern"
-
-msgid "Please write a motivation"
-msgstr "Bitte schreiben Sie eine Motivation"
 
 msgid "Reply to the request"
 msgstr "Antwort auf die Anfrage"
@@ -549,6 +546,39 @@ msgstr "Nur Empfänger"
 msgid "Me only"
 msgstr "Nur ich"
 
+msgid "Returning whistleblowers"
+msgstr "Zurückkehrende Hinweisgeber"
+
+msgid "Anonymity"
+msgstr "Anonymität"
+
+msgid "Anonymous"
+msgstr "Anonym"
+
+msgid "Subscribed"
+msgstr "Abonniert"
+
+msgid "Initially anonymous"
+msgstr "Anfänglich anonym"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr "Geräte"
+
+msgid "Computer"
+msgstr "Computer"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Act on behalf of a whistleblower"
+msgstr "Im Auftrag eines Hinweisgebers handeln"
+
+msgid "The link will expire in 7 days."
+msgstr "Dieser Link wird in 7 Tagen ablaufen."
+
 msgid "File a report"
 msgstr "Einen Bericht einreichen"
 
@@ -618,8 +648,11 @@ msgstr "Speichern"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-msgid "Scadenza (giorni)"
-msgstr "Frist (Tage)"
+msgid "days"
+msgstr "Tage"
+
+msgid "Disabled"
+msgstr "Deaktiviert"
 
 msgid "Report statuses"
 msgstr "Berichtsstatus"
@@ -642,9 +675,6 @@ msgstr "Empfänger"
 msgid "Reminder date"
 msgstr "Erinnerungsdatum"
 
-msgid "days"
-msgstr "Tage"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Den Wert auf 0 setzen um die Funktion zu deaktivieren."
 
@@ -662,18 +692,6 @@ msgstr "Maximale Anzahl auswählbarer Empfänger: "
 
 msgid "Show recipients in alphabetical order"
 msgstr "Empfänger in alphabetischer Reihenfolge anzeigen"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Empfängerdetails auf der Statusseite des Berichts anzeigen"
-
-msgid "Enable comments"
-msgstr "Kommentare aktivieren"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Dem Hinweisgeber das Schreiben von Kommentaren erlauben"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Dem Hinweisgeber das Hinzufügen von Anhängen zum Bericht erlauben"
 
 msgid "Additional questionnaire"
 msgstr "Zusätzlicher Fragebogen"
@@ -707,6 +725,9 @@ msgstr "Erlaubte IP-Adressen"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr "Analyst"
 
 msgid "Recipient"
 msgstr "Empfänger"
@@ -787,9 +808,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Der manuelle Konfigurationsassistent führt Sie durch die Einrichtung von HTTPS von einer alternativen Zertifizierungsstelle."
-
-msgid "Disabled"
-msgstr "Deaktiviert"
 
 msgid "Auto-renewal"
 msgstr "Automatische Erneuerung"
@@ -1070,9 +1088,6 @@ msgstr "Benutzerdefiniertes Datenschutzpanel aktivieren"
 msgid "Custom privacy panel"
 msgstr "Benutzerdefiniertes Datenschutzpanel"
 
-msgid "Enable custodian user role"
-msgstr "Benutzerrolle Verwalter aktivieren"
-
 msgid "Enable scoring system"
 msgstr "Bewertungssystem aktivieren"
 
@@ -1141,9 +1156,6 @@ msgstr "Nutzungsbedingungen aktivieren"
 msgid "Title"
 msgstr "Titel"
 
-msgid "Analyst"
-msgstr "Analyst"
-
 msgid "Public name"
 msgstr "Öffentlicher Name"
 
@@ -1192,7 +1204,7 @@ msgstr "Zwingend ausgewählt"
 msgid "Allow the recipient to delete reports"
 msgstr "Empfängern das Löschen von Hinweisen erlauben"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Empfängern das Hinausschieben des Berichtablaufdatums erlauben"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1261,12 +1273,6 @@ msgstr "Status wechseln"
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr "Teilstatus"
-
-msgid "Motivation:"
-msgstr "Beweggrund"
-
 msgid "Are you sure?"
 msgstr "Sind Sie sicher?"
 
@@ -1293,12 +1299,20 @@ msgstr "Erstellen Sie eine Kopie und lagern Sie diese an einem sicheren Ort. Sie
 msgid "Attention"
 msgstr "Achtung"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr "Aus Sicherheitsgründen muss der Bestätigungscode für Ihren Bericht geändert werden."
+msgid "For security reasons the code needs to be changed."
+msgstr "Aus Sicherheitsgründen muss der Code geändert werden."
 
 msgid "Enter a name for the copy"
 msgstr "Geben Sie einen Namen für die Kopie ein"
+
+msgid "Mask"
+msgstr "Maskieren "
+
+msgid "Unselect"
+msgstr "Abwählen"
+
+msgid "Reopen"
+msgstr "Erneut öffnen"
 
 msgid "Request support"
 msgstr "Unterstützung anfordern"
@@ -1319,9 +1333,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Die Plattform ist noch nicht für HTTPS-Verbindungen konfiguriert und sollte nur zu Testzwecken verwendet werden."
-
-msgid "Please write a motivation for the reply"
-msgstr "Bitte schreiben Sie eine Motivation für die Antwort"
 
 msgid "Send"
 msgstr "Senden"
@@ -1367,6 +1378,9 @@ msgstr "Ressource kann ausschließlich über das Tor-Netzwerk aufgerufen werden"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Der Upload überschreitet das eingestellte MB Limit."
+
+msgid "A user with this username already exists"
+msgstr "Ein Benutzer mit diesem Benutzernamen existiert bereits"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Sie handeln im Auftrag eines Hinweisgebers."

@@ -104,7 +104,7 @@ msgstr "Platform varázsló"
 msgid "Label the report"
 msgstr "Címkézze a beküldést"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Lejárati idő meghosszabítása"
 
 msgid "Select all"
@@ -220,9 +220,6 @@ msgstr "Hozzáférés kérve"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Hozzáférés kérése a bejelentők identitásához"
-
-msgid "Please write a motivation"
-msgstr "Kérem, adjon meg egy motivációt"
 
 msgid "Reply to the request"
 msgstr "Válasz a kérésre"
@@ -519,6 +516,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Névtelen"
+
+msgid "Subscribed"
+msgstr "Feliratkozva"
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr "Eszközök"
+
+msgid "Computer"
+msgstr "Számítógép"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Jelentés beküldése"
 
@@ -588,8 +618,11 @@ msgstr "Mentés"
 msgid "Cancel"
 msgstr "Mégse"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "nap"
+
+msgid "Disabled"
+msgstr "Leiltva"
 
 msgid "Report statuses"
 msgstr "Jelentés állapotok"
@@ -612,9 +645,6 @@ msgstr "Címzettek"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "nap"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Állítsa az értéket 0-ra, hogy kikapcsolja ezt a funkciót."
 
@@ -632,18 +662,6 @@ msgstr "Maximum kiválasztható címzettek száma:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "A címzettek megjelenítése betűrendben"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "A címzettek adatainak megjelenítése a jelentés státusz oldalán"
-
-msgid "Enable comments"
-msgstr "Megjegyzések engedélyezése"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "A bejelentő írhat megjegyzéseket"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá a beadványhoz"
 
 msgid "Additional questionnaire"
 msgstr "További kérdőívek"
@@ -677,6 +695,9 @@ msgstr "Engedélyezett IP címek"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Címzett"
@@ -757,9 +778,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "A kézi beállítás varázsló átvezeti a telepítés lépésein, ahhoz, hogy beállíthasson egy HTTPS tanúsítványt, ami egy másik kiadótól származik."
-
-msgid "Disabled"
-msgstr "Leiltva"
 
 msgid "Auto-renewal"
 msgstr "Auto-megújítás"
@@ -875,10 +893,10 @@ msgid "Template override"
 msgstr "Template felülírása"
 
 msgid "Min"
-msgstr ""
+msgstr "Min"
 
 msgid "Max"
-msgstr ""
+msgstr "Max"
 
 msgid "Phone number"
 msgstr "Telefonszám"
@@ -1040,9 +1058,6 @@ msgstr "Egyedi adatvédelmi panel engedélyezése"
 msgid "Custom privacy panel"
 msgstr "Egyéni adatvédelmi panel"
 
-msgid "Enable custodian user role"
-msgstr "Kezelő felhasználó típus engedélyezése"
-
 msgid "Enable scoring system"
 msgstr "Pontozási rendszer engedélyezése"
 
@@ -1111,9 +1126,6 @@ msgstr "Felhasználási feltételek engedélyezése"
 msgid "Title"
 msgstr "Cím"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Nyilvános elnevezés"
 
@@ -1162,7 +1174,7 @@ msgstr "Erőteljesen kiválasztva"
 msgid "Allow the recipient to delete reports"
 msgstr "Engedélyezés a címzetteknek, hogy töröljék a tippeket"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "A címzett számára engedélyezi a füles lejárati dátumának hosszabítását"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1231,12 +1243,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Állapot:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Biztosan?"
 
@@ -1263,12 +1269,20 @@ msgstr "Készítsen róla egy másolatot és tárolja biztonságos helyen.  Ha e
 msgid "Attention"
 msgstr "Figyelem"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Adja meg a másolat nevét"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Támogatás kérése"
@@ -1289,9 +1303,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "A platform továbbra sem konfigurált HTTPS kapcsolatokra, így kizárólag teszt célokra javasolt a használata."
-
-msgid "Please write a motivation for the reply"
-msgstr "Kérem írjon egy motivációt a válaszra"
 
 msgid "Send"
 msgstr "Küldés"
@@ -1337,6 +1348,9 @@ msgstr "A forrást csak a Tor hálózatán keresztül lehet elérni"
 
 msgid "The upload request exceeds the size limit"
 msgstr "A feltöltés meghadja a megengedett limitet"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

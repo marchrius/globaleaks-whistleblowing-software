@@ -91,7 +91,7 @@ msgstr "Čarobnjak za platformu"
 msgid "Label the report"
 msgstr "Postavi oznaku na prijavu"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Odgodi datum isteka"
 
 msgid "Select all"
@@ -207,9 +207,6 @@ msgstr "Pristup zahtjevan"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Zahtjev pristupa identitetu zviždača"
-
-msgid "Please write a motivation"
-msgstr "Molimo Vas da napišete motivaciju"
 
 msgid "Reply to the request"
 msgstr "Odgovor na zahtjev"
@@ -506,6 +503,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anonimno"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Računalo"
+
+msgid "Mobile"
+msgstr "Mobilan"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Podnesite prijavu"
 
@@ -575,8 +605,11 @@ msgstr "Spremi"
 msgid "Cancel"
 msgstr "Otkaži"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dana"
+
+msgid "Disabled"
+msgstr "Onemogućeno"
 
 msgid "Report statuses"
 msgstr "Statusi prijava"
@@ -599,9 +632,6 @@ msgstr "Primatelji"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "dana"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Postavite vrijednost na 0 kako bi onemogućili ovu značajku."
 
@@ -619,18 +649,6 @@ msgstr "Maksimalan broj primatelja koji se mogu odabrati:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Prikaži primatelje u abecednom slijedu"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Prikaži detalje primatelja na stranici statusa o prijavi"
-
-msgid "Enable comments"
-msgstr "Omogući komentare"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Dopusti zviždaču da piše komentare"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Dopusti zviždaču da doda privitke prijavi"
 
 msgid "Additional questionnaire"
 msgstr "Dodatni upitnik"
@@ -664,6 +682,9 @@ msgstr "Dopuštene IP adrese"
 
 msgid "Admin"
 msgstr "Administrator"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Primatelj"
@@ -744,9 +765,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Čarobnjak za ručnu konfiguraciju će Vas voditi kroz postavljanje HTTPS-a od alternativnog autoriteta za certifikate."
-
-msgid "Disabled"
-msgstr "Onemogućeno"
 
 msgid "Auto-renewal"
 msgstr "Automatska obnova"
@@ -1027,9 +1045,6 @@ msgstr "Omogući prilagođenu ploču privatnosti"
 msgid "Custom privacy panel"
 msgstr "Prilagođena ploča privatnosti"
 
-msgid "Enable custodian user role"
-msgstr "Omogući ulogu skrbnika"
-
 msgid "Enable scoring system"
 msgstr "Omogući bodovanje"
 
@@ -1098,9 +1113,6 @@ msgstr "Omogući uvjete pružanja usluge"
 msgid "Title"
 msgstr "Naziv"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Javno ime"
 
@@ -1149,7 +1161,7 @@ msgstr "Prisilno odabrani"
 msgid "Allow the recipient to delete reports"
 msgstr "Dozvoli primateljima da brišu prijave"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Dopusti primatelju da odgodi datum isteka prijave"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1218,12 +1230,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Jeste li sigurni?"
 
@@ -1250,12 +1256,20 @@ msgstr "Napravite kopiju i spremite je na sigurno mjesto. Ukoliko izgubite lozin
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Unesite ime za kopiju"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Zatraži podršku"
@@ -1276,9 +1290,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma još uvijek nije konfigurirana za HTTPS veze i stoga bi se trebala koristiti samo za testiranje."
-
-msgid "Please write a motivation for the reply"
-msgstr "Molimo Vas da napišete motiv za odgovor"
 
 msgid "Send"
 msgstr "Pošalji"
@@ -1324,6 +1335,9 @@ msgstr "Resursu se može pristupiti samo preko Tor mreže"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Zahtjev za postavljanje premašuje ograničenja veličine"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

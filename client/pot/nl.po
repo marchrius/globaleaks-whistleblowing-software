@@ -130,7 +130,7 @@ msgstr "Platformwizard"
 msgid "Label the report"
 msgstr "Label de inzending"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Vervaldatum uitstellen"
 
 msgid "Select all"
@@ -246,9 +246,6 @@ msgstr "Toegang gevraagd"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Vraag toegang tot de identiteit van de klokkenluider"
-
-msgid "Please write a motivation"
-msgstr "Motiveer de aanvraag"
 
 msgid "Reply to the request"
 msgstr "Reactie op de aanvraag"
@@ -545,6 +542,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Anoniem"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Computer"
+
+msgid "Mobile"
+msgstr "Mobiel"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Dien een rapport in"
 
@@ -614,8 +644,11 @@ msgstr "Bewaar"
 msgid "Cancel"
 msgstr "Annuleren"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dagen"
+
+msgid "Disabled"
+msgstr "Uitgeschakeld"
 
 msgid "Report statuses"
 msgstr "Status van de inzending"
@@ -638,9 +671,6 @@ msgstr "Ontvangers"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "dagen"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Stel de waarde in op 0 om deze functie uit te schakelen"
 
@@ -658,18 +688,6 @@ msgstr "Maximaal aantal selecteerbare ontvangers:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Toon ontvangers in alfabetische volgorde"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Toon details van de ontvanger op de status-pagina van de inzending"
-
-msgid "Enable comments"
-msgstr "Reacties inschakelen"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "De klokkenluider toestaan reacties achter te laten"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "De klokkenluider toestaan bestanden toe te voegen aan een inzending"
 
 msgid "Additional questionnaire"
 msgstr "Toegevoegde vragenformulier"
@@ -703,6 +721,9 @@ msgstr "Toegestane IP-adressen"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Ontvanger"
@@ -783,9 +804,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "De wizard voor handmatige configuratie leidt u door de inrichting van HTTPS van een alternatieve certificeringsinstelling. "
-
-msgid "Disabled"
-msgstr "Uitgeschakeld"
 
 msgid "Auto-renewal"
 msgstr "Auto-hernieuwing"
@@ -1066,9 +1084,6 @@ msgstr "Gepersonaliseerd privacy-paneel inschakelen"
 msgid "Custom privacy panel"
 msgstr "Gepersonaliseerd privacy-paneel"
 
-msgid "Enable custodian user role"
-msgstr "Activeer de custodian gebruikersrol"
-
 msgid "Enable scoring system"
 msgstr "Waarderingssysteem inschakelen"
 
@@ -1137,9 +1152,6 @@ msgstr "Gebruiksvoorwaarden inschakelen"
 msgid "Title"
 msgstr "Titel"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Publieke naam"
 
@@ -1188,7 +1200,7 @@ msgstr "Actief geselecteerd"
 msgid "Allow the recipient to delete reports"
 msgstr "Sta ontvangers toe tips te verwijderen"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "De ontvanger mag de einddatum van de inzending uitstellen"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1257,12 +1269,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Weet je het zeker?"
 
@@ -1289,12 +1295,20 @@ msgstr "Maak een kopie en sla deze in een veilige plaats op. Als je je wachtwoor
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Voer een naam in voor de kopie"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Vraag ondersteuning"
@@ -1315,9 +1329,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Het platform is nog steeds niet geconfigureerd voor HTTPS verbindingen en mag daarom alleen worden gebruikt om te testen."
-
-msgid "Please write a motivation for the reply"
-msgstr "Motiveer het antwoord"
 
 msgid "Send"
 msgstr "Verzend"
@@ -1363,6 +1374,9 @@ msgstr "Bron is alleen toegankelijk binnen het Tor-netwerk"
 
 msgid "The upload request exceeds the size limit"
 msgstr "De uploadaanvraag overstijgt de MB limiet"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

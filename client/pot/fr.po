@@ -1,7 +1,7 @@
 # 
 # Translators:
 # Alexandre Girard <transifex@alexgirard.com>, 2013-2014
-# AO <ao@localizationlab.org>, 2015-2016,2018-2023
+# AO <ao@localizationlab.org>, 2015-2016,2018-2024
 # AO <ao@localizationlab.org>, 2015-2016,2021
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # marco calamari <marcoc@marcoc.it>, 2013
@@ -10,7 +10,7 @@
 # AO <ao@localizationlab.org>, 2016-2017
 # AO <ao@localizationlab.org>, 2016
 # AO <ao@localizationlab.org>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2023
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013,2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2013
@@ -44,7 +44,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: AO <ao@localizationlab.org>, 2015-2016,2018-2023\n"
+"Last-Translator: AO <ao@localizationlab.org>, 2015-2016,2018-2024\n"
 "Language-Team: French (http://app.transifex.com/otf/globaleaks/language/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -124,8 +124,8 @@ msgstr "Assistant de la plateforme"
 msgid "Label the report"
 msgstr "Étiqueter le signalement"
 
-msgid "Postpone the expiration date"
-msgstr "Différer la date d’expiration"
+msgid "Edit the expiration date"
+msgstr "Modifier la date d’expiration"
 
 msgid "Select all"
 msgstr "Tout sélectionner"
@@ -240,9 +240,6 @@ msgstr "accès demandé"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Demander l’accès à l’identité du lanceur d’alerte"
-
-msgid "Please write a motivation"
-msgstr "Veuillez écrire un motif"
 
 msgid "Reply to the request"
 msgstr "Réponse à la demande"
@@ -539,6 +536,39 @@ msgstr "Destinataires seulement"
 msgid "Me only"
 msgstr "Moi seulement"
 
+msgid "Returning whistleblowers"
+msgstr "Lanceurs d'alerte de retour"
+
+msgid "Anonymity"
+msgstr "Anonymat"
+
+msgid "Anonymous"
+msgstr "Anonymes"
+
+msgid "Subscribed"
+msgstr "Abonnés"
+
+msgid "Initially anonymous"
+msgstr "Anonymes initialement"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr "Appareils"
+
+msgid "Computer"
+msgstr "Ordinateur"
+
+msgid "Mobile"
+msgstr "Mobile"
+
+msgid "Act on behalf of a whistleblower"
+msgstr "Agir pour le compte d’un lanceur d’alerte."
+
+msgid "The link will expire in 7 days."
+msgstr "Le lien arrivera à expiration dans sept jours."
+
 msgid "File a report"
 msgstr "Remplir un signalement"
 
@@ -608,8 +638,11 @@ msgstr "Enregistrer"
 msgid "Cancel"
 msgstr "Annuler"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "jours"
+
+msgid "Disabled"
+msgstr "Désactivé"
 
 msgid "Report statuses"
 msgstr "États des signalements"
@@ -632,9 +665,6 @@ msgstr "Destinataires"
 msgid "Reminder date"
 msgstr "Date de rappel"
 
-msgid "days"
-msgstr "jours"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Définir la valeur à 0 pour désactiver cette fonction."
 
@@ -652,18 +682,6 @@ msgstr "Nombre maximal de destinataires sélectionnables :"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Montrer les destinataires par ordre alphabétique"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Afficher les détails des destinataires sur la page d’état du signalement"
-
-msgid "Enable comments"
-msgstr "Activer les commentaires"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Permettre au lanceur d’alerte de rédiger des commentaires"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Permettre au lanceur d’alerte d’ajouter des fichiers joints"
 
 msgid "Additional questionnaire"
 msgstr "Questionnaire supplémentaire"
@@ -697,6 +715,9 @@ msgstr "Adresses IP autorisées"
 
 msgid "Admin"
 msgstr "Administrateur"
+
+msgid "Analyst"
+msgstr "Analyste"
 
 msgid "Recipient"
 msgstr "Destinataire"
@@ -777,9 +798,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "L’assistant de configuration vous guidera dans les étapes de paramétrage de HTTPS à partir d’une autorité de certification alternative."
-
-msgid "Disabled"
-msgstr "Désactivé"
 
 msgid "Auto-renewal"
 msgstr "Renouvellement automatique"
@@ -1060,9 +1078,6 @@ msgstr "Activer le volet de confidentialité personnalisée"
 msgid "Custom privacy panel"
 msgstr "Volet de confidentialité personnalisée"
 
-msgid "Enable custodian user role"
-msgstr "Activer le rôle de gardien"
-
 msgid "Enable scoring system"
 msgstr "Activer le système d’évaluation"
 
@@ -1131,9 +1146,6 @@ msgstr "Activer les conditions générales d’utilisation"
 msgid "Title"
 msgstr "Titre"
 
-msgid "Analyst"
-msgstr "Analyste"
-
 msgid "Public name"
 msgstr "Nom public"
 
@@ -1182,8 +1194,8 @@ msgstr "Sélectionné de force"
 msgid "Allow the recipient to delete reports"
 msgstr "Permettre au destinataire de supprimer des signalements"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permettre au destinataire de différer la date d’expiration du signalement"
+msgid "Allow the recipient to edit the report expiration date"
+msgstr "Permettre au destinataire de modifier la date d’expiration du signalement"
 
 msgid "Give this user ability to grant user access to reports"
 msgstr "Donner à cet utilisateur la possibilité d’accorder l’accès des utilisateurs aux signalements"
@@ -1251,12 +1263,6 @@ msgstr "Changer l’état"
 msgid "Status:"
 msgstr "État :"
 
-msgid "Substatus:"
-msgstr "Sous-état :"
-
-msgid "Motivation:"
-msgstr "Motivation :"
-
 msgid "Are you sure?"
 msgstr "Confirmez-vous ?"
 
@@ -1283,12 +1289,20 @@ msgstr "Copiez-la et gardez-la en lieu sûr. Si vous perdiez votre mot de passe,
 msgid "Attention"
 msgstr "Attention"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr "Pour des raisons de sécurité, le code de reçu de votre rapport doit être changé."
+msgid "For security reasons the code needs to be changed."
+msgstr "Pour des raisons de sécurité, le code doit être changé."
 
 msgid "Enter a name for the copy"
 msgstr "Saisir un nom pour la copie"
+
+msgid "Mask"
+msgstr "Cacher"
+
+msgid "Unselect"
+msgstr "Dessélectionner"
+
+msgid "Reopen"
+msgstr "Rouvrir"
 
 msgid "Request support"
 msgstr "Demander de l’assistance"
@@ -1309,9 +1323,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "La plateforme n’est toujours pas configurée pour les connexions HTTPS  et ne devrait être utilisée qu’à des fins de test."
-
-msgid "Please write a motivation for the reply"
-msgstr "Veuillez écrire le motif de la réponse"
 
 msgid "Send"
 msgstr "Envoyer"
@@ -1357,6 +1368,9 @@ msgstr "L’accès à cette ressource ne peut se faire que par le réseau Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "La demande de téléversement dépasse la limite de taille"
+
+msgid "A user with this username already exists"
+msgstr "Ce nom d’utilisateur existe déjà"
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Vous agissez pour le compte d’un lanceur d’alerte."

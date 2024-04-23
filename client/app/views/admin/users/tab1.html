@@ -14,8 +14,9 @@
         <div>
           <select name="role" class="form-control" data-ng-model="new_user.role" required>
             <option value="admin" data-translate>Admin</option>
+            <option value="analyst" data-translate>Analyst</option>
+            <option value="custodian" data-translate>Custodian</option>
             <option value="receiver" data-translate>Recipient</option>
-            <option data-ng-if="resources.node.enable_custodian" value="custodian" data-translate>Custodian</option>
           </select>
         </div>
       </div>
@@ -60,6 +61,7 @@
           <span class="badge badge-primary">
             <span data-ng-switch="user.role">
               <span data-ng-switch-when="admin" data-translate>Admin</span>
+              <span data-ng-switch-when="analyst" data-translate>Analyst</span>
               <span data-ng-switch-when="receiver" data-translate>Recipient</span>
               <span data-ng-switch-when="custodian" data-translate>Custodian</span>
             </span>
@@ -188,9 +190,7 @@
               <select class="form-control" data-ng-model="user.language"
                       data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
             </div>
-            <div class="form-group" data-ng-if="(user.role === 'admin' && !resources.node.disable_admin_notification) ||
-                                                (user.role === 'receiver' && !resources.node.disable_receiver_notification) ||
-                                                (user.role === 'custodian' && !resources.node.disable_custodian_notification)">
+            <div class="form-group">
               <input data-ng-model="user.notification" type="checkbox">
               <label data-translate>Enable email notifications</label>
             </div>
@@ -235,12 +235,20 @@
               <label data-translate>Forcefully selected</label>
             </div>
             <div class="form-group">
+              <input data-ng-model="user.can_mask_information" type="checkbox" />
+              <span data-translate>Give this user ability to mask information</span>
+            </div>
+            <div class="form-group">
+              <input data-ng-model="user.can_redact_information" type="checkbox" />
+              <span data-translate>Give this user ability to permanently redact masked information</span>
+            </div>
+            <div class="form-group">
               <input data-ng-model="user.can_delete_submission" type="checkbox"/>
               <label data-translate>Allow the recipient to delete reports</label>
             </div>
             <div class="form-group" data-ng-if="!resources.node.can_postpone_expiration">
               <input data-ng-model="user.can_postpone_expiration" type="checkbox"/>
-              <label data-translate>Allow the recipient to postpone the report expiration date</label>
+              <label data-translate>Allow the recipient to edit the report expiration date</label>
             </div>
             <div class="form-group">
               <input data-ng-model="user.can_grant_access_to_reports" type="checkbox"/>
@@ -249,6 +257,10 @@
             <div class="form-group">
               <input data-ng-model="user.can_transfer_access_to_reports" type="checkbox" />
               <label data-translate>Give this user ability to transfer reports to other users</label>
+            </div>
+            <div class="form-group">
+              <input data-ng-model="user.can_reopen_reports" type="checkbox" />
+              <label data-translate>Allow this user to reopen management of a report</label>
             </div>
           </div>
         </div>

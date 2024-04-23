@@ -87,7 +87,7 @@ msgstr "Платформа оҫтаһы"
 msgid "Label the report"
 msgstr "Материалдар бирелешен билдәләү"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Мөҙҙәт тамамланышын кисектереү"
 
 msgid "Select all"
@@ -203,9 +203,6 @@ msgstr "Инеүгә рөхсәт һоралды"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Информатор шәхсиәтенә инеүгә рөхсәт һорарға"
-
-msgid "Please write a motivation"
-msgstr "Зинһар, мотивацияны билдәләгеҙ"
 
 msgid "Reply to the request"
 msgstr "Үтенескә яуап"
@@ -502,6 +499,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Отчет бирергә"
 
@@ -571,8 +601,11 @@ msgstr "Һаҡларға"
 msgid "Cancel"
 msgstr "Ғәмәлдән баш тартыу"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "көн"
+
+msgid "Disabled"
+msgstr "Һүндерелгән"
 
 msgid "Report statuses"
 msgstr "Отчеттарҙың статустары"
@@ -595,9 +628,6 @@ msgstr "Ҡабул итеүселәр"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "көн"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Был функцияны һүндереү өсөн, 0 һанын яҙығыҙ."
 
@@ -615,18 +645,6 @@ msgstr "Ҡабул итеүселәрҙең максималь һаны:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Ҡабул итеүселәрҙе алфавит тәртибендә бүлеү"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Материал ебәреү торошо битендә ҡабул итеүсенең мәғлүмәтен күрһәтеү"
-
-msgid "Enable comments"
-msgstr "Комментарийҙарҙы ҡабыҙыу"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Информаторға комментарийҙар өҫтәргә рөхсәт итергә"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Информаторға ебәрелгән документарға ҡушымта өҫтәргә рөхсәт итергә"
 
 msgid "Additional questionnaire"
 msgstr "Өҫтәлмә һораулама"
@@ -660,6 +678,9 @@ msgstr "Рөхсәт ителгән IP-адрес"
 
 msgid "Admin"
 msgstr "Админ"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Ҡабул итеүсе"
@@ -740,9 +761,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Сертификация альтернатив үҙәктең HTTPS-ын көйләүгә мөмкинлек биреп, ҡул ярҙамында көйләү оҫтаһы һеҙҙе конфигурация процесы аша үткәрәсәк"
-
-msgid "Disabled"
-msgstr "Һүндерелгән"
 
 msgid "Auto-renewal"
 msgstr "Автоматик оҙайтыу"
@@ -1023,9 +1041,6 @@ msgstr "Йәшерен көйләү панелен ҡабыҙыу"
 msgid "Custom privacy panel"
 msgstr "Йәшерен көйләү панеле"
 
-msgid "Enable custodian user role"
-msgstr "Ҡулланыусы-һаҡлаусы ролен ҡабыҙыу"
-
 msgid "Enable scoring system"
 msgstr "Скринг системаһын ҡабыҙыу"
 
@@ -1094,9 +1109,6 @@ msgstr "Хеҙмәтләндереү шарттарын ҡабыҙырға"
 msgid "Title"
 msgstr "Исеме"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Танылған исеме"
 
@@ -1145,7 +1157,7 @@ msgstr "Үтенес буйынса һайланды"
 msgid "Allow the recipient to delete reports"
 msgstr "Ҡабул итеүсегә отчеттарҙы юйыу рөхсәте биреү"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Ҡабул итеүсегә отчеттарҙың мөҙҙәт ғәмәле сығыуын кисектереүгә рөхсәт бирергә"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1214,12 +1226,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Статус"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Шикләнмәйһегеҙме?"
 
@@ -1246,12 +1252,20 @@ msgstr "Күсермәһен эшләгеҙ һәм хәүефһеҙ урынға
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Күсермәнең исемен яҙығыҙ"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Хуплауға үтенес ебәрергә"
@@ -1272,9 +1286,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Платформа HTTPS менән тоташтырыуға көйләнмәгән, шунлыҡтан бары тест үткәреү өсөн генә ҡулланырға тейеш"
-
-msgid "Please write a motivation for the reply"
-msgstr "Зинһар, яуап мотивацияһын күрһәтегеҙ"
 
 msgid "Send"
 msgstr "Ебәрергә"
@@ -1320,6 +1331,9 @@ msgstr "Ресурсҡа инеү мөмкинлеге тик Tor селтәре
 
 msgid "The upload request exceeds the size limit"
 msgstr "Серверға файлды тейәү үтенесе ҡуйылған лимитты үтә"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

@@ -1,9 +1,9 @@
 # 
 # Translators:
 # Aleš <ales.petan@digital.si>, 2016
-# Dagmar Šober, 2023
+# Dagmar Šober, 2023-2024
 # Delo <prevajalci.delo@delo.si>, 2014
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2017,2020-2022,2024
 # Matija <matija@srebrni-galeb.si>, 2015
 # Štefan Baebler <stefan.baebler@gmail.com>, 2020
 # Vasja <vasja.cepic@transparency.si>, 2021
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Dagmar Šober, 2023\n"
+"Last-Translator: Dagmar Šober, 2023-2024\n"
 "Language-Team: Slovenian (Slovenia) (http://app.transifex.com/otf/globaleaks/language/sl_SI/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -92,8 +92,8 @@ msgstr "Čarovnik platforme"
 msgid "Label the report"
 msgstr "Označi prijavo"
 
-msgid "Postpone the expiration date"
-msgstr "Spremeni rok veljavnosti"
+msgid "Edit the expiration date"
+msgstr "Uredi datum poteka veljavnosti"
 
 msgid "Select all"
 msgstr "Označi vse"
@@ -208,9 +208,6 @@ msgstr "Zahtevek za dostop"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Zahtevek za dostop do identitete prijavitelja"
-
-msgid "Please write a motivation"
-msgstr "Prosimo navedite razlog"
 
 msgid "Reply to the request"
 msgstr "Odgovori na zahtevek"
@@ -507,6 +504,39 @@ msgstr "Samo prejemniki"
 msgid "Me only"
 msgstr "Samo jaz"
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Anonimnost "
+
+msgid "Anonymous"
+msgstr "Anonimen"
+
+msgid "Subscribed"
+msgstr "Naročen"
+
+msgid "Initially anonymous"
+msgstr "Sprva anonimen"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr "Naprave"
+
+msgid "Computer"
+msgstr "Računalnik"
+
+msgid "Mobile"
+msgstr "Mobilen"
+
+msgid "Act on behalf of a whistleblower"
+msgstr "Ukrepanje v imenu prijavitelja nepravilnosti"
+
+msgid "The link will expire in 7 days."
+msgstr "Povezava bo potekla čez 7 dni."
+
 msgid "File a report"
 msgstr "Oddaj prijavo"
 
@@ -576,8 +606,11 @@ msgstr "Shrani"
 msgid "Cancel"
 msgstr "Prekliči"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dnevi"
+
+msgid "Disabled"
+msgstr "Onemogočeno"
 
 msgid "Report statuses"
 msgstr "Statusi prijav"
@@ -600,9 +633,6 @@ msgstr "Prejemniki"
 msgid "Reminder date"
 msgstr "Datum opomnika"
 
-msgid "days"
-msgstr "dnevi"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Funkcijo onemogočite z nastavitvijo vrednosti na 0."
 
@@ -620,18 +650,6 @@ msgstr "Maksimalno število prejemnikov:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Pokaži prejemnike po abecednem vrstnem redu"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Pokaži podrobne podatke o prejemnikih na strani, ki prikazuje status prijave"
-
-msgid "Enable comments"
-msgstr "Omogoči komentarje"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Prijavitelju dovoli pisanje komentarjev"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Prijavitelju dovoli dodajanje prilog"
 
 msgid "Additional questionnaire"
 msgstr "Dodatni vprašalnik"
@@ -665,6 +683,9 @@ msgstr "Dovoljeni IP naslovi"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr "Analitik"
 
 msgid "Recipient"
 msgstr "Prejemnik"
@@ -745,9 +766,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Čarovnik za ročno konfiguracijo vas bo vodil skozi nastavitev HTTPS od drugega organa za certifikate."
-
-msgid "Disabled"
-msgstr "Onemogočeno"
 
 msgid "Auto-renewal"
 msgstr "Samodejna obnova"
@@ -1028,9 +1046,6 @@ msgstr "Omogoči prilagojen panel zasebnosti"
 msgid "Custom privacy panel"
 msgstr "Prilagojen panel zasebnosti"
 
-msgid "Enable custodian user role"
-msgstr "Omogoči skrbniško uporabniško vlogo"
-
 msgid "Enable scoring system"
 msgstr "Omogoči sistem točkovanja"
 
@@ -1099,9 +1114,6 @@ msgstr "Omogoči pogoje uporabe"
 msgid "Title"
 msgstr "Naslov"
 
-msgid "Analyst"
-msgstr "Analitik"
-
 msgid "Public name"
 msgstr "Javno ime"
 
@@ -1150,7 +1162,7 @@ msgstr "Vnaprej določeno"
 msgid "Allow the recipient to delete reports"
 msgstr "Dovoli prejemniku, da zbriše prijave"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Dovoli prejemnikom spremembo roka veljavnosti prijav"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1219,12 +1231,6 @@ msgstr "Spremeni status"
 msgid "Status:"
 msgstr "Stanje:"
 
-msgid "Substatus:"
-msgstr "Podstatus:"
-
-msgid "Motivation:"
-msgstr "Razlog:"
-
 msgid "Are you sure?"
 msgstr "Ali ste prepričani? "
 
@@ -1251,12 +1257,20 @@ msgstr "Naredite kopijo in jo shranite na varno mesto. Potrebovali jo boste za o
 msgid "Attention"
 msgstr "Pozor"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr "Zaradi varnostnih razlogov je treba spremeniti potrditveno kodo vaše prijave."
+msgid "For security reasons the code needs to be changed."
+msgstr "Iz varnostnih razlogov je treba kodo spremeniti."
 
 msgid "Enter a name for the copy"
 msgstr "Vnesite ime za kopijo"
+
+msgid "Mask"
+msgstr "Skrij"
+
+msgid "Unselect"
+msgstr "Prekliči izbiro"
+
+msgid "Reopen"
+msgstr "Ponovno odpri"
 
 msgid "Request support"
 msgstr "Zaprosi za pomoč"
@@ -1277,9 +1291,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma še vedno ni konfigurirana za povezave HTTPS in jo je zato treba uporabljati samo za testiranje."
-
-msgid "Please write a motivation for the reply"
-msgstr "Navedite razlog za odgovor"
 
 msgid "Send"
 msgstr "Pošlji"
@@ -1326,6 +1337,9 @@ msgstr "Ta vir je dostopen le prek Tor omrežja"
 msgid "The upload request exceeds the size limit"
 msgstr "Zahteva za prenos presega omejitev velikosti"
 
+msgid "A user with this username already exists"
+msgstr "Uporabnik s tem uporabniškim imenom že obstaja"
+
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Delujete v imenu prijavitelja nepravilnosti."
 
@@ -1348,7 +1362,7 @@ msgid "Validation of email address change in progress."
 msgstr "Potrditev spremembe naslova e-pošte poteka."
 
 msgid "Please check your inbox for further instructions."
-msgstr "Za nadaljnja navodila preverite vaš nabiralnik."
+msgstr "Za nadaljnja navodila preverite svoj e-poštni nabiralnik."
 
 msgid "Warning"
 msgstr "Opozorilo"
@@ -1462,7 +1476,7 @@ msgstr "Vneseno potrdilo za ponastavitev je neveljavno ali je poteklo. "
 msgid ""
 "Enter your account's username or your email address to request a password "
 "reset."
-msgstr "Vnesite uporabniško ime računa ali vaš e-naslov za ponastavitev gesla."
+msgstr "Vnesite uporabniško ime računa ali svoj e-naslov za ponastavitev gesla."
 
 msgid "Enter your email address to request a password reset."
 msgstr "Vnesite e-naslov za ponastavitev gesla."
@@ -1500,7 +1514,7 @@ msgid "Your whistleblowing platform is almost ready!"
 msgstr "Vaša platforma za prijave je skoraj končana!"
 
 msgid "Check your inbox to activate it."
-msgstr "Za aktivacijo poglejte v e-nabiralnik."
+msgstr "Za aktivacijo poglejte v e-poštni nabiralnik."
 
 msgid ""
 "If not activated within 24 hours the platform will be automatically deleted."

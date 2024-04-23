@@ -86,7 +86,7 @@ msgstr "Supa séhirgeri"
 msgid "Label the report"
 msgstr "Melumatqa belge sal"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Sürük chéslasini keynige sür"
 
 msgid "Select all"
@@ -202,9 +202,6 @@ msgstr "Ziyaret hoquqi telep qilindi"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Pash qilghuchining kimlikini ziyaret qilishni telep qiling"
-
-msgid "Please write a motivation"
-msgstr "Bir meqset yézing"
 
 msgid "Reply to the request"
 msgstr "Telepke jawab ber"
@@ -501,6 +498,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Namsiz"
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Bir melumat yolla"
 
@@ -570,8 +600,11 @@ msgstr "Saqla"
 msgid "Cancel"
 msgstr "Waz kech"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "Künler"
+
+msgid "Disabled"
+msgstr "Cheklen’gen"
 
 msgid "Report statuses"
 msgstr "Doklat haletliri"
@@ -594,9 +627,6 @@ msgstr "Tapshuriwalghuchilar"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "Künler"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Bu iqtidarni cheklesh üchün qimmitini 0 qilip békiting."
 
@@ -614,18 +644,6 @@ msgstr "Tallan’ghan tapshuriwalghuchilar sani eng köp bolghanda:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Tapshuriwalghuchilarni élipbe tertipi boyiche körset"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Tapshuriwalghuchining tepsili ehwalini melumatning halet bétide körset"
-
-msgid "Enable comments"
-msgstr "Bahalashni qozghat"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Pash qilghuchining baha yézishige ruxset qil"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Pash qilghuchining melumatqa qoshumche qisturishigha ruxset qil"
 
 msgid "Additional questionnaire"
 msgstr "Qoshumche ray sinash"
@@ -659,6 +677,9 @@ msgstr "Ruxset qilin’ghan IP adrésliri"
 
 msgid "Admin"
 msgstr "Bashqurghuchi"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Tapshuriwalghuchi"
@@ -739,9 +760,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Qolda seplesh séhirgeri sizning HTTPS seplimisni bashqa bir guwahname orgini arqiliq seplishingizge yétekchilik qilidu."
-
-msgid "Disabled"
-msgstr "Cheklen’gen"
 
 msgid "Auto-renewal"
 msgstr "Aptumatik yéngilash"
@@ -1022,9 +1040,6 @@ msgstr "Ixtiyari shexsiyet taxtisini qozghat"
 msgid "Custom privacy panel"
 msgstr "Ixtiyari shexsiyet taxtisi"
 
-msgid "Enable custodian user role"
-msgstr "Saqlighuchi ishletküchi rolini qozghat"
-
 msgid "Enable scoring system"
 msgstr "Nomur qoyüsh sistémisini qozghat"
 
@@ -1093,9 +1108,6 @@ msgstr "Mulazimet shertlirini qozghat"
 msgid "Title"
 msgstr "Téma"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Ammiwi nami"
 
@@ -1144,7 +1156,7 @@ msgstr "Mejburiy tallandi"
 msgid "Allow the recipient to delete reports"
 msgstr "Tapshuriwalghuchilarning melumatlarni öchürishige ruxset qil"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Tapshuriwalghuchining melumat sürükini keynige sürishige ruxset qil"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1213,12 +1225,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Halet:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Jezim qilamsiz?"
 
@@ -1245,12 +1251,20 @@ msgstr "Bir kupiyesini éling we ixeter yerde saqlang. eger parolingizni untup q
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Kupiye üchün bir nam kirgüzüng"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Yardem telep"
@@ -1271,9 +1285,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Bu supigha téxiche HTTPS baghlinishliri seplenmeptu we shundaq bolghachqa peqet sinaq meqsitidila ishlitish kérek.  "
-
-msgid "Please write a motivation for the reply"
-msgstr "Jawa qayturushtiki bir meqsitingizni yézing"
 
 msgid "Send"
 msgstr "Ewet"
@@ -1319,6 +1330,9 @@ msgstr "Menbeni peqet Tor tori bilenla ziyaret qilghili bolidu "
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yüklime telipi chongluq chékidin éship ketti"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""
