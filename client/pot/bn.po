@@ -93,7 +93,7 @@ msgstr "প্লাটফর্ম উইজার্ড"
 msgid "Label the report"
 msgstr "রিপোর্টটিকে চিহ্নিত করুন"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "মেয়াদ উত্তীর্ণের তারিখ স্থগিত করুন"
 
 msgid "Select all"
@@ -209,9 +209,6 @@ msgstr "প্রবেশের অনুরোধ করা হয়েছে
 
 msgid "Request access to the whistleblower's identity"
 msgstr "হুইসেল ব্লোয়ারের পরিচয়ে প্রবেশের অনুরোধ করুন"
-
-msgid "Please write a motivation"
-msgstr "দয়া করে অনুপ্রেরণা লিখুন"
 
 msgid "Reply to the request"
 msgstr "অনুরোধের জবাব দিন"
@@ -508,6 +505,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "অজ্ঞাতপরিচয়"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "একটি রিপোর্ট জমা দিন"
 
@@ -577,8 +607,11 @@ msgstr "সংরক্ষণ করুন"
 msgid "Cancel"
 msgstr "বাতিল"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "দিন"
+
+msgid "Disabled"
+msgstr "নিষ্ক্রিয়"
 
 msgid "Report statuses"
 msgstr "স্ট্যাটাস রিপোর্ট করুন"
@@ -601,9 +634,6 @@ msgstr "প্রাপক"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "দিন"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "এই বৈশিষ্ট্যটি অক্ষম করতে মানটি 0 তে সেট করুন।"
 
@@ -621,18 +651,6 @@ msgstr "নির্বাচনযোগ্য প্রাপকদের স�
 
 msgid "Show recipients in alphabetical order"
 msgstr "প্রাপকদের বর্ণানুক্রমিক ক্রমে দেখান"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "প্রতিবেদনের অবস্থা পৃষ্ঠায় প্রাপকের বিশদ প্রদর্শন করুন"
-
-msgid "Enable comments"
-msgstr "মন্তব্য সক্ষম করুন"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "হুইসেল ব্লোয়ারকে মন্তব্য লেখার অনুমতি দিন"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "হুইসেল ব্লোয়ারকে প্রতিবেদনে সংযুক্তি যুক্ত করতে দিন"
 
 msgid "Additional questionnaire"
 msgstr "অতিরিক্ত প্রশ্নাবলী"
@@ -666,6 +684,9 @@ msgstr "অনুমোদিত আইপি ঠিকানা"
 
 msgid "Admin"
 msgstr "প্রশাসক"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "প্রাপক"
@@ -746,9 +767,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "ম্যানুয়াল কনফিগারেশন উইজার্ড আপনাকে বিকল্প সার্টিফিকেট কর্তৃপক্ষের HTTPS সেটআপ করার জন্য নির্দেশনা প্রদান করবে।"
-
-msgid "Disabled"
-msgstr "নিষ্ক্রিয়"
 
 msgid "Auto-renewal"
 msgstr "স্বয়ংক্রিয় নবায়ন"
@@ -1029,9 +1047,6 @@ msgstr "কাস্টম গোপনীয়তা প্যানেল স
 msgid "Custom privacy panel"
 msgstr "কাস্টম গোপনীয়তা প্যানেল"
 
-msgid "Enable custodian user role"
-msgstr "তত্ত্বাবধায়ক ব্যবহারকারীর ভূমিকা সক্ষম করুন"
-
 msgid "Enable scoring system"
 msgstr "স্কোরিং সিস্টেম সক্ষম করুন"
 
@@ -1100,9 +1115,6 @@ msgstr "পরিষেবার শর্তাদি সক্ষম করু
 msgid "Title"
 msgstr "শিরোনাম"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "প্রকাশ্য নাম"
 
@@ -1151,7 +1163,7 @@ msgstr "জোরপূর্বক নির্বাচিত"
 msgid "Allow the recipient to delete reports"
 msgstr "প্রাপককে প্রতিবেদনগুলি মুছে ফেলার অনুমতি দিন"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "প্রাপককে রিপোর্টের মেয়াদ শেষ হওয়ার তারিখ স্থগিত করার অনুমতি দিন"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1220,12 +1232,6 @@ msgstr ""
 msgid "Status:"
 msgstr "অবস্থা:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "আপনি কি নিশ্চিত?"
 
@@ -1252,12 +1258,20 @@ msgstr "একটি অনুলিপি তৈরি করুন এবং �
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "অনুলিপিটির জন্য একটি নাম লিখুন"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1278,9 +1292,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "প্ল্যাটফর্মটি এখনও এইচটিটিপিএস সংযোগের জন্য কনফিগার করা হয়নি এবং তাই কেবল এটি পরীক্ষার উদ্দেশ্যে ব্যবহার করা উচিত।"
-
-msgid "Please write a motivation for the reply"
-msgstr "দয়া করে উত্তরের জন্য অনুপ্রেরণা লিখুন"
 
 msgid "Send"
 msgstr "পাঠান"
@@ -1326,6 +1337,9 @@ msgstr "কেবলমাত্র টর নেটওয়ার্কের 
 
 msgid "The upload request exceeds the size limit"
 msgstr "আপলোডের অনুরোধটি আকারের সীমা অতিক্রম করেছে"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

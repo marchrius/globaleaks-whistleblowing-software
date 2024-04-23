@@ -96,7 +96,7 @@ msgstr "ตัวช่วยตั้งค่าแพลตฟอร์ม"
 msgid "Label the report"
 msgstr "ติดป้ายกำกับรายงาน"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "เลื่อนวันหมดอายุ"
 
 msgid "Select all"
@@ -212,9 +212,6 @@ msgstr "การเข้าถึงที่ร้องขอ"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "ร้องขอการเข้าถึงตัวตนของผู้แจ้งเบาะแส"
-
-msgid "Please write a motivation"
-msgstr "กรุณาเขียนเหตุจูงใจ"
 
 msgid "Reply to the request"
 msgstr "ตอบกลับคำขอ"
@@ -511,6 +508,39 @@ msgstr "เฉพาะผู้รับ"
 msgid "Me only"
 msgstr "เฉพาะฉัน"
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "นิรนาม"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "คอมพิวเตอร์"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "ยื่นรายงาน"
 
@@ -580,8 +610,11 @@ msgstr "บันทึก"
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "วัน"
+
+msgid "Disabled"
+msgstr "ปิดใช้งาน"
 
 msgid "Report statuses"
 msgstr "สถานะรายงาน"
@@ -604,9 +637,6 @@ msgstr "ผู้รับ"
 msgid "Reminder date"
 msgstr "วันที่ให้เตือน"
 
-msgid "days"
-msgstr "วัน"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "ตั้งค่าเป็น 0 เพื่อปิดคุณสมบัตินี้"
 
@@ -624,18 +654,6 @@ msgstr "จำนวนสูงสุดของผู้รับที่เ
 
 msgid "Show recipients in alphabetical order"
 msgstr "แสดงผู้รับตามลำดับอักษร"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "แสดงรายละเอียดของผู้รับในหน้าสถานะของการส่ง"
-
-msgid "Enable comments"
-msgstr "เปิดใช้งานการแสดงความคิดเห็น"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสเขียนความคิดเห็น"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "อนุญาตให้ผู้แจ้งเบาะแสแนบแฟ้มในรายงาน"
 
 msgid "Additional questionnaire"
 msgstr "แบบสอบถามเพิ่มเติม"
@@ -669,6 +687,9 @@ msgstr "อนุญาตที่อยู่ไอพี"
 
 msgid "Admin"
 msgstr "ผู้ดูแลระบบ"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "ผู้รับ"
@@ -749,9 +770,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "ตัวช่วยการปรับค่าด้วยตัวเองจะแนะนำคุณไปทีละขั้น เพื่อช่วยให้คุณติดตั้ง HTTPS โดยใช้ Certificate Authority เจ้าอื่น"
-
-msgid "Disabled"
-msgstr "ปิดใช้งาน"
 
 msgid "Auto-renewal"
 msgstr "ต่ออายุอัตโนมัติ"
@@ -1032,9 +1050,6 @@ msgstr "เปิดใช้งานแผงความเป็นส่ว
 msgid "Custom privacy panel"
 msgstr "แผงความเป็นส่วนตัวที่ปรับแต่งเอง"
 
-msgid "Enable custodian user role"
-msgstr "เปิดใช้บทบาทผู้พิทักษ์"
-
 msgid "Enable scoring system"
 msgstr "เปิดใช้งานระบบให้คะแนน"
 
@@ -1103,9 +1118,6 @@ msgstr "เปิดใช้ข้อตกลงในการให้บร
 msgid "Title"
 msgstr "ชื่อเรื่อง"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "ชื่อสาธารณะ"
 
@@ -1154,7 +1166,7 @@ msgstr "บังคับเลือก"
 msgid "Allow the recipient to delete reports"
 msgstr "อนุญาตให้ผู้รับลบรายงานได้"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "อนุญาตให้ผู้รับเลื่อนวันหมดอายุของรายงานได้"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1223,12 +1235,6 @@ msgstr ""
 msgid "Status:"
 msgstr "สถานะ:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "คุณแน่ใจหรือไม่?"
 
@@ -1255,12 +1261,20 @@ msgstr "ทำสำเนาและเก็บไว้ในที่ปล
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "ใส่ชื่อสำหรับสำเนา"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "ขอการสนับสนุน"
@@ -1281,9 +1295,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "แพลตฟอร์มยังไม่ได้รับการปรับค่าเพื่อใช้การเชื่อมต่อแบบ HTTPS ดังนั้นจึงควรใช้เพื่อการทดสอบเท่านั้น"
-
-msgid "Please write a motivation for the reply"
-msgstr "กรุณาเขียนแรงจูงใจสำหรับการตอบกลับ"
 
 msgid "Send"
 msgstr "ส่ง"
@@ -1329,6 +1340,9 @@ msgstr "สามารถเข้าถึงทรัพยากรได้
 
 msgid "The upload request exceeds the size limit"
 msgstr "ขนาดการขออัปโหลดเกินขีดจำกัด"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

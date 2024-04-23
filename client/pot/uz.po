@@ -88,7 +88,7 @@ msgstr "Platformani sozlash"
 msgid "Label the report"
 msgstr "Xabarga yorliq biriktiring"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Muddatini uzaytirish"
 
 msgid "Select all"
@@ -204,9 +204,6 @@ msgstr "Ruxsat soʻraldi"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Oshkor qiluvchining shaxsini koʻrishga ruxsat soʻrash"
-
-msgid "Please write a motivation"
-msgstr "Motivatsiyangizni yozing"
 
 msgid "Reply to the request"
 msgstr "Soʻrovga javob berish"
@@ -503,6 +500,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Anonim xabar yuborish"
 
@@ -572,8 +602,11 @@ msgstr "Saqlash"
 msgid "Cancel"
 msgstr "Bekor qilish"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "kun"
+
+msgid "Disabled"
+msgstr "Yoqilmagan"
 
 msgid "Report statuses"
 msgstr "Anonim xabarlar holati"
@@ -596,9 +629,6 @@ msgstr "Qabul qiluvchilar"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "kun"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Bu funksiya yoqilmasligi uchun 0 qiymatini belgilang."
 
@@ -616,18 +646,6 @@ msgstr "Tanlanadigan qabul qiluvchilarning maksimal soni:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Qabul qiluvchilarni alifbo tartibida saralash"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Qabul qiluvchi tafsilotlarini anonim xabarning holati sahifasida chiqarish"
-
-msgid "Enable comments"
-msgstr "Fikrlarni yoqish"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Oshkor qiluvchilar fikr bildirishiga ruxsat berish"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr ""
 
 msgid "Additional questionnaire"
 msgstr "Qoʻshimcha savolnomalar"
@@ -661,6 +679,9 @@ msgstr "Ruxsat etilgan IP manzillar"
 
 msgid "Admin"
 msgstr "Administrator"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Qabul qiluvchi"
@@ -741,9 +762,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Mustaqil konfiguratsiya vositasi yordamida HTTPS protokolini muqobil Sertifikatlash idorasi yordamida sozlash mumkin."
-
-msgid "Disabled"
-msgstr "Yoqilmagan"
 
 msgid "Auto-renewal"
 msgstr "Avto-yangilanishi"
@@ -1024,9 +1042,6 @@ msgstr "Maxsus maxfiylik panelini yoqish"
 msgid "Custom privacy panel"
 msgstr "Maxsus maxfiylik paneli"
 
-msgid "Enable custodian user role"
-msgstr "Himoyachi foydalanuvchi vakolatini yoqish"
-
 msgid "Enable scoring system"
 msgstr "Ballar tizimini yoqish"
 
@@ -1095,9 +1110,6 @@ msgstr "Xizmat shartlarini yoqish"
 msgid "Title"
 msgstr "Sarlavha"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Rasmiy nomi"
 
@@ -1146,7 +1158,7 @@ msgstr "Majburiy tanlangan"
 msgid "Allow the recipient to delete reports"
 msgstr "Qabul qiluvchiga anonim xabarlarni oʻchirish imkonini berish"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Qabul qiluvchi anonim xabar muddatini kechiktirishiga ruxsat berish"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1215,12 +1227,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Holati:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Ishonchingiz komilmi?"
 
@@ -1247,12 +1253,20 @@ msgstr "Uni nusxalang va ishonchli joyda saqlang. U parol unutilganda hisobni xa
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Nusxa nomini kiriting"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Yordam olish"
@@ -1273,9 +1287,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma hozircha HTTPS ulanishlar uchun sozlanmagan va faqat sinov maqsadlarida ishlatiladi."
-
-msgid "Please write a motivation for the reply"
-msgstr "Motivatsiyangizni javobda yozing"
 
 msgid "Send"
 msgstr "Yuborish"
@@ -1321,6 +1332,9 @@ msgstr "Manba faqatgina Tor tarmoq ulanishi orqali ochiladi"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Yuklash soʻrovi belgilangan limitdan ortiq"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

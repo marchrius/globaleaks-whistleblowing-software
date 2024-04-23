@@ -87,7 +87,7 @@ msgstr "플랫폼 마법사"
 msgid "Label the report"
 msgstr "보고서 라벨링"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "만료 날짜 연기"
 
 msgid "Select all"
@@ -203,9 +203,6 @@ msgstr "액세스 요청"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "내부 고발자 신원 액세스 요청"
-
-msgid "Please write a motivation"
-msgstr "동기를 작성하십시오"
 
 msgid "Reply to the request"
 msgstr "요청에 답변"
@@ -502,6 +499,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "익명성"
+
+msgid "Anonymous"
+msgstr "익명"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "컴퓨터"
+
+msgid "Mobile"
+msgstr "모바일"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "보고서 보관"
 
@@ -571,8 +601,11 @@ msgstr "저장"
 msgid "Cancel"
 msgstr "취소"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "일"
+
+msgid "Disabled"
+msgstr "중단됨"
 
 msgid "Report statuses"
 msgstr "상태 보고"
@@ -595,9 +628,6 @@ msgstr "수신자"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "일"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "값을 0으로 설정하여 기능을 중단하십시오."
 
@@ -615,18 +645,6 @@ msgstr "선택 가능한 최대 수신자 수:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "알파벳 순서로 수신자 표시"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "보고서 상태 페이지에서 수신자 세부 정보 표시"
-
-msgid "Enable comments"
-msgstr "댓글 허용"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "내부 고발자가 댓글을 작성하도록 허용"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "내부 고발자가 보고서에 첨부 파일을 추가하도록 허용"
 
 msgid "Additional questionnaire"
 msgstr "추가 설문 조사"
@@ -660,6 +678,9 @@ msgstr "허용된 IP 주소"
 
 msgid "Admin"
 msgstr "관리자"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "수신자"
@@ -740,9 +761,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "수동 구성 마법사가 대체 인증서 권한의 HTTPS 설치를 안내합니다."
-
-msgid "Disabled"
-msgstr "중단됨"
 
 msgid "Auto-renewal"
 msgstr "자동 갱신"
@@ -1023,9 +1041,6 @@ msgstr "사용자 정의 프라이버시 패널 허용"
 msgid "Custom privacy panel"
 msgstr "사용자 정의 프라이버시 패널"
 
-msgid "Enable custodian user role"
-msgstr "관리인 사용자 역할 허용"
-
 msgid "Enable scoring system"
 msgstr "채점 시스템 허용"
 
@@ -1094,9 +1109,6 @@ msgstr "서비스 약관 허용"
 msgid "Title"
 msgstr "제목"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "공개 이름"
 
@@ -1145,7 +1157,7 @@ msgstr "강제로 선택"
 msgid "Allow the recipient to delete reports"
 msgstr "수신자가 보고서를 삭제할 수 있도록 허용"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "수신자가 보고서 만료 날짜를 연기할 수 있도록 허용"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1214,12 +1226,6 @@ msgstr ""
 msgid "Status:"
 msgstr "상태"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "계속하시겠습니까?"
 
@@ -1246,12 +1252,20 @@ msgstr "사본을 생성하여 안전한 곳에 보관하십시오. 비밀번호
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "사본 이름 입력"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1272,9 +1286,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "본 플랫폼은 아직 HTTPS 연결에 대해 구성되지 않았습니다. 따라서 시험용으로만 사용할 수 있습니다."
-
-msgid "Please write a motivation for the reply"
-msgstr "답변에 대한 동기를 작성하십시오"
 
 msgid "Send"
 msgstr "전송"
@@ -1320,6 +1331,9 @@ msgstr "리소스는 Tor 네트워크를 통해서만 액세스할 수 있습니
 
 msgid "The upload request exceeds the size limit"
 msgstr "업로드 요청이 크기 제한을 초과합니다"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

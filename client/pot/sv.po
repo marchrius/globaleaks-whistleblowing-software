@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Daniel Vaknine, 2022-2023
+# Daniel Vaknine, 2022-2024
 # Daniel Vaknine <vaknine.daniel@gmail.com>, 2021
 # eckeman <eckeman@zoho.com>, 2020
 # eckeman <eckeman@zoho.com>, 2020
@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Daniel Vaknine, 2022-2023\n"
+"Last-Translator: Daniel Vaknine, 2022-2024\n"
 "Language-Team: Swedish (http://app.transifex.com/otf/globaleaks/language/sv/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -109,7 +109,7 @@ msgstr "Plattformsguide"
 msgid "Label the report"
 msgstr "Ge rapporten en etikett"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Skjut up utgångsdatumet"
 
 msgid "Select all"
@@ -225,9 +225,6 @@ msgstr "Åtkomst begärd"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Begär åtkomst till visselblåsarens identitet"
-
-msgid "Please write a motivation"
-msgstr "Vänligen skriv en motivering"
 
 msgid "Reply to the request"
 msgstr "Svara på begäran"
@@ -524,6 +521,39 @@ msgstr "Endast mottagare"
 msgid "Me only"
 msgstr "Bara jag"
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Anonymitet"
+
+msgid "Anonymous"
+msgstr "Anonym"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Dator"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Lämna en rapport"
 
@@ -593,8 +623,11 @@ msgstr "Spara"
 msgid "Cancel"
 msgstr "Avbryt"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dagar"
+
+msgid "Disabled"
+msgstr "Inaktiverad"
 
 msgid "Report statuses"
 msgstr "Rapportera statusar"
@@ -617,9 +650,6 @@ msgstr "Mottagare"
 msgid "Reminder date"
 msgstr "Påminnelsedatum"
 
-msgid "days"
-msgstr "dagar"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Ange värdet 0 för att inaktivera denna funktion."
 
@@ -637,18 +667,6 @@ msgstr "Maximalt antal valbara mottagare:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Visa mottagare i alfabetisk ordning"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Visa uppgifter om mottagarna överst på rapportstatussidan"
-
-msgid "Enable comments"
-msgstr "Aktivera kommentarer"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Tillåt att visselblåsaren skriver kommentarer"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Tillåt att visselblåsaren lägger till bilagor till rapporten"
 
 msgid "Additional questionnaire"
 msgstr "Ytterligare frågeformulär"
@@ -682,6 +700,9 @@ msgstr "Tillåtna IP-adresser"
 
 msgid "Admin"
 msgstr "Administratör"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Mottagare"
@@ -762,9 +783,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Den manuella konfigurationsguiden kommer att leda dig igenom installationen av HTTPS från en alternativ certifikatutfärdare."
-
-msgid "Disabled"
-msgstr "Inaktiverad"
 
 msgid "Auto-renewal"
 msgstr "Automatisk förnyelse"
@@ -1045,9 +1063,6 @@ msgstr "Aktivera egen integritetspanel"
 msgid "Custom privacy panel"
 msgstr "Egen integritetspanel"
 
-msgid "Enable custodian user role"
-msgstr "Aktivera användarrollen som systemförvaltare"
-
 msgid "Enable scoring system"
 msgstr "Aktivera system med poängsättning"
 
@@ -1116,9 +1131,6 @@ msgstr "Aktivera användarvillkor"
 msgid "Title"
 msgstr "Rubrik"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Offentligt namn"
 
@@ -1167,7 +1179,7 @@ msgstr "Påtvingat val"
 msgid "Allow the recipient to delete reports"
 msgstr "Tillåt mottagaren att ta bort tips"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Tillåt mottagaren att förlänga utgångsdatumet för rapporten"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1236,12 +1248,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Är du säker?"
 
@@ -1268,12 +1274,20 @@ msgstr "Gör en kopia och förvara den på ett säkert ställe. Om du tappar bor
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Skriv in ett namn för denna kopia"
+
+msgid "Mask"
+msgstr "Maskera"
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Begär support"
@@ -1294,9 +1308,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Plattformen är fortfarande inte konfigurerad för HTTPS-uppkopplingar och ska därför endast användas i testsyfte."
-
-msgid "Please write a motivation for the reply"
-msgstr "Vänligen skriv en motivering till svaret"
 
 msgid "Send"
 msgstr "Skicka"
@@ -1342,6 +1353,9 @@ msgstr "Resursen kan bara nås inom Tor-nätverket"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Uppladdningen går över maxgränsen för antalet MB"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

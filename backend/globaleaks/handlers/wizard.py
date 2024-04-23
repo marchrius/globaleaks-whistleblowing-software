@@ -9,7 +9,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import config, profiles
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.utils.crypto import Base64Encoder, GCE, generateRandomPassword
+from globaleaks.utils.crypto import Base64Encoder, GCE
 from globaleaks.utils.log import log
 from globaleaks.utils.sock import isIPAddress
 
@@ -65,7 +65,6 @@ def db_wizard(session, tid, hostname, request):
     if not request['skip_admin_account_creation']:
         admin_desc = models.User().dict(language)
         admin_desc['username'] = request['admin_username']
-        admin_desc['name'] = request['admin_name']
         admin_desc['name'] = request['admin_name']
         admin_desc['mail_address'] = request['admin_mail_address']
         admin_desc['language'] = language

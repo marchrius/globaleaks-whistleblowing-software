@@ -37,7 +37,7 @@ from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.whistleblower import wbtip
 from globaleaks.handlers.whistleblower.submission import create_submission
 from globaleaks.models import serializers
-from globaleaks.models.config import db_set_config_variable, ConfigFactory
+from globaleaks.models.config import db_set_config_variable
 from globaleaks.rest import decorators
 from globaleaks.rest.api import JSONEncoder
 from globaleaks.sessions import initialize_submission_session, Sessions
@@ -46,8 +46,7 @@ from globaleaks.state import State, TenantState
 from globaleaks.utils import tempdict
 from globaleaks.utils.crypto import generateRandomKey, GCE
 from globaleaks.utils.securetempfile import SecureTemporaryFile
-from globaleaks.utils.token import Token
-from globaleaks.utils.utility import datetime_now, sum_dicts, uuid4
+from globaleaks.utils.utility import datetime_now, uuid4
 from globaleaks.utils.log import log
 
 GCE.options['OPSLIMIT'] = 1
@@ -266,6 +265,8 @@ class MockDict:
             'can_transfer_access_to_reports': True,
             'can_delete_submission': True,
             'can_postpone_expiration': True,
+            'can_mask_information': True,
+            'can_redact_information': True,
             'contexts': []
         }
 
@@ -282,10 +283,7 @@ class MockDict:
             'tip_reminder': 80,
             'maximum_selectable_receivers': 0,
             'show_context': True,
-            'show_recipients_details': True,
             'allow_recipients_selection': False,
-            'enable_two_way_comments': True,
-            'enable_attachments': True,
             'show_receivers_in_alphabetical_order': False,
         }
 
@@ -325,7 +323,6 @@ class MockDict:
             'admin_language': 'en',
             'simplified_login': False,
             'enable_scoring_system': False,
-            'enable_custodian': False,
             'enable_signup': True,
             'mode': 'default',
             'signup_tos1_enable': False,
@@ -369,11 +366,14 @@ class MockDict:
             'anonymize_outgoing_connections': True,
             'hostname': 'www.globaleaks.org',
             'https_admin': True,
+            'https_analyst': True,
             'https_custodian': True,
             'https_receiver': True,
             'https_whistleblower': True,
             'ip_filter_admin': '',
             'ip_filter_admin_enable': False,
+            'ip_filter_analyst': '',
+            'ip_filter_analyst_enable': False,
             'ip_filter_custodian': '',
             'ip_filter_custodian_enable': False,
             'ip_filter_receiver': '',
@@ -587,7 +587,7 @@ class TestGL(unittest.TestCase):
             )
         else:
             yield db.create_db()
-            yield db.init_db()
+            yield db.initialize_db()
 
         yield self.set_hostnames(1)
 
@@ -616,7 +616,8 @@ class TestGL(unittest.TestCase):
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdmin = self.get_dummy_user('admin', 'admin')
-        self.dummyCustodian = self.get_dummy_user('custodian', 'custodian1')
+        self.dummyAnalyst = self.get_dummy_user('analyst', 'analyst')
+        self.dummyCustodian = self.get_dummy_user('custodian', 'custodian')
         self.dummyReceiver_1 = self.get_dummy_receiver('receiver1')
         self.dummyReceiver_2 = self.get_dummy_receiver('receiver2')
 
@@ -651,7 +652,7 @@ class TestGL(unittest.TestCase):
         new_u = self.get_dummy_user('receiver', username)
         new_r = dict(MockDict().dummyUser)
 
-        return sum_dicts(new_r, new_u)
+        return {**new_r, **new_u}
 
     def fill_random_field_recursively(self, answers, field):
         field_type = field['type']
@@ -803,6 +804,9 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyAdmin = yield create_user(1, None, self.dummyAdmin, 'en')
 
         # fill_data/create_custodian
+        self.dummyAnalyst = yield create_user(1, None, self.dummyAnalyst, 'en')
+
+        # fill_data/create_custodian
         self.dummyCustodian = yield create_user(1, None, self.dummyCustodian, 'en')
 
         # fill_data/create_receiver
@@ -843,7 +847,7 @@ class TestGLWithPopulatedDB(TestGL):
         db_create_field(session, 1, reference_field, 'en')
 
     def perform_submission_start(self):
-        return Sessions.new(1, uuid4(), 1, 'whistleblower')
+        return Sessions.new(1, uuid4(), 1, "whistleblower", 'whistleblower')
 
     def perform_submission_uploads(self, submission_id):
         for _ in range(self.population_of_attachments):
@@ -957,6 +961,8 @@ class TestHandler(TestGLWithPopulatedDB):
         if user_id is None and role is not None:
             if role == 'admin':
                 user_id = self.dummyAdmin['id']
+            elif role == 'analyst':
+                user_id = self.dummyAnalyst['id']
             elif role == 'receiver':
                 user_id = self.dummyReceiver_1['id']
             elif role == 'custodian':
@@ -966,7 +972,7 @@ class TestHandler(TestGLWithPopulatedDB):
             if role == 'whistlebower':
                 session = initialize_submission_session()
             else:
-                session = Sessions.new(1, user_id, 1, role, USER_PRV_KEY)
+                session = Sessions.new(1, user_id, 1, "John Doe", role, USER_PRV_KEY)
 
             headers[b'x-session'] = session.id.encode()
 

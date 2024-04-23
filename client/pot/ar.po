@@ -23,7 +23,7 @@
 # Dragana Kaurin <dragana.kaurin@localizationlab.org>, 2014
 # ِAbu <elsahookie@gmail.com>, 2013
 # a96921fef9a72b1bcbac1fc92cca715a, 2015
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024
 # b665ec457f7dbc468840c2b55b7422d3_ad81431 <382f1c68613d5cfe601c75d66e8ff0dd_51600>, 2013
 # harmony, 2013
 # harmony, 2013
@@ -35,7 +35,7 @@
 # lamine Kacimi <k_lamine27@yahoo.fr>, 2015
 # mohammad ali <ilir95palira@gmail.com>, 2017
 # Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020
-# Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020,2023
+# Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020,2023-2024
 # Muna Hemoudi, 2021
 # Muna Hemoudi, 2021
 # nawaat <contact@nawaat.org>, 2014
@@ -55,7 +55,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Ali <alimahwer@yahoo.com>, 2023\n"
+"Last-Translator: Muhammad Elghdban <Mohamed.Elghdban@gmail.com>, 2020,2023-2024\n"
 "Language-Team: Arabic (http://app.transifex.com/otf/globaleaks/language/ar/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -135,7 +135,7 @@ msgstr "معالج المنصة"
 msgid "Label the report"
 msgstr "صنّف البلاغ"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "تأجيل تاريخ نهاية الصلوحية"
 
 msgid "Select all"
@@ -251,9 +251,6 @@ msgstr "مطلوب النفاذ"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "طلب النفاذ الى هوية المبلغ"
-
-msgid "Please write a motivation"
-msgstr "الرجاء كتابة الدوافع"
 
 msgid "Reply to the request"
 msgstr "الاجابة على الطلب"
@@ -550,6 +547,39 @@ msgstr "المُرسَل إليهم فقط"
 msgid "Me only"
 msgstr "أنا فقط"
 
+msgid "Returning whistleblowers"
+msgstr "مخبرين عائدين."
+
+msgid "Anonymity"
+msgstr "نعم"
+
+msgid "Anonymous"
+msgstr "مجهول"
+
+msgid "Subscribed"
+msgstr "مشترك"
+
+msgid "Initially anonymous"
+msgstr "مجهول الهوية مبدئيًا"
+
+msgid "Tor"
+msgstr "تور"
+
+msgid "Devices"
+msgstr "الأجهزة"
+
+msgid "Computer"
+msgstr "كمبيوتر"
+
+msgid "Mobile"
+msgstr "الهاتف النقّال"
+
+msgid "Act on behalf of a whistleblower"
+msgstr "اعمل بالنيابة عن مخبر."
+
+msgid "The link will expire in 7 days."
+msgstr "ستنتهي صلاحية الرابط خلال 7 أيام."
+
 msgid "File a report"
 msgstr "تقديم بلاغ"
 
@@ -619,8 +649,11 @@ msgstr "حفظ"
 msgid "Cancel"
 msgstr "إلغاء"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "‮أيّام"
+
+msgid "Disabled"
+msgstr "غير مفعل"
 
 msgid "Report statuses"
 msgstr "تقرير الحالات"
@@ -643,9 +676,6 @@ msgstr "المتلقّون"
 msgid "Reminder date"
 msgstr "تاريخ التنبيه"
 
-msgid "days"
-msgstr "‮أيّام"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "اضبط القيمة على 0 لإلغاء تفعيل هذه الخاصية."
 
@@ -663,18 +693,6 @@ msgstr "الحد الأقصى لعدد المتلقين الذي يمكن اخت
 
 msgid "Show recipients in alphabetical order"
 msgstr "إظهار المتلقين بترتيب ابجدي"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "عرض تفاصيل المتلقي على صفحة حالة البلاغ"
-
-msgid "Enable comments"
-msgstr "تفعيل التعليقات"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "تمكين المبلغ من كتابة تعليقات"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "السّماح للمبلغين باضافة مرفقات إلى البلاغ"
 
 msgid "Additional questionnaire"
 msgstr "الاستبيان اﻹضافي"
@@ -708,6 +726,9 @@ msgstr "عناوين بروتوكول الانترنت المسموح بها"
 
 msgid "Admin"
 msgstr "مشرف"
+
+msgid "Analyst"
+msgstr "محلل"
 
 msgid "Recipient"
 msgstr "المتلقّي"
@@ -788,9 +809,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "سيوجّهك معالج التهيئة اليدوي خلال تمكين HTTPS من مرجع مصدّق بديل."
-
-msgid "Disabled"
-msgstr "غير مفعل"
 
 msgid "Auto-renewal"
 msgstr "تجديد تلقائي"
@@ -1071,9 +1089,6 @@ msgstr "تمكين شريط الخصوصيّة المخصّص"
 msgid "Custom privacy panel"
 msgstr "مخصص لوحة الخصوصية"
 
-msgid "Enable custodian user role"
-msgstr "تمكين دور المستخدم الوصي"
-
 msgid "Enable scoring system"
 msgstr "تمكين نظام تسجيل النقاط"
 
@@ -1142,9 +1157,6 @@ msgstr "تمكين شروط الخدمة"
 msgid "Title"
 msgstr "العنوان"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "الاسم العام"
 
@@ -1193,7 +1205,7 @@ msgstr "مختارة بالقوّة"
 msgid "Allow the recipient to delete reports"
 msgstr "السماح للمتلقين بحذف البلاغات"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "السماح للمتلقّي بتأجيل تاريخ انتهاء صلاحية الابلاغ"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1203,13 +1215,13 @@ msgid "Give this user ability to transfer reports to other users"
 msgstr "منح المستخدِم إمنح المستخدِم الحق نقل التقارير لمستخدِمين آخرين"
 
 msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgstr "اسمح لهذا المستخدم بإعادة فتح إدارة هذا التقرير."
 
 msgid "Give the user administrative access to the following features:"
 msgstr "امنح المستخدم حق الوصول المطلق إلى الميزات التالية:"
 
 msgid "Statistics"
-msgstr ""
+msgstr "إحصائيات"
 
 msgid "Request date"
 msgstr "تاريخ الطلب"
@@ -1257,16 +1269,10 @@ msgid "Assign score points"
 msgstr "تخصيص نقاط المجموع"
 
 msgid "Change status"
-msgstr ""
+msgstr "تغيير الحالة"
 
 msgid "Status:"
 msgstr "الحالة:"
-
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
 
 msgid "Are you sure?"
 msgstr "هل أنت متأكد؟"
@@ -1292,14 +1298,22 @@ msgid ""
 msgstr "اعمل نسخة منه وخزنها فى مكان آمن. اذا فقدت كلمة السر سيكون مهما لاسترداد الدخول إلى حسابك دون فقدان أى بيانات."
 
 msgid "Attention"
-msgstr ""
+msgstr "انتباه"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr ""
+msgid "For security reasons the code needs to be changed."
+msgstr "لأغراض أمنية يجب تغيير الرمز."
 
 msgid "Enter a name for the copy"
 msgstr "أدخل اسما من أجل النسخة"
+
+msgid "Mask"
+msgstr "إخفاء"
+
+msgid "Unselect"
+msgstr "ألغاء التحديد"
+
+msgid "Reopen"
+msgstr "إعادة فتح"
 
 msgid "Request support"
 msgstr "اطلب مساعدة"
@@ -1320,9 +1334,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "لم تتم تهيئة المنصة بعد لاتصالات HTTPS و على اساس ذلك ينبغي أن تستخدم فقط لغرض الاختبار."
-
-msgid "Please write a motivation for the reply"
-msgstr "يرجى كتابة دافع للاجابة"
 
 msgid "Send"
 msgstr "إرسال"
@@ -1369,8 +1380,11 @@ msgstr "يمكن الوصول إلى المحتوى فقط ضمن شبكة Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "الملفات المراد رفعها تتخطى السعة المسموح بها."
 
+msgid "A user with this username already exists"
+msgstr "هناك شخص يستخدم اسم المستخدم هذا بالفعل"
+
 msgid "You are operating on behalf of a whistleblower."
-msgstr ""
+msgstr "أنت تعمل بالنيابة عن مخبر."
 
 msgid "Current password"
 msgstr "كلمة السر الحالية"

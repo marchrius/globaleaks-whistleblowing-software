@@ -11,11 +11,12 @@
 # Noah Böhme <noah0907@gmail.com>, 2021
 # Preben Sørensen <preben@rather.dk>, 2023
 # Preben Sørensen <preben@rather.dk>, 2023
+# Søren Christensen, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Preben Sørensen <preben@rather.dk>, 2023\n"
+"Last-Translator: Søren Christensen, 2024\n"
 "Language-Team: Danish (http://app.transifex.com/otf/globaleaks/language/da/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -66,7 +67,7 @@ msgid "Preferences"
 msgstr "Indstillinger"
 
 msgid "Notifications"
-msgstr "Underrettelser"
+msgstr "Underretninger"
 
 msgid "file unavailable"
 msgstr "fil utilgængelig"
@@ -95,7 +96,7 @@ msgstr "Platformsopsætning"
 msgid "Label the report"
 msgstr "Navngiv denne indberetningen"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Udsæt udløbsdatoen"
 
 msgid "Select all"
@@ -211,9 +212,6 @@ msgstr "Adgang anmodet"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Anmod om adgang til whistleblowerens identitet"
-
-msgid "Please write a motivation"
-msgstr "Skriv venligst en begrundelse"
 
 msgid "Reply to the request"
 msgstr "Svar forespørgslen"
@@ -457,7 +455,7 @@ msgid "Assigned to"
 msgstr "Tildelt til"
 
 msgid "Not provided."
-msgstr "Ikke forudsat."
+msgstr "Ikke leveret"
 
 msgid "Set a reminder"
 msgstr "Sæt en påmindelse"
@@ -509,6 +507,39 @@ msgstr "Kun modtagere"
 
 msgid "Me only"
 msgstr "Kun mig"
+
+msgid "Returning whistleblowers"
+msgstr "Tilbagevendende whistleblowere"
+
+msgid "Anonymity"
+msgstr "Anonymitet"
+
+msgid "Anonymous"
+msgstr "Anonym"
+
+msgid "Subscribed"
+msgstr "Abonnerer "
+
+msgid "Initially anonymous"
+msgstr "Indledningsvis anonym"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr "Enheder"
+
+msgid "Computer"
+msgstr "Computer"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Act on behalf of a whistleblower"
+msgstr "Handle på vegne af whistleblower"
+
+msgid "The link will expire in 7 days."
+msgstr "Dette link vil udløbe om 7 dage."
 
 msgid "File a report"
 msgstr "Indsend en rapportering"
@@ -579,8 +610,11 @@ msgstr "Gem"
 msgid "Cancel"
 msgstr "Annullér"
 
-msgid "Scadenza (giorni)"
-msgstr "Scadenza (giorni)"
+msgid "days"
+msgstr "dage"
+
+msgid "Disabled"
+msgstr "Deaktiveret"
 
 msgid "Report statuses"
 msgstr "Status for indsendelser"
@@ -603,9 +637,6 @@ msgstr "Modtagere"
 msgid "Reminder date"
 msgstr "Påmindelsesdato"
 
-msgid "days"
-msgstr "dage"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Sæt værdien til 0 for at deaktivere denne funktionalitet."
 
@@ -623,18 +654,6 @@ msgstr "Maksimalt antal modtagere, der kan vælges:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Vis modtagere i alfabetisk rækkefølge"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Vis modtagerdetaljer på statussiden for indleveringen"
-
-msgid "Enable comments"
-msgstr "Aktivér kommentarer"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Tillad whistlebloweren at skrive kommentarer"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
 
 msgid "Additional questionnaire"
 msgstr "Ekstra spørgeskema"
@@ -668,6 +687,9 @@ msgstr "Tilladte IP-adresser"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr "Analyst"
 
 msgid "Recipient"
 msgstr "Modtager"
@@ -748,9 +770,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Den manuelle konfigurationsguide fører dig gennem opsætningen af HTTPS med en anden Certificate Authority."
-
-msgid "Disabled"
-msgstr "Deaktiveret"
 
 msgid "Auto-renewal"
 msgstr "Automatisk fornyelse"
@@ -1031,9 +1050,6 @@ msgstr "Aktivér brugertilpasset privatlivspanel"
 msgid "Custom privacy panel"
 msgstr "Brugertilpasset privatlivspanel"
 
-msgid "Enable custodian user role"
-msgstr "Aktivér kontoførende brugerrolle"
-
 msgid "Enable scoring system"
 msgstr "Aktivér score system"
 
@@ -1102,9 +1118,6 @@ msgstr "Aktivér servicebetingelserne"
 msgid "Title"
 msgstr "Titel"
 
-msgid "Analyst"
-msgstr "Analyst"
-
 msgid "Public name"
 msgstr "Offentligt navn"
 
@@ -1153,7 +1166,7 @@ msgstr "Tvunget valgt"
 msgid "Allow the recipient to delete reports"
 msgstr "Tillad modtageren at slette indberetninger"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Tillad modtageren at udsætte udløbsdatoen på indberetningen"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1222,12 +1235,6 @@ msgstr "Skift status"
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr "Understatus:"
-
-msgid "Motivation:"
-msgstr "Motivation:"
-
 msgid "Are you sure?"
 msgstr "Er du sikker?"
 
@@ -1254,12 +1261,20 @@ msgstr "Lav en kopi og gem den et sikkert sted. Den vil være nødvendig for at 
 msgid "Attention"
 msgstr "Bemærk"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr "Af sikkerhedsgrunde skal din kvitteringskode til din rapport ændres."
+msgid "For security reasons the code needs to be changed."
+msgstr "Af sikkerhedshensyn, er det nødvendigt at ændre koden."
 
 msgid "Enter a name for the copy"
 msgstr "Indtast et navn på kopien"
+
+msgid "Mask"
+msgstr "Masker"
+
+msgid "Unselect"
+msgstr "Fravælg"
+
+msgid "Reopen"
+msgstr "Genåben"
 
 msgid "Request support"
 msgstr "Forespørg hjælp"
@@ -1280,9 +1295,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platformen er stadig ikke konfigureret til HTTPS-forbindelser og bør derfor kun bruges til forsøgsformål."
-
-msgid "Please write a motivation for the reply"
-msgstr "Skriv venligst en motivering for svaret"
 
 msgid "Send"
 msgstr "Send"
@@ -1328,6 +1340,9 @@ msgstr "Denne ressource kan kun tilgås via Tor netværket"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Upload overstiger tilladt størrelse"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr "Du handler på vegne af en whistleblower"

@@ -10,6 +10,7 @@
       <th>Tor</th>
       <th data-translate>Comments</th>
       <th data-translate>Files</th>
+      <th data-translate>Receivers</th>
       <th data-translate>Whistleblower's last access</th>
     </tr>
   </thead>
@@ -21,14 +22,15 @@
       <td>{{tip.expiration_date | date:'dd-MM-yyyy'}}</td>
       <td>{{contexts_by_id[tip.context_id]['name']}}</td>
       <td>{{Utils.getSubmissionStatusText(tip.status, tip.substatus, submission_statuses)}}</td>
-      <td><i class="fa-solid" data-ng-class="{'fa-check': itip.tor, 'fa-xmark': !itip.tor}""></i></td>
+      <td><i class="fa-solid" data-ng-class="{'fa-check': itip.tor, 'fa-xmark': !itip.tor}"></i></td>
       <td>{{tip.comments}}</td>
       <td>{{tip.files}}</td>
+      <td>{{tip.receiver_count}}</td>
       <td>{{tip.last_access | date:'dd-MM-yyyy HH:mm'}}</td>
     </tr>
   </tbody>
 </table>
-<div class="text-center" data-ng-show="auditLog.tips.elems.length > itemsPerPage">
+<div class="float-left" data-ng-show="auditLog.tips.elems.length > itemsPerPage">
   <ul uib-pagination
       total-items="auditLog.tips.elems.length"
       first-text="<< {{'First' | translate}}"
@@ -42,4 +44,6 @@
       boundary-links="true"
       force-ellipses="true"></ul>
 </div>
-<button class="btn btn-sm btn-link" type="button" ng-csv="resources.tips" csv-label='true' filename="reports.csv"><i class="fa-solid fa-download"></i> <span data-translate>Export</span></button>
+<div class="float-right">
+  <button class="btn btn-sm btn-link" type="button" ng-csv="resources.tips" csv-label='true' filename="reports.csv"><i class="fa-solid fa-download"></i> <span data-translate>Export</span></button>
+</div>

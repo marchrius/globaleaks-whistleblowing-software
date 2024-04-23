@@ -6,10 +6,10 @@
 # Enrique Blat Puchades <enrique.blat@antifraucv.es>, 2020
 # estrella1876lc <estrella1876lc@gmail.com>, 2014
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018-2022,2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Joan Bitlloch <joanbit@gmail.com>, 2017
-# José Javier Alamá Izquierdo, 2022-2023
+# José Javier Alamá Izquierdo, 2022-2024
 # Josep Anton Rius <j.rius.cat@gmail.com>, 2016
 # Maddish Falzoni <maddish@xnet-x.net>, 2016
 # Manuel D. Serrat <manuel.serrat@antifraucv.es>, 2018-2019
@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: José Javier Alamá Izquierdo, 2022-2023\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2018-2022,2024\n"
 "Language-Team: Catalan (Valencian) (http://app.transifex.com/otf/globaleaks/language/ca@valencia/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -100,8 +100,8 @@ msgstr "Assistent de la plataforma"
 msgid "Label the report"
 msgstr "Etiqueta l’informe"
 
-msgid "Postpone the expiration date"
-msgstr "Pospose la data de caducitat"
+msgid "Edit the expiration date"
+msgstr "Editar la data de venciment"
 
 msgid "Select all"
 msgstr "Selecciona-ho tot"
@@ -216,9 +216,6 @@ msgstr "Accés demanat"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Demane l'accés a la identitat de l'informador"
-
-msgid "Please write a motivation"
-msgstr "Per favor, escriu una motivació"
 
 msgid "Reply to the request"
 msgstr "Respon a la petició"
@@ -515,6 +512,39 @@ msgstr "Solament destinataris"
 msgid "Me only"
 msgstr "Únicament jo"
 
+msgid "Returning whistleblowers"
+msgstr "Denunciants que fan seguiment de la denúncia."
+
+msgid "Anonymity"
+msgstr "Anonimat"
+
+msgid "Anonymous"
+msgstr "Anònim "
+
+msgid "Subscribed"
+msgstr "Subscrit"
+
+msgid "Initially anonymous"
+msgstr "Inicialment anònim"
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr "Dispositius"
+
+msgid "Computer"
+msgstr "Ordinador"
+
+msgid "Mobile"
+msgstr "Telèfon Mòbil"
+
+msgid "Act on behalf of a whistleblower"
+msgstr "Actuar en nom d'un denunciant"
+
+msgid "The link will expire in 7 days."
+msgstr "L'enllaç expirarà en 7 dies"
+
 msgid "File a report"
 msgstr "Presentar una denúncia."
 
@@ -584,8 +614,11 @@ msgstr "Guardar"
 msgid "Cancel"
 msgstr "Cancel·la"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "dies"
+
+msgid "Disabled"
+msgstr "Deshabilitat"
 
 msgid "Report statuses"
 msgstr "Estat de les denúncies."
@@ -608,9 +641,6 @@ msgstr "Destinataris"
 msgid "Reminder date"
 msgstr "Data de recordatori"
 
-msgid "days"
-msgstr "dies"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Fixe el valor a 0 per a desactivar esta funcionalitat"
 
@@ -628,18 +658,6 @@ msgstr "Nombre màxim de destinataris que es poden seleccionar:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Mostra els destinataris en ordre alfabètic"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Mostra la informació dels destinataris a la pàgina de l'estat de la denúncia"
-
-msgid "Enable comments"
-msgstr "Habilita comentaris"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Permet als informadors escriure comentaris"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Permet als informadors afegir arxius adjunts a l'enviament"
 
 msgid "Additional questionnaire"
 msgstr "Qüestionari addicional"
@@ -673,6 +691,9 @@ msgstr "Adreces IP autoritzades"
 
 msgid "Admin"
 msgstr "Administrador"
+
+msgid "Analyst"
+msgstr "Analista"
 
 msgid "Recipient"
 msgstr "Destinatari"
@@ -753,9 +774,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "L'assistent de configuració vos guiarà a través de la configuració d'HTTPS des d'una Autoritat de Certificació alternativa."
-
-msgid "Disabled"
-msgstr "Deshabilitat"
 
 msgid "Auto-renewal"
 msgstr "Renovació automàtica"
@@ -1036,9 +1054,6 @@ msgstr "Habilita distintiu personalitzat de privacitat"
 msgid "Custom privacy panel"
 msgstr "Tauler de privacitat del client"
 
-msgid "Enable custodian user role"
-msgstr "Activar el rol d'usuari Custodi"
-
 msgid "Enable scoring system"
 msgstr "Activar el sistema de puntuacions"
 
@@ -1107,9 +1122,6 @@ msgstr "Activar els termes del servei"
 msgid "Title"
 msgstr "Títol"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Nom públic"
 
@@ -1158,7 +1170,7 @@ msgstr "Obligatòriament seleccionats"
 msgid "Allow the recipient to delete reports"
 msgstr "Permet al destinatari eliminar denúncies"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Permet al destinatari pospondre la data d'expiració d'una denúncia"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1168,13 +1180,13 @@ msgid "Give this user ability to transfer reports to other users"
 msgstr "Donar a aquest usuari la capacitat de transferir denúncies a altres usuaris"
 
 msgid "Allow this user to reopen management of a report"
-msgstr ""
+msgstr "Permetre a este usuari reobrir la gestió d'una denúncia"
 
 msgid "Give the user administrative access to the following features:"
 msgstr "Donar a aquest usuari accés administratiu a les funcions següents:"
 
 msgid "Statistics"
-msgstr ""
+msgstr "Estadístiques"
 
 msgid "Request date"
 msgstr "Data de sol·licitud"
@@ -1222,16 +1234,10 @@ msgid "Assign score points"
 msgstr "Assigna puntuació"
 
 msgid "Change status"
-msgstr ""
+msgstr "Canviar l'estat"
 
 msgid "Status:"
 msgstr "Estat:"
-
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
 
 msgid "Are you sure?"
 msgstr "Està vosté segur?"
@@ -1257,14 +1263,22 @@ msgid ""
 msgstr "Feu una còpia i guardeu-la en un lloc segur. Serà necessari si perdeu la contrasenya per recuperar l’accés al vostre compte sense pèrdues de dades."
 
 msgid "Attention"
-msgstr ""
+msgstr "Atenció"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
-msgstr ""
+msgid "For security reasons the code needs to be changed."
+msgstr "Per raons de seguretat el codi s'ha de canviar"
 
 msgid "Enter a name for the copy"
 msgstr "Introduïsca un nom per a la còpia"
+
+msgid "Mask"
+msgstr "Ocultar"
+
+msgid "Unselect"
+msgstr "Anul·lar la selecció"
+
+msgid "Reopen"
+msgstr "Reobrir"
 
 msgid "Request support"
 msgstr "Petició d'ajuda"
@@ -1285,9 +1299,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "La plataforma encara no està configurada per a connexions HTTPS i, per tant, només s'hauria d'utilitzar per fer proves."
-
-msgid "Please write a motivation for the reply"
-msgstr "Per favor, escriga una motivació per a la resposta"
 
 msgid "Send"
 msgstr "Envia"
@@ -1334,8 +1345,11 @@ msgstr "Només es pot accedir a aquest recurs mitjançant la xarxa Tor"
 msgid "The upload request exceeds the size limit"
 msgstr "La sol·licitud de pujada excedeix el limit de dades"
 
-msgid "You are operating on behalf of a whistleblower."
+msgid "A user with this username already exists"
 msgstr ""
+
+msgid "You are operating on behalf of a whistleblower."
+msgstr "Vosté està operant en nom d'un denunciant"
 
 msgid "Current password"
 msgstr " Contrasenya actual"
@@ -1996,7 +2010,7 @@ msgid "New report"
 msgstr "Nova denúncia"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr "Una o més denúncies van a caducar i en breu se suprimiran."
+msgstr "Una o més denúncies van a caducar i en breu es suprimiran."
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "La data de venciment més propera és {EarliestExpirationDate}."

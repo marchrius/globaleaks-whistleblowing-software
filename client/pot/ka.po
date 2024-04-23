@@ -86,7 +86,7 @@ msgstr "პლატფორმის ოსტატი"
 msgid "Label the report"
 msgstr "ანგარიშის დასათაურება"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "ვადის გასვლის თარიღის გადავადება"
 
 msgid "Select all"
@@ -202,9 +202,6 @@ msgstr "წვდომის მოთხოვნა"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "მინსტრუქტორის იდენტობაზე წვდომის მოთხოვნა"
-
-msgid "Please write a motivation"
-msgstr "გთხოვთ, დაწერეთ მოტივაცია"
 
 msgid "Reply to the request"
 msgstr "მოთხოვნაზე პასუხი"
@@ -501,6 +498,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr ""
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr "მობილურზე"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "ანგარიშის დაფაილება"
 
@@ -570,8 +600,11 @@ msgstr "შენახვა"
 msgid "Cancel"
 msgstr "გაუქმება"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "დღე"
+
+msgid "Disabled"
+msgstr "გამორთული"
 
 msgid "Report statuses"
 msgstr "სტატუსების ანგარიში"
@@ -594,9 +627,6 @@ msgstr "მიმღებები"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "დღე"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "ამ ფუნქციის გამოსართავად მნიშვნელობა დააყენეთ 0-ზე."
 
@@ -614,18 +644,6 @@ msgstr "მიმღებების არჩევის მაქსიმ�
 
 msgid "Show recipients in alphabetical order"
 msgstr "მიმღებების ჩვენება ანბანური წყობით"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "მიმღების დეტალების ჩვენება ანგარიშის სტატუსის გვერდზე"
-
-msgid "Enable comments"
-msgstr "კომენტარების ჩართვა"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "დართეთ ნება ინტრუქტორმა დააკომენტაროს"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "დართეთ ნება ინსტრუქტორს დაამატოს ანგარიშზე დანართები"
 
 msgid "Additional questionnaire"
 msgstr "დამატებითი კითხვარი"
@@ -659,6 +677,9 @@ msgstr "ნებადართული IP მისამართები"
 
 msgid "Admin"
 msgstr "ადმინი"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "მიმღები"
@@ -739,9 +760,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "მანუალური კონფიგურაციის ოსტატი დაგეხმარებათ HTTPS  პროტოკოლის დაყენების პროცესში ალტერნატიული სერტიფიკაციის ორგანოდან."
-
-msgid "Disabled"
-msgstr "გამორთული"
 
 msgid "Auto-renewal"
 msgstr "ავტომატური განახლება"
@@ -1022,9 +1040,6 @@ msgstr "კონფიდენციალურობის პანელ�
 msgid "Custom privacy panel"
 msgstr "მორგებული კონფიდენციალურობის პანელი"
 
-msgid "Enable custodian user role"
-msgstr "ინსტრუქტორის მომხმარებლის როლის ჩართვა"
-
 msgid "Enable scoring system"
 msgstr "ქულების დათვლის სისტემის ჩართვა"
 
@@ -1093,9 +1108,6 @@ msgstr "მომსახურების პირობების ჩა�
 msgid "Title"
 msgstr "სათაური"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "საჯარო სახელი"
 
@@ -1144,7 +1156,7 @@ msgstr "იძულებით შერჩეული"
 msgid "Allow the recipient to delete reports"
 msgstr "დართეთ ნება მიმღებს წაშალოს ანგარიშები"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "დართეთ ნება მიმღებს გადაავადოს ანგარიშის ვადის გასვლა"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1213,12 +1225,6 @@ msgstr ""
 msgid "Status:"
 msgstr "სტატუსი:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "დარწმუნებული ხარ?"
 
@@ -1245,12 +1251,20 @@ msgstr "გააკეთეთ ასლი და შეინახეთ �
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "შეიყვანეთ სახელი ასლისთვის"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "მხარდაჭერის მოთხოვნა"
@@ -1271,9 +1285,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "პლატფორმა ჯერ არ არის კონფიგურირებული HTTPS პროტოკოლით კავშირებისთვის და ამიტომ უნდა იყოს გამოყენებული მხოლოდ ტესტირების მიზნებისთვის."
-
-msgid "Please write a motivation for the reply"
-msgstr "გთხოვთ დაწერეთ პასუხისთვის მოტივაცია"
 
 msgid "Send"
 msgstr "გაგზავნა"
@@ -1319,6 +1330,9 @@ msgstr "რესურსზე წვდომა შესაძლებე�
 
 msgid "The upload request exceeds the size limit"
 msgstr "ატვირთვის მოთხოვნა აღემატება ზომის ლიმიტს"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

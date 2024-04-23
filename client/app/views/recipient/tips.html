@@ -49,6 +49,11 @@
         </span>
       </span>
 
+      <span id="tip-action-open-new-tab" data-ng-click="actAsWhistleblower()" data-uib-tooltip="{{'Act on behalf of a whistleblower' | translate}}"
+        class="btn btn-outline-secondary">
+        <i class="fa-solid fa-handshake-angle"></i>
+      </span>
+
       <span id="tip-action-reload"
             data-ng-click="reload()"
             data-uib-tooltip="{{'Refresh' | translate}}"
@@ -68,7 +73,6 @@
     </span>
   </div>
 </div>
-
 <div id="TipList" class="row mt-2">
   <div class="col-md-12 table-responsive">
     <table class="table table-striped" id="tipList" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
@@ -171,6 +175,16 @@
           <th class="TipInfoComments"><i class="fa-solid fa-comment"></i></th>
           <th class="TipInfoFiles"><i class="fa-solid fa-file"></i></th>
           <th class="TipInfoIdentity"><i class="fa-solid fa-user"></i></th>
+          <th class="TipInfoRecipientCount">
+            <span data-ng-click="sortKey = 'receiver_count'; sortReverse = !sortReverse">
+              <i class="fa-solid fa-users"></i>
+              <span data-translate></span>
+              <span data-ng-show="sortKey == 'receiver_count'">
+                <span data-ng-show="!sortReverse" class="fa-solid fa-caret-down"></span>
+                <span data-ng-show="sortReverse" class="fa-solid fa-caret-up"></span>
+              </span>
+            </span>
+          </th>
           <th class="TipInfoScore" data-ng-if="public.node.enable_scoring_system">
             <span data-ng-click="$parent.sortKey = 'score'; sortReverse = !sortReverse">
               <i class="fa-solid fa-flash"></i>
@@ -190,7 +204,7 @@
       <tbody id="tipListTableBody">
         <tr id="tip-{{$index}}"
             data-ng-repeat="tip in filteredTips | orderBy:sortKey:sortReverse | limitTo:itemsPerPage:((currentPage - 1) * itemsPerPage)"
-	    data-ng-class="{'font-weight-bold': tip.updated, 'selectedTip': isSelected(tip.id)}" class="tip-action-open"
+            data-ng-class="{'font-weight-bold': tip.updated, 'selectedTip': isSelected(tip.id), 'disabled': !tip.accessible}" class="tip-action-open"
             data-ng-click="Utils.go('/reports/' + tip.id)">
           <td>
             <span class="btn btn-sm btn-outline-secondary" data-ng-if="isSelected(tip.id)"
@@ -211,7 +225,7 @@
             </span>
           </td>
           <td class="TipInfoID">{{tip.progressive}}</td>
-          <td><i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i>
+          <td><i data-ng-if="tip.important" class="fa-solid fa-star text-warning"></i></td>
           <td><i data-ng-if="markReportStatus(tip.reminder_date)" class="fa-solid fa-bell text-warning"></i>
           </td>
           <td class="TipInfoContext" data-ng-if="public.contexts.length > 1">{{tip.context_name}}</td>
@@ -239,6 +253,7 @@
             <i data-ng-switch-when="1" class="fa-solid fa-check"></i>
             <i data-ng-switch-when="2" class="fa-solid fa-check underline" data-uib-tooltip="{{'Subscription date' | translate}}: {{tip.data.whistleblower_identity_date | date:'dd-MM-yyyy HH:mm'}}"></i>
           </th>
+          <td class="TipInfoRecipientCount">{{tip.receiver_count}}</td>
           <td class="TipInfoScore" data-ng-if="public.node.enable_scoring_system" data-ng-switch="tip.score">
             <span data-ng-switch-when="0">-</span>
             <span class="badge badge-primary" data-ng-switch-when="1" data-translate>Low</span>
@@ -262,6 +277,16 @@
           class="pagination-sm"
           boundary-links="true"
           force-ellipses="true"></ul>
+    </div>
+    <div class="float-right">
+      <a class="btn btn-sm btn-link" type="button"
+         data-ng-if="filteredTips.length > 0"
+         data-ng-csv="getDataCsv()"
+         csv-header="getDataCsvHeaders()"
+         filename="reports.csv">
+        <i class="fa-solid fa-download"></i>
+        <span data-translate>Export</span>
+      </a>
     </div>
   </div>
 </div>

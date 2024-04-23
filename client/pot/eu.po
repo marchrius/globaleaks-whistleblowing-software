@@ -104,7 +104,7 @@ msgstr "Plataformaren laguntzailea"
 msgid "Label the report"
 msgstr "Etiketatu salaketa"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Iraungitze data atzeratu"
 
 msgid "Select all"
@@ -220,9 +220,6 @@ msgstr "Sarbidea eskatu da"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Salatzailearen identitatera sarbidea eskatu "
-
-msgid "Please write a motivation"
-msgstr "Arren, idatzi arrazoia"
 
 msgid "Reply to the request"
 msgstr "Erantzun eskakizunari"
@@ -519,6 +516,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Izengabe"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Ordenagailua"
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Aurkeztu salaketa."
 
@@ -588,8 +618,11 @@ msgstr "Gorde"
 msgid "Cancel"
 msgstr "Utzi"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "egunak"
+
+msgid "Disabled"
+msgstr "Desgaitua"
 
 msgid "Report statuses"
 msgstr "Salaketa baten egoerak"
@@ -612,9 +645,6 @@ msgstr "Hartzaileak"
 msgid "Reminder date"
 msgstr "Oroitzeko data"
 
-msgid "days"
-msgstr "egunak"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Ezarri 0 balioa funtzionaltasun hau desgaitzeko."
 
@@ -632,18 +662,6 @@ msgstr "Hauta daitezkeen hartzaileen kopuru maximoa:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Hartzaileak ordena alfabetikoan erakutsi"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Salaketaren egoeraren orrian hartzailearen xehetasunak erakutsi."
-
-msgid "Enable comments"
-msgstr "Gaitu iruzkinak"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Salatzaileei iruzkinak idaztea ahalbidetu"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Salatzaileari salaketari eranskin gehiago gehitzea ahalbidetu"
 
 msgid "Additional questionnaire"
 msgstr "Galdekizun gehigarria"
@@ -677,6 +695,9 @@ msgstr "Baimendutako IP helbideak"
 
 msgid "Admin"
 msgstr "Administratzailea"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Hartzailea"
@@ -757,9 +778,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Eskuzko konfigurazioaren laguntzaileak zuzenduko dizu HTTPSren ezarpenetik zehar, beste Ziurtatze Agintari batetik."
-
-msgid "Disabled"
-msgstr "Desgaitua"
 
 msgid "Auto-renewal"
 msgstr "Berritze automatikoa"
@@ -1040,9 +1058,6 @@ msgstr "Gaitu pribatutasun pertsonalizatuko panela"
 msgid "Custom privacy panel"
 msgstr "Pribatutasun pertsonalizatuko panela"
 
-msgid "Enable custodian user role"
-msgstr "Gaitu Zaintza erabiltzaile betekizuna"
-
 msgid "Enable scoring system"
 msgstr "Gaitu puntuatzeko sistema"
 
@@ -1111,9 +1126,6 @@ msgstr "Aktibatu zerbitzuen terminoak"
 msgid "Title"
 msgstr "Izenburua"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Izen publikoa"
 
@@ -1162,7 +1174,7 @@ msgstr "Automatikoki hautatua"
 msgid "Allow the recipient to delete reports"
 msgstr "Hartzaileei salaketak ezabatzen utzi"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Hartzaileari salaketaren iraungitze data jartzen utzi"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1231,12 +1243,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Egoera:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Ziur zaude?"
 
@@ -1263,12 +1269,20 @@ msgstr "Egin kopia bat eta gorde ezazu toki seguruan. Pasahitza galduz gero beha
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Idatzi izena kopiarentzat"
+
+msgid "Mask"
+msgstr "Maskaratu"
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Eskatu laguntza"
@@ -1289,9 +1303,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Plataforma ez dago oraindik konfiguratuta HTTPS konexioentzat, eta probatzeko bakarrik erabili behar da."
-
-msgid "Please write a motivation for the reply"
-msgstr "Arren, idatzi arrazoi bat erantzuteko"
 
 msgid "Send"
 msgstr "Bidali"
@@ -1337,6 +1348,9 @@ msgstr "Baliabide honetan Tor saretik bakarrik sar daiteke"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Igo nahi duzun fitxategiak zilegi den tamaina maximoa gainditzen du."
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

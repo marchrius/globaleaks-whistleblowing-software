@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 "mime-version: 1.0\n"
 
 msgid "Log in"
@@ -103,7 +103,7 @@ msgstr "אשף פלטפורמה"
 msgid "Label the report"
 msgstr "סווג את הדוח"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "דחה את תאריך התפוגה"
 
 msgid "Select all"
@@ -219,9 +219,6 @@ msgstr "דרושה גישה"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "בקש גישה אל זהות של חושף שחיתות"
-
-msgid "Please write a motivation"
-msgstr "אנא לכתוב מוטיבציה"
 
 msgid "Reply to the request"
 msgstr "השב אל הבקשה"
@@ -518,6 +515,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "אלמוני"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "מחשב"
+
+msgid "Mobile"
+msgstr "נייד"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr ""
 
@@ -587,8 +617,11 @@ msgstr "שמור"
 msgid "Cancel"
 msgstr "בטל"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "ימים"
+
+msgid "Disabled"
+msgstr "מושבת"
 
 msgid "Report statuses"
 msgstr "מעמדי דוח"
@@ -611,9 +644,6 @@ msgstr "מקבלים"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "ימים"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "קבע את הערך אל 0 והשבת מאפיין זה."
 
@@ -631,18 +661,6 @@ msgstr "מספר מקסימאלי של מקבלים לבחירה:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "מקבלי הצג לפי סדר אלפביתי"
-
-msgid "Show recipient details on the status page of the report"
-msgstr ""
-
-msgid "Enable comments"
-msgstr "אפשר הערות"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "התר לחושף השחיתות לכתוב תגובות"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "התר לחושף השחיתות להוסיף צרופות אל ההגשה"
 
 msgid "Additional questionnaire"
 msgstr ""
@@ -676,6 +694,9 @@ msgstr ""
 
 msgid "Admin"
 msgstr "מינהלן"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "מקבל"
@@ -756,9 +777,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr ""
-
-msgid "Disabled"
-msgstr "מושבת"
 
 msgid "Auto-renewal"
 msgstr "חידוש אוטומטי"
@@ -1039,9 +1057,6 @@ msgstr "אפשר תג פרטיות מותאם אישית"
 msgid "Custom privacy panel"
 msgstr "לוח פרטיות מותאם אישית"
 
-msgid "Enable custodian user role"
-msgstr ""
-
 msgid "Enable scoring system"
 msgstr "אפשר מערכת ניקוד"
 
@@ -1110,9 +1125,6 @@ msgstr "אפשר תנאיי שירות"
 msgid "Title"
 msgstr "כותרת"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "שם ציבורי"
 
@@ -1161,7 +1173,7 @@ msgstr "נבחר בכוח"
 msgid "Allow the recipient to delete reports"
 msgstr ""
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr ""
 
 msgid "Give this user ability to grant user access to reports"
@@ -1230,12 +1242,6 @@ msgstr ""
 msgid "Status:"
 msgstr "מצב"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
 
@@ -1262,11 +1268,19 @@ msgstr ""
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
 msgstr ""
 
 msgid "Request support"
@@ -1288,9 +1302,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr ""
-
-msgid "Please write a motivation for the reply"
-msgstr "אנא לכתוב מוטיבציה על התשובה"
 
 msgid "Send"
 msgstr "שלח"
@@ -1336,6 +1347,9 @@ msgstr "משאב ניתן לגשת רק בתוך רשת Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "בקשת ההעלאה עולה על מגבלות הגודל"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

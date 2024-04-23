@@ -260,6 +260,7 @@ legend {
 #ContentBox,
 #FooterBox,
 #DemoBadge,
+#OperatorBadge,
 #PrivacyBadge {
   padding: 1em;
 }
@@ -358,16 +359,6 @@ legend {
 
 .filePreview {
   height: 12rem;
-}
-
-.imgPreview {
-  height: 10rem;
-  width: 10rem;
-}
-
-.imgPreview img {
-  height: 100%;
-  width: 100%;
 }
 
 .fileUpload {
@@ -856,7 +847,7 @@ text.axis-worktime {
   font-family: monospace;
   font-size: 0.8rem;
   max-height: 40em;
-  max-width: 80rem;
+  max-width: 100%;
   overflow-y: scroll;
   white-space: pre-wrap;
 }
@@ -996,4 +987,9 @@ html[dir="ltr"] #Receipt {
 
 .underline {
   text-decoration: underline;
+}
+
+.disabled {
+  opacity: 0.2;
+  pointer-events: none;
 }

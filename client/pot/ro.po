@@ -102,7 +102,7 @@ msgstr "Configurator platformă"
 msgid "Label the report"
 msgstr "Etichetează sesizarea"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Amână data de expirare"
 
 msgid "Select all"
@@ -218,9 +218,6 @@ msgstr "Accesul a fost solicitat"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Solicită accesul pentru a vizualiza identitatea avertizorului de integritate.  "
-
-msgid "Please write a motivation"
-msgstr "Te rugăm să motivezi"
 
 msgid "Reply to the request"
 msgstr "Răspunde solicitării"
@@ -517,6 +514,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "Anonimat"
+
+msgid "Anonymous"
+msgstr "Anonim"
+
+msgid "Subscribed"
+msgstr "subscrisă"
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr "Computer"
+
+msgid "Mobile"
+msgstr "Mobil"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Depune o sesizare"
 
@@ -586,8 +616,11 @@ msgstr "Salvează"
 msgid "Cancel"
 msgstr "Anulează"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "zile"
+
+msgid "Disabled"
+msgstr "Dezactivat"
 
 msgid "Report statuses"
 msgstr "Statusuri sesizare"
@@ -610,9 +643,6 @@ msgstr "Destinatari"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "zile"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Selectează valoarea 0 pentru a dezactiva această opțiune."
 
@@ -630,18 +660,6 @@ msgstr "Numărul maxim de destinatari ce pot fi selectați:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Afișează destinatarii în ordine alfabetică"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Afișează detaliile destinatarului pe pagina care prezintă statusul sesizării"
-
-msgid "Enable comments"
-msgstr "Activează comentariile"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Permite avertizorului să scrie comentarii"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Permite avertizorului să adauge atașamente sesizării"
 
 msgid "Additional questionnaire"
 msgstr "Chestionar suplimentar"
@@ -675,6 +693,9 @@ msgstr "Adrese IP permise"
 
 msgid "Admin"
 msgstr "Admin"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Destinatar"
@@ -755,9 +776,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Asistentul pentru configurare manuală vă va ghida de-a lungul procesului de instalare a HTTPS de la o altă Autoritate de Certificare."
-
-msgid "Disabled"
-msgstr "Dezactivat"
 
 msgid "Auto-renewal"
 msgstr "Reînnoire automată"
@@ -1038,9 +1056,6 @@ msgstr "Activează panoul pentru personalizarea setărilor privind confidențial
 msgid "Custom privacy panel"
 msgstr "Panou pentru personalizarea setărilor privind confidențialitatea"
 
-msgid "Enable custodian user role"
-msgstr "Activează rolul de custode al utilizatorului"
-
 msgid "Enable scoring system"
 msgstr "Activează sistemul de evaluare"
 
@@ -1109,9 +1124,6 @@ msgstr "Activează termenii de utilizare"
 msgid "Title"
 msgstr "Titlu"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Nume public"
 
@@ -1160,7 +1172,7 @@ msgstr "Selectat obligatoriu"
 msgid "Allow the recipient to delete reports"
 msgstr "Permite destinatarilor să șteargă sesizările"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Permite destinatarului să amâne data de expirare a sesizării"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1229,12 +1241,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Ești sigur(ă)?"
 
@@ -1261,12 +1267,20 @@ msgstr "Notează și pune cheia într-un loc sigur. Vei avea nevoie de ea dacă 
 msgid "Attention"
 msgstr "Atenție"
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Introdu un nume pentru copie"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "Solicită asistență"
@@ -1287,9 +1301,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platforma nu este configurată pentru conexiuni HTTPS și, de aceea, trebuie folosită doar pentru teste."
-
-msgid "Please write a motivation for the reply"
-msgstr "Te rugăm să scrii o motivație pentru răspuns"
 
 msgid "Send"
 msgstr "Trimite"
@@ -1335,6 +1346,9 @@ msgstr "Resursa poate fi accesată numai prin intermediul rețelei Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Atașamentul depășește dimensiunea maximă acceptată"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

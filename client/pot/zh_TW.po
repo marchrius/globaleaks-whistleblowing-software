@@ -93,7 +93,7 @@ msgstr "平台設定精靈"
 msgid "Label the report"
 msgstr "標記分類報告"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "延後到期日"
 
 msgid "Select all"
@@ -209,9 +209,6 @@ msgstr "要求存取"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "要求取得吹哨者身份識別"
-
-msgid "Please write a motivation"
-msgstr "請寫下動機"
 
 msgid "Reply to the request"
 msgstr "回覆請求"
@@ -508,6 +505,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr "匿名"
+
+msgid "Anonymous"
+msgstr "匿名"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "洋蔥路由"
+
+msgid "Devices"
+msgstr "設備"
+
+msgid "Computer"
+msgstr "電腦"
+
+msgid "Mobile"
+msgstr "行動"
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "提交报告"
 
@@ -577,8 +607,11 @@ msgstr "儲存"
 msgid "Cancel"
 msgstr "取消"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "天"
+
+msgid "Disabled"
+msgstr "關閉"
 
 msgid "Report statuses"
 msgstr "報告狀況"
@@ -601,9 +634,6 @@ msgstr "收件人"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "天"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "將值設為 0  以取消此功能。"
 
@@ -621,18 +651,6 @@ msgstr "最多可選收件者的數目"
 
 msgid "Show recipients in alphabetical order"
 msgstr "以字母次序顯示收件者"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "在報告的狀況頁顯示收件者的詳細情況"
-
-msgid "Enable comments"
-msgstr "開啟評論功能"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "允許吹哨者作評論"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "揭密者可對此報告附加資料檔案"
 
 msgid "Additional questionnaire"
 msgstr "其它的問卷"
@@ -666,6 +684,9 @@ msgstr "已允许 IP 地址"
 
 msgid "Admin"
 msgstr "管理者"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "收件者"
@@ -746,9 +767,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "手動設定精靈會指引你從另一套憑證授權單位來完成 HTTPS 的設定戈"
-
-msgid "Disabled"
-msgstr "關閉"
 
 msgid "Auto-renewal"
 msgstr "自動更新"
@@ -1029,9 +1047,6 @@ msgstr "啟用自定的隱私面版"
 msgid "Custom privacy panel"
 msgstr "自定隱私面板"
 
-msgid "Enable custodian user role"
-msgstr "啟動保管人的用戶角色"
-
 msgid "Enable scoring system"
 msgstr "啟用評分系統"
 
@@ -1100,9 +1115,6 @@ msgstr "開啟服務條款"
 msgid "Title"
 msgstr "標題"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "公開名稱"
 
@@ -1151,7 +1163,7 @@ msgstr "強迫選擇"
 msgid "Allow the recipient to delete reports"
 msgstr "收件者可以刪除報告"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "收件者可以延長報告期限"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1220,12 +1232,6 @@ msgstr ""
 msgid "Status:"
 msgstr "狀態"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "你確定嗎？"
 
@@ -1252,12 +1258,20 @@ msgstr "備份並將之存放在安全處，一旦遺失密碼則須用它來恢
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "為此複本輸入名稱"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr "请求支持"
@@ -1278,9 +1292,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "平台仍未設定好 HTTPS 連線,故應只能作測試目的使用"
-
-msgid "Please write a motivation for the reply"
-msgstr "請寫下這份回覆的動機"
 
 msgid "Send"
 msgstr "送出"
@@ -1326,6 +1337,9 @@ msgstr "資源僅能透過 TOR 網路讀取"
 
 msgid "The upload request exceeds the size limit"
 msgstr "上傳的請求超出檔案大小上限"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

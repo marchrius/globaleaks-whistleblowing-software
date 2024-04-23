@@ -1,11 +1,11 @@
 GL.controller("SubmissionCtrl",
-    ["$scope", "$filter", "$location", "$interval", "$timeout", "tmhDynamicLocale", "Submission", "fieldUtilities",
-      function ($scope, $filter, $location, $interval, $timeout, tmhDynamicLocale, Submission, fieldUtilities) {
+    ["$scope", "$rootScope", "$filter", "$location", "$interval", "$timeout", "tmhDynamicLocale", "Submission", "fieldUtilities",
+      function ($scope, $rootScope, $filter, $location, $interval, $timeout, tmhDynamicLocale, Submission, fieldUtilities) {
   $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;
 
-  $scope.context_id = $location.search().context || "";
+  $rootScope.context_id = $location.search().context || $rootScope.context_id;
 
   $scope.context = undefined;
 
@@ -21,6 +21,7 @@ GL.controller("SubmissionCtrl",
   $scope.selectable_contexts = $filter("orderBy")($scope.selectable_contexts, $scope.contextsOrderPredicate);
 
   $scope.selectContext = function(context) {
+    $rootScope.context_id = context.id;
     $scope.context = context;
   };
 
@@ -259,7 +260,8 @@ GL.controller("SubmissionCtrl",
 
     if ($scope.context_id) {
       context = $filter("filter")($scope.public.contexts,
-                                  {"id": $scope.context_id})[0];
+                                  {"id": $scope.context_id},
+                                  true)[0];
     } else if ($scope.selectable_contexts.length === 1) {
       context = $scope.selectable_contexts[0];
     }
@@ -286,6 +288,8 @@ GL.controller("SubmissionCtrl",
     $scope.$on("GL::uploadsUpdated", function () {
       fieldUtilities.onAnswersUpdate($scope);
     });
+
+    $scope.Utils.scrollTo("#SubmissionForm");
   });
 }]).
 controller("AdditionalQuestionnaireCtrl",

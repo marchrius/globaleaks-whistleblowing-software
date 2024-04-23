@@ -12,8 +12,8 @@ GL.factory("GLResource", ["$resource", function($resource) {
   };
 }]).
 factory("Authentication",
-  ["$filter", "$http", "$location", "$window", "$rootScope", "GLTranslate",
-  function($filter, $http, $location, $window, $rootScope, GLTranslate) {
+  ["$filter", "$http", "$location", "$window", "$rootScope", "GLTranslate", "$uibModal",
+  function($filter, $http, $location, $window, $rootScope, GLTranslate, $uibModal) {
     function Session() {
       var self = this;
 
@@ -25,43 +25,66 @@ factory("Authentication",
 
       if (typeof session === "string") {
         self.session = JSON.parse(session);
-        $location.path(self.session.homepage);
       }
 
       self.set_session = function(response) {
         self.session = response.data;
-
         if (self.session.role !== "whistleblower") {
           var role = self.session.role === "receiver" ? "recipient" : self.session.role;
-
           self.session.homepage = "/" + role + "/home";
           self.session.preferencespage = "/" + role + "/preferences";
-
           $window.sessionStorage.setItem("session",  JSON.stringify(self.session));
         }
       };
 
       self.reset = function() {
-	self.loginInProgress = false;
-	self.requireAuthCode = false;
-	self.loginData = {};
+        self.loginInProgress = false;
+        self.requireAuthCode = false;
+        self.loginData = {};
       };
 
-      self.login = function(tid, username, password, authcode, authtoken) {
+      self.login = function (tid, username, password, authcode, authtoken) {
         if (typeof authcode === "undefined") {
           authcode = "";
         }
-
         self.loginInProgress = true;
-
-        var success_fn = function(response) {
+        var success_fn = function (response) {
           self.reset();
-
           if ("redirect" in response.data) {
             $window.location.replace(response.data.redirect);
           }
-
           self.set_session(response);
+          if (response.data && response.data.properties && response.data.properties.new_receipt) {
+            var receipt = response.data.properties.new_receipt;
+            var formatted_receipt = $rootScope.Utils.format_receipt(receipt);
+            $uibModal.open({
+              templateUrl: "views/modals/otkc_access.html",
+              controller: "ConfirmableModalCtrl",
+              resolve: {
+                arg: {
+                  receipt: receipt,
+                  formatted_receipt: formatted_receipt
+                },
+                confirmFun: function () {
+                  return function () {
+                    $http({
+                      method: "PUT",
+                      url: "api/whistleblower/operations",
+                      data: {
+                        "operation": "change_receipt",
+                        "args": {}
+                      }
+                    }).then(function () {
+                      $rootScope.setPage("tippage");
+                    });
+                  };
+                },
+
+                cancelFun: null
+              }
+            });
+            return;
+          }
 
           var src = $location.search().src;
           if (src) {
@@ -71,7 +94,6 @@ factory("Authentication",
             if (self.session.role === "whistleblower") {
               if (password) {
                 $rootScope.setPage("tippage");
-                $location.path("/");
               }
             } else {
               $location.path(self.session.homepage);
@@ -80,7 +102,7 @@ factory("Authentication",
 
         };
 
-	var failure_fn = function(response) {
+        var failure_fn = function(response) {
           self.loginInProgress = false;
 
           if (response.data && response.data.error_code) {
@@ -145,14 +167,6 @@ factory("Authentication",
           $window.location = $location.absUrl();
           $window.location.reload();
         }
-      };
-
-      self.hasUserRole = function() {
-        if (angular.isUndefined(self.session)) {
-          return false;
-        }
-
-        return ["admin", "receiver", "custodian"].indexOf(self.session.role) !== -1;
       };
 
       self.get_headers = function() {
@@ -330,6 +344,9 @@ factory("RTipResource", ["GLResource", function(GLResource) {
 factory("RTipCommentResource", ["GLResource", function(GLResource) {
   return new GLResource("api/recipient/rtips/:id/comments", {id: "@id"});
 }]).
+factory("RTipRedactionResource", ["GLResource", function(GLResource) {
+  return new GLResource("api/recipient/redactions/:id", {id: "@id"});
+}]).
 factory("RTipDownloadRFile", ["Utils", function(Utils) {
   return function(file) {
     Utils.download("api/recipient/rfiles/" + file.id);
@@ -348,8 +365,8 @@ factory("RTipExport", ["Utils", function(Utils) {
     Utils.download("api/recipient/rtips/" + tip.id + "/export");
   };
 }]).
-factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
-        function($rootScope, $http, RTipResource, RTipCommentResource) {
+factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource","RTipRedactionResource",
+        function($rootScope, $http, RTipResource, RTipCommentResource,RTipRedactionResource) {
   return function(tipID, fn) {
     var self = this;
 
@@ -368,6 +385,21 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
         });
       };
 
+      tip.newRedaction = function(content) {
+        var c = new RTipRedactionResource();
+        c.internaltip_id = content.internaltip_id;
+        c.reference_id = content.reference_id;
+        c.entry = content.entry;
+        c.permanent_redaction = content.permanent_redaction;
+        c.temporary_redaction = content.temporary_redaction;
+        c.$save(function(newRedaction) {
+          tip.mask.unshift(newRedaction);
+          tip.localChange();
+        }).then(function () {
+          $rootScope.reload();
+        });
+      };
+
       tip.operation = function(operation, args) {
         var req = {
           "operation": operation,
@@ -377,8 +409,14 @@ factory("RTip", ["$rootScope", "$http", "RTipResource", "RTipCommentResource",
         return $http({method: "PUT", url: "api/recipient/rtips/" + tip.id, data: req});
       };
 
+      tip.updateRedaction = function(data) {
+        return $http({method: "PUT", url: "api/recipient/redactions/" + data.id, data: data}).then(function () {
+          $rootScope.reload();
+        });
+      };
+
       tip.updateSubmissionStatus = function() {
-        return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : ""}).then(function () {
+        return tip.operation("update_status", {"status": tip.status, "substatus": tip.substatus ? tip.substatus : "", "motivation": tip.motivation || ""}).then(function () {
           $rootScope.reload();
         });
       };
@@ -459,6 +497,9 @@ factory("ReceiverTips", ["GLResource", function(GLResource) {
 factory("IdentityAccessRequests", ["GLResource", function(GLResource) {
   return new GLResource("api/custodian/iars");
 }]).
+factory("Statistics", ["GLResource", function(GLResource) {
+  return new GLResource("api/analyst/stats");
+}]).
 factory("AdminAuditLogResource", ["GLResource", function(GLResource) {
   return new GLResource("api/admin/auditlog");
 }]).
@@ -532,14 +573,11 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       context.tip_timetolive = 90;
       context.tip_reminder_hard = 80;
       context.tip_reminder_soft = 5;
-      context.show_recipients_details = false;
       context.allow_recipients_selection = false;
       context.show_receivers_in_alphabetical_order = true;
       context.show_steps_navigation_interface = true;
       context.select_all_receivers = true;
       context.maximum_selectable_receivers = 0;
-      context.enable_two_way_comments = true;
-      context.enable_attachments = true;
       context.questionnaire_id = "";
       context.additional_questionnaire_id = "";
       context.score_threshold_medium = 0;
@@ -647,9 +685,12 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       user.forcefully_selected = false;
       user.can_edit_general_settings = false;
       user.can_grant_access_to_reports = false;
+      user.can_mask_information = true;
+      user.can_redact_information = false;
       user.can_delete_submission = false;
       user.can_postpone_expiration = true;
       user.can_transfer_access_to_reports = false;
+      user.can_reopen_reports = true;
       return user;
     },
 
@@ -664,6 +705,126 @@ factory("AdminUtils", ["AdminContextResource", "AdminQuestionnaireResource", "Ad
       tenant.mode = "default";
       tenant.subdomain = "";
       return tenant;
+    }
+  };
+}]).
+factory("mask", [function() {
+  return {
+    getSelectedRanges: function(select, selected_ranges) {
+      var elem = document.getElementById("redact");
+      var selectedText = elem.value.substring(elem.selectionStart, elem.selectionEnd);
+
+      let ranges = {
+        start: elem.selectionStart,
+        end: elem.selectionEnd - 1
+      };
+
+      if (selectedText.length === 0) {
+        return {new_ranges:selected_ranges, selected_ranges:ranges};
+      } else if (select) {
+        return {new_ranges:this.mergeRanges([ranges], selected_ranges), selected_ranges:ranges};
+      } else {
+        return {new_ranges:this.splitRanges(ranges, selected_ranges), selected_ranges:ranges};
+      }
+    },
+
+    splitRanges: function (range, ranges) {
+      ranges.sort((a, b) => a.start - b.start);
+      const result = [];
+      for (const r of ranges) {
+        if (r.end < range.start) {
+          result.push(r);
+        } else if (r.start > range.end) {
+          result.push(r);
+        } else {
+          if (r.start < range.start) {
+            result.push({ start: r.start, end: range.start - 1 });
+          }
+          if (r.end > range.end) {
+            result.push({ start: range.end + 1, end: r.end });
+          }
+        }
+      }
+
+      return result;
+    },
+
+    mergeRanges:function (newRanges, temporaryRanges) {
+      const allRanges = newRanges.concat(temporaryRanges);
+      allRanges.sort((a, b) => a.start - b.start);
+
+      const mergedRanges = [];
+      let currentRange = allRanges[0];
+
+      for (let i = 1; i < allRanges.length; i++) {
+        const nextRange = allRanges[i];
+
+        if (currentRange.end >= nextRange.start) {
+          currentRange.end = Math.max(currentRange.end, nextRange.end);
+        } else {
+          mergedRanges.push(currentRange);
+          currentRange = nextRange;
+        }
+      }
+
+      mergedRanges.push(currentRange);
+      return mergedRanges;
+    },
+
+    intersectRanges:function (rangeList1, rangeList2) {
+      rangeList1.sort((a, b) => a.start - b.start);
+      rangeList2.sort((a, b) => a.start - b.start);
+
+      const intersectedRanges = [];
+
+      let i = 0;
+      let j = 0;
+
+      while (i < rangeList1.length && j < rangeList2.length) {
+        const range1 = rangeList1[i];
+        const range2 = rangeList2[j];
+
+        const start = Math.max(range1.start, range2.start);
+        const end = Math.min(range1.end, range2.end);
+
+        if (start <= end) {
+          intersectedRanges.push({ start, end });
+        }
+
+        if (range1.end < range2.end) {
+          i++;
+        } else {
+          j++;
+        }
+      }
+
+      return intersectedRanges;
+    },
+
+    maskContent: function(content, ranges, mask, maskCharacter, originalContent) {
+      return ranges.reduce(function (markedContent, range) {
+        if (mask) {
+          content =
+            markedContent.substring(0, range.start) +
+            maskCharacter.repeat(range.end - range.start + 1) +
+            markedContent.substring(range.end + 1);
+        } else {
+          const maskedPart = originalContent.substring(range.start, range.end + 1);
+          content =
+            markedContent.substring(0, range.start) +
+            maskedPart +
+            markedContent.substring(range.end + 1);
+        }
+        return content;
+      }, content);
+    },
+
+    onHighlight:function (content, ranges) {
+      return this.maskContent(content, ranges, true, String.fromCharCode(0x2588));
+    },
+
+    onUnHighlight: function (content, originalContent, ranges) {
+      return this.maskContent(content, ranges, false, "", originalContent);
     }
   };
 }]).
@@ -696,6 +857,17 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
         ret[element.id] = element;
       });
       return ret;
+    },
+
+    format_receipt: function(receipt) {
+      if (!receipt || receipt.length !== 16) {
+        return "";
+      }
+
+      return receipt.substr(0, 4) + " " +
+             receipt.substr(4, 4) + " " +
+             receipt.substr(8, 4) + " " +
+             receipt.substr(12, 4);
     },
 
     set_title: function() {
@@ -848,14 +1020,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return ["/", "/submission"].indexOf($location.path()) !== -1;
     },
 
-    getCSSFlags: function() {
-      return {
-        "public": this.isWhistleblowerPage(),
-        "embedded": $window.self !== $window.top,
-        "block-user-input": $rootScope.showLoadingPanel
-      };
-    },
-
     showUserStatusBox: function() {
       return $rootScope.public.node.wizard_done &&
              $rootScope.page !== "homepage" &&
@@ -866,17 +1030,6 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
 
     showWBLoginBox: function() {
       return $location.path() === "/submission";
-    },
-
-    showFilePreview: function(content_type) {
-      var content_types = [
-        "image/gif",
-        "image/jpeg",
-        "image/png",
-        "image/bmp"
-      ];
-
-      return content_types.indexOf(content_type) > -1;
     },
 
     moveUp: function(elem) {
@@ -1074,10 +1227,10 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return deferred.promise;
     },
 
-    displayErrorMsg: function(reason) {
+    displayErrorMsg: function(motivation) {
       $rootScope.error = {
         "message": "local-failure",
-        "arguments": [reason],
+        "arguments": [motivation],
         "code": 10
       };
     },
@@ -1113,7 +1266,7 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
           var substatuses = submission_statuses[i].substatuses;
           for (var j = 0; j < substatuses.length; j++) {
             if (substatuses[j].id === substatus) {
-              text += "(" + $filter("translate")(substatuses[j].label) + ")";
+              text += " \u2013 " + $filter("translate")(substatuses[j].label);
               break;
             }
           }
@@ -1204,17 +1357,22 @@ factory("Utils", ["$rootScope", "$http", "$q", "$location", "$filter", "$timeout
       return btoa(result);
     },
 
+    saveBlobAs: function(filename, blob) {
+      let fileLink = $window.document.createElement("a");
+      fileLink.href = URL.createObjectURL(blob);
+      fileLink.download = filename;
+      fileLink.click();
+      $timeout(function () { URL.revokeObjectURL(fileLink.href); }, 1000);
+    },
+
     saveAs: function(filename, url) {
+      var self = this;
       return $http({
         method: "GET",
         url: url,
         responseType: "blob",
       }).then(function (response) {
-        var fileLink = $window.document.createElement("a");
-        fileLink.href = URL.createObjectURL(response.data);
-        fileLink.download = filename;
-        fileLink.click();
-        $timeout(function () { URL.revokeObjectURL(fileLink.href); }, 1000);
+        self.saveBlobAs(filename, response.data);
       });
     },
 

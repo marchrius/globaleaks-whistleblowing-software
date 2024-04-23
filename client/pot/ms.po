@@ -86,7 +86,7 @@ msgstr "Wizard platform"
 msgid "Label the report"
 msgstr "Label laporan"
 
-msgid "Postpone the expiration date"
+msgid "Edit the expiration date"
 msgstr "Tangguh tarikh tamat tempoh"
 
 msgid "Select all"
@@ -202,9 +202,6 @@ msgstr "Akses diminta"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Minta akses kepada identiti pemberi maklumat"
-
-msgid "Please write a motivation"
-msgstr "Sila tulis motivasi"
 
 msgid "Reply to the request"
 msgstr "Balas kepada permintaan"
@@ -501,6 +498,39 @@ msgstr ""
 msgid "Me only"
 msgstr ""
 
+msgid "Returning whistleblowers"
+msgstr ""
+
+msgid "Anonymity"
+msgstr ""
+
+msgid "Anonymous"
+msgstr "Tidak dikenali"
+
+msgid "Subscribed"
+msgstr ""
+
+msgid "Initially anonymous"
+msgstr ""
+
+msgid "Tor"
+msgstr "Tor"
+
+msgid "Devices"
+msgstr ""
+
+msgid "Computer"
+msgstr ""
+
+msgid "Mobile"
+msgstr ""
+
+msgid "Act on behalf of a whistleblower"
+msgstr ""
+
+msgid "The link will expire in 7 days."
+msgstr ""
+
 msgid "File a report"
 msgstr "Failkan laporan"
 
@@ -570,8 +600,11 @@ msgstr "Simpan"
 msgid "Cancel"
 msgstr "Batalkan"
 
-msgid "Scadenza (giorni)"
-msgstr ""
+msgid "days"
+msgstr "hari"
+
+msgid "Disabled"
+msgstr "Dinyahdayakan"
 
 msgid "Report statuses"
 msgstr "Status laporan"
@@ -594,9 +627,6 @@ msgstr "Penerima"
 msgid "Reminder date"
 msgstr ""
 
-msgid "days"
-msgstr "hari"
-
 msgid "Set the value to 0 to disable this feature."
 msgstr "Tetapkan nilai kepada 0 untuk menyahdayakan ciri ini."
 
@@ -614,18 +644,6 @@ msgstr "Bilangan maksimum penerima boleh dipilih:"
 
 msgid "Show recipients in alphabetical order"
 msgstr "Tunjukkan penerima dalam susunan abjad"
-
-msgid "Show recipient details on the status page of the report"
-msgstr "Tunjukkan butiran penerima di halaman status laporan"
-
-msgid "Enable comments"
-msgstr "Dayakan komen"
-
-msgid "Allow the whistleblower to write comments"
-msgstr "Benarkan pemberi maklumat menulis komen"
-
-msgid "Allow the whistleblower to add attachments"
-msgstr "Benarkan pemberi maklumat menambah lampiran kepada laporan"
 
 msgid "Additional questionnaire"
 msgstr "Soal selidik tambahan"
@@ -659,6 +677,9 @@ msgstr "Alamat IP dibenarkan"
 
 msgid "Admin"
 msgstr "Pentadbir"
+
+msgid "Analyst"
+msgstr ""
 
 msgid "Recipient"
 msgstr "Penerima"
@@ -739,9 +760,6 @@ msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
 "from an alternative Certificate Authority."
 msgstr "Wizard konfigurasi manual akan memandu anda melalui persediaan HTTPS daripada Certificate Authority alternatif."
-
-msgid "Disabled"
-msgstr "Dinyahdayakan"
 
 msgid "Auto-renewal"
 msgstr "Pembaharuan automatik"
@@ -1022,9 +1040,6 @@ msgstr "Dayakan panel privasi tersuai"
 msgid "Custom privacy panel"
 msgstr "Panel privasi tersuai"
 
-msgid "Enable custodian user role"
-msgstr "Dayakan peranan pengguna penjaga"
-
 msgid "Enable scoring system"
 msgstr "Dayakan sistem pemarkahan"
 
@@ -1093,9 +1108,6 @@ msgstr "Dayakan terma perkhidmatan"
 msgid "Title"
 msgstr "Tajuk"
 
-msgid "Analyst"
-msgstr ""
-
 msgid "Public name"
 msgstr "Nama awam"
 
@@ -1144,7 +1156,7 @@ msgstr "Dipilih secara paksa"
 msgid "Allow the recipient to delete reports"
 msgstr "Benarkan penerima untuk memadam laporan"
 
-msgid "Allow the recipient to postpone the report expiration date"
+msgid "Allow the recipient to edit the report expiration date"
 msgstr "Benarkan penerima untuk menunda tarikh tamat tempoh laporan"
 
 msgid "Give this user ability to grant user access to reports"
@@ -1213,12 +1225,6 @@ msgstr ""
 msgid "Status:"
 msgstr "Status:"
 
-msgid "Substatus:"
-msgstr ""
-
-msgid "Motivation:"
-msgstr ""
-
 msgid "Are you sure?"
 msgstr "Adakah anda pasti?"
 
@@ -1245,12 +1251,20 @@ msgstr "Buat salinan dan simpannya di tempat yang selamat. Ia diperlukan jika an
 msgid "Attention"
 msgstr ""
 
-msgid ""
-"For security reason th receipt code for your report needs to be changed."
+msgid "For security reasons the code needs to be changed."
 msgstr ""
 
 msgid "Enter a name for the copy"
 msgstr "Masukkan nama untuk salinan"
+
+msgid "Mask"
+msgstr ""
+
+msgid "Unselect"
+msgstr ""
+
+msgid "Reopen"
+msgstr ""
 
 msgid "Request support"
 msgstr ""
@@ -1271,9 +1285,6 @@ msgid ""
 "The platform is still not configured for HTTPS connections and should "
 "therefore only be used for testing purposes."
 msgstr "Platform masih tidak dikonfigurasikan untuk sambungan HTTPS dan oleh itu perlu hanya digunakan untuk tujuan pengujian."
-
-msgid "Please write a motivation for the reply"
-msgstr "Sila tuliskan motivasi untuk balas"
 
 msgid "Send"
 msgstr "Hantar"
@@ -1319,6 +1330,9 @@ msgstr "Sumber hanya boleh diakses melalui rangkaian Tor"
 
 msgid "The upload request exceeds the size limit"
 msgstr "Permintaan muat naik melebihi had saiz"
+
+msgid "A user with this username already exists"
+msgstr ""
 
 msgid "You are operating on behalf of a whistleblower."
 msgstr ""

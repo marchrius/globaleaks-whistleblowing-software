@@ -62,7 +62,7 @@
     <span id="tip-action-postpone"
           data-ng-if="resources.preferences.can_postpone_expiration"
           data-ng-click="tip_postpone()"
-          data-uib-tooltip="{{'Postpone the expiration date' | translate}}"
+          data-uib-tooltip="{{'Edit the expiration date' | translate}}"
           class="btn btn-outline-secondary">
       <i class="fa-solid fa-clock"></i>
     </span>
@@ -73,6 +73,28 @@
           data-uib-tooltip="{{'Delete' | translate}}"
           class="btn btn-outline-secondary">
       <i class="fa-solid fa-trash"></i>
+    </span>
+
+    <span data-ng-if="(resources.preferences.can_redact_information || resources.preferences.can_mask_information)"
+	  data-ng-click="toggleRedactMode()" data-uib-tooltip="{{redactOperationTitle}}"
+	  class="btn btn-outline-secondary" data-ng-class="{'active': redactMode}">
+      <i class="fa-solid fa-eraser"></i>
+    </span>
+
+    <span id="tip-action-change-status"
+          data-ng-if="tip.status !== 'closed'"
+          data-ng-click="openModalChangeState()"
+          data-uib-tooltip="{{'Change status' | translate}}"
+          class="btn btn-outline-secondary">
+      <i class="fa-solid fa-dot-circle"></i>
+    </span>
+
+    <span id="tip-action-change-status"
+          data-ng-if="resources.preferences.can_reopen_reports && tip.status === 'closed'"
+          data-ng-click="openModalReopen()"
+          data-uib-tooltip="{{'Reopen' | translate}}"
+          class="btn btn-outline-secondary">
+      <i class="fa-solid fa-dot-circle"></i>
     </span>
 
     <span id="tip-action-print"
@@ -112,21 +134,16 @@
     <div data-ng-include="'views/partials/tip_files_receiver.html'"></div>
   </div>
 </div>
-<div class="exclude-print">
-  <uib-tabset class="nested-tabset">
-    <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" select="selectedTab(tab.key)">
-      <div class="row" data-ng-if="tab.key == activeTabKey">
-        <div class="col-md-12">
-          <div data-ng-include="'views/partials/tip_upload_rfile.html'"></div>
-        </div>
-        <div class="col-md-12">
-          <div data-ng-include="'views/partials/tip_comments.html'"></div>
-        </div>
-      </div>
-    </uib-tab>
-  </uib-tabset>
-</div>
 
-<div class="d-none include-print">
-  <div data-ng-include="'views/partials/tip_attachment_print.html'"></div>
-</div>
+<uib-tabset class="nested-tabset">
+  <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" select="selectedTab(tab.key)">
+    <div class="row" data-ng-if="tab.key == activeTabKey">
+      <div class="col-md-12">
+        <div data-ng-include="'views/partials/tip_upload_rfile.html'"></div>
+      </div>
+      <div class="col-md-12">
+        <div data-ng-include="'views/partials/tip_comments.html'"></div>
+      </div>
+    </div>
+  </uib-tab>
+</uib-tabset>
