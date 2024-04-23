@@ -3,3 +3,6 @@ backend/workingdir/
 client/build
 client/node_modules/
 documentation/_build
+
+.idea
+.vscode
