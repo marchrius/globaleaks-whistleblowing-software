@@ -2,3 +2,6 @@ backend/env/
 backend/workingdir/
 client/build
 client/node_modules/
+
+.idea
+.vscode
