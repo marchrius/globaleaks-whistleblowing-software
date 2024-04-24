@@ -150,7 +150,7 @@ def order_substatus_elements(session, handler, req_args, *args, **kwargs):
 
 
 class SubmissionStatusCollection(OperationHandler):
-    check_roles = 'admin'
+    check_roles = {'admin', 'receiver'}
     invalidate_cache = True
 
     def get(self):
