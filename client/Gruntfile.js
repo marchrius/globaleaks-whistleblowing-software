@@ -43,21 +43,11 @@ module.exports = function(grunt) {
           {dest: "build/css", cwd: "tmp/css", src: ["**"], expand: true},
           {dest: "build/fonts", cwd: "app/fonts", src: ["**"], expand: true},
           {
-            dest: "build/",
-            cwd: "./tmp/",
-            src: [
-              "index.html",
-              "license.txt",
-              "css/styles.css",
-              "js/scripts.js",
-              "data/**",
-              "lib/js/locale/**",
-              "modules/**",
-              "viewer/**",
-              "custom/**"
-            ],
-            expand: true,
-            flatten: false
+            dest: 'build/fonts',
+            cwd: 'node_modules/',
+            src: ['@fontsource/**/files/*400*', '@fontsource/**/files/*700*'],
+            flatten: true,
+            expand: true
           },
           {
             dest: "build/fonts",
