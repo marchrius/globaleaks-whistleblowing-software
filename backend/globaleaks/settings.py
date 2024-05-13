@@ -8,7 +8,7 @@ from globaleaks.utils.singleton import Singleton
 this_directory = os.path.dirname(__file__)
 
 possible_client_paths = [
-    '/usr/share/globaleaks/client',
+    '/usr/share/globaleaks/client/',
     os.path.abspath(os.path.join(this_directory, '../../client/build/'))
 ]
 
