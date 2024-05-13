@@ -649,11 +649,6 @@ p:last-child {
   margin-bottom: 2em;
 }
 
-.question legend {
-  display: contents;
-  font-size: revert;
-}
-
 .question .question {
   padding-left: 1em;
 }
@@ -1108,6 +1103,11 @@ i.fa-solid.fa-chevron-right {
   height: 4em;
 }
 
+.analyst-graph{
+  padding-left: 27%;
+  padding-right: 27%
+}
+
 .disabled {
   opacity: 0.2;
   pointer-events: none;
@@ -1133,18 +1133,4 @@ i.fa-solid.fa-chevron-right {
   position: static;
   width: auto;
   height: auto;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.gly-spin {
-  animation: gly-spin 2s infinite linear;
-  text-shadow: #428bca 1px 0 5px;
-}
-
-@keyframes gly-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(359deg); }
 }

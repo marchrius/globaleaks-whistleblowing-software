@@ -6,7 +6,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
   templateUrl: "./confirmation-with-password.component.html"
 })
 export class ConfirmationWithPasswordComponent {
-  secret: string;
+  secretModel: string;
 
   constructor(private activeModal: NgbActiveModal) {
   }
@@ -18,7 +18,7 @@ export class ConfirmationWithPasswordComponent {
   }
 
   confirm() {
-    this.confirmFunction(this.secret);
-    return this.activeModal.close(this.secret);
+    this.confirmFunction(this.secretModel);
+    return this.activeModal.close(this.secretModel);
   }
 }

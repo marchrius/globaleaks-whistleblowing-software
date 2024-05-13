@@ -38,7 +38,6 @@ describe("admin configure custom texts", () => {
     cy.logout();
 
     cy.visit("/#/");
-    cy.reload();
     cy.get('#submissions_disabled').should('not.contain', 'Whistleblowing disabled');
   });
 });

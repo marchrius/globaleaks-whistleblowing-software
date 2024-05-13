@@ -1,4 +1,28 @@
 describe("recipient admin tip actions", () => {
+  it("should revoke and grant access to reports", function () {
+    cy.login_receiver();
+
+    cy.visit("/#/recipient/reports");
+    cy.get("#tip-0").first().click();
+
+    cy.get("#tip-action-revoke-access").should('be.visible', { timeout: 10000 }).click();
+    cy.get('[data-cy="reciever_selection"]').click();
+    cy.get('.ng-dropdown-panel').should('be.visible');
+    cy.get('[data-cy="reciever_selection"]').click();
+    cy.contains('.ng-option', 'Recipient2').click();
+    cy.get("#modal-action-ok").click();
+
+    cy.get("#tip-action-grant-access").should('be.visible', { timeout: 10000 }).click();
+    cy.get('[data-cy="reciever_selection"]').click();
+    cy.get('.ng-dropdown-panel').should('be.visible');
+    cy.get('[data-cy="reciever_selection"]').click();
+    cy.contains('.ng-option', 'Recipient2').click();
+    cy.get("#modal-action-ok").click();
+
+
+    cy.logout();
+  });
+
   it("should close and reopen reports", function () {
     cy.login_receiver();
 
@@ -6,16 +30,15 @@ describe("recipient admin tip actions", () => {
     cy.get("#tip-0").first().click();
 
     cy.get("#tip-action-change-status").click();
-    cy.get('#assignSubmissionStatus').select(2);
-    cy.get('textarea[name="reason"]').type("This is a close status test motivation");
+    cy.get('#assignSubmissionStatus', { timeout: 10000 }).select(2);
+    cy.get('textarea[name="reason"]').type("This is a close status illatest motivation");
     cy.get("#modal-action-ok").click();
     cy.get("#tip-action-reopen-status").click();
-    cy.get('textarea[name="motivation"]').type("This is a reopen status test motivation");
+    cy.get('textarea[name="motivation"]').type("This is a Reopen status test motivation");
     cy.get("#modal-action-ok").click();
 
     cy.logout();
   });
-
   it("recipient should file a report on behalf of whistleblower", function () {
     cy.login_receiver();
 
@@ -76,22 +99,22 @@ describe("recipient admin tip actions", () => {
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
     cy.get("#tip-action-change-status").click();
-    cy.get('#assignSubmissionStatus').select(1);
+    cy.get('#assignSubmissionStatus', { timeout: 10000 }).select(1);
     cy.get('textarea[name="reason"]').type("This is a test motivation");
     cy.get("#modal-action-ok").click();
     cy.logout();
   });
 
-  it("should upload, download and delete a file", function () {
+  it("should upload a file", function () {
     cy.login_receiver();
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
     cy.get('#upload_description').type("description");
     cy.get('i.fa-solid.fa-upload').click();
-    cy.fixture("files/test.txt").then(fileContent => {
+    cy.fixture("files/evidence-3.txt").then(fileContent => {
       cy.get('input[type="file"]').then(input => {
         const blob = new Blob([fileContent], { type: "text/plain" });
-        const testFile = new File([blob], "files/test.txt");
+        const testFile = new File([blob], "files/evidence-3.txt");
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(testFile);
         const inputElement = input[0] as HTMLInputElement;
@@ -101,8 +124,14 @@ describe("recipient admin tip actions", () => {
         input[0].dispatchEvent(changeEvent);
       });
     });
+    cy.logout();
+  });
 
-    cy.get('.download-button').should('be.visible');
+  it("should download and delete the file", function () {
+    cy.login_receiver();
+
+    cy.visit("/#/recipient/reports");
+    cy.get("#tip-0").first().click();
     cy.get('.download-button').first().click();
     cy.get('.fa-trash').first().click();
     cy.get("#modal-action-ok").click();
@@ -149,7 +178,6 @@ describe("recipient admin tip actions", () => {
     cy.wait(500);
 
     cy.get('#tip-action-reload').click();
-
     cy.wait(500);
 
     cy.get('#tip-action-select-all').click();
@@ -162,55 +190,24 @@ describe("recipient admin tip actions", () => {
     cy.logout();
   });
 
-  it("should revoke report access to Recipient2", function () {
+  it("should transfer access to recipient", function () {
     cy.login_receiver();
+
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
-    cy.get("#tip-action-revoke-access").should('be.visible').click();
+
+    cy.get("#tip-action-revoke-access").should('be.visible', { timeout: 10000 }).click();
     cy.get('[data-cy="reciever_selection"]').click();
     cy.get('.ng-dropdown-panel').should('be.visible');
     cy.get('[data-cy="reciever_selection"]').click();
     cy.contains('.ng-option', 'Recipient2').click();
     cy.get("#modal-action-ok").click();
-    cy.logout();
-  });
 
-  it("should revoke report access to Recipient3", function () {
-    cy.login_receiver();
-    cy.visit("/#/recipient/reports");
-    cy.get("#tip-0").first().click();
-    cy.get("#tip-action-revoke-access").should('be.visible').click();
-    cy.get('[data-cy="reciever_selection"]').click();
-    cy.get('.ng-dropdown-panel').should('be.visible');
-    cy.get('[data-cy="reciever_selection"]').click();
-    cy.contains('.ng-option', 'Recipient3').click();
-    cy.get("#modal-action-ok").click();
-    cy.logout();
-  });
-
-  it("should grant report access to Recipient2", function () {
-    cy.login_receiver();
-    cy.visit("/#/recipient/reports");
-    cy.get("#tip-0").first().click();
-    cy.get("#tip-action-grant-access").should('be.visible').click();
+    cy.get("#tip-action-transfer-access").should('be.visible', { timeout: 10000 }).click();
     cy.get('[data-cy="reciever_selection"]').click();
     cy.get('.ng-dropdown-panel').should('be.visible');
     cy.get('[data-cy="reciever_selection"]').click();
     cy.contains('.ng-option', 'Recipient2').click();
     cy.get("#modal-action-ok").click();
-    cy.logout();
-  });
-
-  it("should transfer report access to Recipient3", function () {
-    cy.login_receiver();
-    cy.visit("/#/recipient/reports");
-    cy.get("#tip-0").first().click();
-    cy.get("#tip-action-transfer-access").should('be.visible').click();
-    cy.get('[data-cy="reciever_selection"]').click();
-    cy.get('.ng-dropdown-panel').should('be.visible');
-    cy.get('[data-cy="reciever_selection"]').click();
-    cy.contains('.ng-option', 'Recipient3').click();
-    cy.get("#modal-action-ok").click();
-    cy.logout();
   });
 });

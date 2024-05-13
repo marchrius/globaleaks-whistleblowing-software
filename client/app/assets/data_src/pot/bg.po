@@ -94,11 +94,11 @@ msgstr "Администратори, упълномощени да промен
 msgid "Advanced"
 msgstr "Напреднали"
 
-msgid "Allow the recipient to edit the reports' expiration date"
-msgstr ""
-
 msgid "Allow the recipient to delete reports"
 msgstr "Разрешаване на получателите да изтриват сигнали"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Разрешаване на получателя да отлага датата на изтичане на сигнала"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Разрешаване на подателя на сигнал да добавя прикачени файлове към сигнала"
@@ -199,8 +199,8 @@ msgstr "Преди да продължите, моля, задайте нова 
 msgid "Block the submission"
 msgstr "Блокиране на подаването"
 
-msgid "By confirming, you will edit the expiration date to:"
-msgstr ""
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Като потвърдите, отлагате датата на изтичане до:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -273,6 +273,9 @@ msgstr "Конфигуриране"
 msgid "Confirm"
 msgstr "Потвърждаване"
 
+msgid "Confirmation"
+msgstr "Потвърждение"
+
 msgid "Congratulations!"
 msgstr "Поздравления!"
 
@@ -335,8 +338,8 @@ msgstr "Отхвърлена"
 msgid "Deny"
 msgstr "Отказ"
 
-msgid "Deny access to the whistleblower's identity"
-msgstr "Отказване на достъп до самоличността на подалия сигнал"
+msgid "Channels"
+msgstr ""
 
 msgid "Description"
 msgstr "Описание"
@@ -362,11 +365,11 @@ msgstr "Дезактивиране"
 msgid "Disable notifications to administrators"
 msgstr "Дезактивиране на известията до администраторите"
 
-msgid "Disable notifications to custodians"
-msgstr "Дезактивиране на известията до длъжностните лица по защита на данните"
+msgid "Collapse"
+msgstr "Свиване"
 
-msgid "Disable notifications to recipients"
-msgstr "Дезактивиране на известията до получателите"
+msgid "Column"
+msgstr "Колона"
 
 msgid "Disable submissions"
 msgstr "Дезактивиране на подаването на сигнали"
@@ -406,9 +409,6 @@ msgstr "Най-ранна избираема дата"
 
 msgid "Edit"
 msgstr "Редакция"
-
-msgid "Edit the expiration date"
-msgstr "Отлагане на датата на изтичане"
 
 msgid "Email"
 msgstr "Имейл"
@@ -606,8 +606,8 @@ msgstr "Име на хост"
 msgid "I have read and agree to the terms of the license."
 msgstr "Прочетох лицензионните условия и ги приемам."
 
-msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgid "Expiration date"
+msgstr "Дата на изтичане"
 
 msgid "ID"
 msgstr "ИД"
@@ -908,6 +908,9 @@ msgstr "Имайте предвид, че цялата свързана инфо
 msgid "Please select your account:"
 msgstr "Моля, изберете акаунта си:"
 
+msgid "Postpone the expiration date"
+msgstr "Отлагане на датата на изтичане"
+
 msgid "Preferences"
 msgstr "Предпочитания"
 
@@ -947,8 +950,8 @@ msgstr "Публично име"
 msgid "Question"
 msgstr "Въпрос"
 
-msgid "Question group"
-msgstr "Група въпроси"
+msgid "Please choose a different username."
+msgstr "Моля, изберете друго потребителско име."
 
 msgid "Question templates"
 msgstr "Шаблони за въпроси"

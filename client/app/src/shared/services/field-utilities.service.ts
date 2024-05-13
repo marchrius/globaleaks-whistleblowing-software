@@ -222,8 +222,8 @@ export class FieldUtilitiesService {
                 scope.block_submission = true;
               }
 
-              if (scope.submissionService && option.trigger_receiver.length) {
-                scope.submissionService.override_receivers = scope.submissionService.override_receivers.concat(option.trigger_receiver);
+              if (option.trigger_receiver.length) {
+                scope.replaceReceivers(option.trigger_receiver);
               }
             }
           }
@@ -242,8 +242,8 @@ export class FieldUtilitiesService {
       return;
     }
 
-    if (scope.submissionService) {
-      scope.submissionService.override_receivers = [];
+    if (scope.context) {
+      scope.submissionService.setContextReceivers(scope.context.id);
     }
 
     scope.questionnaire.steps.forEach((step: any) => {
