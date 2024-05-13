@@ -23,7 +23,6 @@ export class ConfirmationWith2faComponent {
   }
 
   confirm() {
-    this.confirmFunction(this.secret);
     this.activeModal.close(this.secret);
   }
 

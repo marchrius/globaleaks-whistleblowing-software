@@ -22,7 +22,7 @@ export class ConfirmationWithPasswordComponent {
   }
 
   confirm() {
-    this.confirmFunction(this.secret);
-    return this.activeModal.close(this.secret);
+    this.confirmFunction(this.secretModel);
+    return this.activeModal.close(this.secretModel);
   }
 }

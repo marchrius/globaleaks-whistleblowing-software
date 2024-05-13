@@ -6,6 +6,7 @@ describe("Recipient first login", () => {
     cy.get('input[name="changePasswordArgs.confirm"]').type(Cypress.env("user_password"));
     cy.get('button[name="submit"]').click();
     cy.waitForUrl("/recipient/home");
+    cy.takeScreenshot("recipient/home");
     cy.logout();
   });
 
@@ -21,10 +22,10 @@ describe("Recipient first login", () => {
     cy.get( "#account_recovery_key").click();
     cy.get("[name='secret']").type(Cypress.env("user_password"));
     cy.get("#confirm").click();
-    cy.takeScreenshot("user/recoverykey", ".modal");
+    cy.takeScreenshot("user/recoverykey");
     cy.get("#close").click();
     cy.get("[name='two_factor']").click();
-    cy.takeScreenshot("user/2fa", ".modal");
+    cy.takeScreenshot("user/2fa");
     cy.get("#close").click();
   });
 });

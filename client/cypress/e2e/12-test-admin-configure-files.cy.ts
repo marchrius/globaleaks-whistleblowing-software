@@ -29,7 +29,7 @@ describe("Admin configure custom CSS", () => {
     cy.get(".modal [type='password']").type(Cypress.env("user_password"));
     cy.get(".modal .btn-primary").click();
 
-    const customCSSFile = "files/test.css";
+    const customCSSFile = "files/style.css";
     cy.fixture(customCSSFile).then((fileContent) => {
       cy.get('div.uploadfile.file-css input[type="file"]').then(($input) => {
         const inputElement = $input[0] as HTMLInputElement;
@@ -47,6 +47,7 @@ describe("Admin configure custom CSS", () => {
   });
 
   it("should upload a file and make it available for download and deletion", () => {
+
     cy.login_admin();
     cy.visit("#/admin/settings");
     cy.get('[data-cy="files"]').click();
@@ -57,12 +58,12 @@ describe("Admin configure custom CSS", () => {
     cy.get(".modal [type='password']").type(Cypress.env("user_password"));
     cy.get(".modal .btn-primary").click();
 
-    const customFile = "files/test.txt";
+    const customFile = "files/documentation.pdf";
     cy.fixture(customFile).then((fileContent) => {
       cy.get("div.file-custom input").then(($input) => {
         const inputElement = $input[0] as HTMLInputElement;
-        const blob = new Blob([fileContent], { type: "text/plain" });
-        const testFile = new File([blob], customFile, { type: "text/plain" });
+        const blob = new Blob([fileContent], { type: "text/css" });
+        const testFile = new File([blob], customFile, { type: "text/css" });
         const dataTransfer = new DataTransfer();
 
         dataTransfer.items.add(testFile);
@@ -80,6 +81,7 @@ describe("Admin configure custom CSS", () => {
 
 
   it("should be able to disable the file upload", () => {
+
     cy.login_admin();
     cy.visit("#/admin/settings");
     cy.get('[data-cy="files"]').click();

@@ -84,11 +84,11 @@ msgstr "Администраторлар кулланучыларның серс
 msgid "Advanced"
 msgstr ""
 
-msgid "Allow the recipient to edit the reports' expiration date"
-msgstr ""
-
 msgid "Allow the recipient to delete reports"
 msgstr "Алучыга хисапларны бетерергә рөхсәт итү"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Алучыга хисапның вакыты чыгу датасын кичектерергә рөхсәт итү"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Мәгълүмат җиткерүчегә хисапка кертелмәләр өстәргә рөхсәт итү"
@@ -186,8 +186,8 @@ msgstr "Дәвам итү өчен, зинһар, яңа серсүз урнаш
 msgid "Block the submission"
 msgstr "Документ җибәрүне блоклау"
 
-msgid "By confirming, you will edit the expiration date to:"
-msgstr ""
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Раслап, вакыты чыгу датасын бу көнгә кадәр кичектерәчәксез:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -258,6 +258,9 @@ msgid "Configure"
 msgstr "Көйләү"
 
 msgid "Confirm"
+msgstr "Раслау"
+
+msgid "Confirmation"
 msgstr "Раслау"
 
 msgid "Congratulations!"
@@ -393,9 +396,6 @@ msgstr "Иң беренче сайланган дата"
 
 msgid "Edit"
 msgstr "Үзгәртү"
-
-msgid "Edit the expiration date"
-msgstr "Вакыты чыгу датасын кичектерү"
 
 msgid "Email"
 msgstr "Электрон почта"
@@ -894,6 +894,9 @@ msgstr "Зинһар, барлык бәйләнгән мәгълүматларн
 
 msgid "Please select your account:"
 msgstr "Зинһар, шәхси сәхифәгезне сайлагыз:"
+
+msgid "Postpone the expiration date"
+msgstr "Вакыты чыгу датасын кичектерү"
 
 msgid "Preferences"
 msgstr "Өстенлекле көйләүләр"

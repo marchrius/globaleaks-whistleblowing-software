@@ -76,8 +76,6 @@ export class TipsComponent implements OnInit {
     textField: "label",
     itemsShowLimit: 5,
     allowSearchFilter: true,
-    selectAllText: this.translateService.instant("Select all"),
-    unSelectAllText: this.translateService.instant("Deselect all"),
     searchPlaceholderText: this.translateService.instant("Search")
   };
 
@@ -133,7 +131,6 @@ export class TipsComponent implements OnInit {
       }
     });
   }
-
   openRevokeAccessModal() {
     this.utils.runUserOperation("get_users_names", {}, false).subscribe(
       {
@@ -167,7 +164,11 @@ export class TipsComponent implements OnInit {
     );
   }
 
-  exportTips() {
+  tipsExport() {
+    this.exportFiles().subscribe();
+  }
+
+  exportFiles(): Observable<void> {
     const selectedTips = this.selectedTips.slice();
 
     return from(this.tokenResourceService.getWithProofOfWork()).pipe(
@@ -195,7 +196,7 @@ export class TipsComponent implements OnInit {
           this.appDataService.updateShowLoadingPanel(false);
         });
       })
-    ).subscribe();
+    );
   }
 
   reload() {
@@ -219,11 +220,23 @@ export class TipsComponent implements OnInit {
     return this.selectedTips.indexOf(id) !== -1;
   }
 
+  exportTip(tipId: string) {
+    this.utils.download("api/recipient/rtips/" + tipId + "/export").subscribe();
+    this.appDataService.updateShowLoadingPanel(false);
+  }
+
+  markReportStatus(date: string): boolean {
+    const report_date = new Date(date);
+    const current_date = new Date();
+    return current_date > report_date;
+  }
+
   actAsWhistleblower() {
     this.http.get('/api/auth/operatorauthswitch', { observe: 'response' }).subscribe(
       (response: HttpResponse<any>) => {
         if (response.status === 200) {
-          window.open(window.location.origin + response.body.redirect);
+          const urlRedirect = window.location.origin + response.body.redirect;
+          window.open(urlRedirect, '_blank');
         }
       },
     );
@@ -317,17 +330,20 @@ export class TipsComponent implements OnInit {
     this.expirationDatePicker = false;
   }
 
-  onSearchChange(search: string | number | undefined) {
-    search = String(search);
-
-    if (typeof search !== "undefined") {
+  onSearchChange(value: string | number | undefined) {
+    if (typeof value !== "undefined") {
       this.currentPage = 1;
       this.filteredTips = this.RTips.dataModel;
       this.processTips();
 
-      this.filteredTips = orderBy(filter(this.filteredTips, (tip) => {
-        return this.utils.searchInObject(tip, search);
-      }), "update_date");
+      this.filteredTips = orderBy(filter(this.filteredTips, (tip) =>
+        Object.values(tip).some((val) => {
+          if (typeof val === "string" || typeof val === "number") {
+            return String(val).toLowerCase().includes(String(value).toLowerCase());
+          }
+          return false;
+        })
+      ), "update_date");
     }
   }
 
@@ -402,7 +418,6 @@ export class TipsComponent implements OnInit {
     this.lastUpdatePicker = false;
     this.expirationDatePicker = false;
   }
-
   exportToCsv(): void {
     this.utils.generateCSV(JSON.stringify(this.getDataCsv()), 'reports',this.getDataCsvHeaders());
   }
@@ -413,7 +428,7 @@ export class TipsComponent implements OnInit {
       id: tip.id,
       progressive: tip.progressive,
       important: tip.important,
-      reportStatus: this.utils.isDatePassed(tip.reminder_date),
+      reportStatus: this.markReportStatus(tip.reminder_date),
       context_name: tip.context_name,
       label: tip.label,
       status: tip.submissionStatusStr,

@@ -1,9 +1,9 @@
-describe("admin configure, add, and delete channels", () => {
-  it("should configure an existing channel", () => {
+describe("admin configure, add, and delete contexts", () => {
+  it("should configure an existing context", () => {
     cy.visit("/");
     cy.login_admin();
 
-    cy.visit("#/admin/channels");
+    cy.visit("#/admin/contexts");
 
     cy.get("#context-0").within(() => {
       cy.get("#edit_context").click();
@@ -23,11 +23,11 @@ describe("admin configure, add, and delete channels", () => {
     });
   });
 
-  it("should add new channels", () => {
+  it("should add new contexts", () => {
     cy.visit("/");
     cy.login_admin();
 
-    cy.visit("#/admin/channels");
+    cy.visit("#/admin/contexts");
     const add_context = async (context_name: string) => {
       cy.get(".show-add-context-btn").click();
       cy.get("[name='new_context.name']").type(context_name);
@@ -38,13 +38,15 @@ describe("admin configure, add, and delete channels", () => {
     add_context("Topic A");
     add_context("Topic B");
     add_context("Topic C");
+
+    cy.takeScreenshot("admin/contextstest-admin-contexts.png");
   });
 
-  it("should delete existing channels", () => {
+  it("should delete existing contexts", () => {
     cy.visit("/");
     cy.login_admin();
 
-    cy.visit("#/admin/channels");
+    cy.visit("#/admin/contexts");
     cy.get("[name='delete_context']").last().click();
     cy.get("#modal-action-ok").click();
 

@@ -88,11 +88,11 @@ msgstr "អ្នកគ្រប់គ្រងត្រូវបានផ្ត
 msgid "Advanced"
 msgstr "កម្រិតខ្ពស់"
 
-msgid "Allow the recipient to edit the reports' expiration date"
-msgstr ""
-
 msgid "Allow the recipient to delete reports"
 msgstr "អនុញ្ញាតអ្នកទទួលលុបរបាយការណ៍"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "អនុញ្ញាតអ្នកទទួលពន្យាពេលកាលបរិច្ឆេទផុតកំណត់របាយការណ៍"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "អនុញ្ញាតអ្នករាយការណ៍បន្ថែមឯកសារភ្ជាប់ទៅកាន់របាយការណ៍"
@@ -190,8 +190,8 @@ msgstr "មុនពេលដំណើរការ​ សូមកំណត់�
 msgid "Block the submission"
 msgstr "រារាំងការដាក់បញ្ជូន"
 
-msgid "By confirming, you will edit the expiration date to:"
-msgstr ""
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "ដោយការបញ្ជាក់នេះ អ្នកនឹងពន្យាកាលបរិច្ឆេទផុតកំណត់ទៅ៖"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -263,6 +263,9 @@ msgstr "កំណត់រចនាសម្ព័ន្ធ"
 
 msgid "Confirm"
 msgstr "យល់ព្រម"
+
+msgid "Confirmation"
+msgstr "ការបញ្ជាក់"
 
 msgid "Congratulations!"
 msgstr "អប​អរសាទរ!"
@@ -397,9 +400,6 @@ msgstr "កាលបរិច្ឆេទដែលអាចជ្រើសរើ
 
 msgid "Edit"
 msgstr "កែប្រែ"
-
-msgid "Edit the expiration date"
-msgstr "ពន្យាកាលបរិច្ឆេទផុតកំណត់"
 
 msgid "Email"
 msgstr "អុីមែល"
@@ -898,6 +898,9 @@ msgstr "សូមចំណាំថា រាល់ទិន្នន័យដ�
 
 msgid "Please select your account:"
 msgstr "សូមជ្រើសរើសគណនីរបស់អ្នក៖"
+
+msgid "Postpone the expiration date"
+msgstr "ពន្យាកាលបរិច្ឆេទផុតកំណត់"
 
 msgid "Preferences"
 msgstr "ចំណូលចិត្ត"

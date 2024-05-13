@@ -130,6 +130,9 @@ msgstr "Permitir a este usuario editar la fecha de caducidad de las denuncias"
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir a este usuario borrar denuncias."
 
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Permitir al destinatario posponer la fecha de caducidad de una denuncia."
+
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permitir al denunciante añadir nuevos adjuntos a su denuncia"
 
@@ -226,8 +229,8 @@ msgstr "Antes de continuar, por favor establezca una nueva contraseña."
 msgid "Block the submission"
 msgstr "Bloquear el envío "
 
-msgid "By confirming, you will edit the expiration date to:"
-msgstr "Al confirmar, cambiará la fecha de caducidad a:"
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Al confirmar, pospondrá la fecha de caducidad a:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Tras confirmar, quedará establecido un recordatorio para el día:"
@@ -300,6 +303,9 @@ msgstr "Configurar"
 msgid "Confirm"
 msgstr "Confirmar"
 
+msgid "Confirmation"
+msgstr "Confirmación"
+
 msgid "Congratulations!"
 msgstr "¡Felicidades!"
 
@@ -362,8 +368,8 @@ msgstr "Denegada"
 msgid "Deny"
 msgstr "Denegar"
 
-msgid "Deny access to the whistleblower's identity"
-msgstr "Denegar acceso a la identidad del denunciante "
+msgid "Check your inbox to activate it."
+msgstr "Compruebe su bandeja de entrada para activarla."
 
 msgid "Description"
 msgstr "Descripción"
@@ -389,11 +395,11 @@ msgstr "Deshabilitar"
 msgid "Disable notifications to administrators"
 msgstr "Deshabilitar notificaciones a los administradores"
 
-msgid "Disable notifications to custodians"
-msgstr "Deshabilitar notificaciones a los custodios"
+msgid "Column"
+msgstr "Columna"
 
-msgid "Disable notifications to recipients"
-msgstr "Deshabilitar notificaciones a los destinatarios"
+msgid "Comments"
+msgstr "Comentarios"
 
 msgid "Disable submissions"
 msgstr "Deshabilitar recepción de denuncias"
@@ -433,9 +439,6 @@ msgstr "Fecha más temprana disponible"
 
 msgid "Edit"
 msgstr "Editar"
-
-msgid "Edit the expiration date"
-msgstr "Editar la fecha de caducidad"
 
 msgid "Email"
 msgstr "Correo electrónico"
@@ -633,8 +636,8 @@ msgstr "Nombre del servidor "
 msgid "I have read and agree to the terms of the license."
 msgstr "He leído y estoy de acuerdo con los términos de la licencia."
 
-msgid "I've read and accept the Privacy Policy"
-msgstr "He leído y acepto la Política de privacidad"
+msgid "Expiration date"
+msgstr "Fecha de caducidad"
 
 msgid "ID"
 msgstr "Identificación"
@@ -935,6 +938,9 @@ msgstr "Por favor, comprenda que todos los datos asociados serán eliminados def
 msgid "Please select your account:"
 msgstr "Por favor, seleccione su cuenta:"
 
+msgid "Postpone the expiration date"
+msgstr "Posponer la fecha de vencimiento"
+
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -974,8 +980,8 @@ msgstr "Nombre público"
 msgid "Question"
 msgstr "Pregunta"
 
-msgid "Question group"
-msgstr "Grupo de preguntas"
+msgid "Please choose a different username."
+msgstr "Por favor escoja otro nombre de usuario."
 
 msgid "Question templates"
 msgstr "Plantillas de pregunta"
@@ -1059,7 +1065,7 @@ msgid "Report statuses"
 msgstr "Estados de una denuncia."
 
 msgid "Reports"
-msgstr "Denuncias"
+msgstr "Denuncias."
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Solicitar acceso a la identidad del denunciante "
@@ -1250,8 +1256,8 @@ msgstr "Omitir la creación de la cuenta del destinatario."
 msgid "Software version:"
 msgstr "Versión del software:"
 
-msgid "Statistics"
-msgstr "Estadísticas"
+msgid "Single-line text input"
+msgstr "Entrada de texto línea única"
 
 msgid "Stats"
 msgstr "Estadísticas"
@@ -1653,7 +1659,7 @@ msgid "seconds"
 msgstr "segundos"
 
 msgid "File a report"
-msgstr "Presentar una denuncia"
+msgstr "Presentar una denuncia."
 
 msgid "Select a reporting channel:"
 msgstr "Seleccione un canal de denuncias:"

@@ -89,11 +89,11 @@ msgstr "ユーザーのパスワード変更を許可された管理者:"
 msgid "Advanced"
 msgstr "詳細"
 
-msgid "Allow the recipient to edit the reports' expiration date"
-msgstr ""
-
 msgid "Allow the recipient to delete reports"
 msgstr "受信者が報告を削除することを許可する"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "受信者が報告の有効期限を延長することを許可する"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "その内部告発者が、報告に添付ファイルを追加することを許可する"
@@ -191,8 +191,8 @@ msgstr "次に進む前に、新しいパスワードを設定してください
 msgid "Block the submission"
 msgstr "提出をブロック"
 
-msgid "By confirming, you will edit the expiration date to:"
-msgstr ""
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "確認すると、有効期限を以下に延期します:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -265,6 +265,9 @@ msgstr "設定"
 msgid "Confirm"
 msgstr "延期を確認"
 
+msgid "Confirmation"
+msgstr "確認"
+
 msgid "Congratulations!"
 msgstr "おめでとうございます"
 
@@ -327,8 +330,8 @@ msgstr "拒否"
 msgid "Deny"
 msgstr "拒否"
 
-msgid "Deny access to the whistleblower's identity"
-msgstr "内部告発者の身元へのアクセスを拒否"
+msgid "Channels"
+msgstr ""
 
 msgid "Description"
 msgstr "説明"
@@ -354,11 +357,11 @@ msgstr "無効"
 msgid "Disable notifications to administrators"
 msgstr "管理者への通知メールを無効にする"
 
-msgid "Disable notifications to custodians"
-msgstr "管理人への通知メールを無効にする"
+msgid "Collapse"
+msgstr "折りたたむ"
 
-msgid "Disable notifications to recipients"
-msgstr "受信者への通知メールを無効にする"
+msgid "Column"
+msgstr "列"
 
 msgid "Disable submissions"
 msgstr "提出を無効にする"
@@ -398,9 +401,6 @@ msgstr "選択可能な最も早い日付"
 
 msgid "Edit"
 msgstr "編集"
-
-msgid "Edit the expiration date"
-msgstr "有効期限を延期する"
 
 msgid "Email"
 msgstr "電子メール"
@@ -598,8 +598,8 @@ msgstr "ホスト名"
 msgid "I have read and agree to the terms of the license."
 msgstr "ライセンス規約を読み、同意します。"
 
-msgid "I've read and accept the Privacy Policy"
-msgstr ""
+msgid "File size"
+msgstr "ファイルのサイズ"
 
 msgid "ID"
 msgstr "ID"
@@ -900,6 +900,9 @@ msgstr "すべての関連データが完全に失われますのでご注意く
 msgid "Please select your account:"
 msgstr "あなたのアカウントを選択してください:"
 
+msgid "Postpone the expiration date"
+msgstr "有効期限を延期する"
+
 msgid "Preferences"
 msgstr "設定"
 
@@ -939,8 +942,8 @@ msgstr "公開名"
 msgid "Question"
 msgstr "質問"
 
-msgid "Question group"
-msgstr "質問グループ"
+msgid "Please choose a different username."
+msgstr "別のユーザー名を選択してください。"
 
 msgid "Question templates"
 msgstr "質問のテンプレート"

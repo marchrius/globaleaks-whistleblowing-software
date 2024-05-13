@@ -53,7 +53,7 @@ msgid "Account recovery key"
 msgstr "Tilin palautusavain"
 
 msgid "Act on behalf of a whistleblower"
-msgstr "Toimi ilmoittajan puolesta"
+msgstr ""
 
 msgid "Activities"
 msgstr "Tapahtumat"
@@ -94,11 +94,11 @@ msgstr "Ylläpitäjillä on valtuutus vaihtaa käyttäjän salasanat:"
 msgid "Advanced"
 msgstr "Edistyneet ominaisuudet"
 
-msgid "Allow the recipient to edit the reports' expiration date"
-msgstr "Salli vastaanottajan muokata vanhentumispäivää"
-
 msgid "Allow the recipient to delete reports"
 msgstr "Salli vastaanottajan poistaa raportteja"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Salli vastaanottajan lykätä raportin vanhentumispäivää"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Anna ilmoittajan lisätä liitteitä"
@@ -128,7 +128,7 @@ msgid "Anomaly detection thresholds"
 msgstr "Poikkeaman havainnointikynnys"
 
 msgid "Anonymity"
-msgstr "Nimettömyys"
+msgstr ""
 
 msgid "Anonymize outgoing connections"
 msgstr "Lähtevien yhteyksien anonymisointi"
@@ -152,7 +152,7 @@ msgid "Attachments"
 msgstr "Liitteet"
 
 msgid "Attention"
-msgstr "Huomio"
+msgstr ""
 
 msgid "Audio"
 msgstr "Ääni"
@@ -196,8 +196,8 @@ msgstr "Ennen kuin jatkat, aseta uusi salasana."
 msgid "Block the submission"
 msgstr "Estä lähettäminen"
 
-msgid "By confirming, you will edit the expiration date to:"
-msgstr "Vahvistamalla siirrät vanhentumispäivän ajankohtaan:"
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Vahvistamalla lykkäät vanhentumispäivän ajankohtaan:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Vahvistamalla asetat muistutuksen päivämäärään:"
@@ -220,7 +220,7 @@ msgid "Certificate Signing Request"
 msgstr "Varmenteen allekirjoituspyyntö (CSR)"
 
 msgid "Change status"
-msgstr "Vaihda tila"
+msgstr ""
 
 msgid "Change your password"
 msgstr "Vaihda salasanasi"
@@ -269,6 +269,9 @@ msgstr "Määritä"
 
 msgid "Confirm"
 msgstr "Vahvista"
+
+msgid "Confirmation"
+msgstr "Vahvistus"
 
 msgid "Congratulations!"
 msgstr "Onnittelut!"
@@ -332,8 +335,8 @@ msgstr "Kielletty"
 msgid "Deny"
 msgstr "Kiellä"
 
-msgid "Deny access to the whistleblower's identity"
-msgstr "Estä pääsy vihjeenantajan henkilöllisyyteen"
+msgid "Check your inbox to activate it."
+msgstr "Tarkista postilaatikkosi aktivoidaksesi sen."
 
 msgid "Description"
 msgstr "Kuvaus"
@@ -351,7 +354,7 @@ msgid "Details of the PGP key:"
 msgstr "PGP-avaimen tiedot:"
 
 msgid "Devices"
-msgstr "Laitteet"
+msgstr ""
 
 msgid "Disable"
 msgstr "Poista käytöstä"
@@ -359,11 +362,11 @@ msgstr "Poista käytöstä"
 msgid "Disable notifications to administrators"
 msgstr "Poista käytöstä järjestelmänvalvojalle annettavat ilmoitukset"
 
-msgid "Disable notifications to custodians"
-msgstr "Poista käytöstä ilmoitukset valvojalle"
+msgid "Column"
+msgstr "Sarake"
 
-msgid "Disable notifications to recipients"
-msgstr "Poista käytöstä ilmoitukset vastaanottajille"
+msgid "Comments"
+msgstr "Kommentit"
 
 msgid "Disable submissions"
 msgstr "Poista vihjeiden lähettäminen käytöstä"
@@ -403,9 +406,6 @@ msgstr "Varhaisin valittavissa oleva päivämäärä"
 
 msgid "Edit"
 msgstr "Muokkaa"
-
-msgid "Edit the expiration date"
-msgstr "Muokkaa vanhentumispäivää"
 
 msgid "Email"
 msgstr "Sähköposti"
@@ -522,7 +522,7 @@ msgid "Footer"
 msgstr "Alatunniste"
 
 msgid "For security reasons the code needs to be changed."
-msgstr "Turvallisuussyistä koodi on vaihdettava."
+msgstr ""
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
@@ -603,8 +603,8 @@ msgstr "Domain nimi"
 msgid "I have read and agree to the terms of the license."
 msgstr "Olen lukenut ja hyväksyn lisenssiehdot."
 
-msgid "I've read and accept the Privacy Policy"
-msgstr "Olen lukenut ja hyväksyn tietosuojakäytännön"
+msgid "Expiration date"
+msgstr "Vanhentumispäivämäärä"
 
 msgid "ID"
 msgstr "Tunniste"
@@ -905,6 +905,9 @@ msgstr "Huomaa, että kaikki siihen liittyvät tiedot poistetaan pysyvästi."
 msgid "Please select your account:"
 msgstr "Valitse tilisi:"
 
+msgid "Postpone the expiration date"
+msgstr "Siirrä vanhentumispäivää myöhäisemmäksi"
+
 msgid "Preferences"
 msgstr "Asetukset"
 
@@ -927,7 +930,7 @@ msgid "Private Key"
 msgstr "Yksityinen avain"
 
 msgid "Privileges"
-msgstr "Oikeudet"
+msgstr ""
 
 msgid "Proceed"
 msgstr "Jatka"
@@ -944,8 +947,8 @@ msgstr "Julkinen nimi"
 msgid "Question"
 msgstr "Kysymys"
 
-msgid "Question group"
-msgstr "Kysymysryhmä"
+msgid "Please choose a different username."
+msgstr "Valitse erilainen käyttäjänimi."
 
 msgid "Question templates"
 msgstr "Kysymysmallit"
@@ -1011,7 +1014,7 @@ msgid "Remove"
 msgstr "Poista"
 
 msgid "Reopen"
-msgstr "Avaa uudelleen"
+msgstr ""
 
 msgid "Reply motivation"
 msgstr "Vastauksen syy"
@@ -1077,7 +1080,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Rajoita pääsy tiettyihin IP-osoitteisiin"
 
 msgid "Returning whistleblowers"
-msgstr "Palaavat ilmoittajat"
+msgstr ""
 
 msgid "Revoke access"
 msgstr "Peruuta pääsy"
@@ -1185,7 +1188,7 @@ msgid "Show"
 msgstr "Näytä"
 
 msgid "Show channels in alphabetical order"
-msgstr "Näytä kanavat aakkosjärjestyksessä"
+msgstr ""
 
 msgid "Show recipients in alphabetical order"
 msgstr "Näytä vastaanottajat aakkosjärjestyksessä"
@@ -1220,8 +1223,8 @@ msgstr "Ohita vastaanottajatilin luominen."
 msgid "Software version:"
 msgstr "Ohjelmiston versio"
 
-msgid "Statistics"
-msgstr "Tilastot"
+msgid "Single-line text input"
+msgstr "Yksirivinen tekstikenttä"
 
 msgid "Stats"
 msgstr "Tilastot"
@@ -1330,7 +1333,7 @@ msgid ""
 msgstr "Tämän vaihe vaiheelta -opastuksen avulla voit ottaa vihjepalvelun käyttöösi haluamillasi asetuksilla."
 
 msgid "The link will expire in 7 days."
-msgstr "Linkki vanhenee 7 päivän kuluttua."
+msgstr ""
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
@@ -1456,10 +1459,10 @@ msgid "URL redirects"
 msgstr "URL-uudelleenohjaukset"
 
 msgid "Unhide"
-msgstr "Kumoa piilotus"
+msgstr ""
 
 msgid "Unselect"
-msgstr "Poista valinta"
+msgstr ""
 
 msgid "Upload"
 msgstr "Lataa"
@@ -1573,7 +1576,7 @@ msgid ""
 msgstr "Muodostat yhteyden palvelimeen ilman nimettömyyttä ja tämä palvelin tukee vain anonyymejä lähetyksiä"
 
 msgid "You are operating on behalf of a whistleblower."
-msgstr "Toimit ilmoittajan puolesta."
+msgstr ""
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "

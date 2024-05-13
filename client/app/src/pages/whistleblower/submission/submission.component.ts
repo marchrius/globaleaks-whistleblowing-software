@@ -48,14 +48,14 @@ export class SubmissionComponent implements OnInit {
   submissionService = inject(SubmissionService);
 
   @ViewChild("submissionForm") public submissionForm: NgForm;
-  @ViewChildren("stepForm") stepForms: QueryList<NgForm>;
+  @ViewChildren("stepform") stepForms: QueryList<NgForm>;
 
-  _navigation = -1;
   answers: Answers = {};
   identity_provided = false;
   context_id = "";
   context: Context | undefined = undefined;
   receiversOrderPredicate: string;
+  navigation = -1;
   validate: boolean[] = [];
   score = 0;
   done: boolean;
@@ -65,9 +65,6 @@ export class SubmissionComponent implements OnInit {
   selectable_contexts: Context[];
   show_steps_navigation_bar = false;
   receivedData: Flow[];
-  hasNextStepValue: boolean;
-  hasPreviousStepValue: boolean;
-  areReceiversSelectedValue: boolean;
 
   constructor() {
     this.selectable_contexts = [];
@@ -76,7 +73,7 @@ export class SubmissionComponent implements OnInit {
     this.appConfigService.setPage("submissionpage");
     this.whistleblowerLoginResolver.resolve()
     this.resetForm();
-  }
+    this.initializeSubmission();
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
@@ -143,32 +140,8 @@ export class SubmissionComponent implements OnInit {
       context = this.appDataService.public.contexts.find(context => context.id === this.appDataService.context_id);
     } else if (this.selectable_contexts.length === 1) {
       context = this.selectable_contexts[0];
-    }
-
-    if (context) {
       this.prepareSubmission(context);
     }
-  }
-
-  private updateStatusVariables(): void {
-    this.hasPreviousStepValue = this.hasPreviousStep();
-    this.hasNextStepValue = this.hasNextStep();
-    this.areReceiversSelectedValue = this.areReceiversSelected();
-  }
-
-  get navigation(): any {
-    return this._navigation;
-  }
-
-  set navigation(value: any) {
-    if (this._navigation !== value) {
-      this._navigation = value;
-      this.handleNavigationChange();
-    }
-  }
-
-  private handleNavigationChange(): void {
-    this.updateStatusVariables();
   }
 
   goToStep(step: number) {
@@ -192,6 +165,23 @@ export class SubmissionComponent implements OnInit {
     return this.navigation < this.lastStepIndex();
   }
 
+  stepForm(index: number): any {
+    if (this.stepForms && index !== -1) {
+      return this.stepForms.get(index);
+    }
+  };
+
+  displayStepErrors(index: number): any {
+    if (index !== -1) {
+      const response = this.stepForm(index);
+      if (response) {
+        return response?.invalid;
+      } else {
+        return false;
+      }
+    }
+  };
+
   lastStepIndex() {
     let last_enabled = 0;
     if (this.questionnaire) {
@@ -204,6 +194,14 @@ export class SubmissionComponent implements OnInit {
 
     }
     return last_enabled;
+  };
+
+  submissionHasErrors() {
+    if (this.submissionForm) {
+      return this.submissionForm.invalid || this.utilsService.isUploading(this.uploads);
+    }
+
+    return false;
   };
 
   uploading() {
@@ -250,25 +248,21 @@ export class SubmissionComponent implements OnInit {
     return progress;
   }
 
-  displaySubmissionErrors() {
-    if (!this.validate[this.navigation]) {
+  displayErrors() {
+    if (!(this.validate[this.navigation])) {
       return false;
     }
 
-    this.updateStatusVariables();
-
-    if (!(this.hasPreviousStepValue || !this.hasNextStepValue) && !this.areReceiversSelectedValue) {
+    if (!(this.hasPreviousStep() || !this.hasNextStep()) && !this.areReceiversSelected()) {
       return true;
     }
 
-    return false
-  }
+    if (!this.hasNextStep() && this.submissionHasErrors()) {
+      return true;
+    }
+    return !!this.displayStepErrors(this.navigation);
 
-  displayErrors() {
-    this.updateStatusVariables();
-
-    return this.validate[this.navigation];
-  }
+  };
 
   completeSubmission() {
     this.receivedData = this.submissionService.getSharedData();
@@ -315,16 +309,25 @@ export class SubmissionComponent implements OnInit {
     }, 1000);
   }
 
+  replaceReceivers(receivers: string[]): void {
+    Object.keys(this.submissionService.selected_receivers).forEach((key) => {
+      if (receivers.indexOf(key) === -1) {
+        delete this.submissionService.selected_receivers[key];
+      }
+    });
+
+    receivers.forEach((receiverId) => {
+      if (receiverId in this.appDataService.receivers_by_id) {
+        this.submissionService.selected_receivers[receiverId] = true;
+      }
+    });
+  }
+
   runValidation() {
     this.validate[this.navigation] = true;
-    this.areReceiversSelectedValue = this.areReceiversSelected();
+    return !((!this.areReceiversSelected() && this.firstStepIndex() && this.navigation === -1) || !this.whistleblowerSubmissionService.checkForInvalidFields(this));
+  };
 
-    if (this.submissionService.context.allow_recipients_selection && !this.areReceiversSelectedValue) {
-      this.navigation = -1;
-    }
-
-    return !(!this.areReceiversSelectedValue || !this.whistleblowerSubmissionService.checkForInvalidFields(this));
-  }
 
   resetForm() {
     if (this.submissionForm) {

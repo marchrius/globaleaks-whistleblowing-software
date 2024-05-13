@@ -1,6 +1,5 @@
 export interface Step {
   enabled: boolean;
-  invalid: boolean;
   id: string;
   questionnaire_id: string;
   order: number;
@@ -134,8 +133,6 @@ export interface Comment {
   content: string;
   author_id: string;
   visibility: string;
-  type: string;
-  data: any;
 }
 
 export interface WbFile {

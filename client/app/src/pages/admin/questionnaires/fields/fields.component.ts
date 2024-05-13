@@ -148,7 +148,7 @@ export class FieldsComponent implements OnInit {
   }
 
   exportQuestion(field: Step | Field) {
-    this.utilsService.saveAs(this.authenticationService,field.label + ".json","api/admin/fieldtemplates/" + field.id + "?multilang=1");
+    this.utilsService.saveAs(this.authenticationService,field.label + ".json","api/admin/fieldtemplates/" + field.id);
   }
 
   delField(field: Step | Field) {

@@ -283,7 +283,6 @@ export class UtilsService {
       this.modalService.open(RequestSupportComponent,{backdrop: "static",keyboard: false});
     }
   }
-
   array_to_map(receivers: any) {
     const ret: any = {};
 
@@ -306,8 +305,8 @@ export class UtilsService {
 
         const subStatus = submission_statuses[i].substatuses;
         for (let j = 0; j < subStatus.length; j++) {
-          if (subStatus[j].id === substatus && subStatus[j].label) {
-            text += ' \u2013 ' + subStatus[j].label;
+          if (subStatus[j].id === substatus) {
+            text += ' \u2013 ' + this.translateService.instant(subStatus[j].label);
             break;
           }
         }
@@ -342,7 +341,7 @@ export class UtilsService {
 
   isNever(time: string) {
     const date = new Date(time);
-    return date.getTime() >= 32503680000000;
+    return date.getTime() === 32503680000000;
   }
 
   deleteFromList(list:  { [key: string]: Field}[], elem: { [key: string]: Field}) {
@@ -435,6 +434,19 @@ export class UtilsService {
     window.print();
   }
 
+  saveAs(authenticationService: AuthenticationService, filename: any, url: string): void {
+
+    const headers = new HttpHeaders({
+      "X-Session": authenticationService.session.id
+    });
+
+    this.http.get(url, {responseType: "blob", headers: headers}).subscribe(
+      response => {
+        this.saveBlobAs(filename, response);
+      }
+    );
+  }
+
   saveBlobAs(filename:string,response:Blob){
     const blob = new Blob([response], {type: "text/plain;charset=utf-8"});
     const blobUrl = URL.createObjectURL(blob);
@@ -447,18 +459,6 @@ export class UtilsService {
     setTimeout(() => {
       URL.revokeObjectURL(blobUrl);
     }, 1000);
-  }
-
-  saveAs(authenticationService: AuthenticationService, filename: any, url: string): void {
-    const headers = new HttpHeaders({
-      "X-Session": authenticationService.session.id
-    });
-
-    this.http.get(url, {responseType: "blob", headers: headers}).subscribe(
-      response => {
-        this.saveBlobAs(filename, response);
-      }
-    );
   }
 
   getPostponeDate(ttl: number): Date {
@@ -545,12 +545,9 @@ export class UtilsService {
 
   getConfirmation(): Observable<string> {
     return new Observable((observer) => {
-      let modalRef;
-
+      let modalRef = this.modalService.open(ConfirmationWithPasswordComponent,{backdrop: "static",keyboard: false});
       if (this.preferenceResolver.dataModel.two_factor) {
         modalRef = this.modalService.open(ConfirmationWith2faComponent,{backdrop: "static",keyboard: false});
-      } else {
-        modalRef = this.modalService.open(ConfirmationWithPasswordComponent,{backdrop: "static",keyboard: false});
       }
 
       modalRef.componentInstance.confirmFunction = (secret: string) => {

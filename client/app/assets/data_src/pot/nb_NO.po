@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>, 2014-2018\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2022\n"
 "Language-Team: Norwegian Bokmål (Norway) (http://app.transifex.com/otf/globaleaks/language/nb_NO/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -32,7 +32,7 @@ msgid "Access control"
 msgstr "Tilgangskontroll"
 
 msgid "Access date"
-msgstr "Tilgangsdato"
+msgstr ""
 
 msgid "Access requested"
 msgstr "Tilgang forespurt"
@@ -45,7 +45,7 @@ msgid "Account recovery key"
 msgstr "Nøkkel til kontogjenoppretting"
 
 msgid "Act on behalf of a whistleblower"
-msgstr "Handle på vegne av en varsler"
+msgstr ""
 
 msgid "Activities"
 msgstr "Aktivitet"
@@ -86,11 +86,11 @@ msgstr "Administratorer autorisert til å endre brukerpassord:"
 msgid "Advanced"
 msgstr "Avansert"
 
-msgid "Allow the recipient to edit the reports' expiration date"
-msgstr ""
-
 msgid "Allow the recipient to delete reports"
 msgstr "Tillat mottakeren å slette rapporter"
+
+msgid "Allow the recipient to postpone the report expiration date"
+msgstr "Tillat mottakeren å utsette utløpsdatoen for rapporten"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "La fløyteblåseren legge til vedlegg i rapporten"
@@ -111,7 +111,7 @@ msgid "An update is available:"
 msgstr "Oppgradering tilgjengelig:"
 
 msgid "Analyst"
-msgstr "Analytiker"
+msgstr ""
 
 msgid "Anomalies"
 msgstr "Unormalheter"
@@ -120,7 +120,7 @@ msgid "Anomaly detection thresholds"
 msgstr "Grenseverdi for rapportering av unormalheter"
 
 msgid "Anonymity"
-msgstr "Anonymitet"
+msgstr ""
 
 msgid "Anonymize outgoing connections"
 msgstr "Anonymiser utgående tilkoblinger"
@@ -135,7 +135,7 @@ msgid "Assign score points"
 msgstr "Tildel poeng"
 
 msgid "Assigned to"
-msgstr "Tilordnet til"
+msgstr ""
 
 msgid "Attachment"
 msgstr "Vedlegg"
@@ -144,7 +144,7 @@ msgid "Attachments"
 msgstr "Vedlegg"
 
 msgid "Attention"
-msgstr "Viktig"
+msgstr ""
 
 msgid "Audio"
 msgstr "Lyd"
@@ -188,11 +188,11 @@ msgstr "Innstill et nytt passord før du fortsetter."
 msgid "Block the submission"
 msgstr "Blokker innsendelsen"
 
-msgid "By confirming, you will edit the expiration date to:"
-msgstr ""
+msgid "By confirming, you will postpone the expiration date to:"
+msgstr "Ved å bekrefte vil du utsette utløpsdatoen til:"
 
 msgid "By confirming, you will set a reminder on date:"
-msgstr "Ved å bekrefte, stiller du inn en påminnelse på dato:"
+msgstr ""
 
 msgid ""
 "By enabling this feature, you will contribute to the development and "
@@ -212,7 +212,7 @@ msgid "Certificate Signing Request"
 msgstr "Forespørsel om sertifikatsignering"
 
 msgid "Change status"
-msgstr "Endre status"
+msgstr ""
 
 msgid "Change your password"
 msgstr "Endre passord"
@@ -221,10 +221,10 @@ msgid "Changelog"
 msgstr "Endringslogg"
 
 msgid "Channel"
-msgstr "Kanal"
+msgstr ""
 
 msgid "Channels"
-msgstr "Kanaler"
+msgstr ""
 
 msgid "Check your inbox to activate it."
 msgstr "Sjekk innboksen og aktiver den."
@@ -262,6 +262,9 @@ msgstr "Konfigurer"
 msgid "Confirm"
 msgstr "Bekreft"
 
+msgid "Confirmation"
+msgstr "Bekreftelse"
+
 msgid "Congratulations!"
 msgstr "Gratulerer!"
 
@@ -293,7 +296,7 @@ msgid "Custom privacy panel"
 msgstr "Egentilpasset personvernspanel"
 
 msgid "Custom support URL"
-msgstr "Tilpasset support-URL"
+msgstr ""
 
 msgid "Custom text"
 msgstr "Egendefinert tekst"
@@ -313,7 +316,7 @@ msgstr "Datointervall"
 msgid ""
 "Default mail configuration in use. Please consider using a private mail "
 "server."
-msgstr "Standard e-postkonfigurasjon i bruk. Vurder å bruke en privat e-posttjener."
+msgstr ""
 
 msgid "Delete"
 msgstr "Slett"
@@ -343,7 +346,7 @@ msgid "Details of the PGP key:"
 msgstr "Detaljer for PGP-nøkkel:"
 
 msgid "Devices"
-msgstr "Enheter"
+msgstr ""
 
 msgid "Disable"
 msgstr "Deaktiver"
@@ -379,7 +382,7 @@ msgid "Download"
 msgstr "Nedlasting"
 
 msgid "Download copy of the Privacy Policy"
-msgstr "Last ned en kopi av personvernpraksisen"
+msgstr ""
 
 msgid "Download the Tor Browser"
 msgstr "Last ned Tor-nettleseren"
@@ -396,9 +399,6 @@ msgstr "Tidligst valgbar dato"
 msgid "Edit"
 msgstr "Rediger"
 
-msgid "Edit the expiration date"
-msgstr "Utsett utløpsdato"
-
 msgid "Email"
 msgstr "E-post"
 
@@ -409,7 +409,7 @@ msgid "Enable"
 msgstr "Aktiver"
 
 msgid "Enable PGP"
-msgstr "Aktiver PGP"
+msgstr ""
 
 msgid "Enable administrators to change user passwords"
 msgstr "La administratorer endre brukerpassord"
@@ -452,7 +452,7 @@ msgstr "Skriv inn koden for tofaktorautentisering"
 
 msgid ""
 "Enter your account recovery key to complete the password reset procedure"
-msgstr "Oppgi nøkkelen for kontogjenoppretting for å fullføre prosedyren for tilbakestilling av passord"
+msgstr ""
 
 msgid ""
 "Enter your account's username or your email address to request a password "
@@ -469,7 +469,7 @@ msgid "Error!"
 msgstr "Feil!"
 
 msgid "Everyone"
-msgstr "Alle"
+msgstr ""
 
 msgid "Example:"
 msgstr "Eksempel:"
@@ -508,13 +508,13 @@ msgid "First"
 msgstr "Først"
 
 msgid "Fiscal code"
-msgstr "Regnskapskode"
+msgstr ""
 
 msgid "Footer"
 msgstr "Bunntekst"
 
 msgid "For security reasons the code needs to be changed."
-msgstr "Koden må endres av sikkerhetsårsaker."
+msgstr ""
 
 msgid ""
 "For security reasons, password changes are required at regular intervals."
@@ -551,16 +551,16 @@ msgid "Give this admin ability to change user passwords"
 msgstr "Gi administrator muligheten til å endre passord"
 
 msgid "Give this user ability to grant user access to reports"
-msgstr "Gi denne brukeren muligheten til å gi brukertilgang til rapporter"
+msgstr ""
 
 msgid "Give this user ability to mask information"
-msgstr "Gi denne brukeren muligheten til å maskere informasjon"
+msgstr ""
 
 msgid "Give this user ability to permanently redact masked information"
-msgstr "Gi denne brukeren muligheten til å permanent sensurere maskert informasjon"
+msgstr ""
 
 msgid "Give this user ability to transfer reports to other users"
-msgstr "Gi denne brukeren muligheten til å overføre rapporter til andre brukere"
+msgstr ""
 
 msgid "Grant access"
 msgstr "Gi tilgang"
@@ -596,7 +596,7 @@ msgid "I have read and agree to the terms of the license."
 msgstr "Jeg har lest og godtar vilkårene i lisensen."
 
 msgid "I've read and accept the Privacy Policy"
-msgstr "Jeg har lest og godtar personvernpraksisen"
+msgstr ""
 
 msgid "ID"
 msgstr "ID"
@@ -630,7 +630,7 @@ msgid ""
 msgstr "Disse spørsmålene har ugyldige eller manglende svar i dette trinnet."
 
 msgid "Initially anonymous"
-msgstr "Opprinnelig anonym"
+msgstr ""
 
 msgid "Input validation"
 msgstr "Inndata-bekreftelse"
@@ -731,7 +731,7 @@ msgid "Mark as important"
 msgstr "Marker som viktig"
 
 msgid "Mask"
-msgstr "Masker"
+msgstr ""
 
 msgid "Max"
 msgstr "Maks"
@@ -746,7 +746,7 @@ msgid "Maximum number of selectable recipients:"
 msgstr "Maksimalt antall mottakere som kan velges:"
 
 msgid "Me only"
-msgstr "Kun meg"
+msgstr ""
 
 msgid "Medium"
 msgstr "Middels"
@@ -812,7 +812,7 @@ msgid "None"
 msgstr "Ingen"
 
 msgid "Not provided."
-msgstr "Ikke oppgitt."
+msgstr ""
 
 msgid "Notifications"
 msgstr "Merknader"
@@ -897,6 +897,9 @@ msgstr "Merk at alle de tilknyttede dataene vil slettes permanent."
 msgid "Please select your account:"
 msgstr "Velg din konto:"
 
+msgid "Postpone the expiration date"
+msgstr "Utsett utløpsdato"
+
 msgid "Preferences"
 msgstr "Preferanser"
 
@@ -973,13 +976,13 @@ msgid "Recipients have requested you to fill an additional questionnaire."
 msgstr "Mottakere har bedt deg om å fylle ut et annet spørreskjema."
 
 msgid "Recipients only"
-msgstr "Kun mottakere"
+msgstr ""
 
 msgid "Recipients selected:"
 msgstr "Mottakere valgt:"
 
 msgid "Redact"
-msgstr "Sensurer"
+msgstr ""
 
 msgid "Refresh"
 msgstr "Gjenoppfrisk"
@@ -997,13 +1000,13 @@ msgid "Remember your receipt for this report."
 msgstr "Husk din kvittering for denne rapporten."
 
 msgid "Reminder date"
-msgstr "Påmminnelsesdato"
+msgstr ""
 
 msgid "Remove"
 msgstr "Fjern"
 
 msgid "Reopen"
-msgstr "Gjenåpne"
+msgstr ""
 
 msgid "Reply motivation"
 msgstr "Motivasjon for svar"
@@ -1012,7 +1015,7 @@ msgid "Reply to the request"
 msgstr "Besvar forespørsel"
 
 msgid "Report"
-msgstr "Rapport"
+msgstr ""
 
 msgid "Report date"
 msgstr "Dato for rapport"
@@ -1069,7 +1072,7 @@ msgid "Restrict access to specific IP addresses"
 msgstr "Begrens tilgangen til bestemte IP-adresser"
 
 msgid "Returning whistleblowers"
-msgstr "Gjentakende varslere"
+msgstr ""
 
 msgid "Revoke access"
 msgstr "Opphev tilgangen"
@@ -1132,10 +1135,10 @@ msgid "Select all recipients by default"
 msgstr "Velg alle mottakere som forvalg"
 
 msgid "Select an option"
-msgstr "Velg et alternativ"
+msgstr ""
 
 msgid "Select the recipients of your report"
-msgstr "Velg mottakerne til din rapport"
+msgstr ""
 
 msgid "Select your language"
 msgstr "Velg språk"
@@ -1156,7 +1159,7 @@ msgid "Send reset link"
 msgstr "Send lenken for tilbakestilling"
 
 msgid "Set a reminder"
-msgstr "Still inn en påminnelse"
+msgstr ""
 
 msgid "Set password"
 msgstr "Sett passord"
@@ -1177,7 +1180,7 @@ msgid "Show"
 msgstr "Vis"
 
 msgid "Show channels in alphabetical order"
-msgstr "Vis kanaler i alfabetisk rekkefølge"
+msgstr ""
 
 msgid "Show recipients in alphabetical order"
 msgstr "Vis mottakere i alfabetisk rekkefølge"
@@ -1243,10 +1246,10 @@ msgid "Submit"
 msgstr "Send inn"
 
 msgid "Subscribed"
-msgstr "Abonnert"
+msgstr ""
 
 msgid "Subscription date"
-msgstr "Abonnementsdato"
+msgstr ""
 
 msgid "Substatuses"
 msgstr "Delstatuser"
@@ -1261,7 +1264,7 @@ msgid "Surname"
 msgstr "Etternavn"
 
 msgid "Tax code"
-msgstr "Skattekode"
+msgstr ""
 
 msgid "Template"
 msgstr "Mal"
@@ -1288,10 +1291,10 @@ msgid "Text shown after the user has selected the option."
 msgstr "Tekst som vises etter at alternativet har blitt valgt av brukeren."
 
 msgid "Text shown on top of the interface for selecting channels"
-msgstr "Tekst som vises over grensesnittet for å velge kanaler"
+msgstr ""
 
 msgid "Text shown upon negative answer"
-msgstr "Tekst som vises ved negativt svar"
+msgstr ""
 
 msgid "Thank you."
 msgstr "Tusen takk."
@@ -1322,7 +1325,7 @@ msgid ""
 msgstr "Denne stegvise prosedyren vil geleide deg gjennom opprettelse av din fløyteblåser-plattform."
 
 msgid "The link will expire in 7 days."
-msgstr "Lenken vil utløpe om 7 dager."
+msgstr ""
 
 msgid ""
 "The manual configuration wizard will guide you through the setup of HTTPS "
@@ -1424,7 +1427,7 @@ msgid "Transfer"
 msgstr "Overfør"
 
 msgid "Transfer access"
-msgstr "Overfør tilgang"
+msgstr ""
 
 msgid "Trigger conditions"
 msgstr "Utløserbetingelser"
@@ -1448,10 +1451,10 @@ msgid "URL redirects"
 msgstr "URL-omdirigering"
 
 msgid "Unhide"
-msgstr "Opphev skjuling"
+msgstr ""
 
 msgid "Unselect"
-msgstr "Opphev markering"
+msgstr ""
 
 msgid "Upload"
 msgstr "Innlasting"
@@ -1507,7 +1510,7 @@ msgid "View your report"
 msgstr "Se rapporten"
 
 msgid "Voice"
-msgstr "Tale"
+msgstr ""
 
 msgid "Waiting for authorization"
 msgstr "Venter på identitetsbekreftelse"
@@ -1548,7 +1551,7 @@ msgid "Whistleblower's last access"
 msgstr "Siste tilgang til fløyteblåseren"
 
 msgid "Whistleblowing Policy"
-msgstr "Varslingsretningslinjer"
+msgstr ""
 
 msgid "Whistleblowing button"
 msgstr "Fløyteblåsning-knapp"
@@ -1565,7 +1568,7 @@ msgid ""
 msgstr "Din tilknytning til tjeneren er ikke anonym, denne tjeneren støtter bare anonyme innsendelser"
 
 msgid "You are operating on behalf of a whistleblower."
-msgstr "Du handler på vegne av en varsler."
+msgstr ""
 
 msgid ""
 "You are strongly advised to visit this site using the app called Tor "
@@ -1618,71 +1621,71 @@ msgid "File a report"
 msgstr "Legg inn en rapport"
 
 msgid "Select a reporting channel:"
-msgstr "Velg en rapporteringskanal:"
+msgstr ""
 
 msgid "Please summarize your report in a few words."
-msgstr "Gi en kort beskrivelse av rapporten din."
+msgstr "Gi en kort beskrivelse av rapporten din"
 
 msgid "Describe your report in detail."
 msgstr "Gi en detaljert beskrivelse av rapporten din"
 
 msgid "Where did the facts happen?"
-msgstr "Hvor fant handlingene sted?"
+msgstr ""
 
 msgid "When did the facts happen?"
-msgstr "Når fant handlingene sted?"
+msgstr ""
 
 msgid "I'm a victim"
-msgstr "Jeg er offer"
+msgstr ""
 
 msgid "I'm involved in the facts"
-msgstr "Jeg er involvert i handlingene"
+msgstr ""
 
 msgid "I witnessed the facts in person"
-msgstr "Jeg var selv vitne til handlingene"
+msgstr ""
 
 msgid "I was personally told by a direct witness"
-msgstr "Jeg ble fortalt personlig av et direkte vitne"
+msgstr ""
 
 msgid "It is a rumor I heard"
-msgstr "Det er et rykte jeg har hørt"
+msgstr ""
 
 msgid "How are you involved in the reported facts?"
-msgstr "Hvordan er du involvert i de rapporterte handlingene?"
+msgstr ""
 
 msgid "Do you have evidence to support your report?"
-msgstr "Har du bevis som støtter rapporten?"
+msgstr ""
 
 msgid "Please attach the evidence to support your report."
-msgstr "Legg ved bevisene som støtter rapporten."
+msgstr ""
 
 msgid "Please describe the evidence in detail."
-msgstr "Beskriv bevisene grundig."
+msgstr ""
 
 msgid ""
 "A thorough description of the submitted evidence enhances our ability to "
 "evaluate claims and investigate. Please take care to reference significant "
 "portions of any videos, images or documents submitted."
-msgstr "En grundig beskrivelse av innsendte bevis forbedrer vår mulighet til å vurdere påstander og undersøke. Husk å fremheve viktige deler av eventuelle videoer, bilder eller dokumenter som sendes inn."
+msgstr ""
 
 msgid "Have you reported the facts to other organizations and/or individuals?"
-msgstr "Har du rapportert handlingene til andre organisasjoner og/eller personer?"
+msgstr ""
 
 msgid ""
 "Please list the organizations and/or individuals you have informed about "
 "these facts."
-msgstr "Oppgi organisasjonene og/eller personenen du har informert om disse handlingene."
+msgstr ""
 
 msgid ""
 "Have these organizations investigated your claims? If so, what was the "
 "outcome?"
-msgstr "Har disse organisasjonene undersøkt påstandene dine? Hvis det er tilfelle, hva var utfallet?"
+msgstr ""
 
 msgid "What is the outcome you want to achieve with our support?"
-msgstr "Hva er utfallet du ønsker å oppnå med vår støtte?"
+msgstr ""
 
 msgid "Would you like to tell us who you are?"
-msgstr "Ønsker du å fortelle oss hvem du er?"
+msgstr ""
 
 msgid "First name"
 msgstr "Fornavn"
@@ -1700,7 +1703,7 @@ msgid "Other"
 msgstr "Annet"
 
 msgid "Specify"
-msgstr "Spesifiser"
+msgstr ""
 
 msgid "Dear {RecipientName},"
 msgstr "Kjære {RecipientName},"
@@ -1764,7 +1767,7 @@ msgid "The activities with unusual stats are:"
 msgstr "Hendelsesforløpet med uvanlige attributter er:"
 
 msgid "Available disk space: {FreeMemory}/{TotalMemory}"
-msgstr "Tilgjengelig lagringsplass: {FreeMemory}/{TotalMemory}"
+msgstr ""
 
 msgid ""
 "The server cannot guarantee that a new report can be stored, so submissions "
@@ -1995,7 +1998,7 @@ msgid "New report"
 msgstr "Ny rapport"
 
 msgid "One or more reports are expiring and will be soon deleted."
-msgstr "Én eller flere rapporter utløper og vil snart bli slettet."
+msgstr ""
 
 msgid "The earliest expiration date is {EarliestExpirationDate}."
 msgstr "Den tidligste utløpsdatoen er {EarliestExpirationDate}."
@@ -2007,15 +2010,15 @@ msgid "Some reports will expire soon"
 msgstr "Noen rapporter vil utløpe snart"
 
 msgid "This is an email to notify you the reception of a new report."
-msgstr "Dette er en e-post for å varsle deg om mottak av en ny rapport."
+msgstr ""
 
 msgid ""
 "This is an email to notify you that the reminder date for one or more "
 "reports has been met."
-msgstr "Dette er en e-post for å varsle deg om at påminnelsesdatoen er nådd for en eller flere rapporter."
+msgstr ""
 
 msgid "Reminder"
-msgstr "Påminnelse"
+msgstr ""
 
 msgid "This is an email to notify that an existing report has been updated."
 msgstr "Denne e-posten vil informere deg om at en eksisterende rapport har blitt oppdatert."
