@@ -2,7 +2,6 @@ module.exports = function(grunt) {
   let fs = require("fs"),
       path = require("path"),
       superagent = require("superagent"),
-      gettextParser = require("gettext-parser"),
       Gettext = require("node-gettext");
 
   require('load-grunt-tasks')(grunt);
@@ -210,7 +209,8 @@ module.exports = function(grunt) {
       sourceFile = "pot/en.po",
       transifexApiKey = readTransifexApiKey();
 
-  function updateTxSource(cb){
+  async function updateTxSource(cb) {
+    const gettextParser = await loadGettextParser();
     let url = baseurl + "/resource_strings_async_uploads";
 
     let content = {
@@ -249,7 +249,7 @@ module.exports = function(grunt) {
         });
   }
 
-  function listLanguages(cb){
+  function listLanguages(cb) {
     let url = baseurl + "/projects/o:otf:p:globaleaks/languages";
 
     agent.get(url)
@@ -268,7 +268,8 @@ module.exports = function(grunt) {
         });
   }
 
-  function fetchTxTranslationsPO(langCode, cb) {
+  async function fetchTxTranslationsPO(langCode, cb) {
+    const gettextParser = await loadGettextParser();
     let url = baseurl + "/resource_translations_async_downloads";
 
     agent.post(url)
@@ -358,7 +359,7 @@ module.exports = function(grunt) {
         });
   }
 
-  function fetchTxTranslations(cb){
+  async function fetchTxTranslations(cb){
     let fetched_languages = 0,
         total_languages,
         supported_languages = {};
@@ -408,7 +409,9 @@ module.exports = function(grunt) {
     });
   }
 
-  grunt.registerTask("makeTranslationsSource", function() {
+  grunt.registerTask("makeTranslationsSource", async function() {
+    const done = this.async();
+    const gettextParser = await loadGettextParser();
     let data = {
       "charset": "UTF-8",
       "headers": {
@@ -499,6 +502,7 @@ module.exports = function(grunt) {
     fs.writeFileSync("app/assets/data_src/pot/en.po", gettextParser.po.compile(data), "utf8");
 
     console.log("Written " + Object.keys(data["translations"][""]).length + " string to app/assets/data_src/pot/en.po.");
+    done();
   });
 
   grunt.registerTask("☠☠☠pushTranslationsSource☠☠☠", function() {
@@ -506,9 +510,11 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask("fetchTranslations", function() {
-    let done = this.async(),
-        gt = new Gettext(),
-        lang_code;
+    const done = this.async();  // Declare the async task
+    (async () => {
+      const gettextParser = await loadGettextParser();
+      let gt = new Gettext(),
+          lang_code;
 
       gt.setTextDomain("stable");
 
@@ -517,8 +523,9 @@ module.exports = function(grunt) {
         gt.addTranslations("en", "stable", gettextParser.po.parse(fs.readFileSync("app/assets/data_src/pot/en.po")));
         let strings = Object.keys(gettextParser.po.parse(fs.readFileSync("app/assets/data_src/pot/en.po"))["translations"][""]);
 
-      for (lang_code in supported_languages) {
-        let translations = {}, output;
+        // Process each supported language
+        for (lang_code in supported_languages) {
+          let translations = {}, output;
 
           gt.addTranslations(lang_code, "stable", gettextParser.po.parse(fs.readFileSync("app/assets/data_src/pot/" + lang_code + ".po")));
           gt.setLocale(lang_code);
@@ -528,9 +535,7 @@ module.exports = function(grunt) {
               continue;
             }
 
-        for (let i = 0; i < strings.length; i++) {
-          if (strings[i] === "") {
-            continue;
+            translations[strings[i]] = str_unescape(gt.gettext(str_escape(strings[i])));
           }
 
           // Write translations to JSON files
@@ -538,50 +543,51 @@ module.exports = function(grunt) {
           fs.writeFileSync("app/assets/data/l10n/" + lang_code + ".json", output);
         }
 
-        output = JSON.stringify(translations, null, 2);
-
-        fs.writeFileSync("app/assets/data/l10n/" + lang_code + ".json", output);
-      }
-
-      done();
+        // Ensure Grunt knows the task is finished
+        done();
+      });
+    })().catch(err => {
+      console.error(err);
+      done(false);  // Signal error to Grunt
     });
   });
 
   grunt.registerTask("makeAppData", function() {
-    let done = this.async(),
-        gt = new Gettext(),
-        supported_languages = [];
+    const done = this.async();
+    (async () => {
+      const gettextParser = await loadGettextParser();
+      let gt = new Gettext(),
+          supported_languages = [];
 
       gt.setTextDomain("stable");
 
-    grunt.file.recurse("app/assets/data_src/pot/", function(absdir, rootdir, subdir, filename) {
-      supported_languages.push(filename.replace(/.po$/, ""));
-    });
+      grunt.file.recurse("app/assets/data_src/pot/", function(absdir, rootdir, subdir, filename) {
+        supported_languages.push(filename.replace(/.po$/, ""));
+      });
 
-    let appdata = JSON.parse(fs.readFileSync("app/assets/data_src/appdata.json")),
-        output = {},
-        version = appdata["version"],
-        templates = appdata["templates"],
-        templates_sources = {};
+      let appdata = JSON.parse(fs.readFileSync("app/assets/data_src/appdata.json")),
+          output = {},
+          version = appdata["version"],
+          templates = appdata["templates"],
+          templates_sources = {};
 
-    let translate_object = function(object, keys) {
-      for (let k in keys) {
-        if (object[keys[k]]["en"] === "")
-          continue;
+      let translate_object = function(object, keys) {
+        for (let k in keys) {
+          if (object[keys[k]]["en"] === "")
+            continue;
 
-        supported_languages.forEach(function(lang_code) {
-          gt.setLocale(lang_code);
-          let translation = gt.gettext(str_escape(object[keys[k]]["en"]));
-          if (translation !== undefined) {
-            object[keys[k]][lang_code] = str_unescape(translation).trim();
-          }
-        });
-      }
-    };
+          supported_languages.forEach(function(lang_code) {
+            gt.setLocale(lang_code);
+            let translation = gt.gettext(str_escape(object[keys[k]]["en"]));
+            if (translation !== undefined) {
+              object[keys[k]][lang_code] = str_unescape(translation).trim();
+            }
+          });
+        }
+      };
 
-    let translate_field = function(field) {
-      let i;
-      translate_object(field, ["label", "description", "hint"]);
+      let translate_field = function(field) {
+        translate_object(field, ["label", "description", "hint"]);
 
         // Ensure attrs is an array before looping
         if (Array.isArray(field.attrs)) {
@@ -605,25 +611,29 @@ module.exports = function(grunt) {
         }
       };
 
-    let translate_step = function(step) {
-      translate_object(step, ["label", "description"]);
+      let translate_step = function(step) {
+        translate_object(step, ["label", "description"]);
 
-      for (let c in step["children"]) {
-        translate_field(step["children"][c]);
-      }
-    };
+        if (Array.isArray(step.children)) {
+          step.children.forEach(function(child) {
+            translate_field(child);
+          });
+        }
+      };
 
-    let translate_questionnaire = function(questionnaire) {
-      questionnaire["steps"].forEach(function(step) {
-        translate_step(step);
-      });
-    };
+      let translate_questionnaire = function(questionnaire) {
+        if (Array.isArray(questionnaire.steps)) {
+          questionnaire.steps.forEach(function(step) {
+            translate_step(step);
+          });
+        }
+      };
 
       gt.addTranslations("en", "stable", gettextParser.po.parse(fs.readFileSync("app/assets/data_src/pot/en.po")));
 
-    grunt.file.recurse("app/assets/data_src/txt", function(absdir, rootdir, subdir, filename) {
-      let template_name = filename.split(".txt")[0],
-          filepath = path.join("app/assets/data_src/txt", subdir || "", filename || "");
+      grunt.file.recurse("app/assets/data_src/txt", function(absdir, rootdir, subdir, filename) {
+        let template_name = filename.split(".txt")[0],
+            filepath = path.join("app/assets/data_src/txt", subdir || "", filename || "");
 
         templates_sources[template_name] = grunt.file.read(filepath);
       });
@@ -632,20 +642,20 @@ module.exports = function(grunt) {
         gt.setLocale(lang_code);
         gt.addTranslations(lang_code, "stable", gettextParser.po.parse(fs.readFileSync("app/assets/data_src/pot/" + lang_code + ".po")));
 
-      for (let template_name in templates_sources) {
-        if (!(template_name in templates)) {
-          templates[template_name] = {};
-        }
-
-        let tmp = templates_sources[template_name];
-
-        let lines = templates_sources[template_name].split("\n");
-
-        for (let i=0; i<lines.length; i++) {
-          let translation = gt.gettext(str_escape(lines[i]));
-          if (translation === undefined) {
-            continue;
+        for (let template_name in templates_sources) {
+          if (!(template_name in templates)) {
+            templates[template_name] = {};
           }
+
+          let tmp = templates_sources[template_name];
+
+          let lines = templates_sources[template_name].split("\n");
+
+          lines.forEach(function(line, i) {
+            let translation = gt.gettext(str_escape(line));
+            if (translation === undefined) {
+              return;
+            }
 
             if (line !== "" && !line.match(/^{[a-zA-Z0-9]+}/g)) {
               tmp = tmp.replace(line, str_unescape(translation));
@@ -660,35 +670,38 @@ module.exports = function(grunt) {
       output["templates"] = templates;
       output["node"] = {};
 
-    output["version"] = version;
-    output["templates"] = templates;
-    output["node"] = {};
-
-    for (let k in appdata["node"]) {
-      output["node"][k] = {};
-      supported_languages.forEach(function(lang_code) {
-        gt.setLocale(lang_code);
-        output["node"][k][lang_code] = str_unescape(gt.gettext(str_escape(appdata["node"][k]["en"])));
+      Object.keys(appdata["node"]).forEach(function(k) {
+        output["node"][k] = {};
+        supported_languages.forEach(function(lang_code) {
+          gt.setLocale(lang_code);
+          output["node"][k][lang_code] = str_unescape(gt.gettext(str_escape(appdata["node"][k]["en"])));
+        });
       });
 
       output = JSON.stringify(output, null, 2);
 
-    fs.writeFileSync("app/assets/data/appdata.json", output);
+      fs.writeFileSync("app/assets/data/appdata.json", output);
 
-    grunt.file.recurse("app/assets/data_src/questionnaires", function(absdir, rootdir, subdir, filename) {
-      let srcpath = path.join("app/assets/data_src/questionnaires", subdir || "", filename || "");
-      let dstpath = path.join("app/assets/data/questionnaires", subdir || "", filename || "");
-      let questionnaire = JSON.parse(fs.readFileSync(srcpath));
-      translate_questionnaire(questionnaire);
-      fs.writeFileSync(dstpath, JSON.stringify(questionnaire, null, 2));
-    });
+      grunt.file.recurse("app/assets/data_src/questionnaires", function(absdir, rootdir, subdir, filename) {
+        let srcpath = path.join("app/assets/data_src/questionnaires", subdir || "", filename || "");
+        let dstpath = path.join("app/assets/data/questionnaires", subdir || "", filename || "");
+        let questionnaire = JSON.parse(fs.readFileSync(srcpath));
+        translate_questionnaire(questionnaire);
+        fs.writeFileSync(dstpath, JSON.stringify(questionnaire, null, 2));
+      });
 
-    grunt.file.recurse("app/assets/data_src/questions", function(absdir, rootdir, subdir, filename) {
-      let srcpath = path.join("app/assets/data_src/questions", subdir || "", filename || "");
-      let dstpath = path.join("app/assets/data/questions", subdir || "", filename || "");
-      let field = JSON.parse(fs.readFileSync(srcpath));
-      translate_field(field);
-      fs.writeFileSync(dstpath, JSON.stringify(field, null, 2));
+      grunt.file.recurse("app/assets/data_src/questions", function(absdir, rootdir, subdir, filename) {
+        let srcpath = path.join("app/assets/data_src/questions", subdir || "", filename || "");
+        let dstpath = path.join("app/assets/data/questions", subdir || "", filename || "");
+        let field = JSON.parse(fs.readFileSync(srcpath));
+        translate_field(field);
+        fs.writeFileSync(dstpath, JSON.stringify(field, null, 2));
+      });
+
+      done();
+    })().catch(err => {
+      console.error(err);
+      done(false);
     });
 
       done();
