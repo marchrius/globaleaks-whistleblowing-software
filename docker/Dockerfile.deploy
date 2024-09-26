@@ -1,13 +1,16 @@
-ARG NODE_VERSION=18.18.2
+ARG NODE_VERSION=18.19.1
 ARG PYTHON_VERSION=3.9.13
 
 FROM node:${NODE_VERSION}-alpine AS client-build-env
 
-COPY ./client/package.json /app/client/
-RUN cd /app/client && npm install
-
 COPY ./client /app/client
 COPY ./LICENSE /app/LICENSE
+
+# This will copy the footer modified template
+RUN cp /app/client/app/custom/footer.component.html /app/client/app/src/shared/partials/footer/footer.component.html
+RUN cat /app/client/app/custom/css/app.css >> /app/client/app/css/main.css
+
+RUN cd /app/client && npm install
 
 RUN cd /app/client && \
     ./node_modules/grunt/bin/grunt build && \
@@ -20,6 +23,10 @@ COPY ./backend /app/backend
 COPY --from=client-build-env /app/client/build /app/client/build
 
 RUN pip install -r /app/backend/requirements/requirements-bookworm.txt
+
+# Fix a missing dependency
+
+RUN pip install six
 
 RUN mkdir -p /var/globaleaks/
 
