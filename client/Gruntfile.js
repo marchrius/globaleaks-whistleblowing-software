@@ -9,20 +9,6 @@ module.exports = function(grunt) {
   async function loadGettextParser() {
     return await import('gettext-parser');
   }
-//  grunt.initConfig({
-//    eslint: {
-//      options: {
-//        configFile: "../.eslintrc.json"
-//      },
-//      src: [
-//        "Gruntfile.js",
-//        "app/js/**/*.js",
-//        "custom/app/js/**/*.js",
-//        "!app/lib/js/*.js",
-//        "!app/lib/js/locale/*.js",
-//        "tests/*.js"
-//      ]
-//    },
 
   grunt.initConfig({
     clean: {
@@ -807,20 +793,19 @@ module.exports = function(grunt) {
 
   grunt.registerTask("updateCustomTranslations", function() {
     
-    grunt.file.recurse("pot/", function(absdir, rootdir, subdir, filename) {
+    grunt.file.recurse("app/assets/data_src/pot/", function(absdir, rootdir, subdir, filename) {
       var lang_code = filename.replace(/.po$/, "");
-      var translations = JSON.parse(fs.readFileSync(`app/data/l10n/${lang_code}.json`));
+      var translations = JSON.parse(fs.readFileSync(`app/assets/data/l10n/${lang_code}.json`));
       try {
-        var custom_translations = JSON.parse(fs.readFileSync(`app/custom/app/data/${lang_code}.json`));
+        var custom_translations = JSON.parse(fs.readFileSync(`app/assets/custom/data/${lang_code}.json`));
       } catch (e) {
         // console.log(e)
-        console.log(`No custom translations for app/  custom/app/data/${lang_code}.json`);
+        console.log(`No custom translations for app/assets/custom/data/${lang_code}.json`);
         return;
       }
       var output = {...translations, ...custom_translations};
-      fs.writeFileSync(`app/data/l10n/${lang_code}.json`, JSON.stringify(output, null, 2));
+      fs.writeFileSync(`app/assets/data/l10n/${lang_code}.json`, JSON.stringify(output, null, 2));
     });
-
 
   });
 
