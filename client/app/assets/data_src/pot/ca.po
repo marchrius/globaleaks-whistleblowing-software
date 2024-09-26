@@ -8,7 +8,7 @@
 # estrella1876lc <estrella1876lc@gmail.com>, 2014
 # estrella1876lc <estrella1876lc@gmail.com>, 2014-2015
 # Francisco Huerta <francisco.huerta@davinci-ti.es>, 2016,2019
-# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022
+# Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # b33a4006134bb6ee62b30fc0fac5cec6, 2016
 # Joan Bitlloch <joanbit@gmail.com>, 2017-2021
@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: José Luis Ramirez, 2022-2023\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2014-2018,2020-2022,2024\n"
 "Language-Team: Catalan (http://app.transifex.com/otf/globaleaks/language/ca/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -103,11 +103,11 @@ msgstr "Persones administradores autoritzats a canviar les contrasenyes de les p
 msgid "Advanced"
 msgstr "Avançat"
 
+msgid "Allow the recipient to edit the reports' expiration date"
+msgstr ""
+
 msgid "Allow the recipient to delete reports"
 msgstr "Permet al destinatari esborrar informes"
-
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permet al destinatari ajornar la data d'expiració de l'informe"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permet a les persones reveladores de informació enviar un arxiu adjunt. "
@@ -208,8 +208,8 @@ msgstr "Abans de continuar, estableixi una nova contrasenya."
 msgid "Block the submission"
 msgstr "Bloquejar l'enviament"
 
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Si ho confirmes, posposaràs la data de caducitat fins a:"
+msgid "By confirming, you will edit the expiration date to:"
+msgstr ""
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "En confirmar, fixarà una data de recordatori:"
@@ -282,9 +282,6 @@ msgstr "Configura"
 msgid "Confirm"
 msgstr "Confirma extensió"
 
-msgid "Confirmation"
-msgstr "Confirmació"
-
 msgid "Congratulations!"
 msgstr "Enhorabona!"
 
@@ -347,8 +344,8 @@ msgstr "Denegat"
 msgid "Deny"
 msgstr "Denegar"
 
-msgid "Check your inbox to activate it."
-msgstr "Comproveu la vostra safata d'entrada per activar-la."
+msgid "Deny access to the whistleblower's identity"
+msgstr "Denega l'accés a la identitat de la persona informadora"
 
 msgid "Description"
 msgstr "Descripció"
@@ -374,11 +371,11 @@ msgstr "Deshabilitar "
 msgid "Disable notifications to administrators"
 msgstr "Desactiva les notificacions a les persones administradores"
 
-msgid "Column"
-msgstr "Columna"
+msgid "Disable notifications to custodians"
+msgstr "Desactiva les notificacions a les persones guardianes"
 
-msgid "Comments"
-msgstr "Comentaris"
+msgid "Disable notifications to recipients"
+msgstr "Desactiva les notificacions a les persones destinatàries"
 
 msgid "Disable submissions"
 msgstr "Deshabilita els enviaments"
@@ -418,6 +415,9 @@ msgstr "Data més propera disponible"
 
 msgid "Edit"
 msgstr "Edita"
+
+msgid "Edit the expiration date"
+msgstr "Editar la data de venciment"
 
 msgid "Email"
 msgstr "Adreça electrònica"
@@ -615,8 +615,8 @@ msgstr "Domini"
 msgid "I have read and agree to the terms of the license."
 msgstr "He llegit i accepto els termes de la llicència."
 
-msgid "Expiration date"
-msgstr "Esborrat automàtic"
+msgid "I've read and accept the Privacy Policy"
+msgstr "He llegit i accepte la Política de privacitat"
 
 msgid "ID"
 msgstr "Id."
@@ -917,9 +917,6 @@ msgstr "Si us plau, sàpiga que totes les dades associades seran esborrades defi
 msgid "Please select your account:"
 msgstr "Si us plau, selecciona el teu compte:"
 
-msgid "Postpone the expiration date"
-msgstr "Posposa la data de caducitat"
-
 msgid "Preferences"
 msgstr "Preferències"
 
@@ -959,8 +956,8 @@ msgstr "Nom públic"
 msgid "Question"
 msgstr "Pregunta"
 
-msgid "Please choose a different username."
-msgstr "Seleccioneu un nom d’usuari diferent."
+msgid "Question group"
+msgstr "Grup de preguntes"
 
 msgid "Question templates"
 msgstr "Plantilla de preguntes"
@@ -1235,8 +1232,8 @@ msgstr "Omet la creació del compte del destinatari."
 msgid "Software version:"
 msgstr "Versió del programari:"
 
-msgid "Single-line text input"
-msgstr "Entrada de text d'una sola línia"
+msgid "Statistics"
+msgstr "Estadístiques"
 
 msgid "Stats"
 msgstr "Estadístiques"
@@ -1641,7 +1638,7 @@ msgid "File a report"
 msgstr "Presentar un informe"
 
 msgid "Select a reporting channel:"
-msgstr "Trie un canal de denúncia:"
+msgstr "Tria un canal de denúncia:"
 
 msgid "Please summarize your report in a few words."
 msgstr "Descriu el teu informe en poques paraules."

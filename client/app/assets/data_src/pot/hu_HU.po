@@ -102,11 +102,11 @@ msgstr "Az adminisztrátoroknak engedélyezett a felhasználói jelszavak megvá
 msgid "Advanced"
 msgstr "Speciális"
 
+msgid "Allow the recipient to edit the reports' expiration date"
+msgstr ""
+
 msgid "Allow the recipient to delete reports"
 msgstr "Engedélyezés a címzetteknek, hogy töröljék a tippeket"
-
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "A címzett számára engedélyezi a füles lejárati dátumának hosszabítását"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Engedélyezi a bejelentőknek, hogy mellékleteket adjanak hozzá a beadványhoz"
@@ -207,8 +207,8 @@ msgstr "Továblépés előtt kérjük, állítson be új jelszót"
 msgid "Block the submission"
 msgstr "Bejelentés tiltása."
 
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Az elfogadással meghosszabbítja a lejárati dátumot erre:"
+msgid "By confirming, you will edit the expiration date to:"
+msgstr ""
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr ""
@@ -281,9 +281,6 @@ msgstr "Beállítás"
 msgid "Confirm"
 msgstr "Hosszabbítás megerősítése"
 
-msgid "Confirmation"
-msgstr "Megerősítés"
-
 msgid "Congratulations!"
 msgstr "Gratulálunk!"
 
@@ -346,8 +343,8 @@ msgstr "Elutasított"
 msgid "Deny"
 msgstr "Elutasít"
 
-msgid "Channels"
-msgstr ""
+msgid "Deny access to the whistleblower's identity"
+msgstr "Hozzáférés megtagadása a bejelentők identitásához"
 
 msgid "Description"
 msgstr "Leírás"
@@ -373,11 +370,11 @@ msgstr "Bekapcsol"
 msgid "Disable notifications to administrators"
 msgstr "Értesítések letiltása az adminisztrátoroknak"
 
-msgid "Collapse"
-msgstr "Összecsuk"
+msgid "Disable notifications to custodians"
+msgstr "Értesítések letiltása a gondnokoknak"
 
-msgid "Column"
-msgstr "Oszlop"
+msgid "Disable notifications to recipients"
+msgstr "Értesítések letiltása a címzetteknek"
 
 msgid "Disable submissions"
 msgstr "Feltöltéstek letiltása"
@@ -417,6 +414,9 @@ msgstr "Legkorábbi kiválasztható dátum"
 
 msgid "Edit"
 msgstr "Szerkesztés"
+
+msgid "Edit the expiration date"
+msgstr "Lejárati idő meghosszabítása"
 
 msgid "Email"
 msgstr "Email"
@@ -614,8 +614,8 @@ msgstr "Kiszolgálónév"
 msgid "I have read and agree to the terms of the license."
 msgstr "Elolvastam és elfogadom a licence feltételeket."
 
-msgid "Expiration date"
-msgstr "Lejárat ideje"
+msgid "I've read and accept the Privacy Policy"
+msgstr ""
 
 msgid "ID"
 msgstr "Azonosító"
@@ -916,9 +916,6 @@ msgstr "Kérjük figyeljen arra, hogy minden kapcsolódó adat véglegesen törl
 msgid "Please select your account:"
 msgstr "Kérjük válassza ki fiókját:"
 
-msgid "Postpone the expiration date"
-msgstr "Lejárati idő meghosszabítása"
-
 msgid "Preferences"
 msgstr "Preferenciák"
 
@@ -958,8 +955,8 @@ msgstr "Nyilvános elnevezés"
 msgid "Question"
 msgstr "kérdés"
 
-msgid "Please choose a different username."
-msgstr "Kérjük válasszon másik felhasználónevet."
+msgid "Question group"
+msgstr "Kérdéscsoport"
 
 msgid "Question templates"
 msgstr "Kérdés sablonok"

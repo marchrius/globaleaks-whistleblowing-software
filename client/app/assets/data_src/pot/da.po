@@ -94,11 +94,11 @@ msgstr "Tillad administratorer at ændre brugeradgangskoder"
 msgid "Advanced"
 msgstr "Avanceret"
 
+msgid "Allow the recipient to edit the reports' expiration date"
+msgstr ""
+
 msgid "Allow the recipient to delete reports"
 msgstr "Tillad modtageren at slette indberetninger"
-
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Tillad modtageren at udsætte udløbsdatoen på indberetningen"
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Tillad whistlebloweren at tilføje vedhæftelser til indsendelsen"
@@ -199,8 +199,8 @@ msgstr "Før du fortsætter bedes du indstille en ny adgangskode."
 msgid "Block the submission"
 msgstr "Blokér indsendelsen"
 
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Ved at bekræfte udsætter du udløbsdatoen til:"
+msgid "By confirming, you will edit the expiration date to:"
+msgstr ""
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Ved at bekræfte, opretter du en påmindelsesdato den:"
@@ -273,9 +273,6 @@ msgstr "Konfigurer"
 msgid "Confirm"
 msgstr "Bekræft"
 
-msgid "Confirmation"
-msgstr "Bekræftelse"
-
 msgid "Congratulations!"
 msgstr "Tillykke!"
 
@@ -338,8 +335,8 @@ msgstr "Afvist"
 msgid "Deny"
 msgstr "Afvis"
 
-msgid "Check your inbox to activate it."
-msgstr "Tjek din indboks for at aktivere det."
+msgid "Deny access to the whistleblower's identity"
+msgstr "Afvis adgang til whistleblowerens identitet"
 
 msgid "Description"
 msgstr "Beskrivelse"
@@ -365,11 +362,11 @@ msgstr "Deaktivere"
 msgid "Disable notifications to administrators"
 msgstr "Deaktiver notifikation af administratorer"
 
-msgid "Column"
-msgstr "Kolonne"
+msgid "Disable notifications to custodians"
+msgstr "Deaktiver notifikation af kontoindehavere"
 
-msgid "Comments"
-msgstr "Kommentarer"
+msgid "Disable notifications to recipients"
+msgstr "Deaktiver notifikation af modtagere"
 
 msgid "Disable submissions"
 msgstr "Deaktiver indsendelser"
@@ -409,6 +406,9 @@ msgstr "Tidligst valgbare dato"
 
 msgid "Edit"
 msgstr "Rediger"
+
+msgid "Edit the expiration date"
+msgstr "Udsæt udløbsdatoen"
 
 msgid "Email"
 msgstr "E-mail"
@@ -606,8 +606,8 @@ msgstr "Hostnavn"
 msgid "I have read and agree to the terms of the license."
 msgstr "Jeg har læst og accepterer licensbetingelserne."
 
-msgid "Expiration date"
-msgstr "Udløbsdato"
+msgid "I've read and accept the Privacy Policy"
+msgstr "Jeg har læst og accepteret privatlivspolitikken"
 
 msgid "ID"
 msgstr "ID"
@@ -908,9 +908,6 @@ msgstr "Bemærk at alle tilknyttede data bliver slettet permanent."
 msgid "Please select your account:"
 msgstr "Vælg venligst din konto:"
 
-msgid "Postpone the expiration date"
-msgstr "Udsæt udløbsdatoen"
-
 msgid "Preferences"
 msgstr "Indstillinger"
 
@@ -950,8 +947,8 @@ msgstr "Offentligt navn"
 msgid "Question"
 msgstr "Spørgsmål"
 
-msgid "Please choose a different username."
-msgstr "Vælg venligst et andet brugernavn."
+msgid "Question group"
+msgstr "Spørgsmåls-gruppe"
 
 msgid "Question templates"
 msgstr "Spørgsmålsskabeloner"
@@ -1226,8 +1223,8 @@ msgstr "Spring over modtagerens kontooprettelse."
 msgid "Software version:"
 msgstr "Software version:"
 
-msgid "Single-line text input"
-msgstr "Enkelt-linje tekst-input"
+msgid "Statistics"
+msgstr "Statistik"
 
 msgid "Stats"
 msgstr "Statistik"
