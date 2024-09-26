@@ -9,20 +9,6 @@ module.exports = function(grunt) {
   async function loadGettextParser() {
     return await import('gettext-parser');
   }
-//  grunt.initConfig({
-//    eslint: {
-//      options: {
-//        configFile: "../.eslintrc.json"
-//      },
-//      src: [
-//        "Gruntfile.js",
-//        "app/js/**/*.js",
-//        "custom/app/js/**/*.js",
-//        "!app/lib/js/*.js",
-//        "!app/lib/js/locale/*.js",
-//        "tests/*.js"
-//      ]
-//    },
 
   grunt.initConfig({
     clean: {
