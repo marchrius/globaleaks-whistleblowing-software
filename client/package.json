@@ -78,6 +78,7 @@
     "@jsdevtools/coverage-istanbul-loader": "3.0.5",
     "@popperjs/core": "2.11.8",
     "angular-eslint": "18.3.1",
+    "console-table-printer": "^2.12.1",
     "cypress": "13.14.2",
     "eslint": "9.10.0",
     "gettext-parser": "8.0.0",
