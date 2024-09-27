@@ -7,13 +7,21 @@ module.exports = function(grunt) {
     'updateTranslations': function() {
       console.group(`Custom translations`);
       const stats = {
-        Found: 0,
-        Translated: 0
+        found: 0,
+        translated: 0
       }
-      const table = new Printer.Table({
+      const statsTable = new Printer.Table({
+        title: 'Stats',
         columns: [
           { name: '', alignment: 'right', color: 'normal' },
-          { name: 'Found' },
+          { name: 'Found', alignment: 'center' },
+        ]
+      });
+      const statsTableSummary = new Printer.Table({
+        title: 'Summary',
+        columns: [
+          { name: 'found', title: 'Found' },
+          { name: 'translated', title: 'Translated' },
         ]
       });
       const source_pot = path.join("app", "assets", "data_src", "pot");
@@ -21,24 +29,25 @@ module.exports = function(grunt) {
       const base_path = path.join("app", "custom", "assets", "data");
 
       grunt.file.recurse(source_pot, function(absdir, rootdir, subdir, filename) {
-        stats.Found++;
+        stats.found++;
         var lang_code = filename.replace(/.po$/, "");
         const current_file = path.join(source_assets, `${lang_code}.json`);
         var translations = JSON.parse(fs.readFileSync(current_file));
         try {
           var custom_translations = JSON.parse(fs.readFileSync(`${base_path}/${lang_code}.json`));
           console.debug(`Custom translations for ${base_path}/${lang_code}.json`);
-          table.addRow({'': `${base_path}/${lang_code}.json`, Found: '✓'}, {color: 'green'});
+          statsTable.addRow({'': `${base_path}/${lang_code}.json`, Found: '✓'}, {color: 'green'});
         } catch (e) {
-          table.addRow({'': `${base_path}/${lang_code}.json`, Found: '✗'}, {color: 'red'});
+          statsTable.addRow({'': `${base_path}/${lang_code}.json`, Found: '✗'}, {color: 'red'});
           return;
         }
         var output = {...translations, ...custom_translations};
         fs.writeFileSync(current_file, JSON.stringify(output, null, 2));
-        stats.Translated++;
+        stats.translated++;
       });
-      table.printTable();
-      Printer.printTable([stats]);
+      statsTable.printTable();
+      statsTableSummary.addRow(stats);
+      statsTableSummary.printTable();
       console.groupEnd();
 
     }
