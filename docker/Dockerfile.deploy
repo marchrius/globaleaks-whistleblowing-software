@@ -3,30 +3,39 @@ ARG PYTHON_VERSION=3.9.13
 
 FROM node:${NODE_VERSION}-alpine AS client-build-env
 
-COPY ./client /app/client
+COPY . /usr/share/globaleaks
+
+WORKDIR /usr/share/globaleaks/client
 
 # This will copy the footer modified template
-RUN cp /app/client/app/custom/footer.component.html /app/client/app/src/shared/partials/footer/footer.component.html
-RUN cat /app/client/app/custom/css/app.css >> /app/client/app/css/main.css
+RUN cp ./app/custom/footer.component.html ./app/src/shared/partials/footer/footer.component.html
+RUN cat ./app/custom/css/app.css >> ./app/css/main.css
 
-RUN cd /app/client && npm install
+WORKDIR /usr/share/globaleaks/docker/tasks
 
-RUN cd /app/client && \
-    ./node_modules/grunt/bin/grunt build && \
+RUN npm install -g \
+    grunt \
+    console-table-printer \
+    -y
+
+WORKDIR /usr/share/globaleaks/client
+
+RUN grunt --tasks /usr/share/globaleaks/docker/tasks luna:updateTranslations
+
+RUN grunt build && \
     rm -rf node_modules
 
 FROM python:${PYTHON_VERSION}-alpine AS backend
 
-COPY ./backend /app/backend
+COPY ./ /usr/share/globaleaks
 
-COPY ./AUTHORS /usr/share/globaleaks/AUTHORS
-COPY ./CHANGELOG /usr/share/globaleaks/CHANGELOG
-COPY ./LICENSE /usr/share/globaleaks/LICENSE
-COPY ./README.md /usr/share/globaleaks/README.md
+WORKDIR /usr/share/globaleaks
 
-COPY --from=client-build-env /app/client/build /app/client/build
+RUN rm -r ./client
 
-RUN pip install -r /app/backend/requirements/requirements-bookworm.txt
+COPY --from=client-build-env /usr/share/globaleaks/client/build ./client
+
+RUN pip install -r ./backend/requirements/requirements-bookworm.txt
 
 # Fix a missing dependency
 
@@ -34,7 +43,7 @@ RUN pip install six
 
 RUN mkdir -p /var/globaleaks/
 
-WORKDIR /app/backend
+WORKDIR /usr/share/globaleaks/backend
 
 ARG HTTP_PORT=8080
 ARG HTTPS_PORT=8443
