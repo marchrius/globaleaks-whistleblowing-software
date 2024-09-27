@@ -7,16 +7,17 @@ COPY . /usr/share/globaleaks
 
 WORKDIR /usr/share/globaleaks/client
 
+RUN npm install
+
+RUN npm install -g grunt -y
+
 # This will copy the footer modified template
 RUN cp ./app/custom/footer.component.html ./app/src/shared/partials/footer/footer.component.html
 RUN cat ./app/custom/css/app.css >> ./app/css/main.css
 
 WORKDIR /usr/share/globaleaks/docker/tasks
 
-RUN npm install -g \
-    grunt \
-    console-table-printer \
-    -y
+RUN npm install --save-dev console-table-printer -y
 
 WORKDIR /usr/share/globaleaks/client
 
