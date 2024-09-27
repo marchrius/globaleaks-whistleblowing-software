@@ -10,7 +10,12 @@ module.exports = function(grunt) {
         Found: 0,
         Translated: 0
       }
-      const table = new Printer.Table();
+      const table = new Printer.Table({
+        columns: [
+          { name: '', alignment: 'right', color: 'normal' },
+          { name: 'Found' },
+        ]
+      });
       const source_pot = path.join("app", "assets", "data_src", "pot");
       const source_assets = path.join("app", "assets", "data", "l10n");
       const base_path = path.join("app", "custom", "assets", "data");
