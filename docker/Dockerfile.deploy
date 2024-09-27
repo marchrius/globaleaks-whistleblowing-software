@@ -4,7 +4,6 @@ ARG PYTHON_VERSION=3.9.13
 FROM node:${NODE_VERSION}-alpine AS client-build-env
 
 COPY ./client /app/client
-COPY ./LICENSE /app/LICENSE
 
 # This will copy the footer modified template
 RUN cp /app/client/app/custom/footer.component.html /app/client/app/src/shared/partials/footer/footer.component.html
@@ -19,6 +18,11 @@ RUN cd /app/client && \
 FROM python:${PYTHON_VERSION}-alpine AS backend
 
 COPY ./backend /app/backend
+
+COPY ./AUTHORS /usr/share/globaleaks/AUTHORS
+COPY ./CHANGELOG /usr/share/globaleaks/CHANGELOG
+COPY ./LICENSE /usr/share/globaleaks/LICENSE
+COPY ./README.md /usr/share/globaleaks/README.md
 
 COPY --from=client-build-env /app/client/build /app/client/build
 
