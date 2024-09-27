@@ -3,7 +3,6 @@ module.exports = function(grunt) {
       path = require("path"),
       superagent = require("superagent"),
       Gettext = require("node-gettext");
-      Printer = require('console-table-printer');
 
   async function loadGettextParser() {
     return await import('gettext-parser');
@@ -917,45 +916,13 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask("updateCustomTranslations", function() {
-    
-    console.group(`Custom translations`);
-    const stats = {
-      Found: 0,
-      Translated: 0
-    }
-    const table = new Printer.Table();
-    grunt.file.recurse("app/assets/data_src/pot/", function(absdir, rootdir, subdir, filename) {
-      stats.Found++;
-      var lang_code = filename.replace(/.po$/, "");
-      var translations = JSON.parse(fs.readFileSync(`app/assets/data/l10n/${lang_code}.json`));
-      var base_path = `app/custom/assets/data`
-      try {
-        var custom_translations = JSON.parse(fs.readFileSync(`${base_path}/${lang_code}.json`));
-        console.debug(`Custom translations for ${base_path}/${lang_code}.json`);
-        table.addRow({'': `${base_path}/${lang_code}.json`, Found: '✓'}, {color: 'green'});
-      } catch (e) {
-        table.addRow({'': `${base_path}/${lang_code}.json`, Found: '✗'}, {color: 'red'});
-        return;
-      }
-      var output = {...translations, ...custom_translations};
-      fs.writeFileSync(`app/assets/data/l10n/${lang_code}.json`, JSON.stringify(output, null, 2));
-      stats.Translated++;
-    });
-    table.printTable();
-    Printer.printTable([stats]);
-    console.groupEnd();
-
-  });
-
   // Run this task to push translations on transifex
   grunt.registerTask("pushTranslationsSource", ["confirm", "☠☠☠pushTranslationsSource☠☠☠"]);
 
   // Run this task to fetch translations from transifex and create application files
-  grunt.registerTask("updateTranslations", ["fetchTranslations", "updateCustomTranslations", "makeAppData", "verifyAppData"]);
+  grunt.registerTask("updateTranslations", ["fetchTranslations", "makeAppData", "verifyAppData"]);
 
-  // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
-  grunt.registerTask("build", ["clean", "shell:npx_build", "updateCustomTranslations", "copy:build", "string-replace", "copy:package", "clean:tmp"]);
+  grunt.registerTask("build", ["clean", "shell:npx_build", "copy:build", "string-replace", "copy:package", "clean:tmp"]);
  
-  grunt.registerTask("build_and_instrument", ["clean", "shell:npx_build_and_instrument", "updateCustomTranslations", "copy:build", "string-replace", "copy:package", "clean:tmp"]);
+  grunt.registerTask("build_and_instrument", ["clean", "shell:npx_build_and_instrument", "copy:build", "string-replace", "copy:package", "clean:tmp"]);
 };
