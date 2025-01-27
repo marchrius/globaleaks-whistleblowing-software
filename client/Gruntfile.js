@@ -718,12 +718,6 @@ module.exports = function(grunt) {
       console.error(err);
       done(false);
     });
-
-      done();
-    })().catch(err => {
-      console.error(err);
-      done(false);
-    });
   });
 
   grunt.registerTask("verifyAppData", function() {
@@ -806,5 +800,5 @@ module.exports = function(grunt) {
   grunt.registerTask("build", ["clean", "updateCustomTranslations", "shell:npx_build", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
  
   grunt.registerTask("build_and_instrument", ["clean", "updateCustomTranslations", "shell:npx_build_and_instrument", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
-};
 
+};
