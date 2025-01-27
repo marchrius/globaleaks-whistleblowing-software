@@ -594,7 +594,5 @@
   "This email is to remind you the presence of unread or updated reports.": "This email is to remind you the presence of unread or updated reports.",
   "Reminder about unread or updated reports": "Reminder about unread or updated reports",
   "Role: {Role}": "Role: {Role}",
-  "Password: {Password}": "Password: {Password}",
-  "This platform is managed by Luna Partner S.r.l.": "This platform is managed by Luna Partner S.r.l.",
-  "Custom codebase developed by Luna Partner S.r.l. based on release 5.0.32.": "Custom codebase developed by Luna Partner S.r.l. based on release 5.0.32."
+  "Password: {Password}": "Password: {Password}"
 }
