@@ -797,8 +797,8 @@ module.exports = function(grunt) {
   // Run this task to fetch translations from transifex and create application files
   grunt.registerTask("updateTranslations", ["fetchTranslations", "makeAppData", "verifyAppData"]);
 
-  grunt.registerTask("build", ["clean", "updateCustomTranslations", "shell:npx_build", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
+  grunt.registerTask("build", ["clean", "shell:npx_build", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
  
-  grunt.registerTask("build_and_instrument", ["clean", "updateCustomTranslations", "shell:npx_build_and_instrument", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
+  grunt.registerTask("build_and_instrument", ["clean", "shell:npx_build_and_instrument", "copy:build", "string-replace", "postcss", "copy:package", "clean:tmp"]);
 
 };
