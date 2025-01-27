@@ -41,7 +41,7 @@ describe("recipient admin tip actions", () => {
     cy.login_receiver();
 
     cy.visit("/#/recipient/reports");
-    cy.get("#tip-action-open-new-tab").click();
+    cy.get("#tip-action-act-as-whistleblower").click();
     cy.visit("/#/recipient/reports");
 
     cy.logout();
@@ -151,8 +151,8 @@ describe("recipient admin tip actions", () => {
     cy.get('.multiselect-item-checkbox').eq(0).click();
 
     cy.get('.TipInfoSubmissionDate .fas.fa-calendar').click();
-    cy.get('.custom-day').first().click();
-    cy.get('.custom-day').eq(4).click({ shiftKey: true });
+    cy.get('.custom-date-selector').first().click();
+    cy.get('.custom-date-selector').eq(4).click({ shiftKey: true });
     cy.contains('button.btn.btn-danger', 'Reset').click();
 
     cy.logout();

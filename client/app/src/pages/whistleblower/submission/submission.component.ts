@@ -293,9 +293,12 @@ export class SubmissionComponent implements OnInit {
           }
         }
       }
+
       if (this.uploading()) {
         return;
       }
+
+      clearInterval(intervalId);
 
       this.submissionService.submit().subscribe({
         next: (response) => {
@@ -304,8 +307,6 @@ export class SubmissionComponent implements OnInit {
           this.titleService.setPage("receiptpage");
         }
       });
-
-      clearInterval(intervalId);
     }, 1000);
   }
 

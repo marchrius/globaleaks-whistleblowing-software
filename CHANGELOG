@@ -1,3 +1,51 @@
+Changes in version 5.0.43
+    Correct regression on logs missing newlines introduced in 5.0.38
+
+Changes in version 5.0.42
+    Fix possibility to vary expiration date if default data retention policy is disabled
+
+Changes in version 5.0.41
+    Re-add markdown support to recipients and context descriptions (#4364)
+    Bump client dependencies to latest version
+
+Changes in version 5.0.40
+    Fix visualization of enforced recipients broken in 5.0.0
+
+Changes in version 5.0.39
+    Ensure voice questions could work when defined in question templates
+    Bump pdfjs again to v4 with proper packaging
+    Bump client dependencies to latest version
+
+Changes in version 5.0.38
+    Correct PDF viewer re-including pdfjs v3
+
+Changes in version 5.0.37
+    Fix visualization of uploaded configuration files
+    Revise detection and messaging about unsupported browsers
+    Bump client dependencies to latest versions
+
+Changes in version 5.0.36
+    Fix loading of customizations in compatibility with new CSP
+
+Changes in version 5.0.35
+    Revise implementation of CSP in relation to 'report-sample' directive
+
+Changes in version 5.0.34
+    Revise Trusted-Types implementation enforcing usage of a 'default' policy
+    Implement handler to collect reporting of attemps of violation to the Content Security Policy
+    [doc] Extend documentation adding detail about the revisions on the Content Security Policy
+
+Changes in version 5.0.33
+    Complete implementation of CSP policy based on Trusted-Types
+    Enforce validation of every admin config or user input by means of DOMPurify
+    Restrict usage of CSS inline scripts (#4345) as previously done on v4
+    Fix bug in gl-admin utility preventing possibility to reset 2fa
+    Correct feature of re-ordering of questions options (#4348)
+    Fix issues #4341, #4344
+    Improve packaging of css libraries and overrides
+    Bump client dependencies to latest versions
+    Update translations
+
 Changes in version 5.0.32
 Revise language changes utilities in relation to issue #4315
 Fixed validation of multistep questionnaires and extend validation to files (#4336)

@@ -38,38 +38,21 @@
       </ul>
       }
       <div id="SubmissionTabsContentBox" class="tab-content">
-        @for (step of this.questionnaire.steps | orderBy:'order'; track step;
-        let index = $index) {
-        <div>
-          @if (step && step.enabled) {
-          <span>
-            <div [class.hidden]="navigation !== index">
-              <div
-                id="step-{{ index }}"
-                ngForm
-                #stepForm="ngForm"
-                ngFormChanges
-                (ngFormChange)="onFormChange()"
-              >
-                @if (step.description) {
-                <div class="description">{{ step.description }}</div>
-                }
-                <src-form
-                  [fileUploadUrl]="file_upload_url"
-                  (notifyFileUpload)="onFileUpload($event)"
-                  [identity_provided]="
-                    wbTipService.tip.data.whistleblower_identity
-                  "
-                  [uploads]="uploads"
-                  [answers]="answers"
-                  [step]="step"
-                  [index]="index"
-                ></src-form>
-              </div>
-            </div>
-          </span>
-          }
-        </div>
+        @for (step of this.questionnaire.steps | orderBy:'order'; track step; let index = $index) {
+          <div>
+            @if (step && step.enabled) {
+              <span>
+                <div [class.d-none]="navigation !== index">
+                  <div id="step-{{index}}" ngForm #stepForm="ngForm" ngFormChanges (ngFormChange)="onFormChange()">
+                    @if (step.description) {
+                      <div class="description">{{step.description}}</div>
+                    }
+                    <src-form [fileUploadUrl]="file_upload_url" (notifyFileUpload)="onFileUpload($event)" [identity_provided]="wbTipService.tip.data.whistleblower_identity" [uploads]="uploads" [answers]="answers" [step]="step" [index]="index"></src-form>
+                  </div>
+                </div>
+              </span>
+            }
+          </div>
         }
       </div>
     </div>
