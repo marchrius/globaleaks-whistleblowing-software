@@ -23,7 +23,7 @@
   </div>
   }
   <div id="AttributionClause" class="vcenter">
-    <luna-version />
+    <div>{{ 'This platform is managed by Luna Partner S.r.l.' | translate }}</div>
     <div>Powered by
       <a
         href="https://www.globaleaks.org/"
@@ -31,6 +31,7 @@
         target="_blank"
       >GlobaLeaks</a>
     </div>
+    <div>{{ 'Custom codebase developed by Luna Partner S.r.l. based on release {{ version }}.' | translate: { version: nodeResolver.dataModel.version } }}</div>
   </div>
   }
 </footer>

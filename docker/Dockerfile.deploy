@@ -1,4 +1,4 @@
-ARG NODE_VERSION=18.19.1
+ARG NODE_VERSION=20.18.1
 ARG PYTHON_VERSION=3.9.13
 
 FROM node:${NODE_VERSION}-alpine AS client-build-env
@@ -13,6 +13,7 @@ RUN npm install -g grunt -y
 
 # This will copy the footer modified template
 RUN cp ./app/custom/footer.component.html ./app/src/shared/partials/footer/footer.component.html
+RUN cp ./app/custom/footer.component.ts ./app/src/shared/partials/footer/footer.component.ts
 RUN cat ./app/custom/css/app.css >> ./app/css/main.css
 
 WORKDIR /usr/share/globaleaks/docker/tasks
