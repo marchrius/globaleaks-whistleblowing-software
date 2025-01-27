@@ -631,5 +631,7 @@
   "This email is to remind you the presence of unread or updated reports.": "Questa email ti ricorda della presenza di segnalazioni non lette o aggiornate.",
   "Reminder about unread or updated reports": "Promemoria circa segnalazioni non lette o aggiornate",
   "Role: {Role}": "Ruolo: {Role}",
-  "Password: {Password}": "Password: {Password}"
+  "Password: {Password}": "Password: {Password}",
+  "This platform is managed by Luna Partner S.r.l.": "Questa piattaforma è gestita da Luna Partner S.r.l.",
+  "Custom codebase developed by Luna Partner S.r.l. based on release 5.0.32.": "Prodotto custom sviluppato da Luna Partner S.r.l. e basato sulla release 5.0.32."
 }
