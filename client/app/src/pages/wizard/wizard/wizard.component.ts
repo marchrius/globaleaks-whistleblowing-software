@@ -84,7 +84,6 @@ export class WizardComponent implements OnInit {
   }
 
   complete() {
-
     if (this.completed) {
       return;
     }

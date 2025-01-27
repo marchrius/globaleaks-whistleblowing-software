@@ -13,6 +13,14 @@ export class TranslationService {
   private appDataService = inject(AppDataService);
 
   language = "";
+
+  private currentLocale = new BehaviorSubject<string>("");
+  currentLocale$ = this.currentLocale.asObservable();
+
+  changeLocale(newLocale: string) {
+    this.currentLocale.next(newLocale);
+  }
+
   public currentDirection: string;
 
   constructor() {

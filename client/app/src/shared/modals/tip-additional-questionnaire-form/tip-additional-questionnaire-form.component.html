@@ -1,41 +1,24 @@
 <div class="modal-header">
-  <div class="modal-title">{{ "Additional questionnaire" | translate }}</div>
-  <button
-    type="submit"
-    class="close btn"
-    [attr.aria-hidden]="true"
-    (click)="activeModal.dismiss()"
-    [attr.aria-label]="'Close' | translate"
-  >
+  <div class="modal-title">{{'Additional questionnaire'|translate}}</div>
+  <button type="submit" class="close btn" [attr.aria-hidden]="true" (click)="activeModal.dismiss()" [attr.aria-label]="'Close' | translate">
     <i class="fa-solid fa-times"></i>
   </button>
 </div>
 <div class="modal-body">
-  <form
-    #submissionForm="ngForm"
-    id="SubmissionForm"
-    autocomplete="off"
-    novalidate
-  >
+  <form #submissionForm="ngForm" id="SubmissionForm" autocomplete="off" novalidate>
     <div class="tabbable tabs-below">
       @if (wbTipService.tip.additional_questionnaire.steps.length > 1) {
-      <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs">
-        @for (step of wbTipService.tip.additional_questionnaire.steps |
-        orderBy:'order' ; track step; let index = $index) {
-        <li class="nav-item">
-          @if (step.enabled) {
-          <a
-            id="step-{{ index }}-link"
-            class="nav-link title"
-            [ngClass]="{ active: navigation === index }"
-            (click)="goToStep(index)"
-          >
-            <span>{{ index + 1 }} - {{ step.label }}</span>
-          </a>
+        <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs">
+          @for (step of wbTipService.tip.additional_questionnaire.steps | orderBy:'order' ; track step; let index = $index) {
+            <li class="nav-item">
+              @if (step.enabled) {
+                <a id="step-{{index}}-link" class="nav-link title" [ngClass]="{active: navigation === index}" (click)="goToStep(index)">
+                  <span>{{index + 1}} - {{step.label}}</span>
+                </a>
+              }
+            </li>
           }
-        </li>
-        }
-      </ul>
+        </ul>
       }
       <div id="SubmissionTabsContentBox" class="tab-content">
         @for (step of this.questionnaire.steps | orderBy:'order'; track step; let index = $index) {
@@ -58,45 +41,29 @@
     </div>
   </form>
   @if (!hasNextStep()) {
-  <src-rfiles-upload-status
-    [progress]="calculateProgress()"
-    [estimatedTime]="calculateEstimatedTime()"
-    [uploading]="uploading()"
-  ></src-rfiles-upload-status>
+    <src-rfiles-upload-status [progress]="calculateProgress()" [estimatedTime]="calculateEstimatedTime()" [uploading]="uploading()"></src-rfiles-upload-status>
   }
 </div>
 <div class="modal-footer">
   <div id="SubmissionButtons">
-    <br />
-    @if (hasPreviousStep()) {
-    <button
-      id="PreviousStepButton"
-      class="btn btn-outline-secondary"
-      (click)="whistleblowerSubmissionService.decrementStep(this)"
-    >
-      <i class="fa-solid fa-arrow-circle-left"></i>
-      <span>{{ "Previous" | translate }}</span>
-    </button>
-    } @if (hasNextStep()) {
-    <button
-      id="NextStepButton"
-      class="btn btn-outline-secondary"
-      (click)="whistleblowerSubmissionService.incrementStep(this)"
-    >
-      <span>{{ "Next" | translate }}</span>
-      <i class="fa-solid fa-arrow-circle-right"></i>
-    </button>
-    } @if (!hasNextStep()) {
-    <button
-      id="SubmitButton"
-      class="btn btn-primary"
-      [disabled]="done"
-      (click)="completeSubmission()"
-      type="submit"
-    >
-      <i id="SubmitIconOK" class="fa-solid fa-check"></i>
-      <span>{{ "Submit" | translate }}</span>
-    </button>
-    }
+    <br>
+      @if (hasPreviousStep()) {
+        <button id="PreviousStepButton" class="btn btn-outline-secondary" (click)="whistleblowerSubmissionService.decrementStep(this)">
+          <i class="fa-solid fa-arrow-circle-left"></i>
+          <span>{{'Previous'|translate}}</span>
+        </button>
+      }
+      @if (hasNextStep()) {
+        <button id="NextStepButton" class="btn btn-outline-secondary" (click)="whistleblowerSubmissionService.incrementStep(this)">
+          <span>{{'Next'|translate}}</span>
+          <i class="fa-solid fa-arrow-circle-right"></i>
+        </button>
+      }
+      @if (!hasNextStep()) {
+        <button id="SubmitButton" class="btn btn-primary" [disabled]="done" (click)="completeSubmission()" type="submit">
+          <i id="SubmitIconOK" class="fa-solid fa-check"></i>
+          <span>{{'Submit'|translate}}</span>
+        </button>
+      }
+    </div>
   </div>
-</div>

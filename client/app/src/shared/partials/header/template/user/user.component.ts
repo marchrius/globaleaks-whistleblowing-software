@@ -59,9 +59,9 @@ export class UserComponent {
             this.appConfigService.reinit(true);
             this.utilsService.reloadCurrentRouteFresh();
           }
-          localStorage.setItem("default_language", paramLangValue);
         }
       }
+      this.lastLang = currentLang;
     });
   }
 

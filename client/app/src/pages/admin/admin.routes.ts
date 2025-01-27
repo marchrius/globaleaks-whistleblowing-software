@@ -47,7 +47,6 @@ export const adminRoutes: Routes = [
     resolve: {
       NodeResolver, PreferenceResolver, UsersResolver, QuestionnairesResolver
     },
-    loadChildren: () => SettingsModule,
     pathMatch: "full",
     data: {sidebar: "admin-sidebar", pageTitle: "Settings"},
   },
@@ -57,7 +56,6 @@ export const adminRoutes: Routes = [
     resolve: {
       NodeResolver, PreferenceResolver, UsersResolver, JobResolver, TipsResolver, QuestionnairesResolver, StatusResolver
     },
-    loadChildren: () => SitesModule,
     pathMatch: "full",
     data: {sidebar: "admin-sidebar", pageTitle: "Sites"},
   },
@@ -76,7 +74,6 @@ export const adminRoutes: Routes = [
     resolve: {
       NodeResolver, PreferenceResolver, ContextsResolver, UsersResolver, QuestionnairesResolver, FieldTemplatesResolver
     },
-    loadChildren: () => QuestionnairesModule,
     pathMatch: "full",
     data: {sidebar: "admin-sidebar", pageTitle: "Questionnaires"},
   },
@@ -104,7 +101,6 @@ export const adminRoutes: Routes = [
     resolve: {
       NodeResolver, PreferenceResolver, UsersResolver, AuditlogResolver: AuditLogResolver, JobResolver, TipsResolver
     },
-    loadChildren: () => AuditLogModule,
     pathMatch: "full",
     data: {sidebar: "admin-sidebar", pageTitle: "Audit log"},
   },
@@ -114,7 +110,6 @@ export const adminRoutes: Routes = [
     resolve: {
       NodeResolver, PreferenceResolver, NotificationsResolver
     },
-    loadChildren: () => NotificationsModule,
     pathMatch: "full",
     data: {sidebar: "admin-sidebar", pageTitle: "Notifications"},
   },
@@ -124,7 +119,6 @@ export const adminRoutes: Routes = [
     resolve: {
       NodeResolver, PreferenceResolver, UsersResolver, NetworkResolver, RedirectsResolver
     },
-    loadChildren: () => NetworkModule,
     pathMatch: "full",
     data: {sidebar: "admin-sidebar", pageTitle: "Network"},
   }
