@@ -109,9 +109,6 @@ msgstr "Permet al destinatari editar la data d'expiració de les denúncies"
 msgid "Allow the recipient to delete reports"
 msgstr "Permet al destinatari esborrar informes"
 
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permet al destinatari ajornar la data d'expiració de l'informe"
-
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permet a les persones reveladores de informació enviar un arxiu adjunt. "
 
@@ -282,9 +279,6 @@ msgstr "Configura"
 msgid "Confirm"
 msgstr "Confirma extensió"
 
-msgid "Confirmation"
-msgstr "Confirmació"
-
 msgid "Congratulations!"
 msgstr "Enhorabona!"
 
@@ -418,6 +412,9 @@ msgstr "Data més propera disponible"
 
 msgid "Edit"
 msgstr "Edita"
+
+msgid "Edit the expiration date"
+msgstr "Editar la data de venciment"
 
 msgid "Email"
 msgstr "Adreça electrònica"
@@ -916,9 +913,6 @@ msgstr "Si us plau, sàpiga que totes les dades associades seran esborrades defi
 
 msgid "Please select your account:"
 msgstr "Si us plau, selecciona el teu compte:"
-
-msgid "Postpone the expiration date"
-msgstr "Posposa la data de caducitat"
 
 msgid "Preferences"
 msgstr "Preferències"
@@ -1641,7 +1635,7 @@ msgid "File a report"
 msgstr "Presentar un informe"
 
 msgid "Select a reporting channel:"
-msgstr "Trie un canal de denúncia:"
+msgstr "Tria un canal de denúncia:"
 
 msgid "Please summarize your report in a few words."
 msgstr "Descriu el teu informe en poques paraules."

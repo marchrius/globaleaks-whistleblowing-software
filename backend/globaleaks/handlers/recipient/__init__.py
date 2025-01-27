@@ -61,6 +61,7 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                  .group_by(models.InternalTip.id):
         files_by_itip[itip_id] = count
 
+
     # Fetch number of receivers who have access to each report
     for itip_id, count in session.query(models.ReceiverTip.internaltip_id,
                                         func.count(models.ReceiverTip.id)) \
@@ -69,27 +70,35 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
 
     # Retrieve all the contexts associated with the current receiver
     receiver_contexts = set()
+
     for context_id in session.query(models.ReceiverContext.context_id) \
                              .filter(models.ReceiverContext.receiver_id == receiver_id):
         receiver_contexts.add(context_id[0])
 
     dict_ret = dict()
+
+    query = session.query(models.ReceiverTip,
+                            models.InternalTip,
+                            models.InternalTipAnswers,
+                            models.InternalTipData) \
+                    .join(models.InternalTipData,
+                            and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
+                                models.InternalTipData.key == 'whistleblower_identity'),
+                            isouter=True) \
+                    .filter(or_(models.InternalTip.context_id.in_(receiver_contexts),
+                            models.ReceiverTip.receiver_id == receiver_id),
+                            models.InternalTip.update_date >= updated_after,
+                            models.InternalTip.update_date <= updated_before,
+                            models.InternalTip.id == models.ReceiverTip.internaltip_id,
+                            models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
+                    .group_by(models.ReceiverTip.id)
+
+    tips_count = query.count()
+
     # Fetch rtip, internaltip and associated questionnaire schema
-    for rtip, itip, answers, data in session.query(models.ReceiverTip,
-                                                   models.InternalTip,
-                                                   models.InternalTipAnswers,
-                                                   models.InternalTipData) \
-                                            .join(models.InternalTipData,
-                                                  and_(models.InternalTipData.internaltip_id == models.InternalTip.id,
-                                                       models.InternalTipData.key == 'whistleblower_identity'),
-                                                  isouter=True) \
-                                            .filter(or_(models.InternalTip.context_id.in_(receiver_contexts),
-                                                    models.ReceiverTip.receiver_id == receiver_id),
-                                                    models.InternalTip.update_date >= updated_after,
-                                                    models.InternalTip.update_date <= updated_before,
-                                                    models.InternalTip.id == models.ReceiverTip.internaltip_id,
-                                                    models.InternalTipAnswers.internaltip_id == models.ReceiverTip.internaltip_id) \
-                                            .group_by(models.ReceiverTip.id):
+    for rtip, itip, answers, data in query.limit(limit) \
+                                        .offset((offset - 1)* limit):
+
         answers = answers.answers
         label = itip.label
         accessible = rtip.receiver_id == receiver_id
@@ -135,7 +144,8 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                 'comment_count': comments_by_itip.get(itip.id, 0),
                 'receiver_count': receiver_count_by_itip.get(itip.id, 0),
                 'subscription': subscription,
-                'accessible': accessible
+                'accessible': accessible,
+                'total_count': tips_count,
             }
 
     return list(dict_ret.values())

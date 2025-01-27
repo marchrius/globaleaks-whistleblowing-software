@@ -17,3 +17,7 @@ export interface Properties {
   management_session: any
   new_receipt: string;
 }
+
+export class SessionRefresh {
+  token: string;
+}

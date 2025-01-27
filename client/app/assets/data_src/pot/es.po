@@ -46,7 +46,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: José Javier Alamá Izquierdo, 2023-2024\n"
+"Last-Translator: Giovanni Pellerano <giovanni.pellerano@evilaliv3.org>, 2013-2024\n"
 "Language-Team: Spanish (http://app.transifex.com/otf/globaleaks/language/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -129,9 +129,6 @@ msgstr "Permitir a este usuario editar la fecha de caducidad de las denuncias"
 
 msgid "Allow the recipient to delete reports"
 msgstr "Permitir a este usuario borrar denuncias."
-
-msgid "Allow the recipient to postpone the report expiration date"
-msgstr "Permitir al destinatario posponer la fecha de caducidad de una denuncia."
 
 msgid "Allow the whistleblower to add attachments"
 msgstr "Permitir al denunciante añadir nuevos adjuntos a su denuncia"
@@ -229,8 +226,8 @@ msgstr "Antes de continuar, por favor establezca una nueva contraseña."
 msgid "Block the submission"
 msgstr "Bloquear el envío "
 
-msgid "By confirming, you will postpone the expiration date to:"
-msgstr "Al confirmar, pospondrá la fecha de caducidad a:"
+msgid "By confirming, you will edit the expiration date to:"
+msgstr "Al confirmar, cambiará la fecha de caducidad a:"
 
 msgid "By confirming, you will set a reminder on date:"
 msgstr "Tras confirmar, quedará establecido un recordatorio para el día:"
@@ -302,9 +299,6 @@ msgstr "Configurar"
 
 msgid "Confirm"
 msgstr "Confirmar"
-
-msgid "Confirmation"
-msgstr "Confirmación"
 
 msgid "Congratulations!"
 msgstr "¡Felicidades!"
@@ -439,6 +433,9 @@ msgstr "Fecha más temprana disponible"
 
 msgid "Edit"
 msgstr "Editar"
+
+msgid "Edit the expiration date"
+msgstr "Editar la fecha de caducidad"
 
 msgid "Email"
 msgstr "Correo electrónico"
@@ -938,9 +935,6 @@ msgstr "Por favor, comprenda que todos los datos asociados serán eliminados def
 msgid "Please select your account:"
 msgstr "Por favor, seleccione su cuenta:"
 
-msgid "Postpone the expiration date"
-msgstr "Posponer la fecha de vencimiento"
-
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -1065,7 +1059,7 @@ msgid "Report statuses"
 msgstr "Estados de una denuncia."
 
 msgid "Reports"
-msgstr "Denuncias."
+msgstr "Denuncias"
 
 msgid "Request access to the whistleblower's identity"
 msgstr "Solicitar acceso a la identidad del denunciante "
@@ -1659,7 +1653,7 @@ msgid "seconds"
 msgstr "segundos"
 
 msgid "File a report"
-msgstr "Presentar una denuncia."
+msgstr "Presentar una denuncia"
 
 msgid "Select a reporting channel:"
 msgstr "Seleccione un canal de denuncias:"
