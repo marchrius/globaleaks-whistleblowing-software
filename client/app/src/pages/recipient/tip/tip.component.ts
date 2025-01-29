@@ -314,11 +314,7 @@ export class TipComponent implements OnInit {
   }
 
   reload(): void {
-    const reloadCallback = () => {
-      this.utils.reloadComponent();
-    };
-
-    this.appConfigServices.localInitialization(true, reloadCallback);
+    this.utils.reloadComponent();
   }
 
   preprocessTipAnswers(tip: RecieverTipData) {
@@ -388,7 +384,7 @@ export class TipComponent implements OnInit {
     (
       {
         next: async token => {
-          this.cryptoService.proofOfWork(token.id).subscribe(
+          this.cryptoService.proofOfWork(token).subscribe(
             (result: number) => {
               window.open("api/recipient/rtips/" + tipId + "/export" + "?token=" + token.id + ":" + result);
               this.appDataService.updateShowLoadingPanel(false);

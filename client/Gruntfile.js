@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
-  let fs = require("fs"),
+  let cssnano = require("cssnano"),
+      fs = require("fs"),
       path = require("path"),
       superagent = require("superagent"),
       Gettext = require("node-gettext");
@@ -62,6 +63,7 @@ module.exports = function(grunt) {
             flatten: true,
             expand: true
           },
+          {dest: "build/images", cwd: "app/images", src: ["**"], expand: true},
           {dest: "build/js", cwd: "tmp/js", src: ["**"], expand: true},
           {dest: "build/data", cwd: "tmp/assets/data", src: ["**"], expand: true},
           {dest: "build/viewer/", cwd: ".", src: ["app/viewer/*"], expand: true, flatten: true},
@@ -187,7 +189,8 @@ module.exports = function(grunt) {
       build_css_with_ltr_rtl_combined: {
         options: {
           processors: [
-            require('postcss-rtlcss')()
+            require('postcss-rtlcss')(),
+            cssnano({ preset: 'default' }) // Minify CSS
           ]
         },
         src: 'tmp/css/styles.css',
@@ -196,7 +199,27 @@ module.exports = function(grunt) {
     },
 
     webpack: {
-      build: {
+      crypto_worker: {
+        entry: {
+          'crypto.worker.js': './app/workers/crypto.worker.ts',
+        },
+        output: {
+          filename: 'crypto.worker.js',
+          path: path.resolve('build/workers/'),
+          libraryTarget: 'umd',
+          globalObject: 'this',
+        },
+        mode: 'production',
+        resolve: {
+          fallback: {
+            fs: false,
+            crypto: false,
+            path: false,
+            stream: false
+          }
+        }
+      },
+      pdfjs: {
         entry: {
           'pdf.min': './node_modules/pdfjs-dist/legacy/build/pdf.min.mjs',
           'pdf.worker.min': './node_modules/pdfjs-dist/legacy/build/pdf.worker.min.mjs',
@@ -217,6 +240,14 @@ module.exports = function(grunt) {
       },
       npx_build_and_instrument: {
         command: "npx ng build --configuration=testing && nyc instrument dist instrument"
+      },
+      brotli_compress: {
+        command: 'find . -type f -not -path \'./data/*\' -not -path \'./fonts/*\' -exec brotli -q 11 {} --output={}.br \\;',
+        options: {
+          execOptions: {
+            cwd: './build'
+          }
+        }
       },
       serve: {
         command: "ng serve --proxy-config proxy.conf.json"
@@ -834,7 +865,11 @@ module.exports = function(grunt) {
   // Run this task to fetch translations from transifex and create application files
   grunt.registerTask("updateTranslations", ["fetchTranslations", "makeAppData", "verifyAppData"]);
 
-  grunt.registerTask("build", ["clean", "shell:npx_build", "copy:build", "webpack", "string-replace", "postcss", "copy:package", "clean:tmp"]);
+  grunt.registerTask("package", ["copy:build", "webpack", "string-replace", "postcss", "copy:package"]);
+
+  grunt.registerTask("build", ["clean", "shell:npx_build", "package", "clean:tmp"]);
+
+  grunt.registerTask("build_and_compress", ["clean", "build", "shell:brotli_compress", "clean:tmp"]);
  
-  grunt.registerTask("build_and_instrument", ["clean", "shell:npx_build_and_instrument", "copy:build", "webpack", "string-replace", "postcss", "copy:package", "clean:tmp"]);
+  grunt.registerTask("build_and_instrument", ["clean", "shell:npx_build_and_instrument", "package", "clean:tmp"]);
 };

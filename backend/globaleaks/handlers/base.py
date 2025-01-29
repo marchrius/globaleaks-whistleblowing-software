@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import base64
 import json
 import mimetypes
 import os
@@ -9,6 +8,7 @@ from datetime import datetime
 
 from tempfile import NamedTemporaryFile
 
+from nacl.encoding import Base64Encoder
 from twisted.internet import abstract
 from twisted.protocols.basic import FileSender
 
@@ -19,7 +19,7 @@ from globaleaks.sessions import Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State
 from globaleaks.transactions import db_get_user
-from globaleaks.utils.crypto import GCE
+from globaleaks.utils.crypto import GCE, sha256
 from globaleaks.utils.ip import check_ip
 from globaleaks.utils.log import log
 from globaleaks.utils.pgp import PGPContext
@@ -30,7 +30,7 @@ mimetypes.add_type('text/javascript', '.js')
 
 
 def decodeString(string):
-    string = base64.b64decode(string)
+    string = Base64Encoder.decode(string)
     uint8_array = [c for c in string]
     uint16_array = []
     for i in range(len(uint8_array)):
@@ -86,7 +86,12 @@ def db_confirmation_check(session, tid, user_id, secret):
     if user.two_factor_secret:
         State.totp_verify(user.two_factor_secret, secret)
     else:
-        if not GCE.check_password(secret, user.salt, user.hash):
+        if len(user.hash) == 64:
+            hash = sha256(Base64Encoder.decode(secret.encode())).decode()
+        else:
+            hash = GCE.hash_password(secret, user.salt)
+
+        if not GCE.check_equality(hash, user.hash):
             raise errors.InvalidAuthentication
 
 
@@ -143,7 +148,7 @@ class BaseHandler(object):
         if session is None or session.tid != self.request.tid:
             return
 
-        if session.user_role != 'whistleblower' and \
+        if session.role != 'whistleblower' and \
            self.state.tenants[1].cache.get('log_accesses_of_internal_users', False):
              self.request.log_ip_and_ua = True
 
@@ -304,9 +309,18 @@ class BaseHandler(object):
 
         return open(filepath, 'rb')
 
-    def write_file(self, filename, fp):
-        if isinstance(fp, str):
-            fp = self.open_file(fp)
+    def write_file(self, filename, filepath):
+        if isinstance(filepath, str):
+            compressed_path = filepath + '.br'
+
+            accept_encoding = self.request.getHeader('Accept-Encoding')
+            if accept_encoding and 'br' in accept_encoding and os.path.exists(compressed_path):
+                self.request.compressed = True
+                filepath = compressed_path
+
+            fp = self.open_file(filepath)
+        else:
+            fp = filepath
 
         mimetype, _ = mimetypes.guess_type(filename)
 
@@ -341,7 +355,7 @@ class BaseHandler(object):
         file_id = self.request.args[b'flowIdentifier'][0].decode()
 
         if file_id not in self.state.TempUploadFiles:
-            if self.session and self.session.user_role == 'whistleblower':
+            if self.session and self.session.role == 'whistleblower':
                 State.RateLimitingTable.check(self.request.path + b'#' + self.session.user_id.encode(),
                                               State.tenants[1].cache.threshold_attachments_per_hour_per_report)
                 State.RateLimitingTable.check(self.request.path + b'#' + self.request.client_ip.encode(),
@@ -363,8 +377,6 @@ class BaseHandler(object):
 
             if self.request.args[b'flowChunkNumber'][0] != self.request.args[b'flowTotalChunks'][0]:
                 return None
-
-            f.finalize_write()
 
         mime_type, _ = mimetypes.guess_type(self.request.args[b'flowFilename'][0].decode())
         if mime_type is None:

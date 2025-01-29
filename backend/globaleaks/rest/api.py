@@ -30,10 +30,10 @@ from globaleaks.handlers import admin, \
                                 security, \
                                 signup, \
                                 sitemap, \
+                                support, \
                                 staticfile, \
                                 support, \
                                 user, \
-                                viewer, \
                                 wizard, \
                                 whistleblower
 
@@ -56,6 +56,7 @@ api_spec = [
     # Authentication Handlers
     (r'/api/auth/token', auth.token.TokenHandler),
     (r'/api/auth/authentication', auth.AuthenticationHandler),
+    (r'/api/auth/type', auth.AuthTypeHandler),
     (r'/api/auth/tokenauth', auth.TokenAuthHandler),
     (r'/api/auth/receiptauth', auth.ReceiptAuthHandler),
     (r'/api/auth/session', auth.SessionHandler),
@@ -161,9 +162,6 @@ api_spec = [
 
     # Path alias
     (r'^(/admin|/login|/submission)$', redirect.SpecialRedirectHandler),
-
-    # File viewer app
-    (r'/(viewer/[a-zA-Z0-9_\-\/\.\@]*)', viewer.ViewerHandler),
 
     # This handler attempts to route all non routed get requests
     (r'/([a-zA-Z0-9_\-\/\.\@]*)', staticfile.StaticFileHandler)
@@ -288,6 +286,7 @@ class APIResourceWrapper(Resource):
 
         :return: empty `str` or `NOT_DONE_YET`
         """
+        request.compressed = False
         request.hostname = request.getRequestHostname()
         request.port = request.getHost().port
         request.headers = request.getAllHeaders()
@@ -492,9 +491,14 @@ class APIResourceWrapper(Resource):
             if request.tid in State.tenants and State.tenants[request.tid].cache.onionservice:
                 request.setHeader(b'Onion-Location', b'http://' + State.tenants[request.tid].cache.onionservice.encode() + request.path)
 
+        request.setHeader(b"Cross-Origin-Embedder-Policy", "require-corp")
+        request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
+        request.setHeader(b"Cross-Origin-Resource-Policy", "same-origin")
+
+        # Default CSP Policy with reporting of any violation
         request.setHeader(b'Content-Security-Policy',
                           b"base-uri 'none';"
-                          b"default-src 'none' 'report-sample';"
+                          b"default-src 'none';"
                           b"form-action 'none';"
                           b"frame-ancestors 'none';"
                           b"sandbox;"
@@ -502,9 +506,89 @@ class APIResourceWrapper(Resource):
                           b"require-trusted-types-for 'script';"
                           b"report-uri /api/report;")
 
-        request.setHeader(b"Cross-Origin-Embedder-Policy", "require-corp")
-        request.setHeader(b"Cross-Origin-Opener-Policy", "same-origin")
-        request.setHeader(b"Cross-Origin-Resource-Policy", "same-origin")
+        # CSP Policy on the entry point
+        if request.path == b'/' or request.path == b'/index.html':
+            request.setHeader(b'Content-Security-Policy',
+                              b"base-uri 'none';"
+                              b"connect-src 'self';"
+                              b"default-src 'none';"
+                              b"font-src 'self';"
+                              b"form-action 'none';"
+                              b"frame-ancestors 'none';"
+                              b"frame-src 'self';"
+                              b"img-src 'self';"
+                              b"media-src 'self';"
+                              b"script-src 'self';"
+                              b"style-src 'self';"
+                              b"trusted-types angular angular#bundler dompurify default;"
+                              b"require-trusted-types-for 'script';")
+
+            # Duplicate the above rule to get reports about any violations except for inline styles
+            request.setHeader(b'Content-Security-Policy-Report-Only',
+                              b"base-uri 'none';"
+                              b"connect-src 'self';"
+                              b"default-src 'none';"
+                              b"font-src 'self';"
+                              b"form-action 'none';"
+                              b"frame-ancestors 'none';"
+                              b"frame-src 'self';"
+                              b"img-src 'self';"
+                              b"media-src 'self';"
+                              b"script-src 'self';"
+                              b"style-src 'self' 'unsafe-inline';"
+                              b"trusted-types angular angular#bundler dompurify default;"
+                              b"require-trusted-types-for 'script';"
+                              b"report-uri /api/report;")
+
+        # CSP Policy for the crypto worker with reporting of any violation
+        elif request.path == b'/workers/crypto.worker.js':
+            request.setHeader(b'Content-Security-Policy',
+                              b"base-uri 'none';"
+                              b"default-src 'none';"
+                              b"form-action 'none';"
+                              b"frame-ancestors 'none';"
+                              b"script-src 'wasm-unsafe-eval';"
+                              b"sandbox;"
+                              b"trusted-types;"
+                              b"require-trusted-types-for 'script';"
+                              b"report-uri /api/report;")
+
+        # CSP Policy for the file viewer
+        elif request.path.startswith(b'/viewer'):
+            if request.path == b'/viewer/index.html':
+                request.setHeader(b'Content-Security-Policy',
+                                  b"base-uri 'none';"
+                                  b"default-src 'none';"
+                                  b"connect-src blob:;"
+                                  b"form-action 'none';"
+                                  b"frame-ancestors 'self';"
+                                  b"img-src blob:;"
+                                  b"media-src blob:;"
+                                  b"script-src 'self';"
+                                  b"style-src 'self';"
+                                  b"sandbox allow-scripts;"
+                                  b"trusted-types;"
+                                  b"require-trusted-types-for 'script';")
+
+                # Duplicate the above rule to get reporting of violations except for inline styles
+                request.setHeader(b'Content-Security-Policy-Report-Only',
+                                  b"base-uri 'none';"
+                                  b"default-src 'none';"
+                                  b"connect-src blob:;"
+                                  b"form-action 'none';"
+                                  b"frame-ancestors 'self';"
+                                  b"img-src blob:;"
+                                  b"media-src blob:;"
+                                  b"script-src 'self';"
+                                  b"style-src 'self' 'unsafe-inline';"
+                                  b"sandbox allow-scripts;"
+                                  b"trusted-types;"
+                                  b"require-trusted-types-for 'script';"
+                                  b"report-uri /api/report;")
+
+                request.setHeader(b"Cross-Origin-Resource-Policy", "cross-origin")
+            else:
+                request.setHeader(b'Access-Control-Allow-Origin', "null")
 
         # Disable features that could be used to deanonymize the user
         microphone = False

@@ -38,13 +38,11 @@ The system implements the following password security measures:
 
 Password storage
 ----------------
-Passwords are never stored in plaintext; instead, the system maintains only a hashed version. This applies to all authentication secrets, including whistleblower receipts.
+Passwords are never stored on the server either in plaintext or in form on hash; instead, the system maintains only the hash of of a key drived from the user password.
 
-The platform stores users’ passwords hashed with a random 128-bit salt, unique for each user.
+Passwords are hashed using `Argon2 <https://en.wikipedia.org/wiki/Argon2>`_ with a configuration of 16 iterations and 128MB of RAM, a per-user salt for each user and a per-system salt for whistleblowers.
 
-Passwords are hashed using `Argon2 <https://en.wikipedia.org/wiki/Argon2>`_, a key derivation function selected as the winner of the `Password Hashing Competition <https://en.wikipedia.org/wiki/Password_Hashing_Competition>`_ in July 2015.
-
-The hash involves a per-user salt for each user and a per-system salt for whistleblowers.
+The hashing algorithm used to compute the key hash is SHA256.
 
 Password complexity
 -------------------
@@ -132,7 +130,7 @@ Content-Security-Policy
 The backend implements a strict `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_ preventing any interaction with third-party resources and restricting execution of code by means of `Trusted Types <https://www.w3.org/TR/trusted-types/>`_.
 ::
 
-  Content-Security-Policy: base-uri 'none'; connect-src 'self'; default-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'self'; img-src 'self'; media-src 'self'; script-src 'self' 'report-sample'; style-src 'self' 'report-sample'; trusted-types angular angular#bundler default dompurify; require-trusted-types-for 'script'; report-uri /api/report;
+  Content-Security-Policy: base-uri 'none'; connect-src 'self'; default-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'self'; img-src 'self'; media-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; trusted-types angular angular#bundler default dompurify; require-trusted-types-for 'script'; report-uri /api/report;
 
 Specific policies are implemented in adherence to the principle of least privilege.
 
@@ -358,6 +356,8 @@ Proof of work on users' sessions
 --------------------------------
 The system implements an automatic `Proof of Work <https://en.wikipedia.org/wiki/Proof_of_work>`__ based on the hashcash algorithm for every user session, requiring clients to request a token and continuously solve a computational problem to acquire and renew the session.
 
+Specifically the algorithm used to perform the hash is Argon2id with requirement of 1 iteration and 1MB of RAM.
+
 Rate limit on users' sessions
 ------------------------------
 The system implements rate limiting on user sessions, preventing more than 5 requests per second and applying increasing delays on requests that exceed this threshold.
@@ -424,7 +424,7 @@ The default configuration has this feature disabled.
 
 Encryption of temporary files
 -----------------------------
-Files uploaded and temporarily stored on disk during the upload process are encrypted with a temporary, symmetric AES key to prevent any unencrypted data from being written to disk. Encryption is performed in streaming mode using `AES 128-bit` in `CTR mode`. Key files are stored in memory and are unique for each file being uploaded.
+Files uploaded and temporarily stored on disk during the upload process are encrypted with a ChaCha20 and temporary 256bit keys to prevent any unencrypted data from being written to disks. Key files are stored in memory and are unique for each file being uploaded.
 
 Secure file delete
 ------------------

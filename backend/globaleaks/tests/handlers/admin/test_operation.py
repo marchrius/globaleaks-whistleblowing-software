@@ -25,7 +25,7 @@ class TestAdminResetSubmissions(helpers.TestHandlerWithPopulatedDB):
         yield self.test_model_count(models.ReceiverTip, 4)
         yield self.test_model_count(models.InternalFile, 4)
         yield self.test_model_count(models.WhistleblowerFile, 8)
-        yield self.test_model_count(models.Comment, 6)
+        yield self.test_model_count(models.Comment, 4)
         yield self.test_model_count(models.Mail, 0)
 
         data_request = {
@@ -64,7 +64,7 @@ class TestAdminOperations(helpers.TestHandlerWithPopulatedDB):
     def test_admin_test_set_user_password(self):
         return self._test_operation_handler('set_user_password',
                                            {'user_id': self.dummyReceiver_1['id'],
-                                            'password': 'GlobaLeaks123!'})
+                                            'password': helpers.VALID_PASSWORD})
 
     def test_admin_test_send_password_reset_email(self):
         return self._test_operation_handler('send_password_reset_email',

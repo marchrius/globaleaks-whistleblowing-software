@@ -2,7 +2,6 @@
 """
 Utilities and basic TestCases.
 """
-import base64
 import json
 import os
 import shutil
@@ -12,6 +11,8 @@ from datetime import timedelta
 from nacl.encoding import Base32Encoder, Base64Encoder
 
 from urllib.parse import urlsplit  # pylint: disable=import-error
+
+from sqlalchemy import exists, func
 
 from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks, returnValue, Deferred
@@ -44,7 +45,7 @@ from globaleaks.sessions import initialize_submission_session, Sessions
 from globaleaks.settings import Settings
 from globaleaks.state import State, TenantState
 from globaleaks.utils import tempdict, token
-from globaleaks.utils.crypto import generateRandomKey, GCE
+from globaleaks.utils.crypto import GCE, generateRandomKey, sha256
 from globaleaks.utils.securetempfile import SecureTemporaryFile
 from globaleaks.utils.utility import datetime_now, uuid4
 from globaleaks.utils.log import log
@@ -53,17 +54,15 @@ GCE.options['OPSLIMIT'] = 1
 
 ################################################################################
 # BEGIN MOCKS NECESSARY FOR DETERMINISTIC ENCRYPTION
-VALID_PASSWORD1 = 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
-VALID_PASSWORD2 = VALID_PASSWORD1
-VALID_SALT1 = GCE.generate_salt()
-VALID_SALT2 = GCE.generate_salt()
-VALID_HASH1 = GCE.hash_password(VALID_PASSWORD1, VALID_SALT1)
-VALID_HASH2 = GCE.hash_password(VALID_PASSWORD2, VALID_SALT2)
+VALID_PASSWORD = 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
+VALID_SALT = GCE.generate_salt()
+VALID_KEY = GCE.derive_key(VALID_PASSWORD, VALID_SALT)
+VALID_HASH = sha256(Base64Encoder.decode(VALID_KEY.encode()))
 VALID_BASE64_IMG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII='
 INVALID_PASSWORD = 'antani'
 
 KEY = GCE.generate_key()
-USER_KEY = GCE.derive_key(VALID_PASSWORD1, VALID_SALT1)
+USER_KEY = Base64Encoder.decode(GCE.derive_key(VALID_PASSWORD, VALID_SALT).encode())
 USER_PRV_KEY, USER_PUB_KEY = GCE.generate_keypair()
 USER_PRV_KEY_ENC = Base64Encoder.encode(GCE.symmetric_encrypt(USER_KEY, USER_PRV_KEY))
 USER_BKP_KEY, USER_REC_KEY = GCE.generate_recovery_key(USER_PRV_KEY)
@@ -72,8 +71,11 @@ USER_REC_KEY_PLAIN = Base32Encoder.encode(USER_REC_KEY_PLAIN).replace(b'=', b'')
 GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
 
-TOKEN = b"31b780b6eb6357e324eea7c3a5d2542067c4d537f4f4de77473c93d48dd8a758"
-TOKEN_ANSWER = b"31b780b6eb6357e324eea7c3a5d2542067c4d537f4f4de77473c93d48dd8a758:149619"
+TOKEN = b"61af2d7fb2796730c9fb9e357ed4c0f9c87d8c6f6976c4ca3731238db43e87b0"
+TOKEN_SALT = b"eed1d4c5a8e97f4f953d4bddd62957ac5f9e94af6a025c6b95300d72ba41b57e"
+TOKEN_ANSWER = b"61af2d7fb2796730c9fb9e357ed4c0f9c87d8c6f6976c4ca3731238db43e87b0:142"
+
+
 def mock_nullfunction(*args, **kwargs):
     return
 
@@ -156,21 +158,11 @@ def init_state():
     Sessions.clear()
 
 
-@transact
-def mock_users_keys(session):
-    for user in session.query(models.User):
-        user.hash = VALID_HASH1
-        user.salt = VALID_SALT1
-        user.crypto_prv_key = USER_PRV_KEY_ENC
-        user.crypto_pub_key = USER_PUB_KEY
-        user.crypto_bkp_key = USER_BKP_KEY
-        user.crypto_rec_key = USER_REC_KEY
-
-
 def get_token():
     token = State.tokens.new(1)
     State.tokens.pop(token.id)
     token.id = TOKEN
+    token.salt = TOKEN_SALT
     State.tokens[token.id] = token
     return TOKEN_ANSWER
 
@@ -252,9 +244,9 @@ class MockDict:
         self.dummyUser = {
             'id': '',
             'username': 'maker@iz.cool.yeah',
-            'password': VALID_PASSWORD1,
+            'password': VALID_KEY,
             'old_password': '',
-            'salt': VALID_SALT1,
+            'salt': VALID_SALT,
             'role': 'receiver',
             'enabled': True,
             'name': 'Generic User',
@@ -321,7 +313,7 @@ class MockDict:
             'languages_supported': [],  # ignored
             'languages_enabled': ['it', 'en'],
             'latest_version': __version__,
-            'receipt_salt': '<<the Lannisters send their regards>>',
+            'receipt_salt': VALID_SALT,
             'maximum_filesize': 30,
             'allow_indexing': False,
             'disable_submissions': False,
@@ -395,12 +387,12 @@ class MockDict:
             'node_name': 'test',
             'admin_username': 'admin',
             'admin_name': 'Giovanni Pellerano',
-            'admin_password': 'P4ssword!@#',
+            'admin_password': VALID_KEY,
             'admin_mail_address': 'evilaliv3@globaleaks.org',
             'admin_escrow': True,
             'receiver_username': 'receipient',
             'receiver_name': 'Fabio Pietrosanti',
-            'receiver_password': 'P4ssword!@#',
+            'receiver_password': VALID_KEY,
             'receiver_mail_address': 'naif@globaleaks.org',
             'profile': 'default',
             'skip_admin_account_creation': False,
@@ -430,13 +422,12 @@ def get_dummy_file(content=None):
     content_type = 'application/pdf'
 
     if content is None:
-        content = base64.b64decode(VALID_BASE64_IMG)
+        content = Base64Encoder.decode(VALID_BASE64_IMG)
 
     temporary_file = SecureTemporaryFile(Settings.tmp_path)
 
     with temporary_file.open('w') as f:
         f.write(content)
-        f.finalize_write()
 
     State.TempUploadFiles[os.path.basename(temporary_file.filepath)] = temporary_file
 
@@ -571,6 +562,7 @@ def forge_request(uri=b'https://www.globaleaks.org/',
 class TestGL(unittest.TestCase):
     initialize_test_database_using_archived_db = True
     pgp_configuration = 'ALL'
+    clientside_hashing = True
 
     @inlineCallbacks
     def setUp(self):
@@ -648,9 +640,9 @@ class TestGL(unittest.TestCase):
         new_u['username'] = username
         new_u['name'] = new_u['public_name'] = new_u['mail_address'] = "%s@%s.xxx" % (username, username)
         new_u['description'] = ''
-        new_u['password'] = VALID_PASSWORD1
+        new_u['password'] = VALID_KEY
         new_u['enabled'] = True
-        new_u['salt'] = VALID_SALT1
+        new_u['salt'] = VALID_SALT
 
         return new_u
 
@@ -715,7 +707,8 @@ class TestGL(unittest.TestCase):
             'removed_files': [],
             'identity_provided': False,
             'score': 0,
-            'answers': answers
+            'answers': answers,
+            'receipt': GCE.derive_key(GCE.generate_receipt(), VALID_SALT)
         })
 
     def get_dummy_file(self, content=None):
@@ -747,6 +740,7 @@ class TestGL(unittest.TestCase):
         ret = []
         for i, r in session.query(models.InternalTip, models.ReceiverTip) \
                          .filter(models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                 models.ReceiverTip.receiver_id == self.dummyReceiver_1['id'],
                                  models.InternalTip.tid == 1):
             ret.append(serializers.serialize_rtip(session, i, r, 'en'))
 
@@ -804,6 +798,27 @@ class TestGLWithPopulatedDB(TestGL):
         yield self.fill_data()
         yield db.refresh_tenant_cache()
 
+    @transact
+    def mock_users_keys(self, session):
+        OLD_USER_KEY, OLD_USER_KEY_HASH = GCE.calculate_key_and_hash_deprecated(VALID_PASSWORD, VALID_SALT)
+        OLD_USER_PRV_KEY_ENC = Base64Encoder.encode(GCE.symmetric_encrypt(OLD_USER_KEY, USER_PRV_KEY))
+
+        session.query(models.Config).filter(models.Config.tid == 1, models.Config.var_name == 'receipt_salt').one().value = VALID_SALT
+
+        for user in session.query(models.User):
+            if self.clientside_hashing:
+                user.salt = VALID_SALT
+                user.hash = VALID_HASH
+                user.crypto_prv_key = USER_PRV_KEY_ENC
+            else:
+                user.salt = VALID_SALT
+                user.hash = OLD_USER_KEY_HASH
+                user.crypto_prv_key = OLD_USER_PRV_KEY_ENC
+
+            user.crypto_pub_key = USER_PUB_KEY
+            user.crypto_bkp_key = USER_BKP_KEY
+            user.crypto_rec_key = USER_REC_KEY
+
     @inlineCallbacks
     def fill_data(self):
         # fill_data/create_admin
@@ -819,7 +834,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyReceiver_1 = yield create_user(1, None, self.dummyReceiver_1, 'en')
         self.dummyReceiver_2 = yield create_user(1, None, self.dummyReceiver_2, 'en')
 
-        yield mock_users_keys()
+        yield self.mock_users_keys()
 
         # fill_data/create_context
         self.dummyContext['receivers'] = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
@@ -861,6 +876,8 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_submission_actions(self, session_id):
+        receipt = GCE.generate_receipt()
+
         session = Sessions.get(session_id)
 
         self.dummySubmission['context_id'] = self.dummyContext['id']
@@ -869,12 +886,13 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         self.dummySubmission['score'] = 0
         self.dummySubmission['removed_files'] = []
+        self.dummySubmission['receipt'] = GCE.derive_key(receipt, VALID_SALT)
 
-        self.lastReceipt = (yield create_submission(1,
-                                                   self.dummySubmission,
-                                                   session,
-                                                   True,
-                                                   False))['receipt']
+        itip_id = yield create_submission(1, self.dummySubmission, session, True, False)
+
+        if not self.clientside_hashing:
+            self.dummySubmission['receipt'] = yield self.mock_first_receipt_with_old_receipt(itip_id, receipt)
+
 
     @inlineCallbacks
     def perform_post_submission_actions(self):
