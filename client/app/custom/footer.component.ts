@@ -1,6 +1,5 @@
 import {Component, inject} from "@angular/core";
 import {AppDataService} from "@app/app-data.service";
-import {NodeResolver} from "@app/shared/resolvers/node.resolver";
 
 import {MarkdownComponent} from "ngx-markdown";
 
@@ -15,5 +14,4 @@ import {StripHtmlPipe} from "@app/shared/pipes/strip-html.pipe";
 })
 export class FooterComponent {
   protected appDataService = inject(AppDataService);
-  protected nodeResolver = inject(NodeResolver);
 }
