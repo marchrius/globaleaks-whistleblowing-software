@@ -1,8 +1,9 @@
-version: '3'
-
 services:
   globaleaks:
-    build: .
+    #build:
+    #  context: .
+    #  dockerfile: Dockerfile.deploy
+    image: globaleaks
     restart: unless-stopped
     container_name: globaleaks
     network_mode: bridge

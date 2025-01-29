@@ -1,49 +1,43 @@
 ARG NODE_VERSION=20.18.1
-ARG PYTHON_VERSION=3.9.13
+#ARG PYTHON_VERSION=3.9.13
+ARG PYTHON_VERSION=3.9.13-alpine
 
+# Fase 1: preparazione client
 FROM node:${NODE_VERSION}-alpine AS client-build-env
 
-COPY . /usr/share/globaleaks
-
-WORKDIR /usr/share/globaleaks/client
-
-RUN npm install
-
-RUN npm install -g grunt -y
-
-# This will copy the footer modified template
-RUN cp ./app/custom/footer.component.html ./app/src/shared/partials/footer/footer.component.html
-RUN cp ./app/custom/footer.component.ts ./app/src/shared/partials/footer/footer.component.ts
-RUN cat ./app/custom/css/app.css >> ./app/css/main.css
+COPY client /usr/share/globaleaks/client
+COPY AUTHORS CHANGELOG CODE_OF_CONDUCT.md CONTRIBUTING.md GOVERNANCE.md LICENSE README.md SECURITY.md /usr/share/globaleaks/
+COPY docker/tasks/ /usr/share/globaleaks/docker/tasks/
 
 WORKDIR /usr/share/globaleaks/docker/tasks
 
-RUN npm install --save-dev console-table-printer -y
+RUN npm install -y
 
 WORKDIR /usr/share/globaleaks/client
 
-RUN grunt --tasks /usr/share/globaleaks/docker/tasks luna:updateTranslations
+RUN npm install -y && \
+    npm install -g grunt -y && \
+    # This will copy the footer modified template
+    cp ./app/custom/footer.component.html ./app/src/shared/partials/footer/footer.component.html && \
+    cp ./app/custom/footer.component.ts ./app/src/shared/partials/footer/footer.component.ts && \
+    cat ./app/custom/css/app.css >> ./app/css/main.css && \
+    grunt --tasks /usr/share/globaleaks/docker/tasks luna:updateTranslations && \
+    grunt build && \
+    rm -rf node_modules .angular && \
+    npm uninstall -g grunt console-table-printer -y
 
-RUN grunt build && \
-    rm -rf node_modules
+# Fase 2: creazione backend
+FROM python:${PYTHON_VERSION} AS backend
 
-FROM python:${PYTHON_VERSION}-alpine AS backend
+COPY backend /usr/share/globaleaks/backend
+COPY AUTHORS CHANGELOG CODE_OF_CONDUCT.md CONTRIBUTING.md GOVERNANCE.md LICENSE README.md SECURITY.md /usr/share/globaleaks/
+COPY --from=client-build-env /usr/share/globaleaks/client/build /usr/share/globaleaks/client
 
-COPY ./ /usr/share/globaleaks
-
-WORKDIR /usr/share/globaleaks
-
-RUN rm -r ./client
-
-COPY --from=client-build-env /usr/share/globaleaks/client/build ./client
-
-RUN pip install -r ./backend/requirements/requirements-bookworm.txt
+RUN pip install --no-cache-dir -r /usr/share/globaleaks/backend/requirements/requirements-bookworm.txt && \
+    pip install --no-cache-dir six brotli && \
+    mkdir -p /var/globaleaks/
 
 # Fix a missing dependency
-
-RUN pip install six
-
-RUN mkdir -p /var/globaleaks/
 
 WORKDIR /usr/share/globaleaks/backend
 
