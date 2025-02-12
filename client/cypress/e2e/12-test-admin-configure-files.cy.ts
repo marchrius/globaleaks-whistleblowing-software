@@ -41,13 +41,14 @@ describe("Admin configure files", () => {
         const blob = new Blob([fileContent], { type: 'application/javascript' });
         const testFile = new File([blob], 'file-name.js', { type: 'application/javascript' });
         const dataTransfer = new DataTransfer();
+
         dataTransfer.items.add(testFile);
         inputElement.files = dataTransfer.files;
         cy.wrap($input).trigger('change', { force: true });
       });
     });
 
-    const customFile = "files/documentation.pdf";
+    const customFile = "files/test.txt";
     cy.fixture(customFile).then((fileContent) => {
       cy.get("div.file-custom input").then(($input) => {
         const inputElement = $input[0] as HTMLInputElement;
