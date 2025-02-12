@@ -1,8 +1,8 @@
-# -*- coding: utf-8
 """
 Utilities and basic TestCases.
 """
 import json
+import mimetypes
 import os
 import shutil
 
@@ -61,6 +61,8 @@ VALID_HASH = sha256(Base64Encoder.decode(VALID_KEY.encode()))
 VALID_BASE64_IMG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII='
 INVALID_PASSWORD = 'antani'
 
+ESCROW_PRV_KEY, ESCROW_PUB_KEY = GCE.generate_keypair()
+
 KEY = GCE.generate_key()
 USER_KEY = Base64Encoder.decode(GCE.derive_key(VALID_PASSWORD, VALID_SALT).encode())
 USER_PRV_KEY, USER_PUB_KEY = GCE.generate_keypair()
@@ -68,6 +70,9 @@ USER_PRV_KEY_ENC = Base64Encoder.encode(GCE.symmetric_encrypt(USER_KEY, USER_PRV
 USER_BKP_KEY, USER_REC_KEY = GCE.generate_recovery_key(USER_PRV_KEY)
 USER_REC_KEY_PLAIN = GCE.asymmetric_decrypt(USER_PRV_KEY, Base64Encoder.decode(USER_REC_KEY))
 USER_REC_KEY_PLAIN = Base32Encoder.encode(USER_REC_KEY_PLAIN).replace(b'=', b'').decode('utf-8')
+
+USER_ESCROW_PRV_KEY = Base64Encoder.encode(GCE.asymmetric_encrypt(USER_PUB_KEY, ESCROW_PRV_KEY))
+
 GCE_orig_generate_key = GCE.generate_key
 GCE_orig_generate_keypair = GCE.generate_keypair
 
@@ -416,13 +421,14 @@ class MockDict:
         }
 
 
-def get_dummy_file(content=None):
-    filename = generateRandomKey() + ".pdf"
+def get_dummy_attachment(name=None, content=None):
+    if name is None:
+        name = generateRandomKey() + ".pdf"
 
-    content_type = 'application/pdf'
+    content_type, _ = mimetypes.guess_type(name)
 
     if content is None:
-        content = Base64Encoder.decode(VALID_BASE64_IMG)
+        content = name.encode()
 
     temporary_file = SecureTemporaryFile(Settings.tmp_path)
 
@@ -432,9 +438,9 @@ def get_dummy_file(content=None):
     State.TempUploadFiles[os.path.basename(temporary_file.filepath)] = temporary_file
 
     return {
-        'id': filename,
+        'id': name,
         'date': datetime_now(),
-        'name': filename,
+        'name': name,
         'description': 'description',
         'body': temporary_file,
         'size': len(content),
@@ -451,13 +457,6 @@ def check_confirmation(self):
 
 
 BaseHandler.check_confirmation = check_confirmation
-
-
-def get_file_upload(self):
-    return get_dummy_file()
-
-
-BaseHandler.get_file_upload = get_file_upload
 
 
 def forge_request(uri=b'https://www.globaleaks.org/',
@@ -586,7 +585,7 @@ class TestGL(unittest.TestCase):
             yield db.create_db()
             yield db.initialize_db()
 
-        yield self.set_hostnames(1)
+        yield self.set_hostnames(0)
 
         yield db.refresh_tenant_cache()
 
@@ -597,11 +596,13 @@ class TestGL(unittest.TestCase):
 
     @transact
     def set_hostnames(self, session, i):
-        hosts = [('www.globaleaks.org', 'aaaaaaaaaaaaaaaa.onion'),
-                 ('www.domain-a.com', 'bbbbbbbbbbbbbbbb.onion'),
-                 ('www.domain-b.com', 'cccccccccccccccc.onion')]
+        hosts = [('www.antani.gov', 'aaaaaaaaaaaaaaaa.onion'),
+                 ('www.state.gov', 'bbbbbbbbbbbbbbbb.onion'),
+                 ('www.gov.il', 'cccccccccccccccc.onion'),
+                 ('www.gov.cn', 'eeeeeeeeeeeeeeee.onion'),
+                 ('governament.ru', 'dddddddddddddddd.onion')]
 
-        hostname, onionservice = hosts[i - 1]
+        hostname, onionservice = hosts[i]
         db_set_config_variable(session, i, 'hostname', hostname)
         db_set_config_variable(session, i, 'onionservice', onionservice)
 
@@ -711,8 +712,8 @@ class TestGL(unittest.TestCase):
             'receipt': GCE.derive_key(GCE.generate_receipt(), VALID_SALT)
         })
 
-    def get_dummy_file(self, content=None):
-        return get_dummy_file(content)
+    def get_dummy_attachment(self, name=None, content=None):
+        return get_dummy_attachment(name=name, content=content)
 
     def get_dummy_redirect(self, x=''):
         return {
@@ -725,7 +726,7 @@ class TestGL(unittest.TestCase):
         This emulates the file upload of an incomplete submission
         """
         for _ in range(n):
-            session.files.append(self.get_dummy_file())
+            session.files.append(self.get_dummy_attachment())
 
     def pollute_events(self, number_of_times=10):
         for _ in range(number_of_times):
@@ -804,8 +805,12 @@ class TestGLWithPopulatedDB(TestGL):
         OLD_USER_PRV_KEY_ENC = Base64Encoder.encode(GCE.symmetric_encrypt(OLD_USER_KEY, USER_PRV_KEY))
 
         session.query(models.Config).filter(models.Config.tid == 1, models.Config.var_name == 'receipt_salt').one().value = VALID_SALT
+        session.query(models.Config).filter(models.Config.tid == 1, models.Config.var_name == 'crypto_escrow_pub_key').one().value = ESCROW_PUB_KEY
 
         for user in session.query(models.User):
+            if user.id == self.dummyAdmin['id']:
+                user.crypto_escrow_prv_key = Base64Encoder.encode(GCE.asymmetric_encrypt(USER_PUB_KEY, ESCROW_PRV_KEY))
+
             if self.clientside_hashing:
                 user.salt = VALID_SALT
                 user.hash = VALID_HASH
@@ -818,6 +823,8 @@ class TestGLWithPopulatedDB(TestGL):
             user.crypto_pub_key = USER_PUB_KEY
             user.crypto_bkp_key = USER_BKP_KEY
             user.crypto_rec_key = USER_REC_KEY
+
+            user.crypto_escrow_bkp1_key = Base64Encoder.encode(GCE.asymmetric_encrypt(ESCROW_PUB_KEY, USER_PRV_KEY))
 
     @inlineCallbacks
     def fill_data(self):
@@ -855,7 +862,7 @@ class TestGLWithPopulatedDB(TestGL):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'mode': 'default', 'name': name, 'active': True, 'subdomain': name})
             yield tw(db_wizard, t['id'], '127.0.0.1', self.dummyWizard)
-            yield self.set_hostnames(i+1)
+            yield self.set_hostnames(i)
 
     @transact
     def add_whistleblower_identity_field_to_step(self, session, step_id):
@@ -872,7 +879,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     def perform_submission_uploads(self, submission_id):
         for _ in range(self.population_of_attachments):
-            Sessions.get(submission_id).files.append(self.get_dummy_file())
+            Sessions.get(submission_id).files.append(self.get_dummy_attachment())
 
     @inlineCallbacks
     def perform_submission_actions(self, session_id):
@@ -949,6 +956,7 @@ class TestHandler(TestGLWithPopulatedDB):
     """
     :attr _handler: handler class to be tested
     """
+    session = None
     _handler = None
     _test_desc = {}
     # _test_desc = {
@@ -958,15 +966,16 @@ class TestHandler(TestGLWithPopulatedDB):
     #
     #  }
     # }
+    can_upload_files = True
 
     def setUp(self):
-        self.session = None
         return TestGL.setUp(self)
 
     def request(self, body='', uri=b'https://www.globaleaks.org/',
-                user_id=None, role=None, multilang=False, headers=None, args=None,
-                client_addr=b'127.0.0.1', handler_cls=None, attached_file=None,
-                kwargs=None, token=False):
+                user_id=None, role=None, multilang=False, headers=None, token=False, permissions=None,
+                client_addr=b'127.0.0.1',
+                handler_cls=None, attachment=None,
+                args=None, kwargs=None):
         """
         Constructs a handler for preforming mock requests using the bag of params described below.
         """
@@ -996,7 +1005,10 @@ class TestHandler(TestGLWithPopulatedDB):
             if role == 'whistlebower':
                 session = initialize_submission_session(1)
             else:
-                session = Sessions.new(1, user_id, 1, role, USER_PRV_KEY)
+                session = Sessions.new(1, user_id, 1, role, USER_PRV_KEY, USER_ESCROW_PRV_KEY if role == 'admin' else '')
+
+            if permissions:
+                session.permissions = permissions
 
             headers[b'x-session'] = session.id
 
@@ -1027,7 +1039,7 @@ class TestHandler(TestGLWithPopulatedDB):
             request.language = None
 
         if handler.upload_handler:
-            handler.uploaded_file = self.get_dummy_file(attached_file)
+            handler.uploaded_file = attachment if attachment else self.get_dummy_attachment()
 
         return handler
 

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Handlers dealing with tip interface for receivers (rtip)
 import copy
 import json
@@ -1307,7 +1305,7 @@ class ReceiverFileDownload(BaseHandler):
         except:
             raise errors.ResourceNotFound
         else:
-            return rfile.name, rfile.id, Base64Encoder.decode(rtip.crypto_tip_prv_key), pgp_key
+            return rfile.name, rfile.id, rtip.crypto_tip_prv_key, pgp_key
 
     @inlineCallbacks
     def get(self, rfile_id):
@@ -1323,7 +1321,7 @@ class ReceiverFileDownload(BaseHandler):
         self.check_file_presence(filelocation)
 
         if tip_prv_key:
-            tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, tip_prv_key)
+            tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, Base64Encoder.decode(tip_prv_key))
             name = GCE.asymmetric_decrypt(tip_prv_key, Base64Encoder.decode(name.encode())).decode()
             filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 

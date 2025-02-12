@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import copy
 
 from globaleaks import models
@@ -107,6 +106,18 @@ class TestFieldInstance(helpers.TestHandler):
 
 class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.field.FieldTemplateInstance
+
+    @inlineCallbacks
+    def test_get(self):
+        """
+        Attempt to update a field, changing its type via a put request.
+        """
+        values = helpers.get_dummy_field()
+        values['instance'] = 'template'
+        field = yield create_field(1, values, 'en')
+
+        handler = self.request(role='admin')
+        yield handler.get(field['id'])
 
     @inlineCallbacks
     def test_put(self):
