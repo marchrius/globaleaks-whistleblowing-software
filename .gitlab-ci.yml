@@ -16,11 +16,11 @@ stages:
   - build
 
 build-main:
+  variables:
+    TAG: $CI_COMMIT_TAG  # Usa il tag Git come tag Docker
   stage: build
   only:
-    - main
-  services:
-    - docker:dind
+    - tags
   script:
     - docker build -t $GITLAB_REGISTRY_IMAGE:$TAG -t $GITLAB_REGISTRY_IMAGE:latest -t $AWS_REGISTRY_IMAGE:$TAG -t $AWS_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
     - docker push $GITLAB_REGISTRY_IMAGE:$TAG
@@ -32,8 +32,6 @@ build-develop:
   stage: build
   only:
     - develop
-  services:
-    - docker:dind
   script:
     - docker build -t $GITLAB_REGISTRY_IMAGE:$TAG -t $GITLAB_REGISTRY_IMAGE:latest . -f docker/Dockerfile.deploy
     - docker push $GITLAB_REGISTRY_IMAGE:$TAG
