@@ -46,6 +46,7 @@ build-develop:
       docker push $GITLAB_REGISTRY_IMAGE:latest
 
 release:
+  stage: release
   variables:
     TAG: $CI_COMMIT_TAG  # Usa il tag Git come tag Docker
   only:
