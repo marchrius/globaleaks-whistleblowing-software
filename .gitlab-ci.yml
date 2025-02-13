@@ -48,12 +48,14 @@ build-develop:
 release:
   stage: release
   variables:
-    TAG: $CI_COMMIT_TAG  # Usa il tag Git come tag Docker
+    TAG: $CI_COMMIT_TAG
   only:
     - tags
   needs:
     - build-main
   image: curlimages/curl:latest
+  services: []
+  before_script: []
   script:
     - |
       TAG_CLEANED=$(echo "$CI_COMMIT_TAG" | sed 's/-luna$//')
