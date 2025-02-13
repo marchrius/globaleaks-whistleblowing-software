@@ -72,12 +72,11 @@ prepare-release:
     reports:
       dotenv: variables.env
 
-release:
+release-job:
   stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
   variables:
     TAG: $CI_COMMIT_TAG
-  image: curlimages/curl:latest
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
   services: []
   before_script: []
   rules:
@@ -88,17 +87,18 @@ release:
   needs:
     - job: prepare-job
       artifacts: true
-    - job: build-main
-      artifacts: true
-  name: 'Release $TAG_CLEANED'
-  description: 'Automated release for $TAG_CLEANED'
-  tag_name: '$TAG_CLEANED'
-  ref: '$TAG'
-  assets:
-      links:
-        - name: 'Docker Info'
-          url: '${CI_JOB_URL}/artifacts/raw/docker-info.txt'
-          link_type: 'other'
-        - name: 'asset2'
-          url: '${CI_PROJECT_URL}/-/blob/${CI_COMMIT_SHA}/CHANGELOG'
-          link_type: 'other'
+  script:
+    - echo "Running release-job for $TAG"
+  release:
+    name: 'Release $TAG_CLEANED'
+    description: 'Automated release for $TAG_CLEANED'
+    tag_name: '$TAG_CLEANED'
+    ref: '$TAG'
+    assets:
+        links:
+          - name: 'Docker Info'
+            url: '${CI_JOB_URL}/artifacts/raw/docker-info.txt'
+            link_type: 'other'
+          - name: 'asset2'
+            url: '${CI_PROJECT_URL}/-/blob/${CI_COMMIT_SHA}/CHANGELOG'
+            link_type: 'other'
