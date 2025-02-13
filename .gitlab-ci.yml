@@ -14,6 +14,7 @@ default:
 
 stages:
   - build
+  - prepare
   - release
 
 build-main:
@@ -45,20 +46,20 @@ build-develop:
       docker push $GITLAB_REGISTRY_IMAGE:$TAG
       docker push $GITLAB_REGISTRY_IMAGE:latest
 
-release:
-  stage: release
+prepare-release:
+  stage: prepare
   variables:
     TAG: $CI_COMMIT_TAG
-  only:
-    - tags
   needs:
-    - build-main
-  image: curlimages/curl:latest
-  services: []
-  before_script: []
+    - build
+  rules:
+    - if: $CI_COMMIT_TAG != null
+      when: always
+    - if: $CI_COMMIT_TAG == null
+      when: never
   script:
+    - echo "TAG_CLEANED=$(echo "$TAG" | sed 's/-luna$//')" >> variables.env
     - |
-      TAG_CLEANED=$(echo "$CI_COMMIT_TAG" | sed 's/-luna$//')
       echo "Creating GitLab Release for tag: $TAG_CLEANED"
       echo "Docker Image AWS" > docker-info.txt
       echo "  Registry: $AWS_REGISTRY_IMAGE:$TAG_CLEANED" >> docker-info.txt
@@ -67,13 +68,37 @@ release:
       echo "Docker Image GitLab" >> docker-info.txt
       echo "  Registry: $GITLAB_REGISTRY_IMAGE:$TAG_CLEANED" >> docker-info.txt
       echo "  Pull Command: docker pull $GITLAB_REGISTRY_IMAGE:$TAG_CLEANED" >> docker-info.txt
-    - |
-      curl --request POST --header "PRIVATE-TOKEN: $GITLAB_TOKEN" \
-      --data "name=Release $TAG_CLEANED" \
-      --data "tag_name=$TAG_CLEANED" \
-      --data "description=Automated release for $TAG_CLEANED" \
-      --data-urlencode "assets[links][][name]=Docker Info" \
-      --data-urlencode "assets[links][][url]=${CI_PROJECT_URL}/-/jobs/${CI_JOB_ID}/artifacts/raw/docker-info.txt" \
-      --data-urlencode "assets[links][][name]=Changelog" \
-      --data-urlencode "assets[links][][url]=${CI_PROJECT_URL}/-/blob/main/CHANGELOG" \
-      "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/releases"
+  artifacts:
+    reports:
+      dotenv: variables.env
+
+release:
+  stage: release
+  variables:
+    TAG: $CI_COMMIT_TAG
+  image: curlimages/curl:latest
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  services: []
+  before_script: []
+  rules:
+    - if: $CI_COMMIT_TAG != null
+      when: always
+    - if: $CI_COMMIT_TAG == null
+      when: never
+  needs:
+    - job: prepare-job
+      artifacts: true
+    - job: build-main
+      artifacts: true
+  name: 'Release $TAG_CLEANED'
+  description: 'Automated release for $TAG_CLEANED'
+  tag_name: '$TAG_CLEANED'
+  ref: '$TAG'
+  assets:
+      links:
+        - name: 'Docker Info'
+          url: '${CI_JOB_URL}/artifacts/raw/docker-info.txt'
+          link_type: 'other'
+        - name: 'asset2'
+          url: '${CI_PROJECT_URL}/-/blob/${CI_COMMIT_SHA}/CHANGELOG'
+          link_type: 'other'
