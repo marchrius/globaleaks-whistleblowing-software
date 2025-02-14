@@ -57,30 +57,30 @@ prepare:
       when: always
     - if: $CI_COMMIT_TAG == null
       when: never
-  before_script:
+  before_script: []
+  script:
     - |
-      VERSION="${1#v}"
-      # Usa awk per estrarre la sezione relativa alla versione richiesta
+      TAG_CLEANED=$(echo "$TAG" | sed 's/-luna$//')
+      echo "TAG_CLEANED=${TAG_CLEANED}" >> variables.env
+      echo "Preparing GitLab Release for tag: $TAG_CLEANED"
+      VERSION="${TAG_CLEANED#v}"
       awk -v version="Changes in version $VERSION" '
           $0 ~ version {flag=1; print; next}
           flag && /^[[:space:]]*$/ {exit}
           flag {print}
-      ' CHANGELOG
-  script:
-    - echo "TAG_CLEANED=$(echo "T$AG" | sed 's/-luna$//')" >> variables.env
-    - |
-      echo "Creating GitLab Release for tag: $TAG_CLEANED"
-      echo "Docker Image AWS" > docker-info.txt
-      echo "  Registry: $AWS_REGISTRY_IMAGE:$TAG_CLEANED" >> docker-info.txt
-      echo "  Pull Command: docker pull $AWS_REGISTRY_IMAGE:$TAG_CLEANED" >> docker-info.txt
-      echo "" >> docker-info.txt
-      echo "Docker Image GitLab" >> docker-info.txt
-      echo "  Registry: $GITLAB_REGISTRY_IMAGE:$TAG_CLEANED" >> docker-info.txt
-      echo "  Pull Command: docker pull $GITLAB_REGISTRY_IMAGE:$TAG_CLEANED" >> docker-info.txt
+      ' CHANGELOG > RELEASE_DESCRIPTION.txt
+      echo ""
+      echo ""
+      echo "Docker Image AWS" >> RELEASE_DESCRIPTION.txt
+      echo "  Registry: $AWS_REGISTRY_IMAGE:$TAG_CLEANED" >> RELEASE_DESCRIPTION.txt
+      echo "  Pull Command: docker pull $AWS_REGISTRY_IMAGE:$TAG_CLEANED" >> RELEASE_DESCRIPTION.txt
+      echo "" >> RELEASE_DESCRIPTION.txt
+      echo "Docker Image GitLab" >> RELEASE_DESCRIPTION.txt
+      echo "  Registry: $GITLAB_REGISTRY_IMAGE:$TAG_CLEANED" >> RELEASE_DESCRIPTION.txt
+      echo "  Pull Command: docker pull $GITLAB_REGISTRY_IMAGE:$TAG_CLEANED" >> RELEASE_DESCRIPTION.txt
+      RELEASE_DESCRIPTION="$(cat RELEASE_DESCRIPTION.txt)"
+      echo "RELEASE_DESCRIPTION=${RELEASE_DESCRIPTION}" >> variables.env
   artifacts:
-    paths:
-      - docker-info.txt
-    expire_in: never
     reports:
       dotenv: variables.env
 
@@ -97,20 +97,11 @@ release:
     - if: $CI_COMMIT_TAG == null
       when: never
   needs:
-    - job: prepare
-      artifacts: true
+    - prepare
   script:
     - echo "Running release-job for $TAG"
   release:
     name: 'Release $TAG_CLEANED'
-    description: 'Automated release for $TAG_CLEANED'
+    description: '$RELEASE_CHANGELOG'
     tag_name: '$TAG_CLEANED'
     ref: '$TAG'
-    assets:
-        links:
-          - name: 'Docker Info'
-            url: '${CI_JOB_URL}/artifacts/raw/docker-info.txt'
-            link_type: 'other'
-          - name: 'CHANGELOG.md'
-            url: '${CI_PROJECT_URL}/-/blob/${CI_COMMIT_SHA}/CHANGELOG'
-            link_type: 'other'
