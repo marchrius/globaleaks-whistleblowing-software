@@ -50,6 +50,8 @@ build-develop:
 
 build-main:
   stage: build
+  dependencies:
+    - prebuild
   rules:
     - if: $CI_COMMIT_TAG != null
       when: always
@@ -67,16 +69,14 @@ build-main:
       docker push $GITLAB_REGISTRY_IMAGE:latest
       docker push $AWS_REGISTRY_IMAGE:$VERSION
       docker push $AWS_REGISTRY_IMAGE:latest
-    - echo "TAG=${TAG}" >> variables.env
-    - echo "VERSION=${VERSION}" >> variables.env
-  artifacts:
-    reports:
-      dotenv: variables.env
 
 prepare:
   stage: prepare
-  needs:
+  dependencies:
     - build-main
+  needs:
+    - job: prebuild
+      artifacts: true
   rules:
     - if: $CI_COMMIT_TAG != null
       when: always
@@ -100,13 +100,9 @@ prepare:
       echo "Docker Image GitLab" >> RELEASE_DESCRIPTION.txt
       echo "  Registry: $GITLAB_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
       echo "  Pull Command: docker pull $GITLAB_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
-    - echo "TAG=${TAG}" >> variables.env
-    - echo "VERSION=${VERSION}" >> variables.env
   artifacts:
     paths:
       - RELEASE_DESCRIPTION.txt
-    reports:
-      dotenv: variables.env
 
 release:
   stage: release
@@ -119,7 +115,11 @@ release:
       when: always
     - if: $CI_COMMIT_TAG == null
       when: never
+  dependencies:
+    - prebuild
   needs:
+    - job: build-main
+      artifacts: true
     - job: prepare
       artifacts: true
   script:
