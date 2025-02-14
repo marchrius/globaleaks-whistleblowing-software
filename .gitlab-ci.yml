@@ -19,7 +19,7 @@ stages:
 
 build-main:
   variables:
-    TAG: $CI_COMMIT_TAG  # Usa il tag Git come tag Docker
+    TAG: $CI_COMMIT_TAG
   stage: build
   only:
     - tags
@@ -35,7 +35,7 @@ build-main:
 
 build-develop:
   variables:
-    TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA  # Definisci TAG anche qui
+    TAG: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHA
   stage: build
   only:
     - develop
@@ -46,7 +46,7 @@ build-develop:
       docker push $GITLAB_REGISTRY_IMAGE:$TAG
       docker push $GITLAB_REGISTRY_IMAGE:latest
 
-prepare-job:
+prepare:
   stage: prepare
   variables:
     TAG: $CI_COMMIT_TAG
@@ -57,8 +57,17 @@ prepare-job:
       when: always
     - if: $CI_COMMIT_TAG == null
       when: never
+  before_script:
+    - |
+      VERSION="${1#v}"
+      # Usa awk per estrarre la sezione relativa alla versione richiesta
+      awk -v version="Changes in version $VERSION" '
+          $0 ~ version {flag=1; print; next}
+          flag && /^[[:space:]]*$/ {exit}
+          flag {print}
+      ' CHANGELOG
   script:
-    - echo "TAG_CLEANED=$(echo "$TAG" | sed 's/-luna$//')" >> variables.env
+    - echo "TAG_CLEANED=$(echo "T$AG" | sed 's/-luna$//')" >> variables.env
     - |
       echo "Creating GitLab Release for tag: $TAG_CLEANED"
       echo "Docker Image AWS" > docker-info.txt
@@ -69,10 +78,13 @@ prepare-job:
       echo "  Registry: $GITLAB_REGISTRY_IMAGE:$TAG_CLEANED" >> docker-info.txt
       echo "  Pull Command: docker pull $GITLAB_REGISTRY_IMAGE:$TAG_CLEANED" >> docker-info.txt
   artifacts:
+    paths:
+      - docker-info.txt
+    expire_in: never
     reports:
       dotenv: variables.env
 
-release-job:
+release:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   variables:
@@ -85,7 +97,7 @@ release-job:
     - if: $CI_COMMIT_TAG == null
       when: never
   needs:
-    - job: prepare-job
+    - job: prepare
       artifacts: true
   script:
     - echo "Running release-job for $TAG"
@@ -99,6 +111,6 @@ release-job:
           - name: 'Docker Info'
             url: '${CI_JOB_URL}/artifacts/raw/docker-info.txt'
             link_type: 'other'
-          - name: 'asset2'
+          - name: 'CHANGELOG.md'
             url: '${CI_PROJECT_URL}/-/blob/${CI_COMMIT_SHA}/CHANGELOG'
             link_type: 'other'
