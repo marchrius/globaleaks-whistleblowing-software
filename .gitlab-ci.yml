@@ -106,13 +106,13 @@ release:
       ' CHANGELOG > RELEASE_DESCRIPTION.txt
       echo "" >> RELEASE_DESCRIPTION.txt
       echo "" >> RELEASE_DESCRIPTION.txt
-      echo "Docker Image AWS" >> RELEASE_DESCRIPTION.txt
-      echo "  Registry: $AWS_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
-      echo "  Pull Command: docker pull $AWS_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
+      echo "### Docker Image AWS" >> RELEASE_DESCRIPTION.txt
+      echo "  * **Registry:** $AWS_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
+      echo "  * **Pull Command:** docker pull $AWS_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
       echo "" >> RELEASE_DESCRIPTION.txt
-      echo "Docker Image GitLab" >> RELEASE_DESCRIPTION.txt
-      echo "  Registry: $GITLAB_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
-      echo "  Pull Command: docker pull $GITLAB_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
+      echo "### Docker Image GitLab" >> RELEASE_DESCRIPTION.txt
+      echo "  * **Registry:** $GITLAB_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
+      echo "  * **Pull Command:** docker pull $GITLAB_REGISTRY_IMAGE:$VERSION" >> RELEASE_DESCRIPTION.txt
     - export RELEASE_DESCRIPTION="$(cat RELEASE_DESCRIPTION.txt)"
   release:
     name: 'Release ${TAG}'
