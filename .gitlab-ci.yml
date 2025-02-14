@@ -95,7 +95,7 @@ release:
     - |
       echo "Running GitLab Release for tag: $TAG"
       awk -v version="Changes in version $VERSION" '
-          $0 ~ version {flag=1; print; next}
+          tolower($0) ~ tolower(version) {flag=1; print; next}
           flag && /^[[:space:]]*$/ {exit}
           flag {print}
       ' CHANGELOG > RELEASE_DESCRIPTION.txt
