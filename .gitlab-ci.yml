@@ -92,9 +92,8 @@ release:
     - if: $CI_COMMIT_TAG == null
       when: never
   script:
-    - echo "Running release-job for $TAG"
     - |
-      echo "Preparing GitLab Release for tag: $TAG"
+      echo "Running GitLab Release for tag: $TAG"
       awk -v version="Changes in version $VERSION" '
           $0 ~ version {flag=1; print; next}
           flag && /^[[:space:]]*$/ {exit}
