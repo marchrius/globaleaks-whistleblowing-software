@@ -33,7 +33,7 @@ COPY backend /usr/share/globaleaks/backend
 COPY AUTHORS CHANGELOG CODE_OF_CONDUCT.md CONTRIBUTING.md GOVERNANCE.md LICENSE README.md SECURITY.md /usr/share/globaleaks/
 COPY --from=client-build-env /usr/share/globaleaks/client/build /usr/share/globaleaks/client
 
-RUN apk add --no-cache build-base && \
+RUN apk add --no-cache build-base libstdc++ && \
     pip install --no-cache-dir -r /usr/share/globaleaks/backend/requirements/requirements-bookworm.txt && \
     pip install --no-cache-dir six brotli legacy-cgi && \
     apk del build-base && \
