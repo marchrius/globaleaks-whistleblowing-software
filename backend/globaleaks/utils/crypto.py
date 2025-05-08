@@ -64,9 +64,6 @@ def generateRandomPassword(N: int) -> str:
        Contains at least an uppercase ascii letter
        Contains at least a symbol in a selction of 10 common and accessible symbols
     """
-    if N < 10:
-        N = 10
-
     accessible_special_symbols = "!?@#+-/*="
     accessible_symbols_set = string.ascii_letters + string.digits + accessible_special_symbols
 
@@ -230,7 +227,7 @@ class _GCE(object):
         return _GCE.argon2id(password, salt, _GCE.options['OPSLIMIT'], 1 << _GCE.options['MEMLIMIT'])
 
     @staticmethod
-    def calculate_key_and_hash_deprecated(password: Union[bytes, str], salt: str) -> Tuple[bytes, bytes]:
+    def calculate_key_and_hash(password: Union[bytes, str], salt: str) -> Tuple[bytes, bytes]:
         """
         Calculate and returns password key derivation and key hashing
         """

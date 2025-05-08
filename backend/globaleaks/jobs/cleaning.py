@@ -97,20 +97,23 @@ class Cleaning(DailyJob):
         db_del(session, models.Mail, models.Mail.creation_date < datetime_now() - timedelta(14))
 
         # delete archived questionnaire schemas not used by any existing submission
-        subquery = session.query(models.InternalTipAnswers.questionnaire_hash).subquery()
-        db_del(session, models.ArchivedSchema, not_(models.ArchivedSchema.hash.in_(subquery)))
+        hashes = [h for (h,) in session.query(models.InternalTipAnswers.questionnaire_hash).all()]
+        db_del(session, models.ArchivedSchema, not_(models.ArchivedSchema.hash.in_(hashes)))
 
         # delete the tenants created via signup that has not been completed in 24h
-        subquery = session.query(models.Subscriber.tid).filter(models.Subscriber.activation_token != '',
-                                                               models.Subscriber.tid == models.Tenant.id,
-                                                               models.Subscriber.registration_date < datetime_now() - timedelta(days=1)) \
-                                                       .subquery()
-        db_del(session, models.Tenant, models.Tenant.id.in_(subquery))
+        tids = [tid for (tid,) in session.query(models.Subscriber.tid).filter(
+            models.Subscriber.activation_token != '',
+            models.Subscriber.tid == models.Tenant.id,
+            models.Subscriber.registration_date < datetime_now() - timedelta(days=1)
+        ).all()]
+        db_del(session, models.Tenant, models.Tenant.id.in_(tids))
 
         # delete expired audit logs older than 5 years and not pertaining any report
-        subquery = session.query(models.InternalTip.id).subquery()
-        db_del(session, models.AuditLog, (models.AuditLog.date <= datetime_now() - timedelta(days=5 * 365),
-                                          not_(models.AuditLog.object_id.in_(subquery))))
+        itip_ids = [itip_id for (itip_id,) in session.query(models.InternalTip.id).all()]
+        db_del(session, models.AuditLog, (
+            models.AuditLog.date <= datetime_now() - timedelta(days=5 * 365),
+            not_(models.AuditLog.object_id.in_(itip_ids))
+        ))
 
         # delete expired change email tokens
         session.query(models.User) \

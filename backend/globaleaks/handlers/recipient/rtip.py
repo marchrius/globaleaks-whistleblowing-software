@@ -83,7 +83,7 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
                           models.User.id == receiver_id)
 
     if itip.crypto_tip_pub_key and not new_receiver.crypto_pub_key:
-        # Access to encrypted submissions could be granted only if the recipient has performed first login
+        # Access to encrypted submissions could be granted only if the recipient is fully activated with encryption keys
         return
 
     _tip_key = b''
@@ -102,11 +102,11 @@ def db_grant_tip_access(session, tid, user_id, user_cc, itip, rtip, receiver_id)
                      .filter(models.WhistleblowerFile.receivertip_id == rtip.id)
 
     for wbfile in wbfiles:
-        rf = models.WhistleblowerFile()
-        rf.internalfile_id = wbfile.internalfile_id
-        rf.receivertip_id = new_rtip.id
-        rf.new = False
-        session.add(rf)
+        wf = models.WhistleblowerFile()
+        wf.internalfile_id = wbfile.internalfile_id
+        wf.receivertip_id = new_rtip.id
+        wf.new = False
+        session.add(wf)
 
     return new_receiver, new_rtip
 
@@ -179,7 +179,7 @@ def transfer_tip_access(session, tid, user_id, user_cc, itip_id, receiver_id):
         db_log(session, tid=tid, type='transfer_access', user_id=user_id, object_id=itip.id, data=log_data)
 
 
-def get_ttl(session, orm_object_model, orm_object_id):
+def db_get_ttl(session, orm_object_model, orm_object_id):
     """
     Transaction for retrieving the data retention
 
@@ -203,23 +203,17 @@ def db_recalculate_data_retention(session, itip, report_reopen_request):
     prev_expiration_date = itip.expiration_date
     if report_reopen_request:
         # use the context-defined data retention
-        ttl = get_ttl(session, models.Context, itip.context_id)
+        ttl = db_get_ttl(session, models.Context, itip.context_id)
         if ttl > 0:
             itip.expiration_date = get_expiration(ttl)
         else:
             itip.expiration_date = datetime_never()
     elif itip.status == "closed" and itip.substatus is not None:
-        ttl = get_ttl(session, models.SubmissionSubStatus, itip.substatus)
+        ttl = db_get_ttl(session, models.SubmissionSubStatus, itip.substatus)
         if ttl > 0:
             itip.expiration_date = get_expiration(ttl)
 
-    if prev_expiration_date != itip.expiration_date:
-        log_data = {
-            'prev_expiration_date': int(datetime.timestamp(prev_expiration_date)),
-            'curr_expiration_date': int(datetime.timestamp(curr_expiration_date))
-        }
-
-        db_log(session, tid=tid, type='update_report_expiration', user_id=user_id, object_id=itip.id, data=log_data)
+    return prev_expiration_date, itip.expiration_date
 
 
 def db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id=None):
@@ -252,7 +246,15 @@ def db_update_submission_status(session, tid, user_id, itip, status_id, substatu
     if report_close_request:
         itip.reminder_date = datetime_never()
 
-    db_recalculate_data_retention(session, itip, report_reopen_request)
+    prev_expiration_date, currect_expiration_date = db_recalculate_data_retention(session, itip, report_reopen_request)
+
+    if prev_expiration_date != itip.expiration_date:
+       log_data = {
+           'prev_expiration_date': int(datetime.timestamp(prev_expiration_date)),
+           'curr_expiration_date': int(datetime.timestamp(itip.expiration_date))
+       }
+
+       db_log(session, tid=tid, type='update_report_expiration', user_id=user_id, object_id=itip.id, data=log_data)
 
 
 def db_update_temporary_redaction(session, tid, user_id, redaction, redaction_data):
@@ -545,7 +547,8 @@ def update_tip_submission_status(session, tid, user_id, rtip_id, status_id, subs
     for user in session.query(models.User) \
                        .filter(models.User.id == models.ReceiverTip.receiver_id,
                                models.ReceiverTip.internaltip_id == itip.id,
-                               models.ReceiverTip.receiver_id != user_id):
+                               models.ReceiverTip.receiver_id != user_id,
+                               models.ReceiverTip.last_notification < models.ReceiverTip.last_access):
         db_notify_report_update(session, user, rtip, itip)
 
     db_update_submission_status(session, tid, user_id, itip, status_id, substatus_id)
@@ -588,8 +591,7 @@ def db_access_rfile(session, tid, user_id, rfile_id):
     return db_get(session,
                   models.ReceiverFile,
                   (models.ReceiverFile.id == rfile_id,
-                   models.ReceiverFile.internaltip_id.in_(itips_ids),
-                   models.InternalTip.tid == tid))
+                   models.ReceiverFile.internaltip_id.in_(itips_ids)))
 
 
 @transact
@@ -742,21 +744,30 @@ def db_postpone_expiration(session, itip, expiration_date):
     :param itip: A submission model to be postponed
     :param expiration_date: The date timestamp to be set in milliseconds
     """
-    prev_expiration_date = itip.expiration_date
+    policy = db_get_ttl(session, models.Context, itip.context_id)
 
-    max_date = 32503676400
     expiration_date = expiration_date / 1000
-    expiration_date = expiration_date if expiration_date < max_date else max_date
     expiration_date = datetime.fromtimestamp(expiration_date)
 
+    # Enable to anticipate but not before 90 days since current day
     min_date = time.time() + 91 * 86400
     min_date = min_date - min_date % 86400
     min_date = datetime.fromtimestamp(min_date)
     if itip.expiration_date <= min_date:
         min_date = itip.expiration_date
 
-    if expiration_date >= min_date:
-        itip.expiration_date = expiration_date
+    # Enable to postpone but not after max(365, 2 time the policy)
+    max_date = time.time() + (max(365, 2 * policy) + 1) * 86400
+    max_date = max_date - max_date % 86400
+    max_date = datetime.fromtimestamp(max_date)
+
+    if expiration_date <= min_date:
+        expiration_date = min_date
+    elif expiration_date >= max_date:
+        expiration_date = max_date
+
+    prev_expiration_date = itip.expiration_date
+    itip.expiration_date = expiration_date
 
     return prev_expiration_date, expiration_date
 

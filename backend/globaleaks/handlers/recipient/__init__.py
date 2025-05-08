@@ -66,12 +66,16 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
                                  .group_by(models.ReceiverTip.internaltip_id):
         receiver_count_by_itip[itip_id] = count
 
-    # Retrieve all the contexts associated with the current receiver
-    receiver_contexts = set()
-
-    for context_id in session.query(models.ReceiverContext.context_id) \
-                             .filter(models.ReceiverContext.receiver_id == receiver_id):
-        receiver_contexts.add(context_id[0])
+    # Retrieve all channels that include this recipient, but only if
+    # the recipients of those channels are not selectable.
+    receiver_contexts = [
+        context_id[0] for context_id in session.query(models.Context.id)
+                                               .join(models.ReceiverContext,
+                                                     models.Context.id == models.ReceiverContext.context_id)
+                                               .filter(models.Context.allow_recipients_selection == False,
+                                                       models.ReceiverContext.receiver_id == receiver_id
+                                                      ).all()
+    ]
 
     dict_ret = dict()
 
@@ -96,7 +100,6 @@ def get_receivertips(session, tid, receiver_id, user_key, language, args={}):
     # Fetch rtip, internaltip and associated questionnaire schema
     for rtip, itip, answers, data in query.limit(limit) \
                                         .offset((offset - 1)* limit):
-
         answers = answers.answers
         label = itip.label
         accessible = rtip.receiver_id == receiver_id
@@ -184,7 +187,6 @@ def perform_tips_operation(session, tid, user_id, user_cc, operation, args):
             if db_revoke_tip_access(session, tid, user_id, itip, args['receiver']):
                 db_log(session, tid=tid, type='revoke_access', user_id=user_id, object_id=itip.id)
 
-
     else:
         raise errors.ForbiddenOperation
 
@@ -212,9 +214,6 @@ class Operations(BaseHandler):
 
     def put(self):
         request = self.validate_request(self.request.content.read(), requests.OpsDesc)
-
-        if request['operation'] not in ['grant', 'revoke']:
-            raise errors.ForbiddenOperation
 
         return perform_tips_operation(self.request.tid,
                                       self.session.user_id,

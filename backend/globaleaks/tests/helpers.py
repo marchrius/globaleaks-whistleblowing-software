@@ -28,13 +28,12 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, tw
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import create_context, get_context
-from globaleaks.handlers.admin.field import db_create_field
-from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
+from globaleaks.handlers.admin.field import create_field, db_create_field
+from globaleaks.handlers.admin.questionnaire import db_get_questionnaire, create_questionnaire
 from globaleaks.handlers.admin.step import db_create_step
-from globaleaks.handlers.admin.tenant import create as create_tenant
+from globaleaks.handlers.admin.tenant import create as create_tenant, db_wizard
 from globaleaks.handlers.admin.user import create_user
 from globaleaks.handlers.recipient import rtip
-from globaleaks.handlers.wizard import db_wizard
 from globaleaks.handlers.whistleblower import wbtip
 from globaleaks.handlers.whistleblower.submission import create_submission
 from globaleaks.models import serializers
@@ -47,7 +46,7 @@ from globaleaks.state import State, TenantState
 from globaleaks.utils import tempdict, token
 from globaleaks.utils.crypto import GCE, generateRandomKey, sha256
 from globaleaks.utils.securetempfile import SecureTemporaryFile
-from globaleaks.utils.utility import datetime_now, uuid4
+from globaleaks.utils.utility import datetime_now, datetime_never, uuid4
 from globaleaks.utils.log import log
 
 GCE.options['OPSLIMIT'] = 1
@@ -185,7 +184,7 @@ def get_dummy_step():
     }
 
 
-def get_dummy_field():
+def get_dummy_field(type='checkbox'):
     return {
         'id': '',
         'instance': 'template',
@@ -195,7 +194,7 @@ def get_dummy_field():
         'fieldgroup_id': '',
         'label': 'antani',
         'placeholder': '',
-        'type': 'checkbox',
+        'type': type,
         'description': 'field description',
         'hint': 'field hint',
         'multi_entry': False,
@@ -266,6 +265,7 @@ class MockDict:
             'pgp_key_remove': False,
             'notification': True,
             'forcefully_selected': True,
+            'send_activation_link': False,
             'can_edit_general_settings': False,
             'can_grant_access_to_reports': True,
             'can_transfer_access_to_reports': True,
@@ -276,13 +276,18 @@ class MockDict:
             'contexts': []
         }
 
+        self.dummyQuestionnaire = {
+            'id': 'test',
+            'name': 'test'
+        }
+
         self.dummyContext = {
             'id': '',
             'name': 'Already localized name',
             'description': 'Already localized desc',
             'order': 0,
             'receivers': [],
-            'questionnaire_id': 'default',
+            'questionnaire_id': 'test',
             'additional_questionnaire_id': '',
             'select_all_receivers': True,
             'tip_timetolive': 20,
@@ -297,7 +302,6 @@ class MockDict:
             'context_id': '',
             'answers': {},
             'receivers': [],
-            'removed_files': [],
             'mobile': False
         }
 
@@ -459,18 +463,12 @@ def check_confirmation(self):
 BaseHandler.check_confirmation = check_confirmation
 
 
-def forge_request(uri=b'https://www.globaleaks.org/',
+def forge_request(uri=b'https://www.globaleaks.org/', tid=1,
                   headers=None, body='', args=None, client_addr=b'127.0.0.1', method=b'GET'):
     """
     Creates a twisted.web.Request compliant request that is from an external
     IP address.
     """
-    if headers is None:
-        headers = {}
-
-    if args is None:
-        args = {}
-
     _, host, path, query, frag = urlsplit(uri)
 
     x = host.split(b':')
@@ -483,8 +481,11 @@ def forge_request(uri=b'https://www.globaleaks.org/',
         else:
             port = 8443
 
+    headers = headers if headers is not None else {}
+    args = args if args is not None else {}
+
     request = DummyRequest([b''])
-    request.tid = 1
+    request.tid = tid
     request.method = method
     request.uri = uri
     request.path = path
@@ -503,20 +504,12 @@ def forge_request(uri=b'https://www.globaleaks.org/',
     request.multilang = False
 
     def isSecure():
-        if request.port == 8443:
-            return True
-        else:
-            return False
+        return request.port == 8443
 
     request.isSecure = isSecure
-    request.client_using_tor = False
 
     def getResponseBody():
-        # Ugh, hack. Twisted returns this all as bytes, and we want it as str
-        if isinstance(request.written[0], bytes):
-            return b''.join(request.written)
-        else:
-            return ''.join(request.written)
+        return b''.join(request.written) if isinstance(request.written[0], bytes) else ''.join(request.written)
 
     request.getResponseBody = getResponseBody
 
@@ -549,9 +542,6 @@ def forge_request(uri=b'https://www.globaleaks.org/',
                 ret = ret.encode()
 
             return ret
-
-        def close(self):
-            pass
 
     request.content = fakeBody()
 
@@ -612,6 +602,7 @@ class TestGL(unittest.TestCase):
         self.dummyWizard = dummyStuff.dummyWizard
         self.dummySignup = dummyStuff.dummySignup
         self.dummyNetwork = dummyStuff.dummyNetwork
+        self.dummyQuestionnaire = dummyStuff.dummyQuestionnaire
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdmin = self.get_dummy_user('admin', 'admin')
@@ -654,18 +645,23 @@ class TestGL(unittest.TestCase):
         return {**new_r, **new_u}
 
     def fill_random_field_recursively(self, answers, field):
-        field_type = field['type']
+        value = {'value': ''}
 
+        field_type = field['type']
         if field_type == 'checkbox':
             value = {}
             for option in field['options']:
                 value[option['id']] = 'True'
-        elif field_type == 'selectbox':
+        elif field_type == 'selectbox' or field_type == 'multichoice':
             value = {'value': field['options'][0]['id']}
         elif field_type == 'date':
             value = {'value': datetime_now()}
+        elif field_type == 'daterange':
+            value = {'value': '1741734000000:1742425200000'}
         elif field_type == 'tos':
             value = {'value': 'True'}
+        elif field_type == 'fileupload' or field_type == 'voice':
+            pass
         elif field_type == 'fieldgroup':
             value = {}
             for child in field['children']:
@@ -702,14 +698,18 @@ class TestGL(unittest.TestCase):
         context = yield get_context(1, context_id, 'en')
         answers = yield self.fill_random_answers(context['questionnaire_id'])
 
+        if self.clientside_hashing:
+            receipt = GCE.derive_key(GCE.generate_receipt(), VALID_SALT)
+        else:
+            receipt = GCE.generate_receipt()
+
         returnValue({
             'context_id': context_id,
             'receivers': context['receivers'],
-            'removed_files': [],
             'identity_provided': False,
             'score': 0,
             'answers': answers,
-            'receipt': GCE.derive_key(GCE.generate_receipt(), VALID_SALT)
+            'receipt': receipt
         })
 
     def get_dummy_attachment(self, name=None, content=None):
@@ -717,8 +717,8 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_redirect(self, x=''):
         return {
-            'path1': '/path1-' + x,
-            'path2': '/path2-' + x
+            'path1': '/old' + x,
+            'path2': '/new' + x
         }
 
     def emulate_file_upload(self, session, n):
@@ -787,7 +787,6 @@ class TestGL(unittest.TestCase):
 
 
 class TestGLWithPopulatedDB(TestGL):
-    complex_field_population = False
     population_of_recipients = 2
     population_of_submissions = 2
     population_of_attachments = 2
@@ -801,7 +800,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @transact
     def mock_users_keys(self, session):
-        OLD_USER_KEY, OLD_USER_KEY_HASH = GCE.calculate_key_and_hash_deprecated(VALID_PASSWORD, VALID_SALT)
+        OLD_USER_KEY, OLD_USER_KEY_HASH = GCE.calculate_key_and_hash(VALID_PASSWORD, VALID_SALT)
         OLD_USER_PRV_KEY_ENC = Base64Encoder.encode(GCE.symmetric_encrypt(OLD_USER_KEY, USER_PRV_KEY))
 
         session.query(models.Config).filter(models.Config.tid == 1, models.Config.var_name == 'receipt_salt').one().value = VALID_SALT
@@ -843,21 +842,38 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield self.mock_users_keys()
 
+        # fill_data/create 'test' questionnaire'
+        self.dummyQuestionnaire = yield create_questionnaire(1, None, self.dummyQuestionnaire, 'en')
+
+        # create a first step including every type of question
+        step = get_dummy_step()
+        step['questionnaire_id'] = self.dummyQuestionnaire['id']
+        step = yield tw(db_create_step, 1, step, 'en')
+        fieldgroup_id = ''
+        for t in models.field_types:
+            field = get_dummy_field(t)
+            field['step_id'] = step['id']
+            field = yield create_field(1, field, 'en')
+            if t == 'fieldgroup':
+                fieldgroup_id = field['id']
+
+        # create children fields for the fieldgroup created
+        for t in models.field_types:
+            field = get_dummy_field(t)
+            field['fieldgroup_id'] = fieldgroup_id
+            field = yield create_field(1, field, 'en')
+
+        # create a second step including the whistleblower identity question
+        step = get_dummy_step()
+        step['questionnaire_id'] = self.dummyQuestionnaire['id']
+        step = yield tw(db_create_step, 1, step, 'en')
+        yield self.add_whistleblower_identity_field_to_step(step['id'])
+
         # fill_data/create_context
         self.dummyContext['receivers'] = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
         self.dummyContext = yield create_context(1, None, self.dummyContext, 'en')
 
-        self.dummyQuestionnaire = yield tw(db_get_questionnaire, 1, self.dummyContext['questionnaire_id'], 'en')
-
-        self.dummyQuestionnaire['steps'].append(get_dummy_step())
-        self.dummyQuestionnaire['steps'][1]['questionnaire_id'] = self.dummyContext['questionnaire_id']
-        self.dummyQuestionnaire['steps'][1]['label'] = 'Whistleblower identity'
-        self.dummyQuestionnaire['steps'][1]['order'] = 1
-        self.dummyQuestionnaire['steps'][1] = yield tw(db_create_step, 1, self.dummyQuestionnaire['steps'][1], 'en')
-
-        if self.complex_field_population:
-            yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][1]['id'])
-
+        # fill_data create_tenant
         for i in range(1, self.population_of_tenants):
             name = 'tenant-' + str(i+1)
             t = yield create_tenant({'mode': 'default', 'name': name, 'active': True, 'subdomain': name})
@@ -884,6 +900,8 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def perform_submission_actions(self, session_id):
         receipt = GCE.generate_receipt()
+        if self.clientside_hashing:
+            receipt = GCE.derive_key(receipt, VALID_SALT)
 
         session = Sessions.get(session_id)
 
@@ -892,14 +910,9 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['identity_provided'] = False
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['questionnaire_id'])
         self.dummySubmission['score'] = 0
-        self.dummySubmission['removed_files'] = []
-        self.dummySubmission['receipt'] = GCE.derive_key(receipt, VALID_SALT)
+        self.dummySubmission['receipt'] = receipt
 
         itip_id = yield create_submission(1, self.dummySubmission, session, True, False)
-
-        if not self.clientside_hashing:
-            self.dummySubmission['receipt'] = yield self.mock_first_receipt_with_old_receipt(itip_id, receipt)
-
 
     @inlineCallbacks
     def perform_post_submission_actions(self):
@@ -935,21 +948,13 @@ class TestGLWithPopulatedDB(TestGL):
         yield self.perform_post_submission_actions()
 
     @transact
-    def force_wbtip_expiration(self, session):
-        session.query(models.InternalTip).update({'last_access': datetime_now()})
-
-    @transact
-    def force_itip_expiration(self, session):
-        session.query(models.InternalTip).update({'expiration_date': datetime_now()})
+    def set_itip_expiration(self, session, date):
+        session.query(models.InternalTip).update({'expiration_date': date})
 
     @transact
     def set_itips_near_to_expire(self, session):
         date = datetime_now() + timedelta(hours=self.state.tenants[1].cache.notification.tip_expiration_threshold - 1)
         session.query(models.InternalTip).update({'expiration_date': date})
-
-    @transact
-    def set_contexts_timetolive(self, session, ttl):
-        session.query(models.Context).update({'tip_timetolive': ttl})
 
 
 class TestHandler(TestGLWithPopulatedDB):
@@ -971,8 +976,8 @@ class TestHandler(TestGLWithPopulatedDB):
     def setUp(self):
         return TestGL.setUp(self)
 
-    def request(self, body='', uri=b'https://www.globaleaks.org/',
-                user_id=None, role=None, multilang=False, headers=None, token=False, permissions=None,
+    def request(self, body='', uri=b'https://www.globaleaks.org/', tid=1,
+                user_id=None, role=None, multilang=False, headers=None, token=False, permissions=None, properties=None,
                 client_addr=b'127.0.0.1',
                 handler_cls=None, attachment=None,
                 args=None, kwargs=None):
@@ -1005,10 +1010,13 @@ class TestHandler(TestGLWithPopulatedDB):
             if role == 'whistlebower':
                 session = initialize_submission_session(1)
             else:
-                session = Sessions.new(1, user_id, 1, role, USER_PRV_KEY, USER_ESCROW_PRV_KEY if role == 'admin' else '')
+                session = Sessions.new(tid, user_id, 1, role, USER_PRV_KEY, USER_ESCROW_PRV_KEY if role == 'admin' else '')
 
             if permissions:
                 session.permissions = permissions
+
+            if properties:
+                session.properties.update(properties)
 
             headers[b'x-session'] = session.id
 
@@ -1023,7 +1031,8 @@ class TestHandler(TestGLWithPopulatedDB):
                                 args=args,
                                 body=body,
                                 client_addr=client_addr,
-                                method=b'GET')
+                                method=b'GET',
+                                tid=tid)
 
         x = api.APIResourceWrapper()
 
@@ -1043,12 +1052,6 @@ class TestHandler(TestGLWithPopulatedDB):
 
         return handler
 
-    def ss_serial_desc(self, safe_set, request_desc):
-        """
-        Constructs a request_dec parser of a handler that uses a safe_set in its serialization
-        """
-        return {k: v for k, v in request_desc.items() if k in safe_set}
-
     def get_dummy_request(self):
         return self._test_desc['model']().dict(u'en')
 
@@ -1066,9 +1069,6 @@ class TestCollectionHandler(TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        if not self._test_desc:
-            return
-
         data = self.get_dummy_request()
 
         yield self._test_desc['create'](1, self.session, data, 'en')
@@ -1080,9 +1080,6 @@ class TestCollectionHandler(TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-        if not self._test_desc:
-            return
-
         data = self.get_dummy_request()
 
         for k, v in self._test_desc['data'].items():
@@ -1094,7 +1091,8 @@ class TestCollectionHandler(TestHandler):
             data = yield handler.post()
 
             for k, v in self._test_desc['data'].items():
-                self.assertEqual(data[k], v)
+                if k not in ['send_activation_link']:
+                    self.assertEqual(data[k], v)
 
 
 class TestInstanceHandler(TestHandler):
@@ -1110,9 +1108,6 @@ class TestInstanceHandler(TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        if not self._test_desc:
-            return
-
         data = self.get_dummy_request()
 
         data = yield self._test_desc['create'](1, self.session, data, 'en')
@@ -1124,9 +1119,6 @@ class TestInstanceHandler(TestHandler):
 
     @inlineCallbacks
     def test_put(self):
-        if not self._test_desc:
-            return
-
         data = self.get_dummy_request()
 
         data = yield self._test_desc['create'](1, self.session, data, 'en')
@@ -1140,13 +1132,11 @@ class TestInstanceHandler(TestHandler):
             data = yield handler.put(data['id'])
 
             for k, v in self._test_desc['data'].items():
-                self.assertEqual(data[k], v)
+                if k not in ['send_activation_link']:
+                    self.assertEqual(data[k], v)
 
     @inlineCallbacks
     def test_delete(self):
-        if not self._test_desc:
-            return
-
         data = self.get_dummy_request()
 
         data = yield self._test_desc['create'](1, self.session, data, 'en')

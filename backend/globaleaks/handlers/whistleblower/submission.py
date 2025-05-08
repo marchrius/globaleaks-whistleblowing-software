@@ -10,7 +10,6 @@ from sqlalchemy import exists, func, and_
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_questionnaire
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import db_get, db_log, transact
 from globaleaks.rest import errors, requests
 from globaleaks.state import State
@@ -162,9 +161,9 @@ def db_create_receivertip(session, receiver, internaltip, tip_key):
 
 
 def db_create_submission(session, tid, request, user_session, client_using_tor, client_using_mobile):
-    config = ConfigFactory(session, tid)
+    encryption = db_get(session, models.Config, (models.Config.tid == tid, models.Config.var_name == 'encryption'))
 
-    crypto_is_available = config.get_val('encryption')
+    crypto_is_available = State.tenants[tid].cache.encryption
 
     context, questionnaire = db_get(session,
                                     (models.Context, models.Questionnaire),
@@ -184,6 +183,13 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
                 # users need to perform their first access before they
                 # could receive reports.
                 receivers.append(r)
+            elif encryption.update_date != datetime_null():
+                # This is the exceptional condition of systems setup when
+                # encryption was implemented via PGP.
+                # For continuity reason of those production systems
+                # encryption could not be enforced.
+                receivers.append(r)
+                crypto_is_available = False
         else:
             receivers.append(r)
 
@@ -226,14 +232,11 @@ def db_create_submission(session, tid, request, user_session, client_using_tor, 
 
     receipt = request['receipt']
 
-    if not session.query(exists().where(and_(models.InternalTip.tid == tid, func.length(models.InternalTip.receipt_hash) < 64))).scalar():
+    if len(receipt) == 44:
         key = Base64Encoder.decode(receipt.encode())
-        hash = sha256(key).decode()
+        itip.receipt_hash = sha256(key).decode()
     else:
-        salt = config.get_val('receipt_salt')
-        key, hash = GCE.calculate_key_and_hash_deprecated(receipt, salt)
-
-    itip.receipt_hash = hash
+        key, itip.receipt_hash = GCE.calculate_key_and_hash(receipt, State.tenants[tid].cache.receipt_salt)
 
     session.add(itip)
     session.flush()

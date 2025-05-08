@@ -57,6 +57,7 @@ def db_notify_recipients_of_tip_update(session, itip_id):
     for user, rtip, itip in session.query(models.User, models.ReceiverTip, models.InternalTip) \
                                    .filter(models.User.id == models.ReceiverTip.receiver_id,
                                            models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                           models.ReceiverTip.last_notification < models.ReceiverTip.last_access,
                                            models.InternalTip.id == itip_id):
         db_notify_report_update(session, user, rtip, itip)
 
@@ -142,7 +143,7 @@ def store_additional_questionnaire_answers(session, tid, user_id, answers, langu
 
 
 @transact
-def change_receipt(session, itip_id, cc, new_receipt, receipt_change_needed):
+def change_receipt(session, itip_id, cc, receipt, receipt_change_needed):
     """
     Transaction for updating old receipt to a new one
     """
@@ -154,17 +155,14 @@ def change_receipt(session, itip_id, cc, new_receipt, receipt_change_needed):
     tid = itip.tid
 
     # update receipt
-    itip.receipt_hash = GCE.hash_password(new_receipt, State.tenants[tid].cache.receipt_salt)
+    wb_key, itip.receipt_hash = GCE.calculate_key_and_hash(receipt, State.tenants[tid].cache.receipt_salt)
+    itip.receipt_change_needed = receipt_change_needed
 
     if cc is None:
         return
 
-    wb_key = Base64Encoder.decode(GCE.derive_key(new_receipt.encode(), State.tenants[tid].cache.receipt_salt).encode())
-
     # update private keys
     itip.crypto_prv_key = Base64Encoder.encode(GCE.symmetric_encrypt(wb_key, cc))
-
-    itip.receipt_change_needed = receipt_change_needed
 
 
 class Operations(BaseHandler):
@@ -243,12 +241,7 @@ class WhistleblowerFileDownload(BaseHandler):
         if tip_prv_key:
             tip_prv_key = GCE.asymmetric_decrypt(self.session.cc, Base64Encoder.decode(tip_prv_key))
             name = GCE.asymmetric_decrypt(tip_prv_key, Base64Encoder.decode(name.encode())).decode()
-
-            try:
-                # First attempt
-                filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
-            except:
-                pass
+            filelocation = GCE.streaming_encryption_open('DECRYPT', tip_prv_key, filelocation)
 
         yield self.write_file_as_download(name, filelocation)
 

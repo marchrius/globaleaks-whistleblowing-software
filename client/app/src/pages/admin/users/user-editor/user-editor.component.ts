@@ -81,7 +81,9 @@ export class UserEditorComponent implements OnInit {
   }
 
   disable2FA(user: userResolverModel) {
-    this.utilsService.runAdminOperation("disable_2fa", {"value": user.id}, true).subscribe();
+    this.utilsService.runAdminOperation("disable_2fa", {"value": user.id}, false).subscribe(_ => {
+      user.two_factor = false;
+    });
   }
 
   async setPassword(setPasswordArgs: { user_id: string, password: string }) {
@@ -157,7 +159,11 @@ export class UserEditorComponent implements OnInit {
   }
 
   toggleUserEscrow(user: userResolverModel) {
-    this.user.escrow = !this.user.escrow;
-    this.utilsService.runAdminOperation("toggle_user_escrow", {"value": user.id}, true).subscribe();
+    this.utilsService.runAdminOperation("toggle_user_escrow", {"value": user.id}, true).subscribe({
+      next:()=>{},
+      error:()=>{
+        user.escrow = !user.escrow;
+      }
+    });
   }
 }
