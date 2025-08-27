@@ -130,17 +130,17 @@ Content-Security-Policy
 The backend implements a strict `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_ preventing any interaction with third-party resources and restricting execution of code by means of `Trusted Types <https://www.w3.org/TR/trusted-types/>`_.
 ::
 
-  Content-Security-Policy: base-uri 'none'; connect-src 'self'; default-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'self'; img-src 'self'; media-src 'self'; script-src 'self' 'report-sample'; style-src 'self'; trusted-types angular angular#bundler default dompurify; require-trusted-types-for 'script'; report-uri /api/report;
+  Content-Security-Policy: base-uri 'none'; connect-src 'self'; default-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'self'; img-src 'self' data:; media-src 'self'; script-src 'self'; style-src 'self'; trusted-types angular angular#bundler default dompurify; require-trusted-types-for 'script'; report-uri /api/report;
 
 Specific policies are implemented in adherence to the principle of least privilege.
 
 For example:
 
-* The `index.html` source of the app is the only resource allowed to load scripts from the same origin;
+* The `index.html` source of the app is the only resource allowed to load scripts that could be loaded only on the same origin;
 * Every dynamic content is strictly sandboxed on a null origin;
 * Every untrusted user input or third-party library is executed in a sandbox, limiting its interaction with other application components.
 
-The application implements a dedicated API handler /api/report to receive and log samples of attempts of violations of the content security policy.
+The application implements a dedicated API handler /api/report to receive reporting of any attempt of violation of the content security policy.
 
 Cross-Origin-Embedder-Policy
 ++++++++++++++++++++++++++++
@@ -362,24 +362,33 @@ Rate limit on users' sessions
 ------------------------------
 The system implements rate limiting on user sessions, preventing more than 5 requests per second and applying increasing delays on requests that exceed this threshold.
 
-Rate limit on whistleblowers' reports and attachments
------------------------------------------------------
-The system applies rate limiting on whistleblower reports and attachments, preventing new submissions and file uploads if thresholds are exceeded.
+Rate limit on logins, whistleblowers' reports and attachments and operations
+----------------------------------------------------------------------------
+The system applies rate limiting on whistleblower reports and attachments and any other operation blocking or delaying the request if thresholds are exceeded.
 
 Implemented thresholds are:
 
 .. csv-table::
-   :header: "Threshold Variable", "Goal", "Default Threshold Setting"
+   :header: "Threshold Variable", "Goal", "Default Threshold Setting", "Effect"
 
-   "threshold_reports_per_hour", "Limit the number of reports that can be filed per hour", "20"
-   "threshold_reports_per_hour_per_ip", "Limit the number of reports that can be filed per hour by the same IP address", "5"
-   "threshold_attachments_per_hour_per_ip", "Limit the number of attachments that can be uploaded per hour by the same IP address", "120"
-   "threshold_attachments_per_hour_per_report", "Limit the number of attachments that can be uploaded per hour on a report", "30"
+   "threshold_logins_per_hour_per_system", "Limit the number of user logins per minute per system", "1000", "DELAY"
+   "threshold_logins_per_hour_per_tenant", "Limit the number of user logins per minute per tenant", "10", "DELAY"
+   "threshold_logins_per_hour_per_ip", "Limit the number of user logins per minute by the same IP address", "10", "DELAY"
+   "threshold_logins_per_hour_per_tenant_per_ip", "Limit the number of user logins per minute per tenant by the same IP address", "5", "DELAY"
+   "threshold_reports_per_hour_per_system", "Limit the number of reports that can be filed per hour per system", "1000", "BLOCK"
+   "threshold_reports_per_hour_per_tenant", "Limit the number of reports that can be filed per hour per tenant", "10", "BLOCK"
+   "threshold_reports_per_hour_per_ip", "Limit the number of reports that can be filed per hour by the same IP address", "10", "BLOCK"
+   "threshold_reports_per_hour_per_tenant_per_ip", "Limit the number of reports that can be filed per hour per tenant by the same IP address", "5", "BLOCK"
+   "threshold_attachments_per_hour_per_report", "Limit the number of attachments that can be uploaded per hour on a report", "30", "DELAY"
+   "threshold_operations_per_hour_per_report", "Limit the number of oprations that can be performed per hour on a report", "30", "DELAY"
+   "threshold_operations_per_minute_per_report", "Limit the number of oprations that can be performed per minute on a report", "20", "DELAY"
+   "threshold_operations_per_second_per_report", "Limit the number of oprations that can be performed per second on a report", "1", "DELAY"
+
 
 In case of necessity, threshold configurations can be adjusted using the `gl-admin` command as follows:
 ::
 
-  gl-admin setvar threshold_reports_per_hour 1
+  gl-admin setvar threshold_reports_per_hour_per_system 1
 
 Other measures
 ==============
