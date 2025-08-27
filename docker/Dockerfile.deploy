@@ -15,7 +15,7 @@ RUN npm install -y
 
 WORKDIR /usr/share/globaleaks/client
 
-RUN apk add --no-cache python3 py3-brotli && \
+RUN apk add --no-cache brotli && \
     npm install -y && \
     npm install -g grunt -y && \
     # This will copy the footer modified template
