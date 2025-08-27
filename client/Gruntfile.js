@@ -56,13 +56,6 @@ module.exports = function(grunt) {
 //            expand: true,
 //            flatten: false
           },
-          {
-            dest: 'build/fonts',
-            cwd: 'node_modules/',
-            src: ['@fortawesome/fontawesome-free/webfonts/*solid*'],
-            flatten: true,
-            expand: true
-          },
           {dest: "build/images", cwd: "app/images", src: ["**"], expand: true},
           {dest: "build/js", cwd: "tmp/js", src: ["**"], expand: true},
           {dest: "build/js/", cwd: "tmp/", src: ["chunk-*.js*"], expand: true},
@@ -96,7 +89,7 @@ module.exports = function(grunt) {
 
     "string-replace": {
       pass1: {
-        src: "./tmp/css/fonts.css",
+        src: "./tmp/css/styles.css",
         dest: "./tmp/css/",
         options: {
           replacements: [
@@ -111,6 +104,21 @@ module.exports = function(grunt) {
       },
 
       pass2: {
+        src: "./tmp/css/fonts.css",
+        dest: "./tmp/css/",
+        options: {
+          replacements: [
+            {
+              pattern: /.\/media\//gi,
+              replacement: function () {
+                return "../fonts/";
+              }
+            }
+          ]
+        }
+      },
+
+      pass3: {
         files: {
           "tmp/index.html": "tmp/index.html"
         },
@@ -195,7 +203,7 @@ module.exports = function(grunt) {
       npx_build: {
         command: "NG_BUILD_OPTIMIZE_CHUNKS=1 npx ng build --configuration=production"
       },
-      npx_build_for_testing: {
+      npx_build_and_instrument: {
         command: "NG_BUILD_OPTIMIZE_CHUNKS=1 npx ng build --configuration=testing && nyc instrument dist --in-place"
       },
       brotli_compress: {
@@ -823,5 +831,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask("build", ["clean", "shell:npx_build", "package", "shell:brotli_compress", "clean:tmp"]);
  
-  grunt.registerTask("build_for_testing", ["clean", "shell:npx_build_for_testing", "package", "shell:brotli_compress", "clean:tmp"]);
+  grunt.registerTask("build_and_instrument", ["clean", "shell:npx_build_and_instrument", "package", "shell:brotli_compress", "clean:tmp"]);
 };
