@@ -15,7 +15,8 @@ RUN npm install -y
 
 WORKDIR /usr/share/globaleaks/client
 
-RUN npm install -y && \
+RUN apk add --no-cache python3 py3-brotli && \
+    npm install -y && \
     npm install -g grunt -y && \
     # This will copy the footer modified template
     cp ./app/custom/footer.component.html ./app/src/shared/partials/footer/footer.component.html && \
