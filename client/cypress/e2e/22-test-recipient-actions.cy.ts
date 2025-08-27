@@ -107,8 +107,8 @@ describe("recipient admin tip actions", () => {
     cy.visit("/#/recipient/reports");
     cy.get("#tip-0").first().click();
     cy.get('#upload_description').type("description");
-    cy.get('i.fa-solid.fa-upload').click();
-    cy.fixture("files/evidence-3.txt").then(fileContent => {
+    cy.get('#tip-action-upload').click();
+    cy.fixture("files/test.txt").then(fileContent => {
       cy.get('input[type="file"]').then(input => {
         const blob = new Blob([fileContent], { type: "text/plain" });
         const testFile = new File([blob], "files/evidence-3.txt");
@@ -155,11 +155,11 @@ describe("recipient admin tip actions", () => {
 
     cy.get('th.TipInfoID').click();
 
-    cy.get('th.TipInfoContext i.fa-solid.fa-filter').click();
+    cy.get('#tip-action-filter-channel').click();
     cy.get('.multiselect-item-checkbox').eq(1).click();
     cy.get('.multiselect-item-checkbox').eq(0).click();
 
-    cy.get('.TipInfoSubmissionDate .fas.fa-calendar').click();
+    cy.get('#tip-action-filter-report-date').click();
     cy.get('.custom-date-selector').first().click();
     cy.get('.custom-date-selector').eq(4).click({ shiftKey: true });
     cy.contains('button.btn.btn-danger', 'Reset').click();

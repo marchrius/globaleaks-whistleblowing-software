@@ -31,6 +31,7 @@
   });
 })();
 
+import '@app/icons';
 import { ReceiptValidatorDirective } from "@app/shared/directive/receipt-validator.directive";
 import { mockEngine } from "@app/services/helper/mocks";
 import { MarkdownRendererService } from '@app/services/helper/markdown.service';
@@ -49,11 +50,14 @@ import { NgSelectModule } from "@ng-select/ng-select";
 import { FormsModule } from "@angular/forms";
 import { NgIdleKeepaliveModule } from "@ng-idle/keepalive";
 import { MarkdownModule, MARKED_OPTIONS } from "ngx-markdown";
-import { AppComponent, createTranslateLoader } from "@app/pages/app/app.component";
+import { AppComponent } from "@app/pages/app/app.component";
 import { provideRouter } from "@angular/router";
-import { ApplicationRef, importProvidersFrom } from '@angular/core';
+import { ApplicationRef, enableProdMode, importProvidersFrom } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import Flow from "@flowjs/flow.js";
+
+enableProdMode();
 
 bootstrapApplication(AppComponent, {
     providers: [
@@ -77,11 +81,7 @@ bootstrapApplication(AppComponent, {
                               }
                             }),
                             TranslateModule.forRoot({
-                              loader: {
-                                provide: TranslateLoader,
-                                useFactory: createTranslateLoader,
-                                deps: [HttpClient],
-                              },
+                              loader: provideTranslateHttpLoader({prefix:"l10n/", suffix:""}),
                             })),
         { provide: APP_BASE_HREF, useValue: "/" },
         { provide: HTTP_INTERCEPTORS, useClass: appInterceptor, multi: true },
