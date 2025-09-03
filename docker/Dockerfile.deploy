@@ -55,4 +55,6 @@ EXPOSE ${HTTPS_PORT}
 
 VOLUME /var/globaleaks/
 
+RUN mkdir -p /run/globaleaks
+
 ENTRYPOINT ["python", "bin/globaleaks", "-n", "-w", "/var/globaleaks/"]
