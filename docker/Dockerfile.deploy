@@ -35,7 +35,7 @@ COPY AUTHORS CHANGELOG CODE_OF_CONDUCT.md CONTRIBUTING.md GOVERNANCE.md LICENSE 
 COPY --from=client-build-env /usr/share/globaleaks/client/build /usr/share/globaleaks/client
 
 RUN apk add --no-cache build-base libstdc++ && \
-    pip install --no-cache-dir -r /usr/share/globaleaks/backend/requirements/requirements-trixie.txt && \
+    pip install --no-cache-dir -r /usr/share/globaleaks/backend/requirements/requirements.txt.trixie && \
     pip install --no-cache-dir six brotli legacy-cgi && \
     apk del build-base && \
     mkdir -p /var/globaleaks/
