@@ -34,15 +34,17 @@ COPY backend /usr/share/globaleaks/backend
 COPY AUTHORS CHANGELOG CODE_OF_CONDUCT.md CONTRIBUTING.md GOVERNANCE.md LICENSE README.md SECURITY.md /usr/share/globaleaks/
 COPY --from=client-build-env /usr/share/globaleaks/client/build /usr/share/globaleaks/client
 
-RUN apk add --no-cache build-base libstdc++ && \
+RUN apk add --no-cache build-base libstdc++ supervisor tor && \
     pip install --no-cache-dir -r /usr/share/globaleaks/backend/requirements/requirements.txt.trixie && \
     pip install --no-cache-dir six brotli legacy-cgi && \
     apk del build-base && \
-    mkdir -p /var/globaleaks/
-
-# Fix a missing dependency
+    mkdir -p /var/globaleaks && \
+    mkdir -p /run/globaleaks && \
+    mkdir -p /etc/supervisor/conf.d
 
 WORKDIR /usr/share/globaleaks/backend
+
+COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ARG HTTP_PORT=8080
 ARG HTTPS_PORT=8443
@@ -55,6 +57,4 @@ EXPOSE ${HTTPS_PORT}
 
 VOLUME /var/globaleaks/
 
-RUN mkdir -p /run/globaleaks
-
-ENTRYPOINT ["python", "bin/globaleaks", "-n", "-w", "/var/globaleaks/"]
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

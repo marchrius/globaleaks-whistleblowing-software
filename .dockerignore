@@ -1,4 +1,5 @@
 docker
 !docker/tasks
+!docker/supervisord.conf
 documentation
 brand
