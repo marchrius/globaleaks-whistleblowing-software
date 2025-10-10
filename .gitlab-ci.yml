@@ -85,7 +85,8 @@ release:
       artifacts: true
     - job: build-main
       artifacts: true
-  before_script: []
+  before_script:
+    - chmod +x ./docker/generate_release_description.awk
   rules:
     - if: $CI_COMMIT_TAG != null
       when: always
@@ -94,16 +95,7 @@ release:
   script:
     - |
       echo "Running GitLab Release for tag: $TAG"
-      awk -v version="Changes in version $VERSION" '
-          function trim(s) {
-              sub(/^[ \t]+/, "", s);
-              sub(/[ \t]+$/, "", s);
-              return s;
-          }
-          tolower($0) ~ tolower(version) {flag=1; line = trim($0); print "#### " line; print ""; next}
-          flag && /^[[:space:]]*$/ {exit}
-          flag {line = trim($0); print "* " line;}
-      ' CHANGELOG > RELEASE_DESCRIPTION.txt
+      ./docker/generate_release_description.awk -v v="$VERSION" CHANGELOG > RELEASE_DESCRIPTION.txt
       echo "" >> RELEASE_DESCRIPTION.txt
       echo "" >> RELEASE_DESCRIPTION.txt
       echo "### Docker Image AWS" >> RELEASE_DESCRIPTION.txt
