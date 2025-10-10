@@ -114,8 +114,8 @@ describe("Acquire screenshots necessary for user documentation - Recipient Secti
     cy.get("#tip-0").first().click();
     cy.get('[id="tip-action-mask"]').should('be.visible').click();
     cy.get("#edit-question").should('be.visible').first().click();
-    cy.get("#close-redact-modal").should('be.visible').first().click();
-    cy.takeScreenshot("recipient/masking-popup", 500);
+    cy.takeScreenshot("recipient/masking-popup", ".modal");
+    cy.get(".btn-close").should('be.visible').first().click();
     cy.logout();
   });
 });

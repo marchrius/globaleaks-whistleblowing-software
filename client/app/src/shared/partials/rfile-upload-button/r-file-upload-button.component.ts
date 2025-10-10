@@ -1,5 +1,5 @@
 import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, inject} from "@angular/core";
-import {FlowConfig, Transfer, NgxFlowModule} from "@flowjs/ngx-flow";
+import {FlowDirective, Transfer, NgxFlowModule} from "@flowjs/ngx-flow";
 import {AppDataService} from "@app/app-data.service";
 import {ControlContainer, FormsModule, NgForm} from "@angular/forms";
 import {Subscription} from "rxjs";
@@ -34,7 +34,7 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
   @Input() file_id: string;
   @Input() entry: any;
   @Output() notifyFileUpload: EventEmitter<any> = new EventEmitter<any>();
-  @ViewChild("flow") flow: FlowConfig;
+  @ViewChild("flow") flow: FlowDirective;
 
   autoUploadSubscription: Subscription;
   fileInput: string;
@@ -50,9 +50,9 @@ export class RFileUploadButtonComponent implements AfterViewInit, OnInit, OnDest
     this.flowConfig = this.utilsService.getFlowOptions();
     this.flowConfig.target = this.fileUploadUrl;
     this.flowConfig.singleFile = (this.field !== undefined && !this.field.multi_entry);
-    this.flowConfig.query = {reference_id: this.field ? this.field.id:""};
+    this.flowConfig.query = {reference_id: this.field && this.entry.index !== undefined  ? `${this.field.id}-${this.entry.index}`  : this.field ? this.field.id : ""};
 
-    this.fileInput = this.field ? this.field.id : "status_page";
+    this.fileInput = this.file_id;
   }
 
   ngAfterViewInit() {
