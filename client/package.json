@@ -1,6 +1,6 @@
 {
   "name": "globaleaks",
-  "version": "5.0.86",
+  "version": "5.0.87",
   "scripts": {
     "test": "npx cypress run --browser=chromium",
     "eslint": "ng lint",
@@ -49,7 +49,7 @@
     "bootstrap": "5.3.8",
     "chart.js": "4.5.1",
     "cypress-axe": "1.7.0",
-    "dompurify": "3.3.0",
+    "dompurify": "3.3.1",
     "libsodium-wrappers-sumo": "0.7.15",
     "marked": "17.0.1",
     "ng-multiselect-dropdown": "1.0.0",
@@ -69,7 +69,7 @@
     "@angular/compiler": "v20-lts",
     "@angular/compiler-cli": "v20-lts",
     "@cypress/code-coverage": "3.14.7",
-    "@cypress/schematic": "4.1.4",
+    "@cypress/schematic": "4.3.0",
     "@istanbuljs/nyc-config-typescript": "1.0.2",
     "@lodder/grunt-postcss": "3.1.1",
     "@types/angular": "1.8.9",
@@ -77,13 +77,13 @@
     "@types/flowjs__flow.js": "2.13.3",
     "@types/libsodium-wrappers-sumo": "0.7.8",
     "@types/qrcode": "1.5.6",
-    "@typescript-eslint/types": "8.48.1",
-    "@typescript-eslint/utils": "8.48.1",
+    "@typescript-eslint/types": "8.49.0",
+    "@typescript-eslint/utils": "8.49.0",
     "angular-eslint": "20.7.0",
     "axe-core": "4.11.0",
     "cssnano": "7.1.2",
-    "cypress": "15.7.0",
-    "eslint": "9.39.1",
+    "cypress": "15.7.1",
+    "eslint": "9.39.2",
     "gettext-parser": "8.0.0",
     "grunt": "1.6.1",
     "grunt-confirm": "1.0.8",
@@ -94,7 +94,7 @@
     "grunt-webpack": "7.0.1",
     "less": "4.4.2",
     "load-grunt-tasks": "5.1.0",
-    "npm-check-updates": "19.1.2",
+    "npm-check-updates": "19.2.0",
     "nyc": "17.1.0",
     "postcss": "8.5.6",
     "postcss-rtlcss": "5.7.1",
@@ -103,6 +103,6 @@
     "superagent": "10.2.3",
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.48.1"
+    "typescript-eslint": "8.49.0"
   }
 }
