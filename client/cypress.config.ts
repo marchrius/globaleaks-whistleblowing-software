@@ -35,17 +35,6 @@ export default defineConfig({
       // All your plugin logic goes here
       registerCodeCoverageTasks(on, config);
 
-      on("before:browser:launch", (browser, launchOptions) => {
-        if (browser.family === "chromium") {
-          launchOptions.args.push("--window-size=1920,1080");
-          launchOptions.args.push("--force-device-scale-factor=1");
-          launchOptions.args.push("--force-color-profile=srgb");
-          launchOptions.args.push("--disable-low-res-tiling");
-          launchOptions.args.push("--disable-smooth-scrolling");
-        }
-        return launchOptions;
-      });
-
       on("after:screenshot", (details) => {
         if (details.path.includes("failed")) return;
 
@@ -78,8 +67,8 @@ export default defineConfig({
       return config;
     },
     baseUrl: "https://127.0.0.1:8443",
-    viewportWidth: 1920,
-    viewportHeight: 1080
+    viewportWidth: 1280,
+    viewportHeight: 720
   },
   defaultCommandTimeout: 20000,
 });

@@ -106,15 +106,19 @@ The session implementation follows the `OWASP Session Management Cheat Sheet <ht
 
 The system assigns a session to each authenticated user. The Session ID is a 256-bit long secret generated randomly by the backend. Each session expires according to a timeout of 30 minutes. Session IDs are exchanged between the client and the backend via a header (`X-Session`) and expire as soon as users close their browser or the tab running GlobaLeaks. Users can explicitly log out via a logout button or implicitly by closing the browser.
 
+The session is managed using only temporary session storage, which exists in the browser tab and is automatically deleted when the user session ends, times out, or the browser tab is closed.
+
 Session encryption
 ------------------
 To minimize the exposure of users' encryption keys, the keys are stored in an encrypted format and decrypted only upon each client request.
 
 The implementation uses Libsodium's SecretBox, where the client's session key is used as the secret. Only the client maintains a copy of the session key, while the server retains only a SHA-256 hash.
 
-Cookies and xsrf prevention
----------------------------
-Cookies are not used intentionally to minimize XSRF attacks and any possible attacks based on them. Instead of using cookies, authentication is based on a custom HTTP Session Header sent by the client on authenticated requests.
+No cookies
+----------
+The system does not use any cookies or persistent local storage for authentication.
+
+This design prioritizes user privacy and reduces the risk of CSRF attacks by eliminating the need for additional CSRF tokens.
 
 HTTP headers
 ------------
@@ -134,7 +138,7 @@ Content-Security-Policy
 The backend implements a strict `Content Security Policy (CSP) <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>`_ preventing any interaction with third-party resources and restricting execution of code by means of `Trusted Types <https://www.w3.org/TR/trusted-types/>`_.
 ::
 
-  Content-Security-Policy: base-uri 'none'; connect-src 'self'; default-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'self'; img-src 'self' data:; media-src 'self'; script-src 'self'; style-src 'self'; trusted-types angular angular#bundler default dompurify; require-trusted-types-for 'script'; report-to csp-endpoint;
+  Content-Security-Policy: base-uri 'none'; connect-src 'self'; default-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'self'; img-src 'self' media-src 'self'; script-src 'self'; style-src 'self'; trusted-types angular angular#bundler default dompurify; require-trusted-types-for 'script'; report-to csp-endpoint;
   Reporting-Endpoints: csp-endpoint="/api/report"
 
 Specific policies are implemented in adherence to the principle of least privilege.

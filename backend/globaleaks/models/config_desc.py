@@ -347,7 +347,8 @@ ConfigFilters = {
         'name',
         'onionservice',
         'subdomain',
-        'rootdomain'
+        'rootdomain',
+        'uuid'
     ]
 }
 
