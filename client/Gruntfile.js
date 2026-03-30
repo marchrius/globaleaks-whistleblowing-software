@@ -3,7 +3,99 @@ module.exports = function(grunt) {
       fs = require("fs"),
       path = require("path"),
       superagent = require("superagent"),
-      gettextParser = require('gettext-parser');
+      gettextParser = require('gettext-parser'),
+      { pipeline } = require("stream"),
+      yauzl = require("yauzl");
+
+  const remoteFonts = [
+    // plain file example (already working):
+    {
+      url: "https://github.com/satbyy/go-noto-universal/releases/download/v7.0/GoNotoKurrent-Regular.ttf",
+      type: "file",
+      output: "GoNotoKurrent-Regular.ttf",
+    },
+
+    // Inter zip → extract one file
+    {
+      url: "https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip",
+      type: "zip",
+      pick: "extras/ttf/Inter-Regular.ttf",
+      output: "Inter-Regular.ttf",
+    },
+  ];
+
+  function downloadToFile(url, outPath, cb) {
+    grunt.file.mkdir(path.dirname(outPath));
+
+    const tmpPath = outPath + ".download";
+    const stream = fs.createWriteStream(tmpPath);
+
+    stream.on("finish", function () {
+      try {
+        fs.renameSync(tmpPath, outPath);
+        cb(null);
+      } catch (e) {
+        cb(e);
+      }
+    });
+
+    stream.on("error", function (e) {
+      cb(e);
+    });
+
+    agent.get(url).pipe(stream);
+  }
+
+  // entryPath deve combaciare esattamente con il path dentro lo zip
+  function extractZipEntry(zipPath, entryPath, outPath, cb) {
+    try {
+      grunt.file.mkdir(path.dirname(outPath));
+    } catch (e) {
+      return cb(e);
+    }
+
+    yauzl.open(zipPath, { lazyEntries: true }, (err, zipfile) => {
+      if (err) return cb(err);
+
+      let done = false;
+      const finishOnce = (e) => {
+        if (done) return;
+        done = true;
+        try { zipfile.close(); } catch (_) {}
+        cb(e || null);
+      };
+
+      zipfile.readEntry();
+
+      zipfile.on("entry", (entry) => {
+        // Normalizza a slash (gli zip usano quasi sempre /)
+        const name = entry.fileName;
+
+        if (name !== entryPath) {
+          return zipfile.readEntry();
+        }
+
+        // Se è una directory, non va bene
+        if (/\/$/.test(name)) {
+          return finishOnce(new Error(`ZIP entry is a directory: ${entryPath}`));
+        }
+
+        zipfile.openReadStream(entry, (err, rs) => {
+          if (err) return finishOnce(err);
+
+          const ws = fs.createWriteStream(outPath);
+          pipeline(rs, ws, (err) => finishOnce(err || null));
+        });
+      });
+
+      zipfile.on("end", () => {
+        // Finito di scorrere entries senza match
+        if (!done) finishOnce(new Error(`ZIP entry not found: ${entryPath}`));
+      });
+
+      zipfile.on("error", finishOnce);
+    });
+  }
 
   class SimpleGettext {
     constructor() {
@@ -197,7 +289,7 @@ module.exports = function(grunt) {
         options: {
           // Static text.
           question: "WARNING:\n"+
-              "this task may cause translations loss and should be executed only on main branch.\n\n" +
+              "this task may cause translations loss and should be executed only on stable branch.\n\n" +
               "Are you sure you want to proceed (Y/N)?",
           input: "_key:y"
         }
@@ -295,220 +387,199 @@ module.exports = function(grunt) {
     return val.replace(/\\n/g, "\n").replace(/\\t/g, "\t");
   }
 
-  function readTransifexApiKey() {
-    let keyfile = process.env.HOME + "/.transifexapikey";
+  let agent = superagent.agent(),
+      sourceFile = "app/assets/data_src/pot/en.po"
 
-    if (!fs.existsSync(keyfile)) {
-      return "";
+  function readWeblateToken() {
+    return (process.env.WEBLATE_TOKEN || "").trim();
+  }
+
+  // Weblate instance configuration (safe to commit)
+  const weblateUrl = "https://localizationlab.weblate.cloud";
+  const weblateProject = "globaleaks";
+  const weblateComponent = "stable";
+  const weblateSourceLang = "en";
+
+  // Secret (must come from environment)
+  const weblateToken = readWeblateToken();
+
+  function weblateApi(pathname) {
+    return `${weblateUrl}/api${pathname}`;
+  }
+
+  function weblateAuthHeaders() {
+    return { "Authorization": "Token " + weblateToken };
+  }
+
+  function extractLangCodeFromTranslationItem(item) {
+    // Weblate may serialize language as:
+    // - item.language_code: "it"
+    // - item.language: "it" OR URL ".../languages/it/"
+    // - item.language.code: "it"
+    if (!item) return null;
+
+    if (typeof item.language_code === "string") return item.language_code;
+    if (item.language && typeof item.language.code === "string") return item.language.code;
+
+    if (typeof item.language === "string") {
+      if (item.language.indexOf("/") !== -1) {
+        const m = item.language.match(/\/languages\/([^/]+)\/?$/);
+        return m ? m[1] : null;
+      }
+      return item.language;
     }
 
-    return grunt.file.read(keyfile).trim();
+    return null;
   }
 
-  let agent = superagent.agent(),
-      baseurl = "https://rest.api.transifex.com",
-      sourceFile = "pot/en.po",
-      transifexApiKey = readTransifexApiKey();
+  function listWeblateTranslationsAllPages(cb) {
+    const firstUrl = weblateApi(`/components/${weblateProject}/${weblateComponent}/translations/`);
+    let acc = [];
 
-  async function updateTxSource(cb) {
-    const gettextParser = await loadGettextParser();
-    let url = baseurl + "/resource_strings_async_uploads";
-
-    let content = {
-      "data": {
-        "attributes": {
-          "callback_url": null,
-          "content": grunt.file.read(sourceFile),
-          "content_encoding": "text",
-          "replace_edited_strings": false
-        },
-        "relationships": {
-          "resource": {
-            "data": {
-              "id": "o:otf:p:globaleaks:r:stable",
-              "type": "resources"
-            }
+    function fetchPage(url) {
+      agent.get(url)
+        .set(weblateAuthHeaders())
+        .end(function(err, res) {
+          if (err || !res || !res.ok) {
+            console.log("Error: " + (res ? res.text : err));
+            return cb(err || new Error("Failed to list Weblate translations"));
           }
-        },
-        "type": "resource_strings_async_uploads"
-      }
+
+          let data;
+          try {
+            data = JSON.parse(res.text);
+          } catch (e) {
+            return cb(e);
+          }
+
+          if (Array.isArray(data.results)) acc = acc.concat(data.results);
+
+          if (data.next) {
+            return fetchPage(data.next); // data.next is usually absolute
+          }
+
+          cb(null, acc);
+        });
+    }
+
+    fetchPage(firstUrl);
+  }
+
+  function downloadWeblatePo(langCode, cb) {
+    const weblateLangCodeMap = {
+      "fa_AF": "prs",
+      "ku_IQ": "ckb_IQ",
+      "sr_ME": "cnr",
+      "sr_RS@latin": "sr_Latn",
+      "ug@Cyrl": "ug@cyrl",
+      "ug@Latin": "ug@latin",
+      "zh_CN": "zh_Hans",
+      "zh_HK": "zh_Hant_HK",
+      "zh_TW": "zh_Hant"
     };
 
-    agent.post(url)
-        .set({"Content-Type": "application/vnd.api+json", "Authorization": "Bearer " + transifexApiKey})
-        .send(content)
-        .end(function(err, res) {
-          if (res) {
-            if (res.ok) {
-              cb();
-            } else {
-              console.log("Error: " + res.text);
-            }
-          } else {
-            console.log("Error: failed to fetch resource " + url);
-          }
-        });
-  }
+    let weblateLangCode = weblateLangCodeMap[langCode] || langCode;
 
-  function listLanguages(cb) {
-    let url = baseurl + "/projects/o:otf:p:globaleaks/languages";
+    const url = weblateApi(`/translations/${weblateProject}/${weblateComponent}/${weblateLangCode}/file/`);
+    grunt.file.mkdir("app/assets/data_src/pot");
+
+    const outPath = `app/assets/data_src/pot/${langCode}.po`;
+    const stream = fs.createWriteStream(outPath);
+
+    stream.on("finish", function() { cb(null, outPath); });
+    stream.on("error", function(e) { cb(e); });
 
     agent.get(url)
-        .set({"Authorization": "Bearer " + transifexApiKey})
-        .end(function(err, res) {
-          if (res) {
-            if (res.ok) {
-              let result = JSON.parse(res.text);
-              cb(result);
-            } else {
-              console.log("Error: " + res.text);
-            }
-          } else {
-            console.log("Error: failed to fetch resource");
-          }
-        });
+      .set(weblateAuthHeaders())
+      .pipe(stream);
   }
 
-  async function fetchTxTranslationsPO(langCode, cb) {
-    const gettextParser = await loadGettextParser();
-    let url = baseurl + "/resource_translations_async_downloads";
+  function uploadWeblateSourcePo(cb) {
+    const url = weblateApi(`/translations/${weblateProject}/${weblateComponent}/${weblateSourceLang}/file/`);
+
+    if (!fs.existsSync(sourceFile)) {
+      console.log("Error: missing source file " + sourceFile + " (run grunt makeTranslationsSource first)");
+      return cb(false);
+    }
 
     agent.post(url)
-        .set({"Authorization": "Bearer " + transifexApiKey, "Content-Type": "application/vnd.api+json"})
-        .send({
-          "data": {
-            "attributes": {
-              "content_encoding": "text",
-              "file_type": "default",
-              "mode": "default"
-            },
-            "relationships": {
-              "language": {
-                "data": {
-                  "id": "l:" + langCode,
-                  "type": "languages"
-                }
-              },
-              "resource": {
-                "data": {
-                  "id": "o:otf:p:globaleaks:r:stable",
-                  "type": "resources"
-                }
-              }
-            },
-            "type": "resource_translations_async_downloads"
-          }
-        })
-        .end(function(err, res) {
-          if (res && res.ok) {
-            url = JSON.parse(res.text).data.links.self;
-
-            let fetchPO = function(url) {
-              agent.get(url)
-                  .set({"Authorization": "Bearer " + transifexApiKey})
-                  .end(function(err, res) {
-                    if (res && res.ok) {
-                      if (res.redirects.length) {
-                        let stream = fs.createWriteStream("app/assets/data_src/pot/" + langCode + ".po");
-
-                        stream.on("finish", function () {
-                          cb(true);
-                        });
-
-                        agent.get(res.redirects[0])
-                            .set({"Authorization": "Bearer " + transifexApiKey})
-                            .pipe(stream);
-
-                      } else {
-                        fetchPO(url);
-                      }
-                    } else {
-                      console.log("Error: failed to fetch resource");
-                      cb(false);
-                    }
-                  });
-            };
-
-            fetchPO(url);
-          } else {
-            console.log("Error: failed to fetch resource");
-            cb(false);
-          }
-        });
-  }
-
-  async function fetchTxTranslationsForLanguage(langCode, cb) {
-    const gettextParser = await loadGettextParser();
-    let url = baseurl + "/resource_language_stats/o:otf:p:globaleaks:r:stable:l:" + langCode;
-
-    agent.get(url)
-        .set({"Authorization": "Bearer " + transifexApiKey})
-        .end(function(err, res) {
-          if (res && res.ok) {
-            let content = JSON.parse(res.text);
-
-            // Add the new translations for languages translated above 50%
-            if (content.data.attributes.translated_strings > content.data.attributes.untranslated_strings) {
-              fetchTxTranslationsPO(langCode, cb);
-            } else {
-              cb(false);
-            }
-          } else {
-            console.log("Error: failed to fetch resource");
-            cb(false);
-          }
-        });
-  }
-
-  async function fetchTxTranslations(cb){
-    let fetched_languages = 0,
-        total_languages,
-        supported_languages = {};
-
-    listLanguages(function(result) {
-      result.data = result.data.sort(function(a, b) {
-        if (a.code > b.code) {
-          return 1;
+      .set(weblateAuthHeaders())
+      // method=source updates source strings
+      .field("method", "replace")
+      // optional: be tolerant with conflicts
+      .field("conflicts", "ignore")
+      .attach("file", sourceFile)
+      .end(function(err, res) {
+        if (err || !res || !res.ok) {
+          console.log("Error: " + (res ? res.text : err));
+          return cb(false);
         }
-
-        if (a.code < b.code) {
-          return -1;
-        }
-
-        return 0;
+        cb(true);
       });
+  }
 
-      total_languages = result.data.length;
+  grunt.registerTask("fetchFonts", function () {
+    const done = this.async();
 
-      let fetchLanguage = function(language) {
-        fetchTxTranslationsForLanguage(language.attributes.code, function(ret){
-          if (ret) {
-            console.log("Fetched " + language.attributes.code);
-            supported_languages[language.attributes.code] = language.attributes.name;
+    const destDir = "app/fonts";
+    const tmpDir = "tmp/fonts";
+    grunt.file.mkdir(destDir);
+    grunt.file.mkdir(tmpDir);
+
+    if (!Array.isArray(remoteFonts) || remoteFonts.length === 0) {
+      console.log("fetchFonts: no remote fonts configured.");
+      return done();
+    }
+
+    let i = 0;
+    const next = () => {
+      if (i >= remoteFonts.length) return done();
+
+      const item = remoteFonts[i++];
+      const outPath = path.join(destDir, item.output);
+
+      if (item.type === "file") {
+        console.log(`fetchFonts: downloading ${item.url} -> ${outPath}`);
+        return downloadToFile(item.url, outPath, (err) => {
+          if (err) {
+            console.log(`fetchFonts: failed downloading ${item.url}: ${err}`);
+            return done(false);
+          }
+          next();
+        });
+      }
+
+      if (item.type === "zip") {
+        const zipName = path.basename(item.url.split("#")[0].split("?")[0]);
+        const zipPath = path.join(tmpDir, zipName);
+
+        console.log(`fetchFonts: downloading ${item.url} -> ${zipPath}`);
+        return downloadToFile(item.url, zipPath, (err) => {
+          if (err) {
+            console.log(`fetchFonts: failed downloading ${item.url}: ${err}`);
+            return done(false);
           }
 
-          fetched_languages += 1;
-
-          if (total_languages === fetched_languages) {
-            let sorted_keys = Object.keys(supported_languages).sort();
-
-            console.log("List of available translations:");
-
-            for (let i in sorted_keys) {
-              console.log(" { \"code\": \"" + sorted_keys[i] +
-                  "\", \"name\": \"" + supported_languages[sorted_keys[i]] +"\" },");
+          console.log(`fetchFonts: extracting ${item.pick} -> ${outPath}`);
+          extractZipEntry(zipPath, item.pick, outPath, (err2) => {
+            if (err2) {
+              console.log(`fetchFonts: failed extracting from ${zipName}: ${err2}`);
+              return done(false);
             }
 
-            cb(supported_languages);
-          } else {
-            fetchLanguage(result.data[fetched_languages]);
-          }
+            // Optional cleanup
+            try { fs.unlinkSync(zipPath); } catch (e) {}
+            next();
+          });
         });
-      };
+      }
 
-      fetchLanguage(result.data[0]);
-    });
-  }
+      console.log(`fetchFonts: unknown type for ${item.url}`);
+      done(false);
+    };
+
+    next();
+  });
 
   grunt.registerTask("makeTranslationsSource", async function() {
     const done = this.async();
@@ -517,7 +588,7 @@ module.exports = function(grunt) {
       "charset": "UTF-8",
       "headers": {
         "project-id-version": "GlobaLeaks",
-        "language-team": "English (http://www.transifex.com/otf/globaleaks/language/en/)",
+        "language-team": "English",
         "mime-version": "1.0",
         "content-type": "text/plain; charset=UTF-8",
         "content-transfer-encoding": "8bit",
@@ -604,53 +675,6 @@ module.exports = function(grunt) {
 
     console.log("Written " + Object.keys(data["translations"][""]).length + " string to app/assets/data_src/pot/en.po.");
     done();
-  });
-
-  grunt.registerTask("☠☠☠pushTranslationsSource☠☠☠", function() {
-    updateTxSource(this.async());
-  });
-
-  grunt.registerTask("fetchTranslations", function() {
-    const done = this.async();  // Declare the async task
-    (async () => {
-      const gettextParser = await loadGettextParser();
-      let gt = new SimpleGettext(),
-          lang_code;
-
-      gt.setTextDomain("stable");
-
-      fetchTxTranslations(function(supported_languages) {
-        // Parse and load the PO file
-        gt.addTranslations("en", "stable", gettextParser.po.parse(fs.readFileSync("app/assets/data_src/pot/en.po")));
-        let strings = Object.keys(gettextParser.po.parse(fs.readFileSync("app/assets/data_src/pot/en.po"))["translations"][""]);
-
-        // Process each supported language
-        for (lang_code in supported_languages) {
-          let translations = {}, output;
-
-          gt.addTranslations(lang_code, "stable", gettextParser.po.parse(fs.readFileSync("app/assets/data_src/pot/" + lang_code + ".po")));
-          gt.setLocale(lang_code);
-
-          for (let i = 0; i < strings.length; i++) {
-            if (strings[i] === "") {
-              continue;
-            }
-
-            translations[strings[i]] = str_unescape(gt.gettext(str_escape(strings[i])));
-          }
-
-          // Write translations to JSON files
-          output = JSON.stringify(translations, null, 2);
-          fs.writeFileSync("app/assets/data/l10n/" + lang_code + ".json", output);
-        }
-
-        // Ensure Grunt knows the task is finished
-        done();
-      });
-    })().catch(err => {
-      console.error(err);
-      done(false);  // Signal error to Grunt
-    });
   });
 
   grunt.registerTask("makeAppData", function() {
@@ -877,17 +901,67 @@ module.exports = function(grunt) {
     }
   });
 
-  // Run this task to push translations on transifex
-  grunt.registerTask("pushTranslationsSource", ["confirm", "☠☠☠pushTranslationsSource☠☠☠"]);
+  // Run this task to push translations source on Weblate (no git access)
+  grunt.registerTask("weblateUploadSource", function() {
+    const done = this.async();
 
-  // Run this task to fetch translations from transifex and create application files
-  grunt.registerTask("updateTranslations", ["fetchTranslations", "makeAppData", "verifyAppData"]);
+    uploadWeblateSourcePo(function(ok) {
+      if (!ok) return done(false);
+      console.log("Weblate: uploaded source " + sourceFile);
+      done();
+    });
+  });
 
-  grunt.registerTask("package", ["copy:build", "webpack", "string-replace", "postcss", "copy:package"]);
+  // Run this task to fetch translations from Weblate (no git access)
+  grunt.registerTask("weblateFetchTranslations", function() {
+    const done = this.async();
+
+    listWeblateTranslationsAllPages(function(err, items) {
+      if (err) return done(false);
+
+      let langsSet = {};
+      items.forEach(function(it) {
+        let code = extractLangCodeFromTranslationItem(it);
+        if (code) langsSet[code] = true;
+      });
+
+      let langs = Object.keys(langsSet)
+        .sort()
+        .filter(function(c) { return c !== weblateSourceLang; });
+
+      if (!langs.length) {
+        console.log("Weblate: no languages found to download (besides source language).");
+        return done();
+      }
+
+      let i = 0;
+      let next = function() {
+        if (i >= langs.length) return done();
+        let lang = langs[i++];
+
+        downloadWeblatePo(lang, function(err2, outPath) {
+          if (err2) {
+            console.log("Weblate: failed downloading " + lang + ": " + err2);
+            return done(false);
+          }
+          console.log("Weblate: downloaded " + lang + " -> " + outPath);
+          next();
+        });
+      };
+
+      next();
+    });
+  });
+
+  grunt.registerTask("pushTranslationsSource", ["confirm", "weblateUploadSource"]);
+
+  grunt.registerTask("updateTranslations", ["weblateFetchTranslations", "makeAppData", "verifyAppData"]);
+
+  grunt.registerTask("package", ["fetchFonts", "copy:build", "webpack", "string-replace", "postcss", "copy:package"]);
 
   grunt.registerTask("build", ["clean", "shell:build", "package", "shell:brotli_compress", "clean:tmp"]);
 
   grunt.registerTask("build_for_testing", ["clean", "shell:build_for_testing", "package", "shell:brotli_compress", "clean:tmp"]);
- 
+
   grunt.registerTask("build_for_testing_and_instrument", ["clean", "shell:build_for_testing", "shell:instrument", "package", "shell:brotli_compress", "clean:tmp"]);
 };
