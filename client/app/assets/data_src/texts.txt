@@ -219,6 +219,7 @@ Last update
 Latest selectable date
 Let the platform be reachable without Tor
 License
+Listen
 Log accesses of internal users
 Log in
 Logging level
@@ -495,7 +496,6 @@ We will try to get back to you as soon as possible.
 Weak
 Welcome!
 Reporting person
-Reporting person's last access
 Whistleblowing Policy
 Whistleblowing button
 Width

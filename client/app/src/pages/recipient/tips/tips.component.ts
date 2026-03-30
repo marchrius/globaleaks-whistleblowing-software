@@ -2,9 +2,6 @@ import {Component, HostListener, OnInit, inject} from "@angular/core";
 import {AppConfigService} from "@app/services/root/app-config.service";
 import {NgbDate, NgbModal, NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppDataService} from "@app/app-data.service";
-import {GrantAccessComponent} from "@app/shared/modals/grant-access/grant-access.component";
-import {RevokeAccessComponent} from "@app/shared/modals/revoke-access/revoke-access.component";
-import {TransferAccessComponent} from "@app/shared/modals/transfer-access/transfer-access.component";
 import {PreferenceResolver} from "@app/shared/resolvers/preference.resolver";
 import {RTipsResolver} from "@app/shared/resolvers/r-tips-resolver.service";
 import {UtilsService} from "@app/shared/services/utils.service";
@@ -13,7 +10,6 @@ import {IDropdownSettings, NgMultiSelectDropDownModule} from "ng-multiselect-dro
 import {TokenResource} from "@app/shared/services/token-resource.service";
 import {Router, RouterLink} from "@angular/router";
 import {rtipResolverModel} from "@app/models/resolvers/rtips-resolver-model";
-import {Receiver} from "@app/models/receiver/receiver-tip-data";
 import {AuthenticationService} from "@app/services/helper/authentication.service";
 import {HttpService} from "@app/shared/services/http.service";
 import {concatMap, delay, from, tap} from "rxjs";
@@ -194,20 +190,18 @@ export class TipsComponent implements OnInit {
 
   onChanged(model: { id: number; label: string; }[], type: string) {
     this.processTips();
-    if (model.length > 0 && type === "Score") {
+    if (model.length > 0) {
       this.dropdownContextModel = [];
       this.dropdownStatusModel = [];
-      this.dropdownScoreModel = model;
-    }
-    if (model.length > 0 && type === "Status") {
-      this.dropdownContextModel = [];
       this.dropdownScoreModel = [];
-      this.dropdownStatusModel = model;
-    }
-    if (model.length > 0 && type === "Context") {
-      this.dropdownStatusModel = [];
-      this.dropdownScoreModel = [];
-      this.dropdownContextModel = model;
+
+      if (type === "Score") {
+        this.dropdownScoreModel = model;
+      } else if (type === "Status") {
+        this.dropdownStatusModel = model;
+      } else if (type === "Context") {
+        this.dropdownContextModel = model;
+      }
     }
     this.applyFilter();
   }
@@ -216,31 +210,28 @@ export class TipsComponent implements OnInit {
     return filter.length > 0;
   };
 
-  toggleChannelDropdown() {
-    this.channelDropdownVisible = !this.channelDropdownVisible;
+  resetFiltersStatus() {
+    this.channelDropdownVisible = false;
     this.statusDropdownVisible = false;
     this.scoreDropdownVisible = false;
     this.reportDatePicker = false;
     this.lastUpdatePicker = false;
     this.expirationDatePicker = false;
+  }
+
+  toggleChannelDropdown() {
+    this.resetFiltersStatus();
+    this.channelDropdownVisible = !this.channelDropdownVisible;
   }
 
   toggleStatusDropdown() {
+    this.resetFiltersStatus();
     this.statusDropdownVisible = !this.statusDropdownVisible;
-    this.channelDropdownVisible = false;
-    this.scoreDropdownVisible = false;
-    this.reportDatePicker = false;
-    this.lastUpdatePicker = false;
-    this.expirationDatePicker = false;
   }
 
   toggleScoreDropdown() {
+    this.resetFiltersStatus();
     this.scoreDropdownVisible = !this.scoreDropdownVisible;
-    this.channelDropdownVisible = false;
-    this.statusDropdownVisible = false;
-    this.reportDatePicker = false;
-    this.lastUpdatePicker = false;
-    this.expirationDatePicker = false;
   }
 
   orderbyCast(data: rtipResolverModel[]): rtipResolverModel[] {

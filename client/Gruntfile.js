@@ -240,11 +240,10 @@ module.exports = function(grunt) {
       },
       pdfjs: {
         entry: {
-          'pdf.min': './node_modules/pdfjs-dist/legacy/build/pdf.min.mjs',
-          'pdf.worker.min': './node_modules/pdfjs-dist/legacy/build/pdf.worker.min.mjs',
+          'script.min.js': './app/viewer/script.js',
         },
         output: {
-          filename: '[name].js',
+          filename: '[name]',
           path: path.resolve('app/viewer/'),
           libraryTarget: 'umd',
           globalObject: 'this', // This makes the bundle work in both browser and Node.js
@@ -264,7 +263,7 @@ module.exports = function(grunt) {
         command: "nyc instrument dist --in-place"
       },
       brotli_compress: {
-        command: 'find . -type f -not -name \'index.html\' -not -path \'./data/*\' -not -path \'./fonts/*\' -exec brotli -q 11 {} --output={}.br \\;',
+        command: 'find . -type f -not -name \'index.html\' -not -path \'./data/*\' -not -path \'./fonts/*\' -not -path \'./images/*\' -exec brotli -q 11 {} --output={}.br \\;',
         options: {
           execOptions: {
             cwd: './build'

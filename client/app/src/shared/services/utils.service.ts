@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, Renderer2, inject} from "@angular/core";
+import {EventEmitter, Injectable, inject} from "@angular/core";
 import Flow from "@flowjs/flow.js";
 import {TranslateService} from "@ngx-translate/core";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -6,7 +6,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {RequestSupportComponent} from "@app/shared/modals/request-support/request-support.component";
 import {HttpService} from "@app/shared/services/http.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable, from, map, switchMap} from "rxjs";
+import {Observable, map} from "rxjs";
 import {ConfirmationWithPasswordComponent} from "@app/shared/modals/confirmation-with-password/confirmation-with-password.component";
 import {ConfirmationWith2faComponent} from "@app/shared/modals/confirmation-with2fa/confirmation-with2fa.component";
 import {PreferenceResolver} from "@app/shared/resolvers/preference.resolver";
@@ -161,7 +161,8 @@ export class UtilsService {
         this.router.navigate([this.router.url]).then();
       });
   }
-  onFlowUpload(flowJsInstance:Flow, file:File){
+
+  onFlowUpload(flowJsInstance:Flow, file:File) {
     const fileNameParts = file.name.split(".");
     const fileExtension = fileNameParts.pop();
     const fileNameWithoutExtension = fileNameParts.join(".");
@@ -193,11 +194,11 @@ export class UtilsService {
     }).subscribe();
   }
 
-  toggleCfg(authenticationService: AuthenticationService, tlsConfig:TlsConfig, dataToParent:EventEmitter<string>) {
+  toggleCfg(authenticationService: AuthenticationService, tlsConfig:TlsConfig, updated:EventEmitter<string>) {
     if (tlsConfig.enabled) {
       const authHeader = authenticationService.getHeader();
       this.httpService.disableTLSConfig(tlsConfig, authHeader).subscribe(() => {
-        dataToParent.emit();
+        updated.emit();
       });
     } else {
       const authHeader = authenticationService.getHeader();
@@ -309,7 +310,6 @@ export class UtilsService {
         // Return false in case of any exception (e.g., cyclic reference or BigInt error)
         return false;
     }
-    return false;
   }
 
   isDatePassed(time: string) {
@@ -673,8 +673,8 @@ export class UtilsService {
     }
   }
 
-  deleteResource( list: any[], res: any): void {
-      list.splice(list.indexOf(res), 1);
+  deleteResource<T extends { id: string }>(list: T[], id: string): T[] {
+    return list.filter(i => i.id !== id);
   }
 
   acceptPrivacyPolicyDialog(): Observable<string> {

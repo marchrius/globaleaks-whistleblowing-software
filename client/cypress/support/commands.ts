@@ -11,7 +11,6 @@ declare global {
       simple_login_admin: (username?: string, password?: string, url?: string, firstlogin?: boolean) => void;
       simple_login_receiver: (username?: string, password?: string, url?: string, firstlogin?: boolean) => void;
       takeScreenshot: (filename: string, locator?: string) => void;
-      waitForPageIdle: () => void;
       waitForTipImageUpload: (attempt?: number) => void;
       waitForUrl: (url: string, timeout?: number) => Chainable<any>;
       waitUntilClickable: (locator: string, timeout?: number) => void;
@@ -92,8 +91,6 @@ Cypress.Commands.add("login_analyst", (username, password, url, firstlogin) => {
       });
     });
   }
-
-  cy.waitForPageIdle();
 });
 
 Cypress.Commands.add("login_custodian", (username, password, url, firstlogin) => {
@@ -143,8 +140,6 @@ Cypress.Commands.add("login_receiver", (username, password, url, firstlogin) => 
       });
     });
   }
-
-  cy.waitForPageIdle();
 });
 
 Cypress.Commands.add("login_whistleblower", (receipt) => {
@@ -213,8 +208,6 @@ Cypress.Commands.add("simple_login_receiver", (username, password, url, firstlog
       });
     });
   }
-
-  cy.waitForPageIdle();
 });
 
 Cypress.Commands.add("takeScreenshot", (filename: string, locator?: string) => {
@@ -228,34 +221,16 @@ Cypress.Commands.add("takeScreenshot", (filename: string, locator?: string) => {
 
     if (locator) {
       cy.viewport(1280, 1024);
-      cy.wait(500);
-      cy.waitForPageIdle();
+      cy.wait(50);
       return cy.get(locator).screenshot("../" + filename, {overwrite: true});
     }
 
-    cy.wait(500);
-    cy.waitForPageIdle();
+    cy.wait(50);
 
     // Ensure the screenshot does not include signs of mouse position/clicks
     cy.get('body').click(0, 0);
 
     return cy.screenshot("../" + filename, {overwrite: true, scale: true });
-  });
-});
-
-Cypress.Commands.add("waitForPageIdle", () => {
-  cy.window().then((window) => {
-    return new Cypress.Promise((resolve) => {
-      const checkAngular = () => {
-        if (window.isAngularStable()) {
-          resolve();
-        } else {
-          setTimeout(checkAngular, 1000);
-        }
-      };
-
-      checkAngular();
-    });
   });
 });
 

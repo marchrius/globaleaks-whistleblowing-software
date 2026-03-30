@@ -52,7 +52,7 @@ export class ReceiverTipService {
         this.utils.reloadComponent();
         return of(null);
       })
-    ).subscribe();;
+    ).subscribe();
   }
 
   updateRedaction(content: RedactionData, tip_id?: string) {
@@ -61,7 +61,7 @@ export class ReceiverTipService {
         if (tip_id) {
           return this.httpService.receiverTip(tip_id).pipe(
             tap((res: any) => {
-                this.tip = {...this.tip, wbfiles: [...res.wbfiles], redactions: [...res.redactions]};
+              this.tip = {...this.tip, wbfiles: [...res.wbfiles], redactions: [...res.redactions]};
             })
           );
         }
